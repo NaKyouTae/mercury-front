@@ -8,7 +8,7 @@ import { ThreeComponent } from './menu/three/three.component';
 import { NoticeComponent } from './menu/notice/notice.component';
 
 
-const routes: Routes = [{path: '', component: MainComponent},
+const routes: Routes = [{path: '', component: MainComponent, data: {animation: 'Home'}},
 {path: 'layout', component: LayoutComponent, children: [
   {path: 'honor', component: HonorComponent},
   {path: 'two', component: TwoComponent},

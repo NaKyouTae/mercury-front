@@ -5,13 +5,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MenuModule } from '../menu/menu.module';
-import { AdvertComponent } from './advert/advert.component';
 import { RouteComponent } from './route/route.component';
+import { AdvertOneComponent } from './advert-one/advert-one.component';
+import { AdvertTwoComponent } from './advert-two/advert-two.component';
 
 
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, AdvertComponent, RouteComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, RouteComponent, AdvertOneComponent, AdvertTwoComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

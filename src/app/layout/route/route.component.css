@@ -1,23 +1,17 @@
 .lay-header{
     height: 30px;
     width: 100%;
-    border-bottom: 1px solid darkgray;
     text-align: center;
 }
 
-.lay-header > div{    
-    border-right: 1px solid darkgray;
-    border-left: 1px solid darkgray;
-}
-
 .lay-header-two > div{
-    width: calc((100% - 6px) / 3);
+    width: calc((100%) / 3);
     height: 100%;
     display: inline-block;
 }
 
 .lay-header-three > div{
-    width: calc((100% / 3) - 2px);
+    width: calc((100% / 3));
     height: 100%;
     display: inline-block;
 }

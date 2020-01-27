@@ -2,19 +2,18 @@
     height: 30px;
     width: 100%;
     text-align: center;
+    background-color: black;
 }
 
-.lay-header-two > div{
-    width: calc((100%) / 3);
+.lay-header > div{
+    width: 100px;
     height: 100%;
     display: inline-block;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
 }
 
-.lay-header-three > div{
-    width: calc((100% / 3));
-    height: 100%;
-    display: inline-block;
-}
 
 .lay-header > div:hover{
     background-color: darkgray;

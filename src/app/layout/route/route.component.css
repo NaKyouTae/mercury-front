@@ -1,17 +1,22 @@
 .lay-header{
-    height: 30px;
     width: 100%;
     text-align: center;
     background-color: black;
 }
 
+.page-route{
+    min-height: 30px; 
+    height: auto;
+}
+
 .lay-header > div{
-    width: 100px;
+    width: auto;
     height: 100%;
     display: inline-block;
     cursor: pointer;
     color: white;
     font-size: 20px;
+    padding: 0px 15px;
 }
 
 

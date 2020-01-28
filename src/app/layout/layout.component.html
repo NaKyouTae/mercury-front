@@ -1,10 +1,8 @@
-<app-advert-one style="display: inline-block; width: 15%; height: 100vh; vertical-align: top;"></app-advert-one>
-<div style="display: inline-block; width: 70%; height: 100vh;">
+<app-advert-one class="app-advert-one" style="display: inline-block; width: 15%; vertical-align: top; margin-top: 10%;"></app-advert-one>
+<div (window:resize)="resize()" style="display: inline-block; width: 70%;">
     <app-header></app-header>
     <app-route></app-route>
-    <div style="height: auto;">
-        <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>
-<app-advert-two style="display: inline-block; width: 15%; height: 100vh; vertical-align: top;"></app-advert-two>
+<app-advert-two class="app-advert-two" style="display: inline-block; width: 15%; vertical-align: top; margin-top: 10%;"></app-advert-two>

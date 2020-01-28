@@ -15,3 +15,11 @@ body{
     width: 100%;
     background-color: #ececec;
 }
+
+.advert{
+    border: 1px dotted darkgrey; 
+    width: 150px; 
+    height: 500px; 
+    margin: auto; 
+    top: 200px;
+}

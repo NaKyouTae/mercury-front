@@ -1,0 +1,15 @@
+/* 세로모드 모바일 디바이스 (가로 해상도가 576px 보다 작은 화면에 적용) */
+@media (max-width: 575px) {
+    .page-advert-two{
+        width: 100%;
+    }   
+    
+    .advert{
+        position: absolute;
+        text-align: center;
+        border: 1px dotted darkgrey; 
+        width: 100%; 
+        height: 70px;
+        bottom: 0px;
+    }
+}

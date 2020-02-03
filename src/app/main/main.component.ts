@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.interval = setInterval(() => {
-      this.router.navigateByUrl('/layout/honor')
+      this.router.navigateByUrl('/layout/three')
     }, 500)
   }
 

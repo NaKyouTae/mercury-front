@@ -1,25 +1,4 @@
-.lay-header{
-    width: 100%;
-    text-align: center;
-    background-color: black;
-}
-
-.page-route{
-    min-height: 30px; 
-    height: auto;
-}
-
-.lay-header > div{
-    width: auto;
-    height: 100%;
-    display: inline-block;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    padding: 0px 15px;
-}
-
-
-.lay-header > div:hover{
-    background-color: darkgray;
-}
+@import url("../route/route-vertical.component.css");
+@import url("../route/route-horizontal.component.css");
+@import url("../route/route-tablet.component.css");
+@import url("../route/route-desktop.component.css");

@@ -1,1 +1,31 @@
-<main class="page-content">3행시</main>
+<main class="page-content">
+    <div class="word">
+        <p>제</p>
+        <p>시</p>
+        <p>어</p>
+        <div style="padding-top:10px;">
+            <p>* 제시어란?</p>
+            <p>삼행시를 하기위한 재료로 쓰이는 단어이다.</p>
+        </div>
+    </div>
+    <div style="height: 331px;">
+        <div class="data-grid-header">
+            <div style="width: auto;">도전 내용</div>
+            <div style="width: auto;">도전자</div>
+            <div style="width: auto;">도전일</div>
+            <div style="width: auto;">점수</div>
+        </div>
+        <div class="data-grid-body" style="overflow: auto; height: 100%;">
+            <div class="data-grid" *ngFor="let item of dataArray; let idx = index;">
+                <div style="width: auto; text-align: left;">
+                    <div>{{item.content_one}}</div>
+                    <div>{{item.content_two}}</div>
+                    <div>{{item.content_three}}</div>
+                </div>
+                <div style="width: auto;">{{item.name}}</div>
+                <div style="width: auto;">{{item.date}}</div>
+                <div style="width: auto;">{{item.point}}</div>
+            </div>
+        </div>
+    </div>
+</main>

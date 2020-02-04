@@ -8,7 +8,7 @@ import { ThreeComponent } from './menu/three/three.component';
 import { NoticeComponent } from './menu/notice/notice.component';
 
 
-const routes: Routes = [{path: '', component: MainComponent, data: {animation: 'Home'}},
+const routes: Routes = [{path: '', component: MainComponent},
 {path: 'layout', component: LayoutComponent, children: [
   {path: 'honor', component: HonorComponent},
   {path: 'two', component: TwoComponent},
@@ -16,8 +16,5 @@ const routes: Routes = [{path: '', component: MainComponent, data: {animation: '
   {path: 'notice', component: NoticeComponent}
 ]}];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const AppRoutingModule = RouterModule.forRoot(routes);
+

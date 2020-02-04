@@ -10,7 +10,7 @@
         height: auto;
     }
     
-    .lay-header > div{
+    .lay-header > a{
         width: auto;
         height: 100%;
         display: inline-block;
@@ -20,7 +20,7 @@
     }
     
     
-    .lay-header > div:hover{
+    .lay-header > a:hover{
         background-color: darkgray;
     }
 }

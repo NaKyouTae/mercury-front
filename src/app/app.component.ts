@@ -12,11 +12,15 @@ export class AppComponent {
   constructor(private router: Router){}
 
   ngOnInit(){
+    
+  }
+
+  ngAfterViewInit(){
     this.router.events.subscribe((e) => {
       if(e instanceof NavigationEnd){
         const height = window.innerHeight - document.querySelector('.page-header').clientHeight - document.querySelector('.page-footer').clientHeight - document.querySelector('.page-route').clientHeight;
-        const contentMinHeight = document.querySelector('.app-advert-one').clientHeight + 60;
-        document.querySelector('.page-content').setAttribute('style', 'height:' + (height - 80) + 'px; min-height:' + contentMinHeight + 'px;');
+        const contentMinHeight = document.querySelector('.app-advert-one').clientHeight;
+        document.querySelector('.page-content').setAttribute('style', 'height:' + (height) + 'px;');
       }      
     })
   }

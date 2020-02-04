@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThreeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit(){
+    const height = document.querySelector('.insert-word').clientHeight + document.querySelector('.data-grid-header').clientHeight;
+    const body = document.getElementsByClassName('data-grid-body')[0] as HTMLElement;
+    body.style.height = 'calc(100% - ' + height.toString() + 'px';
   }
 
   public dataArray: any = [{

@@ -1,18 +1,12 @@
 /* 세로모드 모바일 디바이스 (가로 해상도가 576px 보다 작은 화면에 적용) */
 @media (max-width: 575px) {
     .page-header{
-        width: 100%; 
-        min-height: 50px; 
+        width: 100%;
         height: auto; 
         text-align: center;
     }
 
     .page-header > div{
-        width: calc(100%/3); 
         display: inline-block;
-    }
-    
-    .page-header > div:nth-child(){
-        font-weight: bold;
     }
 }

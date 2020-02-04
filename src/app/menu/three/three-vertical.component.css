@@ -1,9 +1,9 @@
 /* 세로모드 모바일 디바이스 (가로 해상도가 576px 보다 작은 화면에 적용) */
 @media (max-width: 575px) {
     .word {
-        height: 100px;
+        height: auto;
         max-width: 80%;
-        margin: 10px auto;
+        margin: 0px auto;
         text-align: center;
     }
     .word > p {
@@ -12,10 +12,13 @@
         display: inline-block;
     }
     
+    .insert-word {
+        text-align: center;
+    }
+
     .data-grid-header {
         border-bottom: 1px solid darkgray;
-        margin: 10px 30px;
-        margin-top: 40px;
+        margin: 0px 30px;
         text-align: center;
     }
 
@@ -24,9 +27,12 @@
         margin: 0px 13px;
     }
 
+    .data-grid-body { 
+        overflow: auto;
+    }
     .data-grid {
         border-bottom: 1px solid darkgray;
-        margin: 2px 20px;
+        margin: 0px 20px;
         font-size: 13px;
         text-align: center;
     }

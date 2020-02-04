@@ -18,7 +18,6 @@ export class LayoutComponent implements OnInit {
 
   resize(){
     const height = window.innerHeight - document.querySelector('.page-header').clientHeight - document.querySelector('.page-footer').clientHeight - document.querySelector('.page-route').clientHeight;
-    const contentMinHeight = document.querySelector('.app-advert-one').clientHeight + 60;
-    document.querySelector('.page-content').setAttribute('style', 'height:' + (height - 80) + 'px; min-height:' + contentMinHeight + 'px;');
+    document.querySelector('.page-content').setAttribute('style', 'height:' + (height - 70) + 'px;');
   }
 }

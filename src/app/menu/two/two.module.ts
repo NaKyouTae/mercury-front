@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { TwoComponent } from "./two.component";
 
 @NgModule({
-  declarations: [TwoComponent],
+  declarations: [],
   imports: [CommonModule]
 })
 export class TwoModule {}

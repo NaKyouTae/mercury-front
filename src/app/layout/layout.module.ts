@@ -7,12 +7,14 @@ import { AppRoutingModule } from "../app-routing.module";
 import { MenuModule } from "../menu/menu.module";
 import { AdvertOneComponent } from "./advert-one/advert-one.component";
 import { AdvertTwoComponent } from "./advert-two/advert-two.component";
+import { RouteComponent } from "./route/route.component";
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    RouteComponent,
     AdvertOneComponent,
     AdvertTwoComponent
   ],

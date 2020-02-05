@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ThreeComponent } from "./three.component";
 
 @NgModule({
-  declarations: [ThreeComponent],
+  declarations: [],
   imports: [CommonModule]
 })
 export class ThreeModule {}

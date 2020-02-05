@@ -1,17 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HonorComponent } from './honor.component';
-import { MenuModule } from '../menu.module';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HonorComponent } from "./honor.component";
 
 @NgModule({
-  declarations: [HonorComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    MenuModule
-  ]
+  declarations: [],
+  imports: [CommonModule]
 })
-export class HonorModule { }
+export class HonorModule {}

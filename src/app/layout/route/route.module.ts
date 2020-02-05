@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NoticeComponent } from "./notice.component";
+import { RouteComponent } from "./route.component";
+import { AppRoutingModule } from "../../app-routing.module";
 
 @NgModule({
   declarations: [],
   imports: [CommonModule]
 })
-export class NoticeModule {}
+export class RouteModule {}

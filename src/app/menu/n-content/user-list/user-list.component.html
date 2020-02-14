@@ -1,0 +1,12 @@
+<div class="data-grid-body">
+    <div class="data-grid" *ngFor="let item of datas; let idx = index;">
+        <div style="width: auto; text-align: left;">
+            <div>{{item.content_one}}</div>
+            <div>{{item.content_two}}</div>
+            <div>{{item.content_three}}</div>
+        </div>
+        <div style="width: auto;">{{item.name}}</div>
+        <div style="width: auto;">{{item.date}}</div>
+        <div style="width: auto;">{{item.point}}</div>
+    </div>
+</div>

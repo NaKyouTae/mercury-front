@@ -1,0 +1,43 @@
+/* 세로모드 모바일 디바이스 (가로 해상도가 576px 보다 작은 화면에 적용) */
+@media (max-width: 575px) {
+    .content-top{
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0px auto;
+        padding: 10px 0px;
+        text-align: center;    
+    }
+
+    .word-title{
+        font-size: 12px;
+    }
+
+    .word {
+        height: auto;
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0px auto;
+        padding: 10px 0px;
+        text-align: center;
+    }
+    .word > p {
+        font-size: 25px;
+        padding: 15px;
+        display: inline-block;
+        border: 1px solid darkgray;
+        border-radius: 5px;
+    }
+
+    .word > p:nth-child(2){
+        margin: 0px 20px;
+    }
+
+    .word-descript{
+        font-size: 12px;        
+    }
+
+    .word-descript > p:nth-child(2){
+        padding: 5px 0px;
+    }
+
+}

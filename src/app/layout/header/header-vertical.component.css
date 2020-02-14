@@ -2,11 +2,7 @@
 @media (max-width: 575px) {
     .page-header{
         width: 100%;
-        height: auto; 
-        text-align: center;
-    }
-
-    .page-header > div{
-        display: inline-block;
+        height: auto;
+        font-size: 50px;
     }
 }

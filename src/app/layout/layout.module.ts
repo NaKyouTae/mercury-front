@@ -8,6 +8,7 @@ import { MenuModule } from "../menu/menu.module";
 import { AdvertOneComponent } from "./advert-one/advert-one.component";
 import { AdvertTwoComponent } from "./advert-two/advert-two.component";
 import { RouteComponent } from "./route/route.component";
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RouteComponent } from "./route/route.component";
     FooterComponent,
     RouteComponent,
     AdvertOneComponent,
-    AdvertTwoComponent
+    AdvertTwoComponent,
+    ContentComponent
   ],
   imports: [CommonModule, AppRoutingModule, MenuModule],
   bootstrap: [LayoutComponent],

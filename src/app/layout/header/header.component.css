@@ -3,3 +3,6 @@
 @import url("../header/header-tablet.component.css");
 @import url("../header/header-desktop.component.css");
 
+.page-header { 
+    background-color: darkgray;
+}

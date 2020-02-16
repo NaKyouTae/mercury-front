@@ -1,4 +1,37 @@
 /* 테스크탑 (가로 해상도가 1200px 보다 작은 화면에 적용) */
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) {
+    .insert-word {
+        width: 100%;
+        margin: 0px auto;
+        border-bottom: 1px solid darkgray;
+        padding-bottom: 30px;
+        margin-bottom:30px;
+    }
+
+    .insert-word > div:nth-child(2){
+        margin: 5px 0px;
+    }
+
+    .in-word-title {
+        display: inline-block;
+        padding-right: 10px;
+        margin: 0px auto;
+    }
+
+    .in-word-in {
+        border-radius: 50px;
+        height: 20px;
+        width: calc(100% - 30px - 55px);
+    }
     
+    .insert-btn{
+        display: inline-block;
+        color: white;
+        background-color: blue;
+        border: 1px solid blue;
+        border-radius: 50px;
+        padding: 5px 10px;
+        font-size: 12px;
+        margin-left: 10px;
+    }
 }

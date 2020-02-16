@@ -1,12 +1,34 @@
-<div class="data-grid-body">
-    <div class="data-grid" *ngFor="let item of datas; let idx = index;">
-        <div style="width: auto; text-align: left;">
-            <div>{{item.content_one}}</div>
-            <div>{{item.content_two}}</div>
-            <div>{{item.content_three}}</div>
-        </div>
-        <div style="width: auto;">{{item.name}}</div>
-        <div style="width: auto;">{{item.date}}</div>
-        <div style="width: auto;">{{item.point}}</div>
+<div class="user-list">
+    <div class="data-title">
+        <div>TOTAL <!--{{}}--></div>
+        <div style="float: right; margin-left: 10px;">최신 순</div>
+        <div style="float: right; margin-left: 10px;">인기 순</div>
     </div>
+    <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
+        <div>
+            <div class="data-user">
+                <div>{{item.name}} 님</div>
+                <div>&#9829;</div>
+                <div>{{item.point}}</div>
+            </div>
+            <div class="data-date">
+                <div>{{item.date}}</div>
+            </div>
+        </div>
+        <div class="data-text">
+            <div>
+                <div>{{words[0]}}</div>
+                <div>{{item.content_one}}</div>
+            </div>
+            <div>
+                <div>{{words[1]}}</div>
+                <div>{{item.content_two}}</div>
+            </div>
+            <div>
+                <div>{{words[2]}}</div>
+                <div>{{item.content_three}}</div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 20px auto; width: 900px; height: 70px; border: 1px solid blue;">광고 이미지</div>
 </div>

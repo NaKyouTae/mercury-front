@@ -1,11 +1,44 @@
 /* 테스크탑 (가로 해상도가 1200px 보다 작은 화면에 적용) */
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px){
     .page-footer{
-        min-height: 50px; 
         height:auto; 
-        width: 100%; 
-        text-align: center; 
-        background-color: black; 
+        width: 100%;
+        background-color: #383838; 
         color: white;
+    }
+
+    .page-footer > div {
+        padding: 20px;
+    }
+
+    .copyright{
+        width: 100%;
+        color: white;
+        height: auto;
+        background-color: #070707;
+    }
+    
+    .copyright > div {
+        display: inline-block;
+        padding: 30px 20px;
+        width: calc((100% / 2) - 40px);
+    }
+    .copyright > div:last-child {
+        text-align: right;
+    }
+
+    .copyright-contents > div{
+        display: inline-block;
+    }
+
+    .news-btn{
+        width: auto;
+        color: black;
+        padding: 10px 20px;
+        font-size: 20px;
+        text-align: center;
+        background-color: springgreen;
+        border: 1px solid springgreen;
+        border-radius: 50px;
     }
 }

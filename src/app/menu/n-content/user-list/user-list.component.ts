@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserListComponent implements OnInit {
 
   @Input('data') public datas:any;
-
+  public words = ['삼', '행', '시'];
   constructor() { }
 
   ngOnInit() {

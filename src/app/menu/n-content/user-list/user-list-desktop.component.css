@@ -1,4 +1,61 @@
-/* 테스크탑 (가로 해상도가 1200px 보다 작은 화면에 적용) */
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) {
+    .data-title {
+        width: 100%;
+        margin-bottom: 20px;
+    }
     
+    .data-title > div {
+        display: inline-block;
+    }
+
+    .user-list { 
+        overflow: auto;
+    }
+    
+    .data-grid {
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+    }
+
+    .data-grid > div {
+        display : inline-block;
+        margin: 5px 0px;
+        width: 100%;
+    }
+
+    .data-text {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .data-user { 
+        text-align: left;
+        display: inline-block;
+        width: 80%;
+    }
+
+    .data-user > div {
+        display: inline-block;
+    }
+
+    .data-user > div:nth-child(2){
+        margin-left: 5px;
+    }
+
+    .data-date {
+        text-align: right;
+        display: inline-block;
+        width: 20%;
+    }
+
+    .data-text > div > div:first-child{
+        display: inline-block;
+        font-weight: bold;
+    }
+    .data-text > div > div:last-child{
+        display: inline-block;
+        margin-left: 10px;
+    }
 }

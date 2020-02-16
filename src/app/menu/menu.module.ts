@@ -8,9 +8,9 @@ import { HonorComponent } from "./honor/honor.component";
 import { ThreeComponent } from "./three/three.component";
 import { TwoComponent } from "./two/two.component";
 import { NoticeComponent } from "./notice/notice.component";
-import { WordComponent } from './word/word.component';
 import { UserContentsComponent } from './n-content/user-contents/user-contents.component';
 import { UserListComponent } from './n-content/user-list/user-list.component';
+import { WordComponent } from './n-content/word/word.component';
 
 @NgModule({
   declarations: [HonorComponent, ThreeComponent, TwoComponent, NoticeComponent, WordComponent, UserContentsComponent, UserListComponent],

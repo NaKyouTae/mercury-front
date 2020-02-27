@@ -1,13 +1,15 @@
 <main>
-    <app-word></app-word>
-    <div style="background-color: #ececec; padding: 20px;">
-        <app-user-contents></app-user-contents>
-        <!-- <div class="data-grid-header">
-            <div style="width: auto;">도전 내용</div>
-            <div style="width: auto;">도전자</div>
-            <div style="width: auto;">도전일</div>
-            <div style="width: auto;">점수</div>
-        </div> -->
-        <app-user-list [data]="dataArray"></app-user-list>
+    <app-word style="width: 1100px; margin: 0px auto;"></app-word>
+    <div style="background-color: #f8f8f8; padding: 30px 50px;">
+        <div style="width: 1100px; margin: 0px auto;">
+            <app-user-contents></app-user-contents>
+            <!-- <div class="data-grid-header">
+                <div style="width: auto;">도전 내용</div>
+                <div style="width: auto;">도전자</div>
+                <div style="width: auto;">도전일</div>
+                <div style="width: auto;">점수</div>
+            </div> -->
+            <app-user-list [data]="dataArray"></app-user-list>
+        </div>
     </div>
 </main>

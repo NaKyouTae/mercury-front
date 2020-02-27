@@ -7,8 +7,13 @@
     <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
         <div>
             <div class="data-user">
-                <div>{{item.name}} 님</div>
-                <div>&#9829;</div>
+                <div style="color: #100efb;">{{item.name}}</div>
+                <div>님</div>
+                <div>
+                    <img style="height: 15px;" src="../../../../assets/img/love.png">
+                    <img style="height: 15px;" src="../../../../assets/img/love-r-border.png">
+                    <img style="height: 15px;" src="../../../../assets/img/love-b-border.png">
+                </div>
                 <div>{{item.point}}</div>
             </div>
             <div class="data-date">
@@ -30,5 +35,7 @@
             </div>
         </div>
     </div>
-    <div style="text-align: center; margin: 20px auto; width: 900px; height: 70px; border: 1px solid blue;">광고 이미지</div>
+    <div style="text-align: center; margin: 20px auto; ">
+        <img style="width: 728px; height: 90px;" src="../../../../assets/img/ad-sample.jpg">
+    </div>
 </div>

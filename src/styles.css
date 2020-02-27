@@ -16,4 +16,9 @@ body{
     height: 100%;
     width: 100%;
     font-family: 'NanumSquare', sans-serif;
+    color: #111;
+}
+
+.blue-font{
+    color: 100efb;
 }

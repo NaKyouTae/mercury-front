@@ -1,0 +1,11 @@
+.login-content > div > input {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.login-content > div > button {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+}

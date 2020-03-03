@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private common: CommonHttpService, private router:Router) {}
+  constructor(
+    private dialog: MatDialog,
+    private common: CommonHttpService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
 
-    this.common.httpCallPost('user/login', data).subscribe(res => {
+    this.common.zzz('user/login', data).subscribe(res => {
       console.log(res);
       this.router.navigateByUrl('/layout/three');
     });

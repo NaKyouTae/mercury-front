@@ -20,13 +20,11 @@ export class CommonHttpService {
   }
   httpCallPost(service, params) {
     const hearder = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': 'true'
+      'Content-Type': 'application/json'
     });
 
     return this.http.post('http://localhost:8080/' + service, params, {
-      headers: hearder,
-      params: params
+      headers: hearder, params: params
     });
   }
 }

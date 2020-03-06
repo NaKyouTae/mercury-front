@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HonorComponent } from "./honor.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [HonorComponent],
   imports: [CommonModule]
 })
 export class HonorModule {}

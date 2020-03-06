@@ -4,7 +4,6 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { MenuModule } from '../menu/menu.module';
 import { AdvertOneComponent } from './advert-one/advert-one.component';
 import { AdvertTwoComponent } from './advert-two/advert-two.component';
 import { RouteComponent } from './route/route.component';
@@ -15,24 +14,25 @@ import {
   MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { RouteModule } from './route/route.module';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    RouteComponent,
     AdvertOneComponent,
     AdvertTwoComponent,
     ContentComponent,
-    LoginComponent
+    LoginComponent,
+    RouteComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    MenuModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    RouteModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }

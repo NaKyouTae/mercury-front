@@ -2,23 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
-import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginInterceptorService } from './core/login-interceptor.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainModule,
     LayoutModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

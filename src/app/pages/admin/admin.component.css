@@ -1,0 +1,9 @@
+.grid-wrapper {
+    text-align: center;
+}
+
+.grid-wrapper > div{
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}

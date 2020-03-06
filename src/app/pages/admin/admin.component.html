@@ -1,0 +1,17 @@
+<div class="grid-wrapper">
+    <div *ngFor="let f of fields; let idx = index;">
+        <div>{{f}}</div>
+        <div *ngFor="let d of onBind(f)" style="height: 20px;">{{d}}</div> 
+    </div>
+    <div class="page-info">
+        <div>
+
+        </div>
+        <select>
+            <option *ngFor="let s of sizeList" [selected]="s == take" (click)="reSize(s)">{{s}}</option>
+        </select>
+        <div>
+            <div>{{take}} of {{tot}}</div>
+        </div>
+    </div>
+</div>

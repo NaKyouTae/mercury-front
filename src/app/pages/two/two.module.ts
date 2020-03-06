@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NoticeComponent } from "./notice.component";
+import { TwoComponent } from "./two.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [TwoComponent],
   imports: [CommonModule]
 })
-export class NoticeModule {}
+export class TwoModule {}

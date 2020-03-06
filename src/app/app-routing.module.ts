@@ -1,20 +1,19 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './main/main.component';
 import { LayoutComponent } from './layout/layout.component';
-import { HonorComponent } from './menu/honor/honor.component';
-import { TwoComponent } from './menu/two/two.component';
-import { ThreeComponent } from './menu/three/three.component';
-import { NoticeComponent } from './menu/notice/notice.component';
+import { ThreeComponent } from './pages/three/three.component';
 
-
-const routes: Routes = [{path: '', component: MainComponent},
-{path: 'layout', component: LayoutComponent, children: [
-  {path: 'honor', component: HonorComponent},
-  {path: 'two', component: TwoComponent},
-  {path: 'three', component: ThreeComponent},
-  {path: 'notice', component: NoticeComponent}
-]}];
+const routes: Routes = [
+  {
+    path: 'layout',
+    component: LayoutComponent,
+    children: [
+      { path: 'three', component: ThreeComponent },
+      { path: 'two', loadChildren: () => import('./pages/two/two.module').then(m => m.TwoModule) },
+      { path: 'honor', loadChildren: () => import('./pages/honor/honor.module').then(m => m.HonorModule) },
+      { path: 'notice', loadChildren: () => import('./pages/notice/notice.module').then(m => m.NoticeModule) },
+      { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) }
+    ]
+  }
+];
 
 export const AppRoutingModule = RouterModule.forRoot(routes);
-

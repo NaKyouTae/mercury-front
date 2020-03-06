@@ -7,24 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  constructor() {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-    this.router.events.subscribe((e) => {
-      if(e instanceof NavigationEnd){
-        const height = window.innerHeight - document.querySelector('.page-header').clientHeight - document.querySelector('.page-footer').clientHeight - document.querySelector('.page-route').clientHeight;
-        document.querySelector('.page-content').setAttribute('style', 'height:' + (height - 70) + 'px;');
-      }      
-    })
-  }
-
-  ngAfterViewInit(){
-    this.resize();
-  }
-
-  resize(){
-    const height = window.innerHeight - document.querySelector('.page-header').clientHeight - document.querySelector('.page-footer').clientHeight - document.querySelector('.page-route').clientHeight;
-    document.querySelector('.page-content').setAttribute('style', 'height:' + (height - 70) + 'px;');
-  }
+  ngOnInit() {}
 }

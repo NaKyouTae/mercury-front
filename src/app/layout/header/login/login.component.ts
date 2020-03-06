@@ -34,12 +34,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+
     const data = {
-      username: this.username,
-      password: this.password
+      username: encodeURI(this.username),
+      password: encodeURI(this.password)
     };
 
-    this.common.zzz('user/login', data).subscribe(res => {
+    this.common.httpCallPost('user/login', data).subscribe(res => {
       console.log(res);
       this.router.navigateByUrl('/layout/three');
     });

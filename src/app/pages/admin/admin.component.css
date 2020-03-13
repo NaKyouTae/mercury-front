@@ -1,9 +1,19 @@
 .grid-wrapper {
-    text-align: center;
+  text-align: center;
 }
 
-.grid-wrapper > div{
-    display: inline-block;
-    vertical-align: top;
-    margin: 10px;
+.grid-wrapper > div {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+}
+
+.page-info {
+  text-align: center;
+}
+.page-info > div {
+  display: inline-block;
+}
+.page-info > div:nth-child(3) {
+  text-align: right;
 }

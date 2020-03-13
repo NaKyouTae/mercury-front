@@ -9,9 +9,9 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'competition-angular';
 
-  constructor(){}
+  constructor(private router: Router) {}
 
-  ngOnInit(){
-     
+  ngOnInit() {
+    this.router.navigateByUrl('/layout/three');
   }
 }

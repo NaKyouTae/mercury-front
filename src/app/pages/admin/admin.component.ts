@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +6,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  public data: any = [
+  public gridData: any = [
     { no: 1, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
     { no: 2, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
     { no: 3, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
@@ -148,47 +147,8 @@ export class AdminComponent implements OnInit {
     { no: 138, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
     { no: 139, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' }
   ];
-  public fields: any;
-  public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
-  public size: number;
-  public skip: number = 0;
-  public take: number = 50;
-  public tot: number = this.data.length;
-  public nowPage: number;
-  public dataCountStart: number = 1;
-  public dataCountEnd: number = this.take;
-  public pageList: Array<any> = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
 
-  constructor(private router: Router) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.fields = Object.keys(this.data[0]);
-  }
-
-  onBind(e: any) {
-    const result = new Array();
-
-    for (let d of this.data) {
-      Object.keys(d).forEach(v => {
-        if (e === v) {
-          result.push(d[v]);
-        }
-      });
-    }
-
-    return result.slice(this.skip, this.take);
-  }
-
-  paging(e: number) {
-    this.skip = 1;
-    this.take = Number(this.size);
-    this.dataCountStart = 1;
-    this.dataCountEnd = this.take > this.data.length ? this.data.length : this.take;
-    this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
-  }
-
-  reSize(e: number) {
-    this.size = e;
-    this.paging(this.nowPage === undefined ? 1 : this.nowPage);
-  }
+  ngOnInit() {}
 }

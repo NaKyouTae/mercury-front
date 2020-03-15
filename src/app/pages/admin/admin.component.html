@@ -1,21 +1,3 @@
 <div>
-  <div class="grid-wrapper">
-    <div *ngFor="let f of fields; let idx = index">
-      <div>{{ f }}</div>
-      <div *ngFor="let d of onBind(f)" style="height: 20px;">{{ d }}</div>
-    </div>
-  </div>
-  <div class="page-info">
-    <div>
-      <div *ngFor="let p of pageList; let pageIdx = index" style="margin:0px 5px; display: inline-block;" (click)="nowPage = pageIdx + 1">{{ pageIdx + 1 }}</div>
-    </div>
-    <div>
-      <select (click)="reSize($event.target.value)">
-        <option *ngFor="let s of sizeList" [selected]="s == 50" [value]="s">{{ s }}</option>
-      </select>
-    </div>
-    <div>
-      <div>{{ dataCountStart }} - {{ dataCountEnd }} of {{ tot }}</div>
-    </div>
-  </div>
+  <nkt-grid [gridWidth]="700" [data]="gridData"></nkt-grid>
 </div>

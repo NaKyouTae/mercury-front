@@ -1,0 +1,23 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CustomGridComponent } from './grid.component';
+
+describe('CustomGridComponent', () => {
+  let component: CustomGridComponent;
+  let fixture: ComponentFixture<CustomGridComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [CustomGridComponent]
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CustomGridComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonHttpService } from 'src/app/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private dialog: MatDialog,
-    private common: CommonHttpService,
-    private router: Router
-  ) {}
+  constructor(private dialog: MatDialog, private common: CommonHttpService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -34,7 +30,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     const data = {
       username: encodeURI(this.username),
       password: encodeURI(this.password)

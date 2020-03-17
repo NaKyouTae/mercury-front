@@ -1,0 +1,7 @@
+<div class="insert-word">
+    <div *ngFor="let c of contents; let idx = index">
+        <p class="in-word-title">{{c}}</p>
+        <input type="text" class="in-word-in">
+        <div *ngIf="idx+1 == contents.length" class="insert-btn">등록</div>
+    </div>
+</div>

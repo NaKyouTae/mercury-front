@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
     this.common.httpCallPost('user/login', data).subscribe(res => {
       console.log(res);
-      this.router.navigateByUrl('/layout/three');
+      this.router.navigateByUrl('/three');
     });
   }
 }

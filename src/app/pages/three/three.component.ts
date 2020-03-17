@@ -6,110 +6,108 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./three.component.css']
 })
 export class ThreeComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-    
-   }
+  ngOnInit() {}
 
-  ngOnInit() {
-
-  }
-
-  public dataArray: any = [{
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  },
-  {
-    content_one : '삼행시는',
-    content_two : '행동보다는',
-    content_three : '시도를 할때가 재밌다.',
-    name : '나규태',
-    date : '2020-02-02',
-    point : '20'
-  }
+  public dataArray: any = [
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    },
+    {
+      content_one: '삼행시는',
+      content_two: '행동보다는',
+      content_three: '시도를 할때가 재밌다.',
+      name: '나규태',
+      date: '2020-02-02',
+      point: '20'
+    }
   ];
+
+  public words: Array<any> = ['삼', '행', '시'];
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-week-word',
+  templateUrl: './week-word.component.html',
+  styleUrls: ['./week-word.component.css']
 })
-export class AdminComponent implements OnInit {
+export class WeekWordComponent implements OnInit {
   public gridData: any = [
     { no: 1, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
     { no: 2, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
@@ -147,7 +147,6 @@ export class AdminComponent implements OnInit {
     { no: 138, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' },
     { no: 139, name: '나규태', phone: '010-9109-2682', email: 'qppk@naver.com', tot: 500, test: 'test', insert_date: '2020-03-06 14:36' }
   ];
-
   constructor() {}
 
   ngOnInit() {}

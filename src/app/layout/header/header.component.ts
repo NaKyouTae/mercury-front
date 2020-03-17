@@ -7,15 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  public 
+  public;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onClick(){
-    this.router.navigateByUrl('/layout/three');
+  onClick() {
+    this.router.navigateByUrl('/three');
   }
 }

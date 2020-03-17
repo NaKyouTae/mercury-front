@@ -1,12 +1,12 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ThreeComponent } from "./three.component";
-import { WordComponent } from '../n-content/word/word.component';
-import { UserListComponent } from '../n-content/user-list/user-list.component';
-import { UserContentsComponent } from '../n-content/user-contents/user-contents.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThreeComponent } from './three.component';
+import { WordModule } from 'src/app/shared/ui/content/word/word.module';
+import { UserListModule } from 'src/app/shared/ui/content/user-list/user-list.module';
+import { UserContentsModule } from 'src/app/shared/ui/content/user-contents/user-contents.module';
 
 @NgModule({
-  declarations: [ThreeComponent, WordComponent, UserListComponent, UserContentsComponent],
-  imports: [CommonModule]
+  declarations: [ThreeComponent],
+  imports: [CommonModule, WordModule, UserListModule, UserContentsModule]
 })
 export class ThreeModule {}

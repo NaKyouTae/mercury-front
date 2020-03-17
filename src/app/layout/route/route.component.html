@@ -1,8 +1,14 @@
 <!-- <div class="lay-header-two"> -->
-<div class="page-route lay-header">
-  <a [routerLink]="['/layout/three']">3행시</a>
-  <a [routerLink]="['/layout/two']">2행시</a>
-  <a [routerLink]="['/layout/honor']">명예의 전당</a>
-  <a [routerLink]="['/layout/notice']">공지사항</a>
-  <a [routerLink]="['/layout/admin']">관리자</a>
+<div class="page-route">
+  <div *ngFor="let menu of routeLinks" class="lay-header">
+    <div *ngIf="menu.url != null">
+      <a [routerLink]="['/' + menu.url]">{{ menu.title }}</a>
+    </div>
+    <div *ngIf="menu.url == null">
+      <a href="javascript:void(0);" (click)="onChildMenu(menu.id)">{{ menu.title }}</a>
+      <div [id]="menu.id" class="child-pane" style="display: none;">
+        <a *ngFor="let child of menu.children" [routerLink]="['/' + child.url]" class="child-menu">{{ child.title }}</a>
+      </div>
+    </div>
+  </div>
 </div>

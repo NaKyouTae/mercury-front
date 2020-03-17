@@ -1,6 +1,6 @@
 {
-  "name": "competition-angular",
-  "version": "0.0.0",
+  "name": "competition",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -36,12 +36,13 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "codelyzer": "^5.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-angular": "^1.0.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-angular": "^4.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -58,5 +59,20 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.",
+  "main": "karma.conf.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaKyouTae/competition.git"
+  },
+  "author": "nkt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaKyouTae/competition/issues"
+  },
+  "homepage": "https://github.com/NaKyouTae/competition#readme"
 }

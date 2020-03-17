@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
+import { UserComponent } from './user/user.component';
+import { WeekWordComponent } from './week-word/week-word.component';
+import { MenuComponent } from './menu/menu.component';
 
-const routes: Routes = [{ path: '', component: AdminComponent }];
+const routes: Routes = [
+  { path: 'menu', component: MenuComponent },
+  { path: 'weekword', component: WeekWordComponent },
+  { path: 'user', component: UserComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

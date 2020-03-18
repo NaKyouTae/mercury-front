@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CommonHttpService {
   constructor(private http: HttpClient) {}
 
-  httpCallGet(service, params) {
+  httpCallGet(service, params?) {
     const hearder = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': 'true'
@@ -24,7 +24,8 @@ export class CommonHttpService {
     });
 
     return this.http.post('http://localhost:8080/' + service, params, {
-      headers: hearder, params: params
+      headers: hearder,
+      params: params
     });
   }
 }

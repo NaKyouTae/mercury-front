@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 
 @Component({
   selector: 'app-route',
@@ -22,9 +23,17 @@ export class RouteComponent implements OnInit {
       ]
     }
   ];
-  constructor() {}
+  constructor(private common: CommonHttpService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.search();
+  }
+
+  search() {
+    this.common.httpCallGet('service/menu/lists').subscribe((res: any) => {
+      this.routeLinks = res.result;
+    });
+  }
 
   onChildMenu(menu: string) {
     const child = document.querySelector('#' + menu) as HTMLElement;

@@ -1,0 +1,38 @@
+<div class="content-width">
+  <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
+    <div class="grid-wrapper">
+      <div *ngFor="let f of fields; let idx = index">
+        <div style="border-bottom: 1px solid darkgray; font-weight: bold; font-size: 15px; padding: 10px;">{{ f }}</div>
+        <div *ngFor="let d of onBind(f)" style="height: 20px;" class="grid-vertical">{{ d }}</div>
+      </div>
+    </div>
+    <div class="page-info">
+      <div class="page-count-group">
+        <div class="page-count-btn-group">
+          <div class="page-count-btn" (click)="firstPage()">&#x027EA;</div>
+          <div class="page-count-btn" (click)="prevPage()">&#x027E8;</div>
+        </div>
+        <div
+          *ngFor="let p of pageList; let pageIdx = index"
+          class="pageCount_{{ pageIdx + 1 }} page-count"
+          (click)="changePage(pageIdx + 1)"
+          [ngStyle]="{ 'border-right': pageIdx + 1 == pageList.length ? '1px solid darkgray' : '', 'background-color': pageIdx == 0 ? '#e5e5e5' : '' }"
+        >
+          {{ pageIdx + 1 }}
+        </div>
+        <div class="page-count-btn-group">
+          <div class="page-count-btn" (click)="nextPage()">&#x027E9;</div>
+          <div class="page-count-btn" (click)="endPage()">&#x027EB;</div>
+        </div>
+        <div>
+          <select (change)="reSize($event.target.value)">
+            <option *ngFor="let s of sizeList" [selected]="s == size" [value]="s">{{ s }}</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>{{ skip + 1 }} - {{ take }} of {{ tot }}</div>
+      </div>
+    </div>
+  </div>
+</div>

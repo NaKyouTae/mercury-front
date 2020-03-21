@@ -15,7 +15,7 @@ export class WeekWordComponent implements OnInit {
   }
 
   public search() {
-    this.common.httpCallGet('service/three/lists').subscribe((res: any) => {
+    this.common.httpCallGet('service/weekword/lists').subscribe((res: any) => {
       this.data = res.result;
       console.log(res);
     });

@@ -7,24 +7,28 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CustomGridComponent implements OnInit {
   @Input('data') data: any;
-  @Input('gridWidth') gridWidth: string;
+  @Input('gridWidth') gridWidth?: string;
+
   public fields: any;
   public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
-  public size: number = 30;
-  public skip: number = 0;
-  public take: number = 30;
-  public tot: number;
-  public nowPage: number;
-  public dataCountStart: number = 1;
-  public dataCountEnd: number = this.take;
+  public size = 30;
+  public skip = 0;
+  public take = 30;
+  public tot;
+  public nowPage;
+  public dataCountStart = 1;
+  public dataCountEnd = this.take;
   public pageList: Array<any>;
 
   constructor() {}
 
   ngOnInit() {
-    this.fields = Object.keys(this.data[0]);
-    this.tot = this.data.length;
-    this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
+    if (this.data !== undefined) {
+      this.fields = Object.keys(this.data[0]);
+      this.tot = this.data.length;
+      this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
+      this.take = this.data.length > this.take ? this.take : this.data.length;
+    }
   }
 
   onBind(e: any) {
@@ -43,20 +47,20 @@ export class CustomGridComponent implements OnInit {
     return result;
   }
 
-  paging(e: number) {
+  paging(e) {
     this.skip = e === 1 ? 0 : Number(this.size) * (Number(e) - 1);
     this.take = Math.ceil(this.data.length / this.size) === e ? this.data.length : Number(this.size) * Number(e);
   }
 
-  reSize(e: number) {
+  reSize(e) {
     this.size = e;
     this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
 
-  chagnePageListColor(e: number) {
+  chagnePageListColor(e) {
     for (let i = 1; i <= this.pageList.length; i++) {
-      let page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
+      const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
 
       if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
         page.style.backgroundColor = 'white';
@@ -70,14 +74,14 @@ export class CustomGridComponent implements OnInit {
 
   getNowPage() {
     for (let i = 1; i <= this.pageList.length; i++) {
-      let page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
+      const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
       if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
         return i;
       }
     }
   }
 
-  changePage(e: number) {
+  changePage(e) {
     this.nowPage = e;
     this.chagnePageListColor(e);
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);

@@ -1,0 +1,21 @@
+.treelist-wrapper {
+    text-align: center;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+  
+.treelist-wrapper > div {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid darkgray;
+}
+.treelist-field{
+    border-bottom: 1px solid darkgray; 
+    font-weight: bold; 
+    font-size: 15px; 
+    padding: 10px;
+}
+.treelist-vertical {
+    border-bottom: 1px solid darkgray;
+    padding: 0px 10px;
+}

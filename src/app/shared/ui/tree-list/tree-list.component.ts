@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonHttpService } from '../../common/common-http.service';
 
 @Component({
   selector: 'nkt-tree-list',
@@ -8,14 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CustomTreeListComponent implements OnInit {
   @Input() public data: any;
 
+  public orderData: Array<any> = new Array();
   public fields: any;
-  constructor() {}
+  constructor(private common: CommonHttpService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
       this.fields = Object.keys(this.data[0]);
-
-      this.getChildren(this.data);
     }
   }
 
@@ -33,17 +33,14 @@ export class CustomTreeListComponent implements OnInit {
     return result;
   }
 
-  getChildren(data: any) {
-    if (Array.isArray(data)) {
-      data.forEach(item => {
-        if (item.child === true) {
-          this.getChildren(item.children);
-        }
-
+  search(pidx) {
+    const params = {
+      pidx: pidx === null || pidx === undefined ? '' : pidx
+    };
+    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
+      res.result.forEach(item => {
         this.data.push(item);
       });
-    } else {
-      this.data.push(data);
-    }
+    });
   }
 }

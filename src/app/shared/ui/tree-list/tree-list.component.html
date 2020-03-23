@@ -2,7 +2,12 @@
     <div class="treelist-wrapper">
         <div *ngFor="let f of fields; let idx = index">
             <div class="treelist-field">{{ f }}</div>
-            <div *ngFor="let d of onBind(f)" style="height: 20px;" class="treelist-vertical">{{ d }}</div>
+            <div *ngFor="let d of onBind(f)" style="height: 20px;" class="treelist-vertical">
+                
+                    <button *ngIf="f == 'title'" (click)="search(f)" style="display: inline-block;margin-right: 10px;">버튼</button>
+                    <div style="display: inline-block;">{{ d }}</div>
+                
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 .treelist-wrapper {
     text-align: center;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
   
@@ -17,5 +17,6 @@
 }
 .treelist-vertical {
     border-bottom: 1px solid darkgray;
-    padding: 0px 10px;
+    padding: 5px 10px;
+    text-align: left;
 }

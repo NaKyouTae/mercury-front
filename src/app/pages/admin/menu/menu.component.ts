@@ -15,7 +15,10 @@ export class MenuComponent implements OnInit {
   }
 
   search() {
-    this.common.httpCallGet('service/menu/lists').subscribe((res: any) => {
+    const params = {
+      pidx: ''
+    };
+    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       this.data = res.result;
     });
   }

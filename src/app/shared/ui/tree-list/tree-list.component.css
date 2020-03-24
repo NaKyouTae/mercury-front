@@ -4,7 +4,7 @@
     white-space: nowrap;
 }
   
-.treelist-wrapper > div {
+/* .treelist-wrapper > div {
     display: inline-block;
     vertical-align: top;
     border: 1px solid darkgray;
@@ -19,4 +19,4 @@
     border-bottom: 1px solid darkgray;
     padding: 5px 10px;
     text-align: left;
-}
+} */

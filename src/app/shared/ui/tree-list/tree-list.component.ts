@@ -11,6 +11,7 @@ export class CustomTreeListComponent implements OnInit {
 
   public orderData: Array<any> = new Array();
   public fields: any;
+  public collapse: any;
   constructor(private common: CommonHttpService) {}
 
   ngOnInit() {
@@ -32,15 +33,22 @@ export class CustomTreeListComponent implements OnInit {
 
     return result;
   }
+  onData(data, field) {
+    // tslint:disable-next-line: no-eval
+    return eval('data.' + field);
+  }
 
-  search(pidx) {
+  onExpand(data: any) {
+    this.collapse = true;
     const params = {
-      pidx: pidx === null || pidx === undefined ? '' : pidx
+      pidx: data === null || data === undefined ? '' : data.idx
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
-      res.result.forEach(item => {
-        this.data.push(item);
-      });
+      data.children = res.result;
     });
+  }
+
+  onCollapse(data: any) {
+    delete data.children;
   }
 }

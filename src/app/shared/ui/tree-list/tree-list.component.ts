@@ -12,7 +12,7 @@ export class CustomTreeListComponent implements OnInit {
   public orderData: Array<any> = new Array();
   public fields: any;
   public collapse: any;
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -41,7 +41,7 @@ export class CustomTreeListComponent implements OnInit {
   onExpand(data: any) {
     this.collapse = true;
     const params = {
-      pidx: data === null || data === undefined ? '' : data.idx
+      pidx: data === null || data === undefined ? null : data.idx
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       data.children = res.result;

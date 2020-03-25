@@ -8,7 +8,7 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./tree-list-child.component.css']
 })
 export class TreeListChildComponent implements OnInit {
-  @Input() public data: any;
+  @Input() public datas: any;
 
   @Input() public onExpand?: EventEmitter;
   @Input() public onCollapse?: EventEmitter;
@@ -17,10 +17,10 @@ export class TreeListChildComponent implements OnInit {
   public fields: any;
   public collapse: any;
   constructor() {
-    if (this.data !== undefined) {
-      this.fields = Object.keys(this.data[0]);
+    if (this.datas !== undefined) {
+      this.fields = Object.keys(this.datas[0]);
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

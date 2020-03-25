@@ -8,7 +8,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 })
 export class MenuComponent implements OnInit {
   public data: any;
-  constructor(private common: CommonHttpService) { }
+  constructor(private common: CommonHttpService) {}
 
   ngOnInit() {
     this.search();
@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
 
   search() {
     const params = {
-      pidx: null
+      pidx: ''
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       this.data = res.result;

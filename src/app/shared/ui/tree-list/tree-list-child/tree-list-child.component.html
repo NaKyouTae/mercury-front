@@ -1,14 +1,14 @@
-<div *ngFor="let data of datas;" style="width: 100%;">
+<div *ngFor="let d of data;" style="width: 100%;">
   <div *ngFor="let field of fields; let field_idx = index"
       style="display: inline-block; overflow: hidden; width:calc(100%/9); padding: 0px 10px;">
-      <div *ngIf="field_idx == 0 && data.child == true" style="display: inline-block;">
-          <button *ngIf="data.children == undefined" (click)="onExpand.emit(data)" style="display: inline-block;margin-right: 10px;">열기</button>
-          <button *ngIf="data.children != undefined" (click)="onCollapse.emit(data)" style="display: inline-block;margin-right: 10px;">닫기</button>
+      <div *ngIf="field_idx == 0 && d.child == true" style="display: inline-block;">
+          <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand.emit(d)" style="display: inline-block;margin-right: 10px;">열기</button>
+          <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse.emit(d)" style="display: inline-block;margin-right: 10px;">닫기</button>
       </div>
       <div style="display: inline-block;">
-          {{onData.emit(data, field)}}
+          {{onData(d, field)}}
       </div>
-      <nkt-tree-list-child *ngIf="data.children != undefined" [datas]="data.children" [onData]="onData.emit(data, field)" [onExpand]="onExpand.emit(data)" [onCollapse]="onCollapse.emit(data)"></nkt-tree-list-child>
-  </div>
+    </div>
+    <nkt-tree-list-child *ngIf="d.child == true && d.children != undefined" [data]="d.children" ></nkt-tree-list-child>
 </div>
 

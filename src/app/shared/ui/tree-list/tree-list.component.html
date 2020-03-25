@@ -11,8 +11,30 @@
         </div> -->
 
 
-        <div *ngFor="let f of fields" style="display: inline-block; width:calc(100%/9); padding: 0px 10px;">{{f}}</div>
-        <nkt-tree-list-child *ngIf="data.children != undefined" [datas]="data.children" [onData]="onData(data, null)" [onExpand]="onExpand(data)" [onCollapse]="onCollapse(data)"></nkt-tree-list-child>
+         <!-- <div *ngFor="let f of fields; let idx = index">
+            <div class="treelist-field">{{ f }}</div>
+            <div *ngFor="let d of onBind(f)" style="height: 20px;" class="treelist-vertical">
+
+                    <button *ngIf="f == 'title'" (click)="search(f)" style="display: inline-block;margin-right: 10px;">버튼</button>
+                    <div style="display: inline-block;">{{ d }}</div>
+
+            </div>
+        </div> -->
+        <div *ngFor="let d of data; let d_idx = index">
+            <div *ngFor="let f of fields; let f_idx = index" style="display: inline-block; width:calc(100%/9); padding: 0px 10px;">
+                <div *ngIf="d_idx == 0">{{f}}</div>
+                <div>
+                    <div *ngIf="f_idx == 0" style="display: inline-block;">
+                        <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">버튼</button>
+                        <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">닫기</button>
+                    </div>
+                    <div style="display: inline-block;">
+                        {{onData(d, f)}}
+                    </div>
+                </div>
+            </div>
+            <nkt-tree-list-child *ngIf="d.child == true && d.children != undefined" [data]="d.children"></nkt-tree-list-child>
+        </div>
 
     </div>
 </div>

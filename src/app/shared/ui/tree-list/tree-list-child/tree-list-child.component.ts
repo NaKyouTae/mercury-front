@@ -8,19 +8,23 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./tree-list-child.component.css']
 })
 export class TreeListChildComponent implements OnInit {
-  @Input() public datas: any;
+  @Input() public data: any;
 
   @Input() public onExpand?: EventEmitter;
   @Input() public onCollapse?: EventEmitter;
-  @Input() public onData?: EventEmitter;
 
   public fields: any;
   public collapse: any;
   constructor() {
-    if (this.datas !== undefined) {
-      this.fields = Object.keys(this.datas[0]);
+    if (this.data !== undefined) {
+      this.fields = Object.keys(this.data[0]);
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
+
+  onData(data, field) {
+    // tslint:disable-next-line: no-eval
+    return eval('data.' + field);
+  }
 }

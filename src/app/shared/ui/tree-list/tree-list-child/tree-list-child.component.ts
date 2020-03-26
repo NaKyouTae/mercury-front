@@ -15,7 +15,16 @@ export class TreeListChildComponent implements OnInit {
   ngOnInit() { }
 
   onFields(data: any) {
-    return Object.keys(data);
+
+    const fields = Object.keys(data);
+
+    fields.forEach(item => {
+      if (item === 'children') {
+        fields.splice(fields.indexOf(item), 1);
+      }
+    });
+
+    return fields;
   }
   onData(data, field) {
     // tslint:disable-next-line: no-eval

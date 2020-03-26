@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./grid.component.css']
 })
 export class CustomGridComponent implements OnInit {
-  @Input('data') data: any;
-  @Input('gridWidth') gridWidth?: string;
+  @Input() data: any;
+  @Input() gridWidth?: string;
 
   public fields: any;
   public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
@@ -20,7 +20,7 @@ export class CustomGridComponent implements OnInit {
   public dataCountEnd = this.take;
   public pageList: Array<any>;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -29,6 +29,15 @@ export class CustomGridComponent implements OnInit {
       this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
       this.take = this.data.length > this.take ? this.take : this.data.length;
     }
+  }
+
+  onFields(data: any) {
+    return Object.keys(data);
+  }
+
+  onData(data, field) {
+    // tslint:disable-next-line: no-eval
+    return eval('data.' + field);
   }
 
   onBind(e: any) {
@@ -109,7 +118,7 @@ export class CustomGridComponent implements OnInit {
       this.chagnePageListColor(next + 1);
       this.paging(next + 1);
     } else {
-      event.preventDefault;
+      event.preventDefault();
     }
   }
   endPage() {

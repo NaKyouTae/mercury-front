@@ -46,4 +46,9 @@ export class TreeListChildComponent implements OnInit {
   onCollapse(data: any) {
     delete data.children;
   }
+
+  onClose(e: any) {
+    e.style.display = 'none';
+  }
+
 }

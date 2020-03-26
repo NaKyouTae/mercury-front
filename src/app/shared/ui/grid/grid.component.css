@@ -4,11 +4,11 @@
   white-space: nowrap;
 }
 
-.grid-wrapper > div {
+/* .grid-wrapper > div {
   display: inline-block;
   vertical-align: top;
   border: 1px solid darkgray;
-}
+} */
 .grid-vertical {
   border-bottom: 1px solid darkgray;
   padding: 0px 10px;

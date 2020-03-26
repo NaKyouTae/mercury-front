@@ -1,10 +1,18 @@
 <div class="content-width">
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
-    <div class="grid-wrapper">
-      <div *ngFor="let f of fields; let idx = index">
-        <div style="border-bottom: 1px solid darkgray; font-weight: bold; font-size: 15px; padding: 10px;">{{ f }}</div>
-        <div *ngFor="let d of onBind(f)" style="height: 20px;" class="grid-vertical">{{ d }}</div>
+    <div class="grid-wrapper" style="height:300px;">
+
+
+
+      <div *ngFor="let d of data; let d_idx = index">
+        <div *ngFor="let f of onFields(d);" style="display: inline-block; padding: 0px 10px; border-bottom: 1px solid darkgray; border-top: 1px solid darkgray;">
+          <div *ngIf="d_idx == 0" style="font-weight: bold; font-size: 15px; padding: 0px 10px; ">{{ f }}</div>
+          <div>{{ onData(d, f) }}</div>
+        </div>
       </div>
+
+
+
     </div>
     <div class="page-info">
       <div class="page-count-group">

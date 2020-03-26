@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TreeListChildComponent } from './tree-list-child.component';
 
 @NgModule({
-  declarations: [TreeListChildComponent],
-  exports: [TreeListChildComponent],
+  declarations: [],
+  exports: [],
   imports: [CommonModule]
 })
-export class TreeListChildModule {}
+export class TreeListChildModule { }

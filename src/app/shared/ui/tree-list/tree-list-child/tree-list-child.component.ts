@@ -10,21 +10,31 @@ import { EventEmitter } from 'protractor';
 export class TreeListChildComponent implements OnInit {
   @Input() public data: any;
 
-  @Input() public onExpand?: EventEmitter;
-  @Input() public onCollapse?: EventEmitter;
+  constructor(private common: CommonHttpService) { }
 
-  public fields: any;
-  public collapse: any;
-  constructor() {
-    if (this.data !== undefined) {
-      this.fields = Object.keys(this.data[0]);
-    }
+  ngOnInit() { }
+
+  onFields(data: any) {
+    return Object.keys(data);
   }
-
-  ngOnInit() {}
-
   onData(data, field) {
     // tslint:disable-next-line: no-eval
     return eval('data.' + field);
+  }
+
+  onExpand(e: any) {
+    let children = new Array();
+    const data = this.data;
+    const params = {
+      pidx: e === null || e === undefined ? null : e.idx
+    };
+    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
+      children = res.result;
+      data[data.indexOf(e)].children = children;
+    });
+  }
+
+  onCollapse(data: any) {
+    delete data.children;
   }
 }

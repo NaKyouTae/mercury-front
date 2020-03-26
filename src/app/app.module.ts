@@ -14,4 +14,4 @@ import { CookieService } from 'ngx-cookie-service';
   providers: [CookieService, { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

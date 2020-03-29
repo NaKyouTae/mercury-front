@@ -6,12 +6,12 @@
     background-color: black;
     font-size: 17px;
   }
-
   .lay-header {
     display: inline-block;
     padding: 0px 10px;
   }
-  .lay-header > div > a {
+
+  .route-link {
     text-decoration: none;
     color: white;
   }

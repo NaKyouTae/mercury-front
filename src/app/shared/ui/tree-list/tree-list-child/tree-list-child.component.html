@@ -1,5 +1,5 @@
-<div *ngFor="let d of data; let d_idx = index;" style="width: 100%;" style="cursor: pointer;">
-  <div nktModal [dblclick]="d" [id]="Modal" *ngFor="let field of onFields(d); let field_idx = index"
+<div *ngFor="let d of data; let d_idx = index;" style="width: 100%;" style="cursor: pointer;" class="tree-list-row">
+  <div nktModal (dblclick)="rowData = d" [id]="Modal" *ngFor="let field of onFields(d); let field_idx = index"
         style="display: inline-block; overflow: hidden; width:calc(100%/9); padding: 0px 10px;">
         <div *ngIf="field_idx == 0 && d.child == true" style="display: inline-block;">
             <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">열기</button>
@@ -16,21 +16,45 @@
 
 <div #Modal class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" (click)="onClose(Modal)">&times;</span>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
-    <p>Some text in the Modal..</p>
+  <div class="modal-content" style="width: 30%;">
+    <div class="close" (click)="onClose(Modal)">&times;</div>
+    <div *ngIf="rowData != null">
+      <div class="form-input-text">
+        <label>제목</label>
+        <div>{{rowData.title}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>그룹</label>
+        <div>{{rowData.menugroup}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>URL</label>
+        <div>{{rowData.url}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>순서</label>
+        <div>{{rowData.menuorder}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>Level</label>
+        <div>{{rowData.level}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>하위 여부</label>
+        <div>{{rowData.child}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>생성 일자</label>
+        <div>{{rowData.insertdate}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>ID</label>
+        <div>{{rowData.idx}}</div>
+      </div>
+      <div class="form-input-text">
+        <label>부모 ID</label>
+        <div>{{rowData.parent}}</div>
+      </div>
+    </div>
   </div>
-
 </div>

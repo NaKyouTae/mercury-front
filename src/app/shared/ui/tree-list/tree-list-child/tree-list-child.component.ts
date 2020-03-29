@@ -10,12 +10,12 @@ import { EventEmitter } from 'protractor';
 export class TreeListChildComponent implements OnInit {
   @Input() public data: any;
 
-  constructor(private common: CommonHttpService) { }
+  public rowData: any;
+  constructor(private common: CommonHttpService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onFields(data: any) {
-
     const fields = Object.keys(data);
 
     fields.forEach(item => {
@@ -50,5 +50,4 @@ export class TreeListChildComponent implements OnInit {
   onClose(e: any) {
     e.style.display = 'none';
   }
-
 }

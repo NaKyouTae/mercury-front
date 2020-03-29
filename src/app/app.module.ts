@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginInterceptorService } from './core/login-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
-import { ModalDirective } from './shared/directive/modal.directive';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,4 +14,4 @@ import { ModalDirective } from './shared/directive/modal.directive';
   providers: [CookieService, { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -9,7 +9,7 @@ import { CommonHttpService } from '../../common/common-http.service';
 export class CustomTreeListComponent implements OnInit {
   @Input() public data: any;
   public fields: any;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -20,5 +20,9 @@ export class CustomTreeListComponent implements OnInit {
         }
       });
     }
+  }
+
+  onClose(e: any) {
+    e.style.display = 'none';
   }
 }

@@ -1,16 +1,11 @@
-<!-- <div class="lay-header-two"> -->
-<div class="page-route">
-  <div *ngFor="let menu of routeLinks" class="lay-header">
-    <div *ngIf="menu.parent == 'null'">
-      <div *ngIf="menu.child == false">
+<div *ngFor="let menu of data" class="lay-header">
+    <div *ngIf="menu.child == false">
         <a class="route-link" [routerLink]="[menu.url]">{{ menu.title }}</a>
-      </div>
-      <div *ngIf="menu.child == true">
+    </div>
+    <div *ngIf="menu.child == true">
         <a href="javascript:void(0);" class="route-link" (click)="onChildMenu(menu)">{{ menu.title }}</a>
-      </div>
     </div>
     <div [id]="menu.menugroup" class="child-pane" style="display: none;">
         <nkt-route-child *ngIf="menu.children != undefined" [data]="menu.children"></nkt-route-child>
     </div>
-  </div>
 </div>

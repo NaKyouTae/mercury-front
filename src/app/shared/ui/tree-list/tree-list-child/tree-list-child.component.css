@@ -26,10 +26,29 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 }
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.tree-list-row:hover {
+  border: 2px solid pink;
+}
+
+
+/* input */
+.form-input-text {
+  width: 100%;
+}
+.form-input-text > label{
+  width: 20%;
+  display: inline-block;
+}
+.form-input-text > div{
+  width: 80%;
+  display: inline-block;
 }

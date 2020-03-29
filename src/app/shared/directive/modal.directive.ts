@@ -5,8 +5,8 @@ import { Directive, HostListener, Input } from '@angular/core';
 })
 export class ModalDirective {
   @Input() id: any;
-  @Input() dblclick: any;
-  constructor() { }
+
+  constructor() {}
 
   @HostListener('dblclick') onClick() {
     this.id.style.display = 'block';

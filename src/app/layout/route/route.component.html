@@ -1,7 +1,7 @@
 <!-- <div class="lay-header-two"> -->
 <div class="page-route">
   <div *ngFor="let menu of routeLinks" class="lay-header">
-    <!-- <div *ngIf="menu.parent == null">
+    <div *ngIf="menu.parent == null">
       <a [routerLink]="[menu.url]">{{ menu.title }}</a>
     </div>
     <div *ngIf="menu.parent != null">
@@ -9,6 +9,6 @@
       <div [id]="menu.group" class="child-pane" style="display: none;">
         <a *ngFor="let child of menu.children" [routerLink]="[menu.url + child.url]" class="child-menu">{{ child.title }}</a>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

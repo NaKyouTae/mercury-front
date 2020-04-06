@@ -1,3 +1,5 @@
+
+@import url(../src/assets/css/input.css);
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
 /* You can add global styles to this file, and also import other style files */
@@ -25,5 +27,5 @@ body{
 
 .content-width {
     width : 1100px;
-    margin: 0px auto;
+    margin: 10px auto;
 }

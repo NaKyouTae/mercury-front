@@ -4,12 +4,12 @@ import { Directive, HostListener, Input } from '@angular/core';
   selector: '[nktModal]'
 })
 export class ModalDirective {
-  @Input() id: any;
+  @Input() modal: any;
 
   constructor() {}
 
   @HostListener('dblclick') onClick() {
-    this.id.style.display = 'block';
+    this.modal.style.display = 'block';
     console.log('dblclick');
   }
 

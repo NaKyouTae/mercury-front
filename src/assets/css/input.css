@@ -1,0 +1,16 @@
+/* input */
+.form-input-text {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.form-input-text > label{
+    width: 20%;
+    display: inline-block;
+}
+.form-input-text > input{
+    width: 80%;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    padding: 7px 0px;
+}

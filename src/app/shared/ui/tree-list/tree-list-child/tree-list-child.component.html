@@ -1,60 +1,115 @@
-<div *ngFor="let d of data; let d_idx = index;" style="width: 100%;" style="cursor: pointer;" class="tree-list-row">
-  <div nktModal (dblclick)="rowData = d" [id]="Modal" *ngFor="let field of onFields(d); let field_idx = index"
-        style="display: inline-block; overflow: hidden; width:calc(100%/9); padding: 0px 10px;">
+<div id="{{d.menugroup}}_treelist" *ngFor="let d of data; let d_idx = index;" [ngClass]="d_idx == data.length-1 ? 'tree-list-row-last':'tree-list-row'">
+  <div nktModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of onFields(d); let field_idx = index"
+  [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : ''}"
+  class="tree-list-row-field">
         <div *ngIf="field_idx == 0 && d.child == true" style="display: inline-block;">
-            <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">열기</button>
-            <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">닫기</button>
+            <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">open</button>
+            <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">close</button>
+            <button (click)="onCreate(d, CreModal)" style="display: inline-block;margin-right: 10px;">+</button>
         </div>
-        <div style="display: inline-block;">
+        <div style="display: inline-block; padding: 10px 0px;">
             {{onData(d, field)}}
         </div>
   </div>
-  <nkt-tree-list-child *ngIf="d.child == true && d.children != undefined" [data]="d.children" ></nkt-tree-list-child>
+</div>
+<nkt-tree-list-child *ngIf="child != undefined" [data]="child" ></nkt-tree-list-child>
+
+
+
+<div #CreModal class="modal">
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>{{form.controls.title}} 정보</h2>
+      </div>
+      <div class="close" (click)="onClose(CreModal)">&times;</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>부모 ID</label>
+          <input type="text" formControlName="parent" [(ngModel)]="form.controls.parent"/>
+        </div>
+        <div class="form-input-text">
+          <label>제목</label>
+          <input type="text" formControlName="title" [(ngModel)]="form.controls.title" required/>
+          <label *ngIf="form.get('title') == undefined"> title is required. </label>
+        </div>
+        <div class="form-input-text">
+          <label>그룹</label>
+          <input type="text" formControlName="menugroup" [(ngModel)]="form.controls.menugroup" required/>
+        </div>
+        <div class="form-input-text">
+          <label>URL</label>
+          <input type="text" formControlName="url" [(ngModel)]="form.controls.url" required/>
+        </div>
+        <div class="form-input-text">
+          <label>순서</label>
+          <input type="text" formControlName="menuorder" [(ngModel)]="form.controls.menuorder" required/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(CreModal)">취소</button>
+      <button (click)="onUpdate(form.controls)">수정</button>
+    </div>
+  </div>
 </div>
 
-
-
-<div #Modal class="modal">
+<div #UpModal class="modal">
   <!-- Modal content -->
-  <div class="modal-content" style="width: 30%;">
-    <div class="close" (click)="onClose(Modal)">&times;</div>
-    <div *ngIf="rowData != null">
-      <div class="form-input-text">
-        <label>제목</label>
-        <div>{{rowData.title}}</div>
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>{{form.controls.title}} 정보</h2>
       </div>
-      <div class="form-input-text">
-        <label>그룹</label>
-        <div>{{rowData.menugroup}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>URL</label>
-        <div>{{rowData.url}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>순서</label>
-        <div>{{rowData.menuorder}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>Level</label>
-        <div>{{rowData.level}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>하위 여부</label>
-        <div>{{rowData.child}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>생성 일자</label>
-        <div>{{rowData.insertdate}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>ID</label>
-        <div>{{rowData.idx}}</div>
-      </div>
-      <div class="form-input-text">
-        <label>부모 ID</label>
-        <div>{{rowData.parent}}</div>
-      </div>
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>제목</label>
+          <input type="text" formControlName="title" required/>
+          <label *ngIf="form.get('title') == undefined"> title is required. </label>
+        </div>
+        <div class="form-input-text">
+          <label>그룹</label>
+          <input type="text" formControlName="menugroup"/>
+        </div>
+        <div class="form-input-text">
+          <label>URL</label>
+          <input type="text" formControlName="url"/>
+        </div>
+        <div class="form-input-text">
+          <label>순서</label>
+          <input type="text" formControlName="menuorder"/>
+        </div>
+        <div class="form-input-text">
+          <label>Level</label>
+          <input type="text" formControlName="level" disabled="true"/>
+        </div>
+        <div class="form-input-text">
+          <label>하위 여부</label>
+          <input type="text" formControlName="child" disabled="true"/>
+        </div>
+        <div class="form-input-text">
+          <label>생성 일자</label>
+          <input type="text" formControlName="insertdate" disabled="true" />
+        </div>
+        <div class="form-input-text">
+          <label>ID</label>
+          <input type="text" formControlName="idx" disabled="true"/>
+        </div>
+        <div class="form-input-text">
+          <label>부모 ID</label>
+          <input type="text" formControlName="parent" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(UpModal)">취소</button>
+      <button (click)="onUpdate(form.controls)">수정</button>
     </div>
   </div>
 </div>

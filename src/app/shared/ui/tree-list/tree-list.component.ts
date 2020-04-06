@@ -21,8 +21,4 @@ export class CustomTreeListComponent implements OnInit {
       });
     }
   }
-
-  onClose(e: any) {
-    e.style.display = 'none';
-  }
 }

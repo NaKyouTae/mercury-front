@@ -38,7 +38,22 @@ export class CommonHttpService {
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE'
     });
 
-    return this.http.put('http://localhost:8080/' + service, params, { headers: header });
+    return this.http.put('http://localhost:8080/' + service, JSON.stringify(params), { headers: header });
+  }
+
+  httpCallDelete(service: any, params?: any) {
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE'
+    });
+
+    const options = {
+      headers: header,
+      body: params
+    };
+
+    return this.http.delete('http://localhost:8080/' + service, options);
   }
 }
 

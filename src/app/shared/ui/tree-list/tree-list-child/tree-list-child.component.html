@@ -2,10 +2,10 @@
   <div nktModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of onFields(d); let field_idx = index"
   [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : ''}"
   class="tree-list-row-field">
-        <div *ngIf="field_idx == 0 && d.child == true" style="display: inline-block;">
+        <div *ngIf="field_idx == 0" style="display: inline-block;">
             <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">open</button>
             <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">close</button>
-            <button (click)="onCreate(d, CreModal)" style="display: inline-block;margin-right: 10px;">+</button>
+            <button (click)="onCreateModal(d, CreModal)" style="display: inline-block;margin-right: 10px;">+</button>
         </div>
         <div style="display: inline-block; padding: 10px 0px;">
             {{onData(d, field)}}
@@ -29,30 +29,31 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>부모 ID</label>
-          <input type="text" formControlName="parent" [(ngModel)]="form.controls.parent"/>
+          <input type="text" formControlName="parent" />
         </div>
         <div class="form-input-text">
           <label>제목</label>
-          <input type="text" formControlName="title" [(ngModel)]="form.controls.title" required/>
+          <input type="text" name="title" formControlName="title" required/>
           <label *ngIf="form.get('title') == undefined"> title is required. </label>
         </div>
         <div class="form-input-text">
           <label>그룹</label>
-          <input type="text" formControlName="menugroup" [(ngModel)]="form.controls.menugroup" required/>
+          <input type="text" formControlName="menugroup" required/>
         </div>
         <div class="form-input-text">
           <label>URL</label>
-          <input type="text" formControlName="url" [(ngModel)]="form.controls.url" required/>
+          <input type="text" formControlName="url" required/>
         </div>
         <div class="form-input-text">
           <label>순서</label>
-          <input type="text" formControlName="menuorder" [(ngModel)]="form.controls.menuorder" required/>
+          <input type="text" formControlName="menuorder" required/>
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <button (click)="onClose(CreModal)">취소</button>
-      <button (click)="onUpdate(form.controls)">수정</button>
+      <button [disabled]="form.get('title').invalid == true && form.get('menugroup').invalid == true && form.get('menuorder').invalid == true" 
+              (click)="onCreate(form.controls, CreModal)">생성</button>
     </div>
   </div>
 </div>
@@ -65,6 +66,7 @@
         <h2>{{form.controls.title}} 정보</h2>
       </div>
       <div class="close" (click)="onClose(UpModal)">&times;</div>
+      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -109,7 +111,7 @@
     </div>
     <div class="modal-footer">
       <button (click)="onClose(UpModal)">취소</button>
-      <button (click)="onUpdate(form.controls)">수정</button>
+      <button (click)="onUpdate(form.controls, UpModal)">수정</button>
     </div>
   </div>
 </div>

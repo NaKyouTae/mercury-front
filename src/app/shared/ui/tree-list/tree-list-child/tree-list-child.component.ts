@@ -3,6 +3,7 @@ import { CommonHttpService, CustomEncoder } from 'src/app/shared/common/common-h
 import { EventEmitter } from 'protractor';
 import { HttpParams } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
   selector: 'nkt-tree-list-child',
@@ -16,18 +17,18 @@ export class TreeListChildComponent implements OnInit {
   public child: any;
 
   public form = new FormGroup({
-    title: new FormControl(),
-    menugroup: new FormControl(),
-    url: new FormControl(),
-    menuorder: new FormControl(),
-    level: new FormControl(),
-    child: new FormControl(),
-    insertdate: new FormControl(),
-    idx: new FormControl(),
-    parent: new FormControl()
+    title: new FormControl(''),
+    menugroup: new FormControl(''),
+    url: new FormControl(''),
+    menuorder: new FormControl(''),
+    level: new FormControl(''),
+    child: new FormControl(''),
+    insertdate: new FormControl(''),
+    idx: new FormControl(''),
+    parent: new FormControl('')
   });
 
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService, private forms: FormsService) {}
 
   ngOnInit() {}
 
@@ -70,44 +71,71 @@ export class TreeListChildComponent implements OnInit {
   onClose(e: any) {
     e.style.display = 'none';
   }
-  onUpdate(data: any) {
-    const param = new HttpParams({ encoder: new CustomEncoder() }).append('menu', data);
+  onUpdate(data: any, template: any) {
+    const params: any = this.forms.formToData(data);
 
-    this.common.httpCallPut('service/menu/menus/' + data.idx, data).subscribe((res: any) => {
+    this.common.httpCallPut('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        const modal = document.querySelector('.modal') as HTMLElement;
-        modal.style.display = 'none';
-
-        this.common.httpCallGet('service/menu/levels', { pidx: 'null' }).subscribe((newRes: any) => {
-          this.data = newRes.result;
-        });
+        template.style.display = 'none';
+        // this.selectAll();
       }
     });
   }
 
   onDblClick(data: any) {
-    this.form.controls.title.setValue(data.title);
-    this.form.controls.menugroup.setValue(data.menugroup);
-    this.form.controls.url.setValue(data.url);
-    this.form.controls.menuorder.setValue(data.menuorder);
-    this.form.controls.level.setValue(data.level);
-    this.form.controls.child.setValue(data.child);
-    this.form.controls.insertdate.setValue(data.insertdate);
-    this.form.controls.idx.setValue(data.idx);
-    this.form.controls.parent.setValue(data.parent);
+    this.form.patchValue({
+      title: data.title,
+      menugroup: data.menugroup,
+      url: data.url,
+      menuorder: data.menuorder,
+      level: data.level,
+      child: data.child,
+      insertdate: data.insertdate,
+      idx: data.idx,
+      parent: data.parent
+    });
   }
 
-  onCreate(data: any, temp: any) {
+  onCreate(data: any, template: any) {
+    const params = this.forms.formToData(data);
+
+    this.common.httpCallPost('service/menu/menus', params).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+        // this.selectAll();
+      }
+    });
+  }
+
+  onCreateModal(data: any, temp: any) {
     temp.style.display = 'block';
 
-    this.form.controls.title.setValue(null);
-    this.form.controls.menugroup.setValue(null);
-    this.form.controls.url.setValue(data.url);
-    this.form.controls.menuorder.setValue(null);
-    this.form.controls.level.setValue(data.level + 1);
-    this.form.controls.child.setValue(data.child);
-    this.form.controls.insertdate.setValue(null);
-    this.form.controls.idx.setValue(null);
-    this.form.controls.parent.setValue(data.idx);
+    this.form.patchValue({
+      title: null,
+      menugroup: null,
+      url: '/',
+      menuorder: null,
+      level: data.level + 1,
+      child: false,
+      insertdate: null,
+      parent: data.idx
+    });
   }
+
+  onDelete(data: any, template: any) {
+    const params: any = this.forms.formToData(data);
+
+    this.common.httpCallDelete('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+        // this.selectAll();
+      }
+    });
+  }
+
+  // selectAll() {
+  //   this.common.httpCallGet('service/menu/levels', { pidx: 'null' }).subscribe((newRes: any) => {
+  //     this.data = newRes.result;
+  //   });
+  // }
 }

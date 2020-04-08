@@ -8,7 +8,7 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 @Component({
   selector: 'nkt-tree-list-child',
   templateUrl: './tree-list-child.component.html',
-  styleUrls: ['./tree-list-child.component.css']
+  styleUrls: ['./tree-list-child.component.css'],
 })
 export class TreeListChildComponent implements OnInit {
   @Input() public data: any;
@@ -25,7 +25,7 @@ export class TreeListChildComponent implements OnInit {
     child: new FormControl(''),
     insertdate: new FormControl(''),
     idx: new FormControl(''),
-    parent: new FormControl('')
+    parent: new FormControl(''),
   });
 
   constructor(private common: CommonHttpService, private forms: FormsService) {}
@@ -35,7 +35,7 @@ export class TreeListChildComponent implements OnInit {
   onFields(data: any) {
     const fields = Object.keys(data);
 
-    fields.forEach(item => {
+    fields.forEach((item) => {
       if (item === 'children') {
         fields.splice(fields.indexOf(item), 1);
       }
@@ -52,17 +52,20 @@ export class TreeListChildComponent implements OnInit {
     let children = new Array();
     const data = this.data;
     const params = {
-      pidx: e === null || e === undefined ? null : e.idx
+      pidx: e === null || e === undefined ? null : e.idx,
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       children = res.result;
       data[data.indexOf(e)].children = children;
-      this.child = children;
+      // this.child = children;
+
+      const childrenDom = '<nkt-tree-list-child [data]="' + res.result + '" ></nkt-tree-list-child>';
+      document.querySelector('#' + e.menugroup + '_treelist').append(childrenDom);
     });
   }
 
   onCollapse(data: any) {
-    data.children.forEach(item => {
+    data.children.forEach((item) => {
       document.querySelector('#' + item.menugroup + '_treelist').remove();
     });
     delete data.children;
@@ -92,7 +95,7 @@ export class TreeListChildComponent implements OnInit {
       child: data.child,
       insertdate: data.insertdate,
       idx: data.idx,
-      parent: data.parent
+      parent: data.parent,
     });
   }
 
@@ -118,7 +121,7 @@ export class TreeListChildComponent implements OnInit {
       level: data.level + 1,
       child: false,
       insertdate: null,
-      parent: data.idx
+      parent: data.idx,
     });
   }
 

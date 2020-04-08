@@ -27,9 +27,9 @@ export class TreeListChildComponent implements OnInit {
     parent: new FormControl()
   });
 
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onFields(data: any) {
     const fields = Object.keys(data);
@@ -56,7 +56,10 @@ export class TreeListChildComponent implements OnInit {
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       children = res.result;
       data[data.indexOf(e)].children = children;
-      this.child = children;
+      // this.child = children;
+
+      const childrenDom = '<nkt-tree-list-child [data]="' + res.result + '" ></nkt-tree-list-child>'
+      document.querySelector('#' + e.menugroup + '_treelist').append(childrenDom);
     });
   }
 
@@ -77,10 +80,6 @@ export class TreeListChildComponent implements OnInit {
       if (res.resultCode === 'OK') {
         const modal = document.querySelector('.modal') as HTMLElement;
         modal.style.display = 'none';
-
-        this.common.httpCallGet('service/menu/levels', { pidx: 'null' }).subscribe((newRes: any) => {
-          this.data = newRes.result;
-        });
       }
     });
   }
@@ -110,4 +109,5 @@ export class TreeListChildComponent implements OnInit {
     this.form.controls.idx.setValue(null);
     this.form.controls.parent.setValue(data.idx);
   }
+
 }

@@ -59,7 +59,7 @@ export class TreeListChildComponent implements OnInit {
       data[data.indexOf(e)].children = children;
       // this.child = children;
 
-      const childrenDom = '<nkt-tree-list-child [data]="' + res.result + '" ></nkt-tree-list-child>';
+      const childrenDom = '<nkt-tree-list-child [data]="data.children" ></nkt-tree-list-child>';
       document.querySelector('#' + e.menugroup + '_treelist').append(childrenDom);
     });
   }

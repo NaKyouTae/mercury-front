@@ -1,17 +1,16 @@
 <div class="content-width">
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
-    <div class="grid-wrapper" style="height:300px;">
+    <div class="grid-wrapper">
+      <div class="grid-command">
+        <button>생성</button>
+      </div>
+      <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width' : 'calc(100% / ' + fieldsNum + ')'}">{{ field }}</div>
 
-
-
-      <div *ngFor="let d of data; let d_idx = index">
-        <div *ngFor="let f of onFields(d);" style="display: inline-block; padding: 0px 10px; border-bottom: 1px solid darkgray; border-top: 1px solid darkgray;">
-          <div *ngIf="d_idx == 0" style="font-weight: bold; font-size: 15px; padding: 0px 10px; ">{{ f }}</div>
-          <div>{{ onData(d, f) }}</div>
+      <div nktModal (dblclick)="dbldata.emit(d)" [modal]="modalTemp" *ngFor="let d of data; let d_idx = index" class="grid-row">
+        <div *ngFor="let f of onFields(d); let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : 'calc(100% / ' + fieldsNum + ')'}">
+          {{ onData(d, f) }}
         </div>
       </div>
-
-
 
     </div>
     <div class="page-info">

@@ -1,6 +1,6 @@
 <div class="content-width">
-  <div class="treelist-wrapper" style="height:500px;">
-    <div *ngFor="let field of fields; let f_idx = index" class="treelist-title">{{field}}</div>
+  <div class="treelist-wrapper">
+    <div *ngFor="let field of fields; let f_idx = index" class="treelist-title" [ngStyle]="{'width' : 'calc(100% / ' + fields.length + ')'}">{{field}}</div>
     <nkt-tree-list-child [data]="data"></nkt-tree-list-child>
   </div>
 </div>

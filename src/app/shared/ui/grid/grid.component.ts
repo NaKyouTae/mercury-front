@@ -1,15 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FormsService } from '../../util/forms.service';
+import { CommonHttpService } from '../../common/common-http.service';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'nkt-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.css'],
 })
 export class CustomGridComponent implements OnInit {
   @Input() data: any;
+  @Input() modalTemp?: any;
   @Input() gridWidth?: string;
 
+  @Output() dbldata: EventEmitter = new EventEmitter();
+
   public fields: any;
+  public fieldsNum: any;
   public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
   public size = 30;
   public skip = 0;
@@ -20,11 +28,12 @@ export class CustomGridComponent implements OnInit {
   public dataCountEnd = this.take;
   public pageList: Array<any>;
 
-  constructor() { }
+  constructor(private _forms: FormsService, private common: CommonHttpService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
       this.fields = Object.keys(this.data[0]);
+      this.fieldsNum = this.fields.length;
       this.tot = this.data.length;
       this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
       this.take = this.data.length > this.take ? this.take : this.data.length;
@@ -46,7 +55,7 @@ export class CustomGridComponent implements OnInit {
     const dataList = this.data.slice(this.skip, this.take);
 
     for (let d of dataList) {
-      Object.keys(d).forEach(v => {
+      Object.keys(d).forEach((v) => {
         if (e === v) {
           result.push(d[v]);
         }

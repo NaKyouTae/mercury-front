@@ -1,7 +1,8 @@
 import { Directive, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[nktModal]'
+  // tslint:disable-next-line: directive-selector
+  selector: '[nktModal]',
 })
 export class ModalDirective {
   @Input() modal: any;

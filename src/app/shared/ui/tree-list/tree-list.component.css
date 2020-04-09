@@ -2,31 +2,10 @@
     text-align: center;
     overflow-x: auto;
     white-space: nowrap;
-    border-top: 1px solid darkgray;
-    border-left: 1px solid darkgray;
-    border-right: 1px solid darkgray;
 }
 
 .treelist-title {
-    display: inline-block; 
-    width:calc((100%/9));
+    display: inline-block;
     padding: 10px 0px;
     font-weight: bold;
 }
-  
-/* .treelist-wrapper > div {
-    display: inline-block;
-    vertical-align: top;
-    border: 1px solid darkgray;
-}
-.treelist-field{
-    border-bottom: 1px solid darkgray; 
-    font-weight: bold; 
-    font-size: 15px; 
-    padding: 10px;
-}
-.treelist-vertical {
-    border-bottom: 1px solid darkgray;
-    padding: 5px 10px;
-    text-align: left;
-} */

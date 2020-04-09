@@ -2,17 +2,17 @@
   <div nktModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of onFields(d); let field_idx = index"
   [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : ''}"
   class="tree-list-row-field">
-        <div *ngIf="field_idx == 0" style="display: inline-block;">
-            <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">open</button>
-            <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">close</button>
-            <button (click)="onCreateModal(d, CreModal)" style="display: inline-block;margin-right: 10px;">+</button>
-        </div>
-        <div style="display: inline-block; padding: 10px 0px;">
-            {{onData(d, field)}}
-        </div>
+    <div *ngIf="field_idx == 0" style="display: inline-block;">
+        <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">open</button>
+        <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">close</button>
+        <button (click)="onCreateModal(d, CreModal)" style="display: inline-block;margin-right: 10px;">+</button>
+    </div>
+    <div style="display: inline-block; padding: 10px 0px;">
+        {{onData(d, field)}}
+    </div>
   </div>
+  <nkt-tree-list-child *ngIf="d.children != undefined" [data]="d.children" ></nkt-tree-list-child>
 </div>
-<!-- <nkt-tree-list-child *ngIf="child != undefined" [data]="child" ></nkt-tree-list-child> -->
 
 
 
@@ -52,7 +52,7 @@
     </div>
     <div class="modal-footer">
       <button (click)="onClose(CreModal)">취소</button>
-      <button [disabled]="form.get('title').invalid == true && form.get('menugroup').invalid == true && form.get('menuorder').invalid == true" 
+      <button [disabled]="form.get('title').invalid == true && form.get('menugroup').invalid == true && form.get('menuorder').invalid == true"
               (click)="onCreate(form.controls, CreModal)">생성</button>
     </div>
   </div>

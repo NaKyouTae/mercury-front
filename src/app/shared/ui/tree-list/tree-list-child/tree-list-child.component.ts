@@ -28,9 +28,9 @@ export class TreeListChildComponent implements OnInit {
     parent: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) {}
+  constructor(private common: CommonHttpService, private forms: FormsService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onFields(data: any) {
     const fields = Object.keys(data);
@@ -59,8 +59,8 @@ export class TreeListChildComponent implements OnInit {
       data[data.indexOf(e)].children = children;
       // this.child = children;
 
-      const childrenDom = '<nkt-tree-list-child [data]="data.children" ></nkt-tree-list-child>';
-      document.querySelector('#' + e.menugroup + '_treelist').append(childrenDom);
+      // const childrenDom = '<nkt-tree-list-child [data]="data.children" ></nkt-tree-list-child>';
+      // document.querySelector('#' + e.menugroup + '_treelist').append(childrenDom);
     });
   }
 

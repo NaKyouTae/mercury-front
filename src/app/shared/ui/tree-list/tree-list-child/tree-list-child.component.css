@@ -37,14 +37,12 @@
 .tree-list-row {
   border-top: 1px solid darkgray;
   cursor: pointer;
-  height: 40px;
 }
 
 .tree-list-row-last {
   border-top: 1px solid darkgray;
   border-bottom: 1px solid darkgray;
   cursor: pointer;
-  height: 40px;
 }
 .tree-list-row-last:hover {
   border-top-color: pink;
@@ -59,9 +57,9 @@
   border-top-color: pink;
 }
 .tree-list-row-field {
-  display: inline-block; 
+  display: inline-block;
   height: 40px;
-  overflow: hidden; 
+  overflow: hidden;
   width:calc((100%/9));
 }
 

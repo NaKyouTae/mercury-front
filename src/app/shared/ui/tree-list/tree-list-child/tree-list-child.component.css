@@ -44,7 +44,7 @@
   border-bottom: 1px solid darkgray;
   cursor: pointer;
 }
-.tree-list-row-last:hover {
+/* .tree-list-row-last:hover {
   border-top-color: pink;
   border-bottom-color: pink;
   border-left : 1px solid pink;
@@ -55,12 +55,15 @@
   border-left : 1px solid pink;
   border-right : 1px solid pink;
   border-top-color: pink;
-}
+} */
 .tree-list-row-field {
   display: inline-block;
   height: 40px;
   overflow: hidden;
   width:calc((100%/9));
+}
+.tree-list-row-field:hover {
+  border : 1px solid pink;
 }
 
 .modal-header {

@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormsService } from '../../util/forms.service';
 import { CommonHttpService } from '../../common/common-http.service';
-import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'nkt-grid',
@@ -14,7 +13,7 @@ export class CustomGridComponent implements OnInit {
   @Input() modalTemp?: any;
   @Input() gridWidth?: string;
 
-  @Output() dbldata: EventEmitter = new EventEmitter();
+  @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
   public fields: any;
   public fieldsNum: any;
@@ -28,7 +27,7 @@ export class CustomGridComponent implements OnInit {
   public dataCountEnd = this.take;
   public pageList: Array<any>;
 
-  constructor(private _forms: FormsService, private common: CommonHttpService) {}
+  constructor(private _forms: FormsService, private common: CommonHttpService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -137,5 +136,8 @@ export class CustomGridComponent implements OnInit {
     } else {
       event.preventDefault;
     }
+  }
+  onDblClick(value: any) {
+    this.dbldata.emit(value);
   }
 }

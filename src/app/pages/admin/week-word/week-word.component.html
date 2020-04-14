@@ -1,8 +1,8 @@
 <div class="content-width" >
-    <app-page-title title="제시어"></app-page-title>
-    <nkt-grid *ngIf="data != undefined" [data]="data" (dbldata)="onDblClick(data)" [modalTemp]="UpModal"></nkt-grid>
+    <!-- <app-page-title title="제시어"></app-page-title> -->
+    <nkt-grid *ngIf="data != undefined" [data]="data" (dbldata)="onDblClick($event)" [modalTemp]="UpModal"></nkt-grid>
 </div>
-  
+
 <div #UpModal class="modal">
     <div class="modal-content" style="width: 25%; text-align: left;">
       <div class="modal-header" *ngIf="form != undefined">

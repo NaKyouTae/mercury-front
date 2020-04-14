@@ -2,14 +2,14 @@ import { Directive, HostListener, Input } from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: '[nktModal]',
+  selector: '[RowModal]',
 })
-export class ModalDirective {
+export class RowModalDirective {
   @Input() modal: any;
 
-  constructor() {}
+  constructor() { }
 
-  @HostListener('dblclick') onClick() {
+  @HostListener('dblclick') onDblClick() {
     this.modal.style.display = 'block';
     console.log('dblclick');
   }

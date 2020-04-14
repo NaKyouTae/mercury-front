@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
   selector: 'app-week-word',
@@ -10,14 +11,20 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class WeekWordComponent implements OnInit {
   public data: any;
 
+  public newform = new FormGroup({
+    word: new FormControl('', Validators.required),
+    start_date: new FormControl('', Validators.required),
+    end_date: new FormControl('', Validators.required)
+  });
   public form = new FormGroup({
     idx: new FormControl(''),
-    username: new FormControl(''),
-    pw: new FormControl(''),
+    word_group: new FormControl(''),
+    word: new FormControl(''),
     insert_date: new FormControl(''),
-    change_date: new FormControl(''),
+    start_date: new FormControl(''),
+    end_date: new FormControl('')
   });
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();
@@ -30,19 +37,48 @@ export class WeekWordComponent implements OnInit {
     });
   }
 
-  onDblClick(data: any) {
+  public onDblClick(data: any) {
     this.form.patchValue(data);
   }
-  onClose(template: any) {
+  public onClose(template: any) {
     template.style.display = 'none';
   }
-  onCreate(e: any, template: any) {
-    // this.common.httpCallPost('service/');
+  public onCreate(e: any, template: any) {
+    const data = this.formservice.formToData(e);
+    this.common.httpCallPost('service/weekword/words', data).subscribe((res: any) => {
+
+      if (res.resultCode === 'OK') {
+        alert(res.message);
+        this.search();
+        template.style.display = 'none';
+      }
+
+      this.newform.reset({
+        word: '',
+        start_date: '',
+        end_date: ''
+      });
+    });
+
   }
-  onUpdate(e: any, template: any) {
-    template.style.display = 'none';
+  public onUpdate(e: any, template: any) {
+    const data: any = this.formservice.formToData(e);
+    this.common.httpCallPut('service/weekword/words/' + data.idx, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        alert(res.message);
+        this.search();
+        template.style.display = 'none';
+      }
+    });
   }
-  onDelete(e: any, template: any) {
-    template.style.display = 'none';
+  public onDelete(e: any, template: any) {
+    const data: any = this.formservice.formToData(e);
+    this.common.httpCallDelete('service/weekword/words/' + data.idx, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        alert(res.message);
+        this.search();
+        template.style.display = 'none';
+      }
+    });
   }
 }

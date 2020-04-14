@@ -15,6 +15,7 @@
 
 .grid-row:hover {
   background-color: darkgray;
+  cursor: pointer;
 }
 .grid-field {
   display: inline-block;

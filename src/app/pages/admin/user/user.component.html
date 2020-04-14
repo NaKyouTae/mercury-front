@@ -1,5 +1,74 @@
 <div class="content-width">
-    <app-page-title title="사용자"></app-page-title>
-    <nkt-grid *ngIf="data != undefined" [data]="data"></nkt-grid>
+    <!-- <app-page-title title="사용자"></app-page-title> -->
+    <nkt-grid *ngIf="data != undefined" [data]="data" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-grid>
 </div>
-  
+
+<div #UpModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>{{form.controls.username}} 정보</h2>
+      </div>
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
+      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>일렬번호</label>
+          <input type="text" formControlName="idx" required/>
+        </div>
+        <div class="form-input-text">
+          <label>사용자</label>
+          <input type="text" formControlName="username"/>
+        </div>
+        <div class="form-input-text">
+          <label>비밀번호</label>
+          <input type="text" formControlName="pw"/>
+        </div>
+        <div class="form-input-text">
+          <label>생성 일자</label>
+          <input type="text" formControlName="insert_date" disabled="true"/>
+        </div>
+        <div class="form-input-text">
+          <label>변경 일자</label>
+          <input type="text" formControlName="change_date" disabled="true"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(UpModal)">취소</button>
+      <button (click)="onUpdate(form.controls, UpModal)">수정</button>
+    </div>
+  </div>
+</div>
+<div #CreModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="newform != undefined">
+      <div>
+        <h2>사용자 추가</h2>
+      </div>
+      <div class="close" (click)="onClose(CreModal)">&times;</div>
+    </div>
+    <div *ngIf="newform != undefined" >
+      <form [formGroup]="newform">
+        <div class="form-input-text">
+          <label>사용자</label>
+          <input type="text" formControlName="username"/>
+        </div>
+        <div class="form-input-text">
+          <label>비밀번호</label>
+          <input type="password" formControlName="pw"/>
+        </div>
+        <div class="form-input-text">
+          <label>비밀번호 확인</label>
+          <input type="password" formControlName="rep"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(CreModal)">취소</button>
+      <button (click)="onCreate(newform.controls, CreModal)">생성</button>
+    </div>
+  </div>
+</div>

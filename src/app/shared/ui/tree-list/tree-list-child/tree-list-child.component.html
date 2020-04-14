@@ -1,5 +1,5 @@
 <div id="{{d.menugroup}}_treelist" *ngFor="let d of data; let d_idx = index;" [ngClass]="d_idx == data.length-1 ? 'tree-list-row-last':'tree-list-row'">
-  <div nktModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of onFields(d); let field_idx = index"
+  <div RowModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of onFields(d); let field_idx = index"
   [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : '', 'width' : 'calc(100% / ' + fieldsNum + ')'}"
   [ngClass]="field_idx == 0 ? 'tree-list-row-field-frist':'tree-list-row-field'">
     <div *ngIf="field_idx == 0" style="display: inline-block;">

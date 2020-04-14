@@ -10,7 +10,8 @@ import { CommonHttpService } from '../../common/common-http.service';
 })
 export class CustomGridComponent implements OnInit {
   @Input() data: any;
-  @Input() modalTemp?: any;
+  @Input() upModalTemp?: any;
+  @Input() creModalTemp?: any;
   @Input() gridWidth?: string;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();

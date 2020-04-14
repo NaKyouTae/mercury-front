@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModalDirective } from '../../directive/modal/modal.directive';
+import { RowModalDirective } from './row-modal.directive';
 
 @NgModule({
-  declarations: [ModalDirective],
+  declarations: [RowModalDirective],
   imports: [CommonModule, FormsModule],
-  exports: [ModalDirective],
+  exports: [RowModalDirective],
 })
-export class ModalDirectiveModule {}
+export class RowModalDirectiveModule { }

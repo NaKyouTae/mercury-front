@@ -2,11 +2,11 @@
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
     <div class="grid-wrapper">
       <div class="grid-command">
-        <button>생성</button>
+        <button class="create-btn" BtnModal [modal]="creModalTemp">생성</button>
       </div>
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width' : 'calc(100% / ' + fieldsNum + ')'}">{{ field }}</div>
 
-      <div nktModal (dblclick)="onDblClick(d)" [modal]="modalTemp" *ngFor="let d of data; let d_idx = index" class="grid-row">
+      <div RowModal (dblclick)="onDblClick(d)" [modal]="upModalTemp" *ngFor="let d of data; let d_idx = index" class="grid-row">
         <div *ngFor="let f of onFields(d); let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : 'calc(100% / ' + fieldsNum + ')'}">
           {{ onData(d, f) }}
         </div>

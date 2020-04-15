@@ -21,10 +21,12 @@
         <div class="form-input-text">
           <label>종류</label>
           <input type="text" formControlName="word_group"/>
+          <span *ngIf="form.controls.word_group.hasError('required')" style="color:red; display: block; font-size: 12px;">종류 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>제시어</label>
           <input type="text" formControlName="word"/>
+          <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
@@ -33,16 +35,18 @@
         <div class="form-input-text">
           <label>시작 일자</label>
           <input type="text" formControlName="start_date"/>
+          <span *ngIf="form.controls.start_date.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 일자는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>마감 일자</label>
           <input type="text" formControlName="end_date" />
+          <span *ngIf="form.controls.end_date.hasError('required')" style="color:red; display: block; font-size: 12px;">마감 일자는 필수 입니다.</span>
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <button (click)="onClose(UpModal)">취소</button>
-      <button (click)="onUpdate(form.controls, UpModal)">수정</button>
+      <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
 </div>
@@ -62,14 +66,19 @@
           <span *ngIf="newform.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
+          <label>종류</label>
+          <input type="text" formControlName="word_group" required/>
+          <span *ngIf="newform.controls.word_group.hasError('required')" style="color:red; display: block; font-size: 12px;">종류는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
           <label>시작 일자</label>
           <input type="text" formControlName="start_date" required/>
-          <span *ngIf="newform.start_date.word.hasError('required') == undefined" style="color:red; display: block; font-size: 12px;">시작 일자는 필수 입니다.</span>
+          <span *ngIf="newform.controls.start_date.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 일자는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>마감 일자</label>
           <input type="text" formControlName="end_date" required/>
-          <span *ngIf="newform.end_date.word.hasError('required') == undefined" style="color:red; display: block; font-size: 12px;">마감 일자는 필수 입니다.</span>
+          <span *ngIf="newform.controls.end_date.hasError('required')" style="color:red; display: block; font-size: 12px;">마감 일자는 필수 입니다.</span>
         </div>
       </form>
     </div>

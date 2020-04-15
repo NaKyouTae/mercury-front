@@ -13,18 +13,19 @@ export class WeekWordComponent implements OnInit {
 
   public newform = new FormGroup({
     word: new FormControl('', Validators.required),
-    start_date: new FormControl('', Validators.required),
-    end_date: new FormControl('', Validators.required)
+    word_group: new FormControl('', Validators.required),
+    start_date: new FormControl('00:00:00', Validators.required),
+    end_date: new FormControl('23:59:59', Validators.required),
   });
   public form = new FormGroup({
     idx: new FormControl(''),
-    word_group: new FormControl(''),
-    word: new FormControl(''),
+    word_group: new FormControl('', Validators.required),
+    word: new FormControl('', Validators.required),
     insert_date: new FormControl(''),
-    start_date: new FormControl(''),
-    end_date: new FormControl('')
+    start_date: new FormControl('', Validators.required),
+    end_date: new FormControl('', Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();
@@ -46,7 +47,6 @@ export class WeekWordComponent implements OnInit {
   public onCreate(e: any, template: any) {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/weekword/words', data).subscribe((res: any) => {
-
       if (res.resultCode === 'OK') {
         alert(res.message);
         this.search();
@@ -55,11 +55,11 @@ export class WeekWordComponent implements OnInit {
 
       this.newform.reset({
         word: '',
-        start_date: '',
-        end_date: ''
+        word_group: '',
+        start_date: '00:00:00',
+        end_date: '23:59:59',
       });
     });
-
   }
   public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);

@@ -3,15 +3,15 @@
         width: 100%;
         margin-bottom: 20px;
     }
-    
+
     .data-title > div {
         display: inline-block;
     }
 
-    .user-list { 
+    .user-list {
         overflow: auto;
     }
-    
+
     .data-grid {
         font-size: 13px;
         text-align: center;
@@ -29,8 +29,8 @@
         width: 100%;
         text-align: left;
     }
-    
-    .data-user { 
+
+    .data-user {
         text-align: left;
         display: inline-block;
         width: 80%;
@@ -43,7 +43,7 @@
     .data-user > div:nth-child(3){
         margin-left: 5px;
     }
-    
+
     .data-user > div:nth-child(4){
         color: #e2403e;
         margin-left: 5px;
@@ -62,5 +62,9 @@
     .data-text > div > div:last-child{
         display: inline-block;
         margin-left: 10px;
+    }
+
+    .love-btn{
+      height: 15px;
     }
 }

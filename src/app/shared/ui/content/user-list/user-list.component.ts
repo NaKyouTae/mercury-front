@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { UserContentsComponent } from '../user-contents/user-contents.component';
+import { ObservableService } from 'src/app/shared/common/observable/observable.service';
+import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
   selector: 'app-user-list',
@@ -7,11 +11,56 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  @Input('data') public datas:any;
-  public words = ['삼', '행', '시'];
-  constructor() { }
-
-  ngOnInit() {
+  // tslint:disable-next-line: no-input-rename
+  @Input('data') public datas: any;
+  // tslint:disable-next-line: no-input-rename
+  @Input('word') public words: any;
+  // tslint:disable-next-line: no-input-rename
+  @Input('type') public type: any;
+  constructor(private common: CommonHttpService, private observable: ObservableService) {
+    this.observable.sourceObv.subscribe((res: any) => {
+      if (res === 'THREE') {
+        this.getThreeList();
+      } else if (res === 'TWO') {
+        this.getTwoList();
+      }
+    });
   }
 
+  ngOnInit() { }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnChanges() {
+    this.checkLove();
+  }
+  getThreeList() {
+    this.common.httpCallGet('service/three/lists').subscribe((res: any) => {
+      this.datas = res.result;
+    });
+  }
+  getTwoList() {
+    this.common.httpCallGet('service/two/lists').subscribe((res: any) => {
+      this.datas = res.result;
+    });
+  }
+
+  upLove(e: any) {
+    e.point = e.point + 1;
+    e.love = true;
+    this.common.httpCallPut('service/three/threes/' + e.idx, e).subscribe((res: any) => {
+      this.getThreeList();
+    });
+  }
+
+  checkLove() {
+    this.datas.forEach((item: any) => {
+      this.common.httpCallGet('service/loves', { idx: item.idx }).subscribe((res: any) => {
+        if (res.result != null) {
+          item.me = true;
+        } else {
+          item.me = false;
+        }
+      });
+    });
+  }
 }

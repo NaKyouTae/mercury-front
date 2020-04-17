@@ -23,7 +23,7 @@
         height: 20px;
         width: calc(100% - 30px - 55px);
     }
-    
+
     .insert-btn{
         display: inline-block;
         color: white;
@@ -33,5 +33,6 @@
         padding: 5px 10px;
         font-size: 12px;
         margin-left: 10px;
+        cursor: pointer;
     }
 }

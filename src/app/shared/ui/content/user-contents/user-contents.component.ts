@@ -10,11 +10,11 @@ import { ObservableService } from 'src/app/shared/common/observable/observable.s
 @Component({
   selector: 'app-user-contents',
   templateUrl: './user-contents.component.html',
-  styleUrls: ['./user-contents.component.css']
+  styleUrls: ['./user-contents.component.css'],
 })
 export class UserContentsComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private cookie: CookieService, private observableService: ObservableService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private cookie: CookieService, private observableService: ObservableService) {}
 
   // tslint:disable-next-line: no-input-rename
   @Input('contents') public contents: any = new Array<any>();
@@ -26,16 +26,16 @@ export class UserContentsComponent implements OnInit {
     contentTwo: new FormControl(''),
     contentThree: new FormControl(''),
     userName: new FormControl(''),
-    userIdx: new FormControl('')
+    userIdx: new FormControl(''),
   });
 
   public twoForm = new FormGroup({
     contentOne: new FormControl(''),
     contentTwo: new FormControl(''),
     userName: new FormControl(''),
-    userIdx: new FormControl('')
+    userIdx: new FormControl(''),
   });
-  ngOnInit() { }
+  ngOnInit() {}
 
   inThree(e: any) {
     e.userName.setValue(this.cookie.getCookie('user'));
@@ -48,7 +48,7 @@ export class UserContentsComponent implements OnInit {
           contentTwo: '',
           contentThree: '',
           userName: '',
-          userIdx: ''
+          userIdx: '',
         });
         this.observableService.getList('THREE');
       }
@@ -64,7 +64,7 @@ export class UserContentsComponent implements OnInit {
           contentOne: '',
           contentTwo: '',
           userName: '',
-          userIdx: ''
+          userIdx: '',
         });
         this.observableService.getList('TWO');
       }

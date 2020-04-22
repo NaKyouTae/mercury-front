@@ -16,6 +16,7 @@ export class WeekWordComponent implements OnInit {
     word_group: new FormControl('', Validators.required),
     start_date: new FormControl('00:00:00', Validators.required),
     end_date: new FormControl('23:59:59', Validators.required),
+    description: new FormControl('', Validators.required),
   });
   public form = new FormGroup({
     idx: new FormControl(''),
@@ -24,6 +25,7 @@ export class WeekWordComponent implements OnInit {
     insert_date: new FormControl(''),
     start_date: new FormControl('', Validators.required),
     end_date: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
   });
   constructor(private common: CommonHttpService, private formservice: FormsService) {}
 

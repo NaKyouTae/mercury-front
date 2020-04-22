@@ -1,5 +1,5 @@
 <div class="content-width" >
-    <!-- <app-page-title title="제시어"></app-page-title> -->
+    <app-page-title title="제시어"></app-page-title>
     <nkt-grid *ngIf="data != undefined" [data]="data" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-grid>
 </div>
 
@@ -27,6 +27,11 @@
           <label>제시어</label>
           <input type="text" formControlName="word"/>
           <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>설명</label>
+          <input type="text" formControlName="description"/>
+          <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">설명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
@@ -79,6 +84,11 @@
           <label>마감 일자</label>
           <input type="text" formControlName="end_date" required/>
           <span *ngIf="newform.controls.end_date.hasError('required')" style="color:red; display: block; font-size: 12px;">마감 일자는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>설명</label>
+          <input type="text" formControlName="description"/>
+          <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">설명은 필수 입니다.</span>
         </div>
       </form>
     </div>

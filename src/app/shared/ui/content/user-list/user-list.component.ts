@@ -7,10 +7,9 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-
   // tslint:disable-next-line: no-input-rename
   @Input('data') public datas: any;
   // tslint:disable-next-line: no-input-rename
@@ -27,7 +26,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
@@ -36,6 +35,7 @@ export class UserListComponent implements OnInit {
   getThreeList() {
     this.common.httpCallGet('service/three/lists').subscribe((res: any) => {
       this.datas = res.result;
+      this.checkLove();
     });
   }
   getTwoList() {
@@ -55,7 +55,7 @@ export class UserListComponent implements OnInit {
   checkLove() {
     this.datas.forEach((item: any) => {
       this.common.httpCallGet('service/loves', { idx: item.idx }).subscribe((res: any) => {
-        if (res.result != null) {
+        if (res.result !== false) {
           item.me = true;
         } else {
           item.me = false;

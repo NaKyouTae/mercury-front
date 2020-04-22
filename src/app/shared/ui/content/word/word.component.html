@@ -1,11 +1,9 @@
 <div class="content-top">
-    <div class="word-title">오늘의 제시어</div>
+    <div class="word-title">금주의 제시어</div>
     <div class="word">
         <p *ngFor="let word of words">{{word}}</p>
     </div>
     <div class="word-descript">
-        <p>삼행시는 언어 유희의 하나이다.</p>
-        <p>삼행시로 표기하는 것이 보통이지만 N행시라고 표기하기도 하며</p>
-        <p>때에 따라서 삼(3) 부분의 숫자를 바꿔서 이행시 또는 사행시라고도 한다.</p>
+        <p>{{description}}</p>
     </div>
 </div>

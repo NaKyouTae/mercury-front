@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'src/app/shared/common/cookies.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public;
+  public userCheck: any = this.cookie.getCookie('user') !== null ? true : false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookie: CookieService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onClick() {
     this.router.navigateByUrl('/three');

@@ -3,6 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { UserContentsComponent } from '../user-contents/user-contents.component';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { CookieService } from 'src/app/shared/common/cookies.service';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,10 @@ export class UserListComponent implements OnInit {
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
-  constructor(private common: CommonHttpService, private observable: ObservableService) {
+
+  public userCheck: any = this.cookie.getCookie('user') !== null ? true : false;
+
+  constructor(private common: CommonHttpService, private observable: ObservableService, private cookie: CookieService) {
     this.observable.sourceObv.subscribe((res: any) => {
       if (res === 'THREE') {
         this.getThreeList();
@@ -26,7 +30,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {

@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonHttpService, CustomEncoder } from 'src/app/shared/common/common-http.service';
-import { EventEmitter } from 'protractor';
-import { HttpParams } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
@@ -30,7 +28,7 @@ export class TreeListChildComponent implements OnInit {
     parent: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) {}
+  constructor(private common: CommonHttpService, private forms: FormsService) { }
 
   ngOnInit() {
     this.fieldsNum = Object.keys(this.data[0]).length;

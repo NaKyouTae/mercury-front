@@ -14,12 +14,13 @@ import { ObservableService } from 'src/app/shared/common/observable/observable.s
 })
 export class UserContentsComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private cookie: CookieService, private observableService: ObservableService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private cookie: CookieService, private observableService: ObservableService) { }
 
   // tslint:disable-next-line: no-input-rename
   @Input('contents') public contents: any = new Array<any>();
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: string;
+  public userCheck: any = this.cookie.getCookie('user') !== null ? true : false;
 
   public threeForm = new FormGroup({
     contentOne: new FormControl(''),
@@ -35,7 +36,7 @@ export class UserContentsComponent implements OnInit {
     userName: new FormControl(''),
     userIdx: new FormControl(''),
   });
-  ngOnInit() {}
+  ngOnInit() { }
 
   inThree(e: any) {
     e.userName.setValue(this.cookie.getCookie('user'));

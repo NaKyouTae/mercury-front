@@ -12,7 +12,7 @@
     <div class="form-input-text">
       <p class="in-word-title">{{contents[2]}}</p>
       <input type="text" class="in-word-in" formControlName="contentThree">
-      <div class="insert-btn" (click)="inThree(threeForm.controls)">등록</div>
+      <div *ngIf="userCheck" class="insert-btn" (click)="inThree(threeForm.controls)">등록</div>
     </div>
   </form>
 
@@ -24,7 +24,7 @@
     <div>
       <p class="in-word-title">{{contents[1]}}</p>
       <input type="text" class="in-word-in" formControlName="contentTwo">
-      <div class="insert-btn" (click)="inTwo(twoForm.controls)">등록</div>
+      <div *ngIf="userCheck" class="insert-btn" (click)="inTwo(twoForm.controls)">등록</div>
     </div>
   </form>
 </div>

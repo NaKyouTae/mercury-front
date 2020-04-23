@@ -11,13 +11,14 @@ export class RowModalDirective {
 
   @HostListener('dblclick') onDblClick() {
     this.modal.style.display = 'block';
-    console.log('dblclick');
   }
 
-  // @HostListener('document:click') onDocumentClick(e: any) {
-  //   const modal = this.id;
-  //   if (e.target === modal) {
-  //     modal.style.display = 'none';
-  //   }
-  // }
+  @HostListener('document:click') onDocumentClick() {
+    // tslint:disable-next-line: deprecation
+    const target: any = window.event.target;
+
+    if (target.className === 'modal') {
+      target.style.display = 'none';
+    }
+  }
 }

@@ -18,12 +18,12 @@ export class TreeListChildComponent implements OnInit {
 
   public form = new FormGroup({
     title: new FormControl(''),
-    menugroup: new FormControl(''),
+    menuGroup: new FormControl(''),
     url: new FormControl(''),
-    menuorder: new FormControl(''),
+    menuOrder: new FormControl(''),
     level: new FormControl(''),
     child: new FormControl(''),
-    insertdate: new FormControl(''),
+    insertDate: new FormControl(''),
     idx: new FormControl(''),
     parent: new FormControl(''),
   });
@@ -86,12 +86,12 @@ export class TreeListChildComponent implements OnInit {
   onDblClick(data: any) {
     this.form.patchValue({
       title: data.title,
-      menugroup: data.menugroup,
+      menuGroup: data.menuGroup,
       url: data.url,
-      menuorder: data.menuorder,
+      menuOrder: data.menuOrder,
       level: data.level,
       child: data.child,
-      insertdate: data.insertdate,
+      insertDate: data.insertDate,
       idx: data.idx,
       parent: data.parent,
     });
@@ -113,12 +113,12 @@ export class TreeListChildComponent implements OnInit {
 
     this.form.patchValue({
       title: null,
-      menugroup: null,
+      menuGroup: null,
       url: '/',
-      menuorder: null,
+      menuOrder: null,
       level: data.level + 1,
       child: false,
-      insertdate: null,
+      insertDate: null,
       parent: data.idx,
     });
   }

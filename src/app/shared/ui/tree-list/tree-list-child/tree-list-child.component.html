@@ -40,7 +40,7 @@
         </div>
         <div class="form-input-text">
           <label>그룹</label>
-          <input type="text" formControlName="menugroup" required/>
+          <input type="text" formControlName="menuGroup" required/>
         </div>
         <div class="form-input-text">
           <label>URL</label>
@@ -48,13 +48,13 @@
         </div>
         <div class="form-input-text">
           <label>순서</label>
-          <input type="text" formControlName="menuorder" required/>
+          <input type="text" formControlName="menuOrder" required/>
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <button (click)="onClose(CreModal)">취소</button>
-      <button [disabled]="form.get('title').invalid == true && form.get('menugroup').invalid == true && form.get('menuorder').invalid == true"
+      <button [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
               (click)="onCreate(form.controls, CreModal)">생성</button>
     </div>
   </div>
@@ -79,7 +79,7 @@
         </div>
         <div class="form-input-text">
           <label>그룹</label>
-          <input type="text" formControlName="menugroup"/>
+          <input type="text" formControlName="menuGroup"/>
         </div>
         <div class="form-input-text">
           <label>URL</label>
@@ -87,7 +87,7 @@
         </div>
         <div class="form-input-text">
           <label>순서</label>
-          <input type="text" formControlName="menuorder"/>
+          <input type="text" formControlName="menuOrder"/>
         </div>
         <div class="form-input-text">
           <label>Level</label>
@@ -99,7 +99,7 @@
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
-          <input type="text" formControlName="insertdate" disabled="true" />
+          <input type="text" formControlName="insertDate" disabled="true" />
         </div>
         <div class="form-input-text">
           <label>ID</label>

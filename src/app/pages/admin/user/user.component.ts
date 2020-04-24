@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
     insert_date: new FormControl(''),
     change_date: new FormControl(''),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();
@@ -34,6 +34,7 @@ export class UserComponent implements OnInit {
       this.data = res.result;
     });
   }
+
   onDblClick(data: any) {
     this.form.patchValue(data);
   }

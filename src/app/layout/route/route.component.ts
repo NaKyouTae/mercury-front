@@ -4,7 +4,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 @Component({
   selector: 'app-route',
   templateUrl: './route.component.html',
-  styleUrls: ['./route.component.css']
+  styleUrls: ['./route.component.css'],
 })
 export class RouteComponent implements OnInit {
   public routeLinks;
@@ -16,7 +16,7 @@ export class RouteComponent implements OnInit {
 
   search(e: any) {
     const params = {
-      pidx: e === null ? 'null' : e
+      pidx: e === null ? 'null' : e,
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       this.routeLinks = res.result;
@@ -25,7 +25,7 @@ export class RouteComponent implements OnInit {
 
   onChildMenu(menu: any) {
     const params = {
-      pidx: menu.idx
+      pidx: menu.idx,
     };
 
     let children = new Array();
@@ -35,7 +35,7 @@ export class RouteComponent implements OnInit {
       menu.children = children;
     });
 
-    const child = document.querySelector('#' + menu.menugroup) as HTMLElement;
+    const child = document.querySelector('#' + menu.menuGroup) as HTMLElement;
     if (child.style.display === 'none') {
       child.style.display = 'block';
     } else if (child.style.display === 'block') {

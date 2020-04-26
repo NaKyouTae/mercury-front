@@ -15,7 +15,6 @@ export class LoginInterceptorService implements HttpInterceptor {
           // do stuff with response and headers you want
           if (event.body.resultCode === 'OK' && event.body.result !== null) {
             this.cookie.set('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict');
-            this.cookie.set('user', 'qqq');
           }
         }
         return event;

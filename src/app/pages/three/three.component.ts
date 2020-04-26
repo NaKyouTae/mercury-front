@@ -14,7 +14,7 @@ export class ThreeComponent implements OnInit {
   constructor(private common: CommonHttpService) {}
 
   ngOnInit() {
-    this.common.httpCallGet('service/weekword/words').subscribe((res: any) => {
+    this.common.httpCallGet('service/weekword/words', { group: 'THREE' }).subscribe((res: any) => {
       this.words.push(res.result.word.substring(0, 1));
       this.words.push(res.result.word.substring(1, 2));
       this.words.push(res.result.word.substring(2, 3));

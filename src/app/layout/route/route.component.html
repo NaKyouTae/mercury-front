@@ -9,7 +9,7 @@
         <a href="javascript:void(0);" class="route-link" (click)="onChildMenu(menu)">{{ menu.title }}</a>
       </div>
     </div>
-    <div [id]="menu.menugroup" class="child-pane" style="display: none;">
+    <div [id]="menu.menuGroup" class="child-pane" style="display: none;">
         <nkt-route-child *ngIf="menu.children != undefined" [data]="menu.children"></nkt-route-child>
     </div>
   </div>

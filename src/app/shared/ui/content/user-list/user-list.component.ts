@@ -12,7 +12,7 @@ import { CookieService } from 'src/app/shared/common/cookies.service';
 })
 export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
-  @Input('data') public datas: any;
+  @Input('data') public datas: any = new Array(2);
   // tslint:disable-next-line: no-input-rename
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit {
 
   checkLove() {
     this.datas.forEach((item: any) => {
-      this.common.httpCallGet('service/loves', { idx: item.idx }).subscribe((res: any) => {
+      this.common.httpCallGet('service/loves', { idx: this.cookie.getCookie('user') }).subscribe((res: any) => {
         if (res.result !== false) {
           item.me = true;
         } else {

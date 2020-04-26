@@ -1,4 +1,4 @@
-<!-- <div class="page-header">
+<div class="page-header">
     <div class="page-header-content content-width">
         <div class="header-menu">
             <div>
@@ -8,9 +8,9 @@
                 <app-route></app-route>
             </div>
             <div>
-                <app-login *ngIf="userCheck" style="display: inline-block;"></app-login>
-                <div>LOGOUT</div>
-                <div>나의 <span style="color: #100efb;">엔</span>행시</div>
+                <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
+                <div *ngIf="userCheck">LOGOUT</div>
+                <div *ngIf="userCheck">나의 <span style="color: #100efb;">엔</span>행시</div>
             </div>
         </div>
         <div class="header-content">
@@ -26,4 +26,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

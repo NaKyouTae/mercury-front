@@ -10,15 +10,15 @@
                 <div style="color: #100efb;">{{item.userName}}</div>
                 <div>님</div>
                 <div>
-                  <div *ngIf="userCheck">
+                  <div *ngIf="!userCheck">
                     <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                    <img *ngIf="!item.me && item.love" (class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
-                    <img *ngIf="!item.me && !item.love" (click)="upLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                    <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                    <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                   </div>
-                  <div *ngIf="item.me">
+                  <div *ngIf="userCheck && item.me">
                     <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
                   </div>
-                  <div *ngIf="!item.me">
+                  <div *ngIf="userCheck && !item.me">
                     <img *ngIf="item.love" (click)="upLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
                     <img *ngIf="!item.love" (click)="upLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
                   </div>

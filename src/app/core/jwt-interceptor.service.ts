@@ -9,15 +9,18 @@ export class JwtInterceptorService {
   constructor(private cookie: CookieService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const userJWT = this.cookie.getCookie('userJWT');
-    if (userJWT) {
+    const Access = this.cookie.getCookie('Access-JWT');
+    const Refresh = this.cookie.getCookie('Refresh-JWT');
+    if (Access !== null && Refresh !== null) {
       req = req.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + userJWT
+          'Access-JWT': Access,
+          'Refresh-JWT': Refresh
         }
       });
 
-      return next.handle(req);
     }
+
+    return next.handle(req);
   }
 }

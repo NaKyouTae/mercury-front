@@ -1,8 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService, CustomEncoder } from 'src/app/shared/common/common-http.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'src/app/shared/common/cookies.service';
+import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
+import { HttpParams, HttpClient, HttpResponse } from '@angular/common/http';
+import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
+import { windowToggle } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +13,9 @@ import { CookieService } from 'src/app/shared/common/cookies.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private common: CommonHttpService, private router: Router, private cookie: CookieService) {}
+  constructor(private dialog: MatDialog, private http: HttpClient, private router: Router, private jwt: JwtService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // tslint:disable-next-line: member-ordering
   public username: string;
@@ -33,19 +36,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const data = {
-      username: encodeURI(this.username),
-      password: encodeURI(this.password),
-    };
+    // const params = new HttpParams({ encoder: new CustomEncoder() }).set('username', this.username).set('password', this.password);
 
-    this.common.httpCallPost('user/login', data).subscribe((res: any) => {
-      console.log(res);
+    // const params = { username: this.username, password: this.password };
+
+    // tslint:disable-next-line: max-line-length
+    this.http.post('http://localhost:8080/user/login', { username: this.username, password: this.password }).subscribe((res: HttpResponse<any>) => {
       this.dialog.closeAll();
-      this.router.navigateByUrl('/three');
-      // User Info Set Cookie
-      this.cookie.setCookie('UserName', res.result.username, 1);
-      this.cookie.setCookie('Authorities', res.result.authorities, 1);
-      this.cookie.setCookie('N-Token', res.result.token, 1);
+      // this.router.navigateByUrl('/three');
+      // console.log('Access : ' + this.jwt.getJWTAccess());
+      // console.log('Refresh : ' + this.jwt.getJWTRefresh());
+      window.location.reload();
     });
   }
 }

@@ -6,14 +6,16 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   public userCheck: any = this.jwt.getJWTAccessKey('username') !== null ? true : false;
 
-  constructor(private router: Router, private jwt: JwtService) { }
+  constructor(private router: Router, private jwt: JwtService) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.jwt.getJWTAccessKey('username'));
+  }
 
   onClick() {
     this.router.navigateByUrl('/three');

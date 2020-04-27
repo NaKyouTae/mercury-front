@@ -13,9 +13,9 @@ import { windowToggle } from 'rxjs/operators';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private http: HttpClient, private router: Router, private jwt: JwtService) { }
+  constructor(private dialog: MatDialog, private http: HttpClient, private router: Router, private jwt: JwtService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: member-ordering
   public username: string;
@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     this.http.post('http://localhost:8080/user/login', { username: this.username, password: this.password }).subscribe((res: HttpResponse<any>) => {
       this.dialog.closeAll();
-      // this.router.navigateByUrl('/three');
+      this.router.navigateByUrl('/three');
+      window.location.reload();
       // console.log('Access : ' + this.jwt.getJWTAccess());
       // console.log('Refresh : ' + this.jwt.getJWTRefresh());
-      window.location.reload();
     });
   }
 }

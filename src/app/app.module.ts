@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginInterceptorService } from './core/login-interceptor.service';
+import { LoginInterceptorService } from './core/interceptors/login/login-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
-import { JwtInterceptorService } from './core/jwt-interceptor.service';
+import { JwtInterceptorService } from './core/interceptors/jwt/jwt-interceptor.service';
+import { LogoutService } from './core/interceptors/logout/logout.service';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { JwtInterceptorService } from './core/jwt-interceptor.service';
   providers: [CookieService, LoginInterceptorService, JwtInterceptorService,
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LogoutService, multi: true },
   ],
   bootstrap: [AppComponent],
 })

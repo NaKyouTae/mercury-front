@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CookieService } from '../shared/common/cookie/cookies.service';
+import { CookieService } from '../../../shared/common/cookie/cookies.service';
 
 @Injectable()
 export class JwtInterceptorService {
@@ -18,9 +18,7 @@ export class JwtInterceptorService {
           'Refresh-JWT': Refresh
         }
       });
-
     }
-
     return next.handle(req);
   }
 }

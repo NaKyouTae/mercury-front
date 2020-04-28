@@ -6,11 +6,9 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginInterceptorService implements HttpInterceptor {
-  constructor(private cookie: CookieService) { }
+  constructor(private cookie: CookieService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('login');
-
     return next.handle(req).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

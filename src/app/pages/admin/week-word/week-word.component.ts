@@ -12,22 +12,22 @@ export class WeekWordComponent implements OnInit {
   public data: any;
 
   public newform = new FormGroup({
-    word: new FormControl('', Validators.required),
-    wordGroup: new FormControl('', Validators.required),
-    startDate: new FormControl('00:00:00', Validators.required),
-    endDate: new FormControl('23:59:59', Validators.required),
-    description: new FormControl('', Validators.required),
+    word: new FormControl({ value: null }, Validators.required),
+    wordGroup: new FormControl({ value: null }, Validators.required),
+    startDate: new FormControl({ value: '00:00:00' }, Validators.required),
+    endDate: new FormControl({ value: '23:59:59' }, Validators.required),
+    description: new FormControl({ value: null }, Validators.required),
   });
   public form = new FormGroup({
-    idx: new FormControl(''),
-    wordGroup: new FormControl('', Validators.required),
-    word: new FormControl('', Validators.required),
-    insertDate: new FormControl(''),
-    startDate: new FormControl('', Validators.required),
-    endDate: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    idx: new FormControl({ value: null, disabled: true }),
+    wordGroup: new FormControl({ value: null }, Validators.required),
+    word: new FormControl({ value: null }, Validators.required),
+    insertDate: new FormControl({ value: null, disabled: true }),
+    startDate: new FormControl({ value: null }, Validators.required),
+    endDate: new FormControl({ value: null }, Validators.required),
+    description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();

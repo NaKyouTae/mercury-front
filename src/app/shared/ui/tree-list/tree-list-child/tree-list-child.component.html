@@ -35,24 +35,24 @@
         </div>
         <div class="form-input-text">
           <label>제목</label>
-          <input type="text" name="title" formControlName="title" required/>
+          <input type="text" name="title" formControlName="title" />
           <label *ngIf="form.get('title') == undefined"> title is required. </label>
         </div>
         <div class="form-input-text">
           <label>그룹</label>
-          <input type="text" formControlName="menuGroup" required/>
+          <input type="text" formControlName="menuGroup" />
         </div>
         <div class="form-input-text">
           <label>URL</label>
-          <input type="text" formControlName="url" required/>
+          <input type="text" formControlName="url" />
         </div>
         <div class="form-input-text">
           <label>순서</label>
-          <input type="text" formControlName="menuOrder" required/>
+          <input type="text" formControlName="menuOrder" />
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event)" formControlName="roleIdx">
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
             <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
           </select>
         </div>
@@ -97,19 +97,19 @@
         </div>
         <div class="form-input-text">
           <label>Level</label>
-          <input type="text" formControlName="level" disabled="true"/>
+          <input type="text" formControlName="level" />
         </div>
         <div class="form-input-text">
           <label>하위 여부</label>
-          <input type="text" formControlName="child" disabled="true"/>
+          <input type="text" formControlName="child" />
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
-          <input type="text" formControlName="insertDate" disabled="true" />
+          <input type="text" formControlName="insertDate" />
         </div>
         <div class="form-input-text">
           <label>ID</label>
-          <input type="text" formControlName="idx" disabled="true"/>
+          <input type="text" formControlName="idx" />
         </div>
         <div class="form-input-text">
           <label>부모 ID</label>
@@ -117,8 +117,8 @@
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event)" formControlName="roleIdx">
-            <option *ngFor="let role of roleData" value="{{ role.idx }}" [selected]="role.idx == form.controls.roleIdx ? true:false">{{ role.roleName }}</option>
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}" label="{{role.roleName}}" [selected]="role.idx == form.controls.roleIdx ? true:false">{{ role.roleName }}</option>
           </select>
         </div>
       </form>

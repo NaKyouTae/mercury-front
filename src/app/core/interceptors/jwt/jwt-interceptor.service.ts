@@ -8,39 +8,50 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 
 @Injectable()
 export class JwtInterceptorService {
-
-  constructor(private cookie: CookieService, private jwt: JwtService, private common: CommonHttpService) { }
+  constructor(private cookie: CookieService, private jwt: JwtService, private common: CommonHttpService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let Access = this.cookie.getCookie('Access-JWT');
     const Refresh = this.cookie.getCookie('Refresh-JWT');
 
     if (Access !== null && Refresh !== null) {
-      const accessTime = this.jwt.getJWTAccessKey('exp');
-      const exprieTime = moment.duration(accessTime);
+      const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
+      const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
-      if (2 >= exprieTime.minutes()) {
+      if (refreshIsExpired && accessIsExpired) {
         this.common.httpCallGet('service/tokens', Refresh).subscribe((res: any) => {
           Access = res.result;
 
           req = req.clone({
             setHeaders: {
               'Access-JWT': Access,
-              'Refresh-JWT': Refresh
-            }
+              'Refresh-JWT': Refresh,
+            },
           });
-
         });
       } else {
         req = req.clone({
           setHeaders: {
             'Access-JWT': Access,
-            'Refresh-JWT': Refresh
-          }
+            'Refresh-JWT': Refresh,
+          },
         });
       }
     }
 
     return next.handle(req);
+  }
+
+  isTokenExpired(token: any): boolean {
+    if (!token) {
+      return true;
+    }
+
+    const date = new Date(0).setUTCSeconds(token.exp);
+
+    if (date === undefined) {
+      return false;
+    }
+    return !(date.valueOf() > new Date().valueOf());
   }
 }

@@ -17,20 +17,20 @@ export class TreeListChildComponent implements OnInit {
   public fieldsNum: any;
   public roleData: any;
   public form = new FormGroup({
-    title: new FormControl('', Validators.required),
-    menuGroup: new FormControl('', Validators.required),
-    url: new FormControl('', Validators.required),
-    menuOrder: new FormControl('', Validators.required),
-    level: new FormControl(''),
-    child: new FormControl(''),
-    insertDate: new FormControl(''),
-    idx: new FormControl(''),
-    parent: new FormControl(''),
-    roleIdx: new FormControl('', Validators.required),
-    roleTitle: new FormControl('', Validators.required),
+    title: new FormControl(Validators.required),
+    menuGroup: new FormControl(Validators.required),
+    url: new FormControl(Validators.required),
+    menuOrder: new FormControl(Validators.required),
+    level: new FormControl({ value: null, disabled: true }),
+    child: new FormControl({ value: null, disabled: true }),
+    insertDate: new FormControl({ value: null, disabled: true }),
+    idx: new FormControl({ value: null, disabled: true }),
+    parent: new FormControl({ value: null, disabled: true }),
+    roleIdx: new FormControl(Validators.required),
+    roleTitle: new FormControl(Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) { }
+  constructor(private common: CommonHttpService, private forms: FormsService) {}
 
   ngOnInit() {
     this.fieldsNum = Object.keys(this.data[0]).length;
@@ -114,7 +114,7 @@ export class TreeListChildComponent implements OnInit {
       insertDate: null,
       parent: data.idx,
       roleIdx: null,
-      roleTitle: null
+      roleTitle: null,
     });
   }
 
@@ -156,6 +156,6 @@ export class TreeListChildComponent implements OnInit {
   }
 
   roleChange(e: any) {
-    console.log()
+    this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
   }
 }

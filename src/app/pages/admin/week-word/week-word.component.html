@@ -16,35 +16,35 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>일렬번호</label>
-          <input type="text" formControlName="idx" disabled="true"/>
+          <input type="text" formControlName="idx" />
         </div>
         <div class="form-input-text">
           <label>종류</label>
-          <input type="text" formControlName="wordGroup"/>
+          <input type="text" formControlName="wordGroup" required/>
           <span *ngIf="form.controls.wordGroup.hasError('required')" style="color:red; display: block; font-size: 12px;">종류 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>제시어</label>
-          <input type="text" formControlName="word"/>
+          <input type="text" formControlName="word" required/>
           <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
-          <input type="text" formControlName="insertDate" disabled="true"/>
+          <input type="text" formControlName="insertDate" />
         </div>
         <div class="form-input-text">
           <label>시작 일자</label>
-          <input type="text" formControlName="startDate"/>
+          <input type="text" formControlName="startDate" required/>
           <span *ngIf="form.controls.startDate.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 일자는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>마감 일자</label>
-          <input type="text" formControlName="endDate" />
+          <input type="text" formControlName="endDate" required/>
           <span *ngIf="form.controls.endDate.hasError('required')" style="color:red; display: block; font-size: 12px;">마감 일자는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>설명</label>
-          <input type="text" formControlName="description"/>
+          <input type="text" formControlName="description" required/>
           <span *ngIf="form.controls.description.hasError('required')" style="color:red; display: block; font-size: 12px;">설명은 필수 입니다.</span>
         </div>
       </form>

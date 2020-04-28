@@ -8,16 +8,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginInterceptorService } from './core/interceptors/login/login-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './core/interceptors/jwt/jwt-interceptor.service';
-import { LogoutService } from './core/interceptors/logout/logout.service';
+import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, LayoutModule, BrowserAnimationsModule, HttpClientModule],
-  providers: [CookieService, LoginInterceptorService, JwtInterceptorService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
+  providers: [CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LogoutService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LogoutInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })

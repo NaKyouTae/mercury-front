@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-three',
@@ -11,7 +10,7 @@ export class ThreeComponent implements OnInit {
   public datas: Array<any> = new Array();
   public words: Array<any> = new Array();
   public description: any;
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     this.common.httpCallGet('service/weekword/words', { group: 'THREE' }).subscribe((res: any) => {

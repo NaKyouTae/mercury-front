@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonHttpService } from '../../common/common-http.service';
 
 @Component({
   selector: 'nkt-tree-list',
@@ -10,7 +9,7 @@ export class CustomTreeListComponent implements OnInit {
   @Input() public data: any;
 
   public fields: any;
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     if (this.data !== undefined) {

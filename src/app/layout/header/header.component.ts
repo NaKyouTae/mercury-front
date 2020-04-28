@@ -9,12 +9,12 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  public userCheck: any = this.jwt.getJWTAccessKey('username') !== null ? true : false;
+  public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
 
-  constructor(private router: Router, private jwt: JwtService) {}
+  constructor(private router: Router, private jwt: JwtService) { }
 
   ngOnInit() {
-    console.log(this.jwt.getJWTAccessKey('username'));
+    console.log(this.jwt.getJWTAccessKey('sub'));
   }
 
   onClick() {

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { FormsService } from '../../util/forms.service';
 import { CommonHttpService } from '../../common/common-http.service';
 

@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
-import { UserContentsComponent } from '../user-contents/user-contents.component';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
-import { FormsService } from 'src/app/shared/util/forms.service';
-import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 
 @Component({
@@ -19,8 +16,8 @@ export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
 
-  public userCheck: any = this.jwt.getJWTAccessKey('username') !== null ? true : false;
-  public userName: any = this.jwt.getJWTAccessKey('username') !== null ? this.jwt.getJWTAccessKey('username') : '';
+  public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
+  public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '';
 
   // tslint:disable-next-line: max-line-length
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {

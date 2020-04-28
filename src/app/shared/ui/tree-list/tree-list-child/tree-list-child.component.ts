@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
@@ -15,23 +15,26 @@ export class TreeListChildComponent implements OnInit {
   public rowData: any;
   public child: any;
   public fieldsNum: any;
-
+  public roleData: any;
   public form = new FormGroup({
-    title: new FormControl(''),
-    menuGroup: new FormControl(''),
-    url: new FormControl(''),
-    menuOrder: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    menuGroup: new FormControl('', Validators.required),
+    url: new FormControl('', Validators.required),
+    menuOrder: new FormControl('', Validators.required),
     level: new FormControl(''),
     child: new FormControl(''),
     insertDate: new FormControl(''),
     idx: new FormControl(''),
     parent: new FormControl(''),
+    roleIdx: new FormControl('', Validators.required),
+    roleTitle: new FormControl('', Validators.required),
   });
 
   constructor(private common: CommonHttpService, private forms: FormsService) { }
 
   ngOnInit() {
     this.fieldsNum = Object.keys(this.data[0]).length;
+    this.roleSearch();
   }
 
   onFields(data: any) {
@@ -64,7 +67,7 @@ export class TreeListChildComponent implements OnInit {
 
   onCollapse(data: any) {
     data.children.forEach((item) => {
-      document.querySelector('#' + item.menugroup + '_treelist').remove();
+      document.querySelector('#' + item.menuGroup + '_treelist').remove();
     });
     delete data.children;
   }
@@ -84,17 +87,7 @@ export class TreeListChildComponent implements OnInit {
   }
 
   onDblClick(data: any) {
-    this.form.patchValue({
-      title: data.title,
-      menuGroup: data.menuGroup,
-      url: data.url,
-      menuOrder: data.menuOrder,
-      level: data.level,
-      child: data.child,
-      insertDate: data.insertDate,
-      idx: data.idx,
-      parent: data.parent,
-    });
+    this.form.patchValue(data);
   }
 
   onCreate(data: any, template: any) {
@@ -120,6 +113,8 @@ export class TreeListChildComponent implements OnInit {
       child: false,
       insertDate: null,
       parent: data.idx,
+      roleIdx: null,
+      roleTitle: null
     });
   }
 
@@ -152,5 +147,15 @@ export class TreeListChildComponent implements OnInit {
     this.common.httpCallGet('service/menu/levels', { pidx }).subscribe((newRes: any) => {
       this.data = newRes.result;
     });
+  }
+
+  roleSearch() {
+    this.common.httpCallGet('service/roles').subscribe((res: any) => {
+      this.roleData = res.result;
+    });
+  }
+
+  roleChange(e: any) {
+    console.log()
   }
 }

@@ -41,7 +41,7 @@
     display: inline-block;
   }
   .modal-header > div:first-child{
-    width: 96%;
+    width: 85%;
   }
   .modal-header > div:last-child{
     width: auto;

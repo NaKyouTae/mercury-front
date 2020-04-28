@@ -1,0 +1,16 @@
+/* select tag */
+.form-select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.form-select > label:first-child{
+  width: 20%;
+  display: inline-block;
+}
+.form-select > select{
+  width: 80%;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  padding: 7px 0px;
+}

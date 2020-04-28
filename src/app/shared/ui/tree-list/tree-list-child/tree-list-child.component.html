@@ -23,7 +23,7 @@
   <div class="modal-content" style="width: 25%; text-align: left;">
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.title}} 정보</h2>
+        <h2>메뉴 생성</h2>
       </div>
       <div class="close" (click)="onClose(CreModal)">&times;</div>
     </div>
@@ -50,6 +50,12 @@
           <label>순서</label>
           <input type="text" formControlName="menuOrder" required/>
         </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
+          </select>
+        </div>
       </form>
     </div>
     <div class="modal-footer">
@@ -65,10 +71,10 @@
   <div class="modal-content" style="width: 25%; text-align: left;">
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.title}} 정보</h2>
+        <h2>{{form.get('title').value}} 정보</h2>
       </div>
-      <div class="close" (click)="onClose(UpModal)">&times;</div>
       <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -108,6 +114,12 @@
         <div class="form-input-text">
           <label>부모 ID</label>
           <input type="text" formControlName="parent" />
+        </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}" [selected]="role.idx == form.controls.roleIdx ? true:false">{{ role.roleName }}</option>
+          </select>
         </div>
       </form>
     </div>

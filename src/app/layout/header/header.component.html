@@ -9,7 +9,7 @@
             </div>
             <div>
                 <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
-                <div *ngIf="userCheck" style="cursor: pointer;">LOGOUT</div>
+                <div *ngIf="userCheck" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
                 <!-- <div *ngIf="userCheck" style="cursor: pointer;">나의 <span style="color: #100efb;">엔</span>행시</div> -->
             </div>
         </div>

@@ -32,11 +32,11 @@ export class JwtInterceptorService {
             const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
             const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
-            if (!accessIsExpired) {
+            if (!accessIsExpired && event.headers.get('Access-JWT') !== null) {
               this.cookie.setCookie('Access-JWT', event.headers.get('Access-JWT'));
             }
 
-            if (!refreshIsExpired) {
+            if (!refreshIsExpired && event.headers.get('Refresh-JWT') !== null) {
               this.cookie.setCookie('Refresh-JWT', event.headers.get('Refresh-JWT'));
             }
           }

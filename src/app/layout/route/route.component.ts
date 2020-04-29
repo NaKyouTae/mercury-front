@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
+import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 
 @Component({
   selector: 'app-route',
@@ -7,8 +9,11 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
   styleUrls: ['./route.component.css'],
 })
 export class RouteComponent implements OnInit {
-  public routeLinks;
-  constructor(private common: CommonHttpService) {}
+
+  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
+  public routeLinks: any;
+
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.search(null);

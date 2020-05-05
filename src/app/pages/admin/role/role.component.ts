@@ -6,20 +6,24 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css']
+  styleUrls: ['./role.component.css'],
 })
 export class RoleComponent implements OnInit {
-
   public data: any;
-
+  public fields: any = [
+    { title: '일렬번호', width: 10, field: 'idx' },
+    { title: '권한 명', width: 50, field: 'roleName' },
+    { title: '생성 일자', width: 20, field: 'insertDate' },
+    { title: '수정 일자', width: 20, field: 'changeDate' },
+  ];
   public form = new FormGroup({
     idx: new FormControl(''),
     roleName: new FormControl('', Validators.required),
     insertDate: new FormControl(''),
-    changeDate: new FormControl('')
+    changeDate: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();
@@ -42,7 +46,7 @@ export class RoleComponent implements OnInit {
       idx: '',
       roleName: '',
       insertDate: '',
-      changeDate: ''
+      changeDate: '',
     });
   }
 
@@ -82,5 +86,4 @@ export class RoleComponent implements OnInit {
       }
     });
   }
-
 }

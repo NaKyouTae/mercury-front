@@ -10,15 +10,15 @@ import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './core/interceptors/jwt/jwt-interceptor.service';
 import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, LayoutModule, BrowserAnimationsModule, HttpClientModule],
-  providers: [CookieService,
+  providers: [
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LogoutInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

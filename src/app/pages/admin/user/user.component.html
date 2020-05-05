@@ -1,6 +1,6 @@
 <div class="content-width">
     <app-page-title title="사용자"></app-page-title>
-    <nkt-grid *ngIf="data != undefined" [data]="data" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-grid>
+    <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-admin-grid>
 </div>
 
 <div #UpModal class="modal">
@@ -16,12 +16,12 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>일렬번호</label>
-          <input type="text" formControlName="idx" disabled="true"/>
+          <input type="text" formControlName="idx"/>
         </div>
         <div class="form-input-text">
           <label>사용자</label>
-          <input type="text" formControlName="username"/>
-          <span *ngIf="form.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+          <input type="text" formControlName="userName"/>
+          <span *ngIf="form.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>
@@ -30,11 +30,11 @@
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
-          <input type="text" formControlName="insert_date" disabled="true"/>
+          <input type="text" formControlName="insertDate"/>
         </div>
         <div class="form-input-text">
           <label>변경 일자</label>
-          <input type="text" formControlName="change_date" disabled="true"/>
+          <input type="text" formControlName="changeDate"/>
         </div>
       </form>
     </div>
@@ -56,8 +56,8 @@
       <form [formGroup]="newform">
         <div class="form-input-text">
           <label>사용자</label>
-          <input type="text" formControlName="username"/>
-          <span *ngIf="newform.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+          <input type="text" formControlName="userName"/>
+          <span *ngIf="newform.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>

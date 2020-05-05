@@ -1,37 +1,38 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormsService } from '../../util/forms.service';
-import { CommonHttpService } from '../../common/common-http.service';
+import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
-  selector: 'nkt-grid',
-  templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css'],
+  // tslint:disable-next-line: component-selector
+  selector: 'nkt-admin-grid',
+  templateUrl: './admin-grid.component.html',
+  styleUrls: ['./admin-grid.component.css'],
 })
-export class CustomGridComponent implements OnInit {
-  @Input() data: any;
-  @Input() upModalTemp?: any;
-  @Input() creModalTemp?: any;
-  @Input() gridWidth?: string;
+export class AdminGridComponent implements OnInit {
+  @Input() public data: any;
+  @Input() public fields: any;
+  @Input() public upModalTemp?: any;
+  @Input() public creModalTemp?: any;
+  @Input() public gridWidth?: string;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
-  public fields: any;
   public fieldsNum: any;
   public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
-  public size = 30;
-  public skip = 0;
-  public take = 30;
-  public tot;
-  public nowPage;
-  public dataCountStart = 1;
-  public dataCountEnd = this.take;
+  public size: any = 30;
+  public skip: any = 0;
+  public take: any = 30;
+  public tot: any;
+  public nowPage: any;
+  public dataCountStart: any = 1;
+  public dataCountEnd: any = this.take;
   public pageList: Array<any>;
+  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
 
-  constructor(private _forms: FormsService, private common: CommonHttpService) { }
+  constructor(private jwt: JwtService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
-      this.fields = Object.keys(this.data[0]);
+      // this.fields = Object.keys(this.data[0]);
       this.fieldsNum = this.fields.length;
       this.tot = this.data.length;
       this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
@@ -39,11 +40,23 @@ export class CustomGridComponent implements OnInit {
     }
   }
 
-  onFields(data: any) {
-    return Object.keys(data);
-  }
+  // onFields(data: any, fields: any) {
+  //   const result = new Array();
+
+  //   fields.forEach((item: any) => {
+  //     if (Object.keys(data).includes(item.field)) {
+  //       result.push({
+  //         field: item.field,
+  //         width: item.width,
+  //       });
+  //     }
+  //   });
+
+  //   return result;
+  // }
 
   onData(data, field) {
+    console.log('onData');
     // tslint:disable-next-line: no-eval
     return eval('data.' + field);
   }
@@ -53,6 +66,7 @@ export class CustomGridComponent implements OnInit {
 
     const dataList = this.data.slice(this.skip, this.take);
 
+    // tslint:disable-next-line: prefer-const
     for (let d of dataList) {
       Object.keys(d).forEach((v) => {
         if (e === v) {
@@ -108,7 +122,8 @@ export class CustomGridComponent implements OnInit {
       this.chagnePageListColor(1);
       this.paging(1);
     } else {
-      event.preventDefault;
+      // tslint:disable-next-line: deprecation
+      event.preventDefault();
     }
   }
   prevPage() {
@@ -117,7 +132,8 @@ export class CustomGridComponent implements OnInit {
       this.chagnePageListColor(prev - 1);
       this.paging(prev - 1);
     } else {
-      event.preventDefault;
+      // tslint:disable-next-line: deprecation
+      event.preventDefault();
     }
   }
   nextPage() {
@@ -126,6 +142,7 @@ export class CustomGridComponent implements OnInit {
       this.chagnePageListColor(next + 1);
       this.paging(next + 1);
     } else {
+      // tslint:disable-next-line: deprecation
       event.preventDefault();
     }
   }
@@ -134,7 +151,8 @@ export class CustomGridComponent implements OnInit {
       this.chagnePageListColor(this.pageList.length);
       this.paging(this.pageList.length);
     } else {
-      event.preventDefault;
+      // tslint:disable-next-line: deprecation
+      event.preventDefault();
     }
   }
   onDblClick(value: any) {

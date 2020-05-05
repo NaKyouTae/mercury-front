@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CustomGridComponent } from './grid.component';
+import { AdminGridComponent } from './admin-grid.component';
 
-describe('CustomGridComponent', () => {
-  let component: CustomGridComponent;
-  let fixture: ComponentFixture<CustomGridComponent>;
+describe('AdminGridComponent', () => {
+  let component: AdminGridComponent;
+  let fixture: ComponentFixture<AdminGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomGridComponent]
+      declarations: [AdminGridComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomGridComponent);
+    fixture = TestBed.createComponent(AdminGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

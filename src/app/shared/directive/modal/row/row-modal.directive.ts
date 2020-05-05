@@ -7,7 +7,7 @@ import { Directive, HostListener, Input } from '@angular/core';
 export class RowModalDirective {
   @Input() modal: any;
 
-  constructor() { }
+  constructor() {}
 
   @HostListener('dblclick') onDblClick() {
     this.modal.style.display = 'block';
@@ -19,6 +19,9 @@ export class RowModalDirective {
 
     if (target.className === 'modal') {
       target.style.display = 'none';
+    } else {
+      // tslint:disable-next-line: deprecation
+      window.event.stopPropagation();
     }
   }
 }

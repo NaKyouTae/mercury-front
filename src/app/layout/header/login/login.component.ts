@@ -13,7 +13,7 @@ import { windowToggle } from 'rxjs/operators';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private http: HttpClient, private router: Router, private jwt: JwtService) {}
+  constructor(private dialog: MatDialog, private http: HttpClient, private common: CommonHttpService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -38,15 +38,12 @@ export class LoginComponent implements OnInit {
   login() {
     // const params = new HttpParams({ encoder: new CustomEncoder() }).set('username', this.username).set('password', this.password);
 
-    // const params = { username: this.username, password: this.password };
+    const params = { username: this.username, password: this.password };
 
-    // tslint:disable-next-line: max-line-length
-    this.http.post('http://localhost:8080/user/login', { username: this.username, password: this.password }).subscribe((res: HttpResponse<any>) => {
+    this.common.httpCallPost('user/login', params).subscribe((res: HttpResponse<any>) => {
       this.dialog.closeAll();
       this.router.navigateByUrl('/three');
       window.location.reload();
-      // console.log('Access : ' + this.jwt.getJWTAccess());
-      // console.log('Refresh : ' + this.jwt.getJWTRefresh());
     });
   }
 }

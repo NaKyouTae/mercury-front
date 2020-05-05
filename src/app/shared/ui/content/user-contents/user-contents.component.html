@@ -1,4 +1,4 @@
-<div class="insert-word">
+<div *ngIf="userCheck" class="insert-word">
 
   <form *ngIf="type == 'THREE'" [formGroup]="threeForm">
     <div class="form-input-text">

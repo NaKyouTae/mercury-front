@@ -1,19 +1,19 @@
 <div class="page-header">
     <div class="page-header-content content-width">
         <div class="header-menu">
-            <!-- <div>
+            <div>
                 <div>LOGO</div>
-            </div> -->
+            </div>
             <div>
                 <app-route></app-route>
             </div>
             <div>
                 <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
                 <div *ngIf="userCheck" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
-                <!-- <div *ngIf="userCheck" style="cursor: pointer;">나의 <span style="color: #100efb;">엔</span>행시</div> -->
+                <div *ngIf="userCheck" style="cursor: pointer;">나의 <span style="color: #100efb;">엔</span>행시</div>
             </div>
         </div>
-        <!-- <div class="header-content">
+        <div class="header-content">
             <div class="header-title" (click)="onClick()">
                 <div>천하제일</div>
                 <div> <span style="color: #100efb;">엔</span>행시 대회<span style="color: #100efb;">.</span></div>
@@ -24,6 +24,6 @@
                 <div>#기프티콘</div>
                 <div>#선물받자!</div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

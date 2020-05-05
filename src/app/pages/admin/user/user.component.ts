@@ -10,27 +10,33 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 })
 export class UserComponent implements OnInit {
   public data: any;
-
+  public fields: any = [
+    { title: '일렬 번호', width: 10, field: 'idx' },
+    { title: '사용자 명', width: 30, field: 'userName' },
+    { title: '비밀 번호', width: 30, field: 'pw' },
+    { title: '생성 일자', width: 15, field: 'insertDate' },
+    { title: '수정 일자', width: 15, field: 'changeDate' },
+  ];
   public newform = new FormGroup({
-    username: new FormControl('', Validators.required),
+    userName: new FormControl('', Validators.required),
     pw: new FormControl('', Validators.required),
     rep: new FormControl('', Validators.required),
   });
   public form = new FormGroup({
-    idx: new FormControl(''),
-    username: new FormControl('', Validators.required),
+    idx: new FormControl({ value: '', disabled: true }),
+    userName: new FormControl('', Validators.required),
     pw: new FormControl('', Validators.required),
-    insert_date: new FormControl(''),
-    change_date: new FormControl(''),
+    insertDate: new FormControl({ value: '', disabled: true }),
+    changeDate: new FormControl({ value: '', disabled: true }),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();
   }
 
   search() {
-    this.common.httpCallGet('service/user/lists').subscribe((res: any) => {
+    this.common.httpCallGet('service/users').subscribe((res: any) => {
       this.data = res.result;
     });
   }
@@ -62,9 +68,23 @@ export class UserComponent implements OnInit {
     });
   }
   onUpdate(e: any, template: any) {
-    template.style.display = 'none';
+    const data: any = this.formservice.formToData(e);
+
+    this.common.httpCallPut('service/users/' + data.idx, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+        this.search();
+      }
+    });
   }
   onDelete(e: any, template: any) {
-    template.style.display = 'none';
+    const data: any = this.formservice.formToData(e);
+
+    this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+        this.search();
+      }
+    });
   }
 }

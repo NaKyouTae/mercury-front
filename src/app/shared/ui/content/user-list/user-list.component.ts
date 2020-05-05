@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
@@ -51,6 +51,7 @@ export class UserListComponent implements OnInit {
   upLove(e: any) {
     e.point = e.point + 1;
     e.love = true;
+    e.loveName = this.userName;
     this.common.httpCallPut('service/three/threes/' + e.idx, e).subscribe((res: any) => {
       this.getThreeList();
     });
@@ -58,7 +59,7 @@ export class UserListComponent implements OnInit {
 
   checkLove() {
     this.datas.forEach((item: any) => {
-      this.common.httpCallGet('service/loves', { idx: this.userName }).subscribe((res: any) => {
+      this.common.httpCallGet('service/loves', { contentIdx: item.idx, username: this.userName }).subscribe((res: any) => {
         if (res.result !== false) {
           item.me = true;
         } else {

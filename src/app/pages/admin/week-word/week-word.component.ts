@@ -10,14 +10,23 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 })
 export class WeekWordComponent implements OnInit {
   public data: any;
-
+  public fields: any = [
+    { title: '일렬 번호', width: 10, field: 'idx' },
+    { title: '그룹', width: 15, field: 'wordGroup' },
+    { title: '제시어', width: 15, field: 'word' },
+    { title: '설명', width: 15, field: 'description' },
+    { title: '시작 일자', width: 15, field: 'startDate' },
+    { title: '마감 일자', width: 15, field: 'endDate' },
+    { title: '생성 일자', width: 15, field: 'insertDate' },
+  ];
   public newform = new FormGroup({
-    word: new FormControl({ value: null }, Validators.required),
-    wordGroup: new FormControl({ value: null }, Validators.required),
-    startDate: new FormControl({ value: '00:00:00' }, Validators.required),
-    endDate: new FormControl({ value: '23:59:59' }, Validators.required),
-    description: new FormControl({ value: null }, Validators.required),
+    word: new FormControl('', Validators.required),
+    wordGroup: new FormControl('', Validators.required),
+    startDate: new FormControl('00:00:00', Validators.required),
+    endDate: new FormControl('23:59:59', Validators.required),
+    description: new FormControl('', Validators.required),
   });
+
   public form = new FormGroup({
     idx: new FormControl({ value: null, disabled: true }),
     wordGroup: new FormControl({ value: null }, Validators.required),

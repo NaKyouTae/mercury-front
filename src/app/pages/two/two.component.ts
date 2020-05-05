@@ -1,112 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 
 @Component({
   selector: 'app-two',
   templateUrl: './two.component.html',
-  styleUrls: ['./two.component.css']
+  styleUrls: ['./two.component.css'],
 })
 export class TwoComponent implements OnInit {
-  public dataArray: any = [
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    },
-    {
-      content_one: '삼행시는',
-      content_two: '행동보다는',
-      content_three: '시도를 할때가 재밌다.',
-      name: '나규태',
-      date: '2020-02-02',
-      point: '20'
-    }
-  ];
+  public datas: Array<any> = new Array();
+  public words: Array<any> = new Array();
+  public description: any;
+  constructor(private common: CommonHttpService) {}
 
-  public words: Array<any> = ['행', '시'];
-  constructor() {}
+  ngOnInit() {
+    this.common.httpCallGet('service/weekword/words', { group: 'TWO' }).subscribe((res: any) => {
+      this.words.push(res.result.word.substring(0, 1));
+      this.words.push(res.result.word.substring(1, 2));
+      this.description = res.result.description;
+    });
 
-  ngOnInit() {}
+    this.common.httpCallGet('service/three/lists').subscribe((res: any) => {
+      this.datas = res.result;
+    });
+  }
 }

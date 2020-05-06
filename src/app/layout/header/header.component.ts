@@ -11,6 +11,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 })
 export class HeaderComponent implements OnInit {
   public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
+  public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '사용자';
 
   constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) {}
 

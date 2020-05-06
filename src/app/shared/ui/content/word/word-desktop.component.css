@@ -28,8 +28,8 @@
         border-radius: 10px;
     }
 
-    .word > p:nth-child(2){
-        margin: 0px 50px;
+    .word > p{
+        margin: 0px 25px;
     }
 
     .word-descript{

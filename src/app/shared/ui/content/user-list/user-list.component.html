@@ -1,8 +1,8 @@
 <div class="user-list">
     <div class="data-title">
         <div>TOTAL {{datas.length}}</div>
-        <div style="float: right; margin-left: 10px;">최신 순</div>
-        <div style="float: right; margin-left: 10px;">인기 순</div>
+        <div class="order-btn" (click)="orLatest(type)">최신 순</div>
+        <div class="order-btn" (click)="orPopular(type)">인기 순</div>
     </div>
     <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
         <div>
@@ -18,9 +18,17 @@
                   <div *ngIf="userCheck && item.me">
                     <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
                   </div>
-                  <div *ngIf="userCheck && !item.me">
-                    <img *ngIf="item.love" (click)="upLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
-                    <img *ngIf="!item.love" (click)="upLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                  <div *ngIf="type == 'THREE'">
+                      <div *ngIf="userCheck && !item.me">
+                        <img *ngIf="item.love" (click)="upThreeLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.love" (click)="upThreeLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                      </div>
+                  </div>
+                  <div *ngIf="type == 'TWO'">
+                      <div *ngIf="userCheck && !item.me">
+                        <img *ngIf="item.love" (click)="upTwoLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.love" (click)="upTwoLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                      </div>
                   </div>
                 </div>
                 <div>{{item.point}}</div>

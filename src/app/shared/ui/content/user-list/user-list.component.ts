@@ -30,30 +30,42 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.type);
+  }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
     this.checkLove();
   }
   getThreeList() {
-    this.common.httpCallGet('service/three/lists').subscribe((res: any) => {
+    this.common.httpCallGet('service/three').subscribe((res: any) => {
       this.datas = res.result;
       this.checkLove();
     });
   }
   getTwoList() {
-    this.common.httpCallGet('service/two/lists').subscribe((res: any) => {
+    this.common.httpCallGet('service/twice').subscribe((res: any) => {
       this.datas = res.result;
+      this.checkLove();
     });
   }
 
-  upLove(e: any) {
+  upThreeLove(e: any) {
     e.point = e.point + 1;
     e.love = true;
     e.loveName = this.userName;
-    this.common.httpCallPut('service/three/threes/' + e.idx, e).subscribe((res: any) => {
+    this.common.httpCallPut('service/three/' + e.idx, e).subscribe((res: any) => {
       this.getThreeList();
+    });
+  }
+
+  upTwoLove(e: any) {
+    e.point = e.point + 1;
+    e.love = true;
+    e.loveName = this.userName;
+    this.common.httpCallPut('service/twice/' + e.idx, e).subscribe((res: any) => {
+      this.getTwoList();
     });
   }
 
@@ -67,5 +79,27 @@ export class UserListComponent implements OnInit {
         }
       });
     });
+  }
+
+  orPopular(type: string) {
+    if (type === 'THREE') {
+      this.common.httpCallGet('service/three/popular').subscribe((res: any) => {
+        this.datas = res.result;
+        this.checkLove();
+      });
+    } else if (type === 'TWO') {
+      this.common.httpCallGet('service/twice/popular').subscribe((res: any) => {
+        this.datas = res.result;
+        this.checkLove();
+      });
+    }
+  }
+
+  orLatest(type: string) {
+    if (type === 'THREE') {
+      this.getThreeList();
+    } else if (type === 'TWO') {
+      this.getTwoList();
+    }
   }
 }

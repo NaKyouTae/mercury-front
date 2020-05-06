@@ -67,4 +67,15 @@
     .love-btn{
       height: 15px;
     }
+
+    .order-btn{
+        float: right; 
+        margin-left: 10px; 
+        cursor: pointer;
+    }
+
+    .order-btn:hover{
+        font-weight: bold;
+        font-size: 18px;
+    }
 }

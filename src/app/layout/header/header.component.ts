@@ -24,11 +24,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.common.httpCallGet('user/logout').subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
-        this.router.navigateByUrl('/three');
-        window.location.reload();
-      }
-    });
+    if (window.confirm('로그인 하시겠습니까?')) {
+      this.common.httpCallGet('user/logout').subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          this.router.navigateByUrl('/three');
+          window.location.reload();
+        }
+      });
+    } else {
+      return false;
+    }
   }
 }

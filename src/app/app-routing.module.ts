@@ -4,6 +4,7 @@ import { ThreeComponent } from './pages/three/three.component';
 import { TwoComponent } from './pages/two/two.component';
 import { HonorComponent } from './pages/honor/honor.component';
 import { NoticeComponent } from './pages/notice/notice.component';
+import { MyPageComponent } from './pages/my-page/my-page.component';
 
 const routes: Routes = [
   {
@@ -14,9 +15,10 @@ const routes: Routes = [
       { path: 'two', component: TwoComponent },
       { path: 'honor', component: HonorComponent },
       { path: 'notice', component: NoticeComponent },
-      { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) }
-    ]
-  }
+      { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then((m) => m.AdminModule) },
+      { path: 'my', component: MyPageComponent },
+    ],
+  },
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(routes);

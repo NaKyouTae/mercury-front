@@ -1,3 +1,26 @@
-.create-btn {
+.btn {
   cursor: pointer;
+}
+
+.btn-order {
+  float: right; 
+  margin-left: 10px;
+}
+
+.btn-order:hover{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.btn-command {
+  margin-left: 10px;
+}
+
+.btn-command:hover{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.btn-love{
+  height: 15px;
 }

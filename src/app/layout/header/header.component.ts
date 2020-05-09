@@ -15,16 +15,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) {}
 
-  ngOnInit() {
-    console.log(this.jwt.getJWTAccessKey('sub'));
-  }
+  ngOnInit() {}
 
-  onClick() {
+  public onClick() {
     this.router.navigateByUrl('/three');
   }
 
-  logout() {
-    if (window.confirm('로그인 하시겠습니까?')) {
+  public logout() {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
       this.common.httpCallGet('user/logout').subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.router.navigateByUrl('/three');

@@ -37,7 +37,7 @@ export class UserContentsComponent implements OnInit {
   });
   ngOnInit() {}
 
-  inThree(e: any) {
+  public inThree(e: any) {
     e.userName.setValue(this.userName);
     e.userIdx.setValue(this.userName);
     const data = this.formservice.formToData(e);
@@ -54,7 +54,8 @@ export class UserContentsComponent implements OnInit {
       }
     });
   }
-  inTwo(e: any) {
+
+  public inTwo(e: any) {
     e.userName.setValue(this.userName);
     e.userIdx.setValue(this.userName);
     const data = this.formservice.formToData(e);

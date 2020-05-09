@@ -13,18 +13,21 @@ export class UserComponent implements OnInit {
   public fields: any = [
     { title: '일렬 번호', width: 10, field: 'idx' },
     { title: '사용자 명', width: 30, field: 'userName' },
+    { title: '이메일', width: 30, field: 'email' },
     { title: '비밀 번호', width: 30, field: 'pw' },
     { title: '생성 일자', width: 15, field: 'insertDate' },
     { title: '수정 일자', width: 15, field: 'changeDate' },
   ];
   public newform = new FormGroup({
     userName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     pw: new FormControl('', Validators.required),
     rep: new FormControl('', Validators.required),
   });
   public form = new FormGroup({
     idx: new FormControl({ value: '', disabled: true }),
     userName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     pw: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
@@ -35,16 +38,17 @@ export class UserComponent implements OnInit {
     this.search();
   }
 
-  search() {
+  public search() {
     this.common.httpCallGet('service/users').subscribe((res: any) => {
       this.data = res.result;
     });
   }
 
-  onDblClick(data: any) {
+  public onDblClick(data: any) {
     this.form.patchValue(data);
   }
-  onClose(template: any) {
+
+  public onClose(template: any) {
     template.style.display = 'none';
     this.newform.reset({
       username: '',
@@ -52,7 +56,8 @@ export class UserComponent implements OnInit {
       rep: '',
     });
   }
-  onCreate(e: any, template: any) {
+
+  public onCreate(e: any, template: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('user/signup', data).subscribe((res: any) => {
@@ -67,7 +72,8 @@ export class UserComponent implements OnInit {
       }
     });
   }
-  onUpdate(e: any, template: any) {
+
+  public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('service/users/' + data.idx, data).subscribe((res: any) => {
@@ -77,7 +83,8 @@ export class UserComponent implements OnInit {
       }
     });
   }
-  onDelete(e: any, template: any) {
+
+  public onDelete(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {

@@ -55,13 +55,12 @@ export class AdminGridComponent implements OnInit {
   //   return result;
   // }
 
-  onData(data, field) {
-    console.log('onData');
+  public onData(data, field) {
     // tslint:disable-next-line: no-eval
     return eval('data.' + field);
   }
 
-  onBind(e: any) {
+  public onBind(e: any) {
     const result = new Array();
 
     const dataList = this.data.slice(this.skip, this.take);
@@ -78,18 +77,18 @@ export class AdminGridComponent implements OnInit {
     return result;
   }
 
-  paging(e) {
+  public paging(e) {
     this.skip = e === 1 ? 0 : Number(this.size) * (Number(e) - 1);
     this.take = Math.ceil(this.data.length / this.size) === e ? this.data.length : Number(this.size) * Number(e);
   }
 
-  reSize(e) {
+  public reSize(e) {
     this.size = e;
     this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
 
-  chagnePageListColor(e) {
+  public chagnePageListColor(e) {
     for (let i = 1; i <= this.pageList.length; i++) {
       const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
 
@@ -103,7 +102,7 @@ export class AdminGridComponent implements OnInit {
     newPage.style.backgroundColor = '#e5e5e5';
   }
 
-  getNowPage() {
+  public getNowPage() {
     for (let i = 1; i <= this.pageList.length; i++) {
       const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
       if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
@@ -112,12 +111,13 @@ export class AdminGridComponent implements OnInit {
     }
   }
 
-  changePage(e) {
+  public changePage(e) {
     this.nowPage = e;
     this.chagnePageListColor(e);
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
-  firstPage() {
+
+  public firstPage() {
     if (this.getNowPage() !== 1) {
       this.chagnePageListColor(1);
       this.paging(1);
@@ -126,7 +126,8 @@ export class AdminGridComponent implements OnInit {
       event.preventDefault();
     }
   }
-  prevPage() {
+
+  public prevPage() {
     const prev = this.getNowPage();
     if (prev !== 1) {
       this.chagnePageListColor(prev - 1);
@@ -136,7 +137,8 @@ export class AdminGridComponent implements OnInit {
       event.preventDefault();
     }
   }
-  nextPage() {
+
+  public nextPage() {
     const next = this.getNowPage();
     if (next !== this.pageList.length) {
       this.chagnePageListColor(next + 1);
@@ -146,7 +148,8 @@ export class AdminGridComponent implements OnInit {
       event.preventDefault();
     }
   }
-  endPage() {
+
+  public endPage() {
     if (this.getNowPage() !== this.pageList.length) {
       this.chagnePageListColor(this.pageList.length);
       this.paging(this.pageList.length);
@@ -155,7 +158,8 @@ export class AdminGridComponent implements OnInit {
       event.preventDefault();
     }
   }
-  onDblClick(value: any) {
+
+  public onDblClick(value: any) {
     this.dbldata.emit(value);
   }
 }

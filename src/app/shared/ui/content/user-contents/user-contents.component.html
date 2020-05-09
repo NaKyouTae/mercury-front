@@ -3,15 +3,15 @@
   <form *ngIf="type == 'THREE'" [formGroup]="threeForm">
     <div class="form-input-text">
       <p class="in-word-title">{{contents[0]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentOne">
+      <input type="text" class="in-word-in" formControlName="contentOne" (keyup.enter)="inThree(threeForm.controls)">
     </div>
     <div class="form-input-text">
       <p class="in-word-title">{{contents[1]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentTwo">
+      <input type="text" class="in-word-in" formControlName="contentTwo" (keyup.enter)="inThree(threeForm.controls)">
     </div>
     <div class="form-input-text">
       <p class="in-word-title">{{contents[2]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentThree">
+      <input type="text" class="in-word-in" formControlName="contentThree" (keyup.enter)="inThree(threeForm.controls)">
       <div *ngIf="userCheck" class="insert-btn" (click)="inThree(threeForm.controls)">등록</div>
     </div>
   </form>
@@ -19,11 +19,11 @@
   <form *ngIf="type == 'TWO'" [formGroup]="twoForm">
     <div>
       <p class="in-word-title">{{contents[0]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentOne">
+      <input type="text" class="in-word-in" formControlName="contentOne" (keyup.enter)="inThree(threeForm.controls)">
     </div>
     <div>
       <p class="in-word-title">{{contents[1]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentTwo">
+      <input type="text" class="in-word-in" formControlName="contentTwo" (keyup.enter)="inThree(threeForm.controls)">
       <div *ngIf="userCheck" class="insert-btn" (click)="inTwo(twoForm.controls)">등록</div>
     </div>
   </form>

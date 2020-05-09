@@ -36,7 +36,7 @@ export class WeekWordComponent implements OnInit {
     endDate: new FormControl({ value: null }, Validators.required),
     description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();
@@ -45,16 +45,17 @@ export class WeekWordComponent implements OnInit {
   public search() {
     this.common.httpCallGet('service/words').subscribe((res: any) => {
       this.data = res.result;
-      console.log(res);
     });
   }
 
   public onDblClick(data: any) {
     this.form.patchValue(data);
   }
+
   public onClose(template: any) {
     template.style.display = 'none';
   }
+
   public onCreate(e: any, template: any) {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/words', data).subscribe((res: any) => {
@@ -72,6 +73,7 @@ export class WeekWordComponent implements OnInit {
       });
     });
   }
+
   public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/words/' + data.idx, data).subscribe((res: any) => {
@@ -82,6 +84,7 @@ export class WeekWordComponent implements OnInit {
       }
     });
   }
+
   public onDelete(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/words/' + data.idx, data).subscribe((res: any) => {

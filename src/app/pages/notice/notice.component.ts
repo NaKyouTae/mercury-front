@@ -29,24 +29,24 @@ export class NoticeComponent implements OnInit {
     this.search();
   }
 
-  search() {
+  public search() {
     this.common.httpCallGet('service/notices').subscribe((res: any) => {
       this.data = res.result;
     });
   }
 
-  onDblClick(data: any) {
+  public onDblClick(data: any) {
     this.form.patchValue(data);
   }
 
-  onClose(template: any) {
+  public onClose(template: any) {
     template.style.display = 'none';
     this.form.reset({
       content: '',
     });
   }
 
-  onCreate(e: any, template: any) {
+  public onCreate(e: any, template: any) {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/notices', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
@@ -59,7 +59,7 @@ export class NoticeComponent implements OnInit {
     });
   }
 
-  onUpdate(e: any, template: any) {
+  public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);
@@ -68,7 +68,7 @@ export class NoticeComponent implements OnInit {
     });
   }
 
-  onDelete(e: any, template: any) {
+  public onDelete(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);

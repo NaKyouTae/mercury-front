@@ -29,17 +29,17 @@ export class RoleComponent implements OnInit {
     this.search();
   }
 
-  search() {
+  public search() {
     this.common.httpCallGet('service/roles').subscribe((res: any) => {
       this.data = res.result;
     });
   }
 
-  onDblClick(data: any) {
+  public onDblClick(data: any) {
     this.form.patchValue(data);
   }
 
-  onClose(template: any) {
+  public onClose(template: any) {
     template.style.display = 'none';
 
     this.form.reset({
@@ -50,7 +50,7 @@ export class RoleComponent implements OnInit {
     });
   }
 
-  onCreate(e: any, template: any) {
+  public onCreate(e: any, template: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('service/roles', data).subscribe((res: any) => {
@@ -61,7 +61,7 @@ export class RoleComponent implements OnInit {
     });
   }
 
-  onUpdate(e: any, template: any) {
+  public onUpdate(e: any, template: any) {
     template.style.display = 'none';
 
     const data: any = this.formservice.formToData(e);
@@ -74,7 +74,7 @@ export class RoleComponent implements OnInit {
     });
   }
 
-  onDelete(e: any, template: any) {
+  public onDelete(e: any, template: any) {
     template.style.display = 'none';
 
     const data: any = this.formservice.formToData(e);

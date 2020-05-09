@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export class LoginInterceptorService implements HttpInterceptor {
   constructor(private cookie: CookieService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

@@ -1,8 +1,8 @@
 <div class="user-list">
     <div class="data-title">
         <div>TOTAL {{datas.length}}</div>
-        <div class="order-btn" (click)="orLatest(type)">최신 순</div>
-        <div class="order-btn" (click)="orPopular(type)">인기 순</div>
+        <div class="btn btn-order" (click)="orLatest(type)">최신 순</div>
+        <div class="btn btn-order" (click)="orPopular(type)">인기 순</div>
     </div>
     <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
         <div>
@@ -11,29 +11,31 @@
                 <div>님</div>
                 <div>
                   <div *ngIf="!userCheck">
-                    <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                    <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                    <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                    <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                    <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                    <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                   </div>
                   <div *ngIf="userCheck && item.me">
-                    <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
+                    <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
                   </div>
                   <div *ngIf="type == 'THREE'">
                       <div *ngIf="userCheck && !item.me">
-                        <img *ngIf="item.love" (click)="upThreeLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.love" (click)="upThreeLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                        <img *ngIf="item.love" (click)="upThreeLove(item)" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.love" (click)="upThreeLove(item)" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                       </div>
                   </div>
                   <div *ngIf="type == 'TWO'">
                       <div *ngIf="userCheck && !item.me">
-                        <img *ngIf="item.love" (click)="upTwoLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.love" (click)="upTwoLove(item)" class="love-btn" style="cursor: pointer;" src="../../../../assets/img/love-b-border.png">
+                        <img *ngIf="item.love" (click)="upTwoLove(item)" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.love" (click)="upTwoLove(item)" class="btn btn-love"src="../../../../assets/img/love-b-border.png">
                       </div>
                   </div>
                 </div>
                 <div>{{item.point}}</div>
             </div>
-            <div class="data-date">
+            <div class="data-command">
+                <div class="btn btn-command" *ngIf="userName == item.userName" (click)="onContentUpdate(item, type)">수정</div>
+                <div class="btn btn-command" *ngIf="userName == item.userName || userRole.includes('ROLE_ADMIN')" (click)="onContentDelete(item, type)">삭제</div>
                 <div>{{item.insertDate | slice:0:16}}</div>
             </div>
         </div>

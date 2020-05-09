@@ -1,20 +1,52 @@
-<div (click)="onClick(LoginContent)" style="cursor: pointer;">LOGIN</div>
+<div (click)="onClick(LoginContent)" class="btn" style="display: inline-block;">LOGIN</div>
+<div (click)="onSignUpClick(SignUpContent)" class="btn" style="display: inline-block; margin-left: 10px;">SIGN UP</div>
 
 <ng-template #LoginContent>
   <h3>Login</h3>
-  <div class="login-content">
+  <div [formGroup]="logInForm" class="login-content">
     <div>
-      <input type="text" [(ngModel)]="username" placeholder="Enter Your ID" />
+      <input type="text" formControlName="userName" placeholder="Enter Your ID" (keyup.enter)="login(logInForm.controls)" />
+      <span *ngIf="logInForm.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">아이디는 필수 입니다.</span>
     </div>
     <div>
-      <input
-        type="password"
-        [(ngModel)]="password"
-        placeholder="Enter Your PassWord"
-      />
+      <input type="password" formControlName="passWord" placeholder="Enter Your PassWord" (keyup.enter)="login(logInForm.controls)" />
+      <span *ngIf="logInForm.controls.passWord.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
     </div>
     <div>
-      <button (click)="login()">Login In</button>
+      <button (click)="login(logInForm.controls)" [disabled]="!logInForm.valid">Login In</button>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #SignUpContent>
+  <h3>Sign Up</h3>
+  <div *ngIf="signUpForm != undefined" class="login-content">
+    <form [formGroup]="signUpForm">
+      <div class="form-input-text">
+        <label>사용자</label>
+        <input type="text" formControlName="userName"/>
+        <span *ngIf="signUpForm.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+      </div>
+      <div class="form-input-text">
+        <label>이메일</label>
+        <input type="text" formControlName="email"/>
+        <span *ngIf="signUpForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+      </div>
+      <div class="form-input-text">
+        <label>비밀번호</label>
+        <input type="password" formControlName="passWord"/>
+        <span *ngIf="signUpForm.controls.passWord.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
+      </div>
+      <div class="form-input-text">
+        <label>비밀번호 확인</label>
+        <input type="password" formControlName="rep"/>
+        <span *ngIf="signUpForm.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
+        <span *ngIf="!signUpForm.controls.rep.hasError('required') && signUpForm.controls.rep.value != signUpForm.controls.passWord.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
+      </div>
+    </form>
+  </div>
+  <div>
+    <button (click)="onClose()">취소</button>
+    <button (click)="onCreate(signUpForm.controls)" [disabled]="!signUpForm.valid">회원가입</button>
   </div>
 </ng-template>

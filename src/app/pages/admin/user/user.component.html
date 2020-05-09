@@ -24,6 +24,11 @@
           <span *ngIf="form.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email"/>
+          <span *ngIf="newform.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
           <label>비밀번호</label>
           <input type="text" formControlName="pw"/>
           <span *ngIf="form.controls.pw.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀 번호는 필수 입니다.</span>
@@ -58,6 +63,11 @@
           <label>사용자</label>
           <input type="text" formControlName="userName"/>
           <span *ngIf="newform.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email"/>
+          <span *ngIf="newform.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>

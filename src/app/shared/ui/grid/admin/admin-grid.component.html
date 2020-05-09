@@ -2,7 +2,7 @@
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
     <div class="grid-wrapper">
       <div class="grid-command">
-        <button *ngIf="userRoles.includes('ROLE_ADMIN')" class="create-btn" BtnModal [modal]="creModalTemp">생성</button>
+        <button *ngIf="userRoles.includes('ROLE_ADMIN')" class="btn" BtnModal [modal]="creModalTemp">생성</button>
       </div>
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
 

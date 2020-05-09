@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonHttpService } from '../../common/common-http.service';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'nkt-route-child',
   templateUrl: './route-child.component.html',
-  styleUrls: ['./route-child.component.css']
+  styleUrls: ['./route-child.component.css'],
 })
 export class RouteChildComponent implements OnInit {
   @Input() public data: any;
@@ -12,9 +13,9 @@ export class RouteChildComponent implements OnInit {
 
   ngOnInit() {}
 
-  search(e: any) {
+  public search(e: any) {
     const params = {
-      pidx: e === null ? 'null' : e.idx
+      pidx: e === null ? 'null' : e.idx,
     };
 
     let children = new Array();
@@ -25,7 +26,7 @@ export class RouteChildComponent implements OnInit {
     });
   }
 
-  onChildMenu(menu: any) {
+  public onChildMenu(menu: any) {
     this.search(menu);
 
     const child = document.querySelector('#' + menu.menugroup) as HTMLElement;

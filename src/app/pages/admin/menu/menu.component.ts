@@ -4,7 +4,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
   public data: any;
@@ -14,9 +14,9 @@ export class MenuComponent implements OnInit {
     this.search();
   }
 
-  search() {
+  public search() {
     const params = {
-      pidx: 'null'
+      pidx: 'null',
     };
     this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
       this.data = res.result;

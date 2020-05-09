@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class FormsService {
   constructor() {}
 
-  formToData(form: any) {
+  public formToData(form: any) {
     const data = {};
 
     Object.keys(form).forEach((item) => {

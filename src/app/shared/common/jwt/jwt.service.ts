@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from '../cookie/cookies.service';
-import * as jwt_decode from "jwt-decode";
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JwtService {
+  constructor(private cookie: CookieService) {}
 
-  constructor(private cookie: CookieService) { }
-
-  getJWTAccess() {
+  public getJWTAccess() {
     if (this.cookie.getCookie('Access-JWT') !== null) {
       const jwtEncode = this.cookie.getCookie('Access-JWT');
       return jwt_decode(jwtEncode);
@@ -18,7 +17,7 @@ export class JwtService {
     }
   }
 
-  getJWTRefresh() {
+  public getJWTRefresh() {
     if (this.cookie.getCookie('Refresh-JWT') !== null) {
       const jwtEncode = this.cookie.getCookie('Refresh-JWT');
       return jwt_decode(jwtEncode);
@@ -27,7 +26,7 @@ export class JwtService {
     }
   }
 
-  getJWTAccessKey(key: any) {
+  public getJWTAccessKey(key: any) {
     if (this.cookie.getCookie('Access-JWT') !== null) {
       const jwtEncode = this.cookie.getCookie('Access-JWT');
 
@@ -39,7 +38,8 @@ export class JwtService {
       return null;
     }
   }
-  getJWTRefreshKey(key: any) {
+
+  public getJWTRefreshKey(key: any) {
     if (this.cookie.getCookie('Refresh-JWT') !== null) {
       const jwtEncode = this.cookie.getCookie('Refresh-JWT');
 

@@ -7,14 +7,13 @@ import { Directive, HostListener, Input } from '@angular/core';
 export class BtnModalDirective {
   @Input() modal: any;
 
-  constructor() { }
+  constructor() {}
 
-  @HostListener('click') onClick() {
+  @HostListener('click') public onClick() {
     this.modal.style.display = 'block';
-    console.log('click');
   }
 
-  // @HostListener('document:click') onDocumentClick(e: any) {
+  // @HostListener('document:click') public onDocumentClick(e: any) {
   //   const modal = this.id;
   //   if (e.target === modal) {
   //     modal.style.display = 'none';

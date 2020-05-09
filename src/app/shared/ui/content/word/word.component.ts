@@ -10,6 +10,7 @@ export class WordComponent implements OnInit {
   @Input('words') public words: any;
   // tslint:disable-next-line: no-input-rename
   @Input('description') public description: any;
+
   constructor() {}
 
   ngOnInit() {}

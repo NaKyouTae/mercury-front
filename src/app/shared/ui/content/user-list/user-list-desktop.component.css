@@ -48,11 +48,16 @@
         color: #e2403e;
         margin-left: 5px;
     }
-
-    .data-date {
-        text-align: right;
+    
+    .data-command {
         display: inline-block;
+        text-align: right;
         width: 20%;
+    }
+    
+    .data-command > div{
+        margin-left: 10px;
+        display: inline-block;
     }
 
     .data-text > div > div:first-child{
@@ -62,20 +67,5 @@
     .data-text > div > div:last-child{
         display: inline-block;
         margin-left: 10px;
-    }
-
-    .love-btn{
-      height: 15px;
-    }
-
-    .order-btn{
-        float: right; 
-        margin-left: 10px; 
-        cursor: pointer;
-    }
-
-    .order-btn:hover{
-        font-weight: bold;
-        font-size: 18px;
     }
 }

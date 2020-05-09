@@ -21,7 +21,7 @@
     .in-word-in {
         border-radius: 50px;
         height: 20px;
-        width: calc(100% - 30px - 55px);
+        width: calc(100% - 40px - 55px);
     }
 
     .insert-btn{

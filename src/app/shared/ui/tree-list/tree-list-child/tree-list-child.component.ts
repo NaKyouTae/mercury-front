@@ -37,7 +37,7 @@ export class TreeListChildComponent implements OnInit {
     this.roleSearch();
   }
 
-  onFields(data: any) {
+  public onFields(data: any) {
     const fields = Object.keys(data);
 
     fields.forEach((item) => {
@@ -48,12 +48,13 @@ export class TreeListChildComponent implements OnInit {
 
     return fields;
   }
-  onData(data, field) {
+
+  public onData(data, field) {
     // tslint:disable-next-line: no-eval
     return eval('data.' + field);
   }
 
-  onExpand(e: any) {
+  public onExpand(e: any) {
     let children = new Array();
     const data = this.data;
     const params = {
@@ -65,17 +66,18 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  onCollapse(data: any) {
+  public onCollapse(data: any) {
     data.children.forEach((item) => {
       document.querySelector('#' + item.menuGroup + '_treelist').remove();
     });
     delete data.children;
   }
 
-  onClose(e: any) {
+  public onClose(e: any) {
     e.style.display = 'none';
   }
-  onUpdate(data: any, template: any) {
+
+  public onUpdate(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallPut('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
@@ -86,11 +88,11 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  onDblClick(data: any) {
+  public onDblClick(data: any) {
     this.form.patchValue(data);
   }
 
-  onCreate(data: any, template: any) {
+  public onCreate(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallPost('service/menu/menus', params).subscribe((res: any) => {
@@ -101,7 +103,7 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  onCreateModal(data: any, temp: any) {
+  public onCreateModal(data: any, temp: any) {
     temp.style.display = 'block';
 
     this.form.patchValue({
@@ -118,7 +120,7 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  onDelete(data: any, template: any) {
+  public onDelete(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallDelete('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
@@ -129,7 +131,7 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  resetMyLevel(e: any) {
+  public resetMyLevel(e: any) {
     let children = new Array();
     const data = this.data;
 
@@ -143,19 +145,19 @@ export class TreeListChildComponent implements OnInit {
     });
   }
 
-  resetChildLevel(pidx: any) {
+  public resetChildLevel(pidx: any) {
     this.common.httpCallGet('service/menu/levels', { pidx }).subscribe((newRes: any) => {
       this.data = newRes.result;
     });
   }
 
-  roleSearch() {
+  public roleSearch() {
     this.common.httpCallGet('service/roles').subscribe((res: any) => {
       this.roleData = res.result;
     });
   }
 
-  roleChange(e: any) {
+  public roleChange(e: any) {
     this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
   }
 }

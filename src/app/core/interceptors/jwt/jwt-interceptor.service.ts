@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class JwtInterceptorService {
-  constructor(private cookie: CookieService, private jwt: JwtService, private common: CommonHttpService) { }
+  constructor(private cookie: CookieService, private jwt: JwtService, private common: CommonHttpService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const Access = this.cookie.getCookie('Access-JWT');
     const Refresh = this.cookie.getCookie('Refresh-JWT');
 
@@ -28,7 +28,6 @@ export class JwtInterceptorService {
         if (event instanceof HttpResponse) {
           // do stuff with response and headers you want
           if (event.body.resultCode === 'OK' && event.body.result !== null) {
-
             const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
             const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
@@ -42,10 +41,11 @@ export class JwtInterceptorService {
           }
         }
         return event;
-      }));
+      })
+    );
   }
 
-  isTokenExpired(exp: any): boolean {
+  public isTokenExpired(exp: any): boolean {
     if (exp === null) {
       return false;
     }

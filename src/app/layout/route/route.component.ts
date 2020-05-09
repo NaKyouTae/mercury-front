@@ -9,17 +9,16 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./route.component.css'],
 })
 export class RouteComponent implements OnInit {
-
   public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
   public routeLinks: any;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.search(null);
   }
 
-  search(e: any) {
+  public search(e: any) {
     const params = {
       pidx: e === null ? 'null' : e,
     };
@@ -28,7 +27,7 @@ export class RouteComponent implements OnInit {
     });
   }
 
-  onChildMenu(menu: any) {
+  public onChildMenu(menu: any) {
     const params = {
       pidx: menu.idx,
     };

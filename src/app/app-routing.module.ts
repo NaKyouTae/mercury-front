@@ -11,7 +11,8 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: ThreeComponent },
+      { path: '', redirectTo: 'three', pathMatch: 'full' },
+      { path: 'three', component: ThreeComponent },
       { path: 'two', component: TwoComponent },
       { path: 'honor', component: HonorComponent },
       { path: 'notice', component: NoticeComponent },

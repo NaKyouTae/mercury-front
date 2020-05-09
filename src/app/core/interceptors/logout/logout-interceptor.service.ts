@@ -6,15 +6,14 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LogoutInterceptorService {
+  constructor(private cookie: CookieService) {}
 
-  constructor(private cookie: CookieService) { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           // do stuff with response and headers you want
-          if (event.body.resultCode === 'OK' && event.body.result !== null && event.url === 'http://localhost:8080/user/logout') {
+          if (event.body.resultCode === 'OK' && event.body.result !== null && event.url === 'http://localhost:8090/user/logout') {
             this.cookie.deleteCookie('Access-JWT');
             this.cookie.deleteCookie('Refresh-JWT');
           }

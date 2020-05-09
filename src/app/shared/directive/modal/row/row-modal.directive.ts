@@ -9,11 +9,11 @@ export class RowModalDirective {
 
   constructor() {}
 
-  @HostListener('dblclick') onDblClick() {
+  @HostListener('dblclick') public onDblClick() {
     this.modal.style.display = 'block';
   }
 
-  @HostListener('document:click') onDocumentClick() {
+  @HostListener('document:click') public onDocumentClick() {
     // tslint:disable-next-line: deprecation
     const target: any = window.event.target;
 

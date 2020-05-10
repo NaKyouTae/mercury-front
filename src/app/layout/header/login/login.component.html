@@ -5,12 +5,12 @@
   <h3>Login</h3>
   <div [formGroup]="logInForm" class="login-content">
     <div>
-      <input type="text" formControlName="userName" placeholder="Enter Your ID" (keyup.enter)="login(logInForm.controls)" />
-      <span *ngIf="logInForm.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">아이디는 필수 입니다.</span>
+      <input type="text" formControlName="username" placeholder="Enter Your ID" (keyup.enter)="login(logInForm.controls)" />
+      <span *ngIf="logInForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">아이디는 필수 입니다.</span>
     </div>
     <div>
-      <input type="password" formControlName="passWord" placeholder="Enter Your PassWord" (keyup.enter)="login(logInForm.controls)" />
-      <span *ngIf="logInForm.controls.passWord.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
+      <input type="password" formControlName="password" placeholder="Enter Your PassWord" (keyup.enter)="login(logInForm.controls)" />
+      <span *ngIf="logInForm.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
     </div>
     <div>
       <button (click)="login(logInForm.controls)" [disabled]="!logInForm.valid">Login In</button>
@@ -24,8 +24,8 @@
     <form [formGroup]="signUpForm">
       <div class="form-input-text">
         <label>사용자</label>
-        <input type="text" formControlName="userName"/>
-        <span *ngIf="signUpForm.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+        <input type="text" formControlName="username"/>
+        <span *ngIf="signUpForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
       </div>
       <div class="form-input-text">
         <label>이메일</label>
@@ -34,14 +34,14 @@
       </div>
       <div class="form-input-text">
         <label>비밀번호</label>
-        <input type="password" formControlName="passWord"/>
-        <span *ngIf="signUpForm.controls.passWord.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
+        <input type="password" formControlName="password"/>
+        <span *ngIf="signUpForm.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
       </div>
       <div class="form-input-text">
         <label>비밀번호 확인</label>
         <input type="password" formControlName="rep"/>
         <span *ngIf="signUpForm.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
-        <span *ngIf="!signUpForm.controls.rep.hasError('required') && signUpForm.controls.rep.value != signUpForm.controls.passWord.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
+        <span *ngIf="!signUpForm.controls.rep.hasError('required') && signUpForm.controls.rep.value != signUpForm.controls.password.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
       </div>
     </form>
   </div>

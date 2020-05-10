@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'honor', component: HonorComponent },
       { path: 'notice', component: NoticeComponent },
       { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then((m) => m.AdminModule) },
-      { path: 'my', component: MyPageComponent },
+      { path: 'my', loadChildren: () => import('./pages/my-page/my-page.module').then((m) => m.MyPageModule) },
     ],
   },
 ];

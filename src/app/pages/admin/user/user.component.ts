@@ -12,23 +12,23 @@ export class UserComponent implements OnInit {
   public data: any;
   public fields: any = [
     { title: '일렬 번호', width: 10, field: 'idx' },
-    { title: '사용자 명', width: 30, field: 'userName' },
+    { title: '사용자 명', width: 30, field: 'username' },
     { title: '이메일', width: 30, field: 'email' },
-    { title: '비밀 번호', width: 30, field: 'pw' },
+    { title: '비밀 번호', width: 30, field: 'password' },
     { title: '생성 일자', width: 15, field: 'insertDate' },
     { title: '수정 일자', width: 15, field: 'changeDate' },
   ];
   public newform = new FormGroup({
-    userName: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    pw: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
     rep: new FormControl('', Validators.required),
   });
   public form = new FormGroup({
     idx: new FormControl({ value: '', disabled: true }),
-    userName: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    pw: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
   });
@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
     template.style.display = 'none';
     this.newform.reset({
       username: '',
-      pw: '',
+      password: '',
       rep: '',
     });
   }
@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
         this.search();
         this.newform.reset({
           username: '',
-          pw: '',
+          password: '',
           rep: '',
         });
       }

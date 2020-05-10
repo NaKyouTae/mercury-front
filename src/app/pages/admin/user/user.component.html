@@ -20,8 +20,8 @@
         </div>
         <div class="form-input-text">
           <label>사용자</label>
-          <input type="text" formControlName="userName"/>
-          <span *ngIf="form.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+          <input type="text" formControlName="username"/>
+          <span *ngIf="form.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>이메일</label>
@@ -30,8 +30,8 @@
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>
-          <input type="text" formControlName="pw"/>
-          <span *ngIf="form.controls.pw.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀 번호는 필수 입니다.</span>
+          <input type="text" formControlName="password"/>
+          <span *ngIf="form.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀 번호는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
@@ -61,8 +61,8 @@
       <form [formGroup]="newform">
         <div class="form-input-text">
           <label>사용자</label>
-          <input type="text" formControlName="userName"/>
-          <span *ngIf="newform.controls.userName.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+          <input type="text" formControlName="username"/>
+          <span *ngIf="newform.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>이메일</label>
@@ -71,8 +71,8 @@
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>
-          <input type="password" formControlName="pw"/>
-          <span *ngIf="newform.controls.pw.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
+          <input type="password" formControlName="password"/>
+          <span *ngIf="newform.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>비밀번호 확인</label>
@@ -84,7 +84,7 @@
     </div>
     <div class="modal-footer">
       <button (click)="onClose(CreModal)">취소</button>
-      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.pw.value">생성</button>
+      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.password.value">생성</button>
     </div>
   </div>
 </div>

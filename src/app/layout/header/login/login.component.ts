@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
   public password: string;
 
   public logInForm = new FormGroup({
-    userName: new FormControl('', Validators.required),
-    passWord: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
   public signUpForm = new FormGroup({
-    userName: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    passWord: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
     rep: new FormControl('', Validators.required),
   });
 
@@ -64,10 +64,12 @@ export class LoginComponent implements OnInit {
 
     const params = this.formservice.formToData(data);
 
-    this.common.httpCallPost('user/login', params).subscribe((res: HttpResponse<any>) => {
-      this.dialog.closeAll();
-      this.router.navigateByUrl('/three');
-      window.location.reload();
+    this.common.httpCallPost('user/login', params).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        this.dialog.closeAll();
+        this.router.navigateByUrl('/three');
+        // window.location.reload();
+      }
     });
   }
 
@@ -79,9 +81,9 @@ export class LoginComponent implements OnInit {
     this.common.httpCallPost('user/signup', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.signUpForm.reset({
-          userName: '',
+          username: '',
           email: '',
-          passWord: '',
+          password: '',
           rep: '',
         });
       }

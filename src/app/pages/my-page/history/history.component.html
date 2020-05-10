@@ -1,0 +1,11 @@
+<div style="margin: 0px 10px;">
+    <h2 style="border-bottom: 1px solid darkgray; margin: 10px 0px;">이력</h2>
+    <div style="border-bottom: 1px solid darkgray;">
+        <a style="margin-left: 10px;" class="btn" (click)="onThree()">삼행시</a>
+        <a style="margin-left: 10px;" class="btn" (click)="onTwo()">이행시</a>
+    </div>
+    <div style="text-align: left;">
+        <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" gridWidth="800"></nkt-admin-grid>
+        <!-- <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal"  [upModalTemp]="UpModal"></nkt-admin-grid> -->
+    </div>
+</div>

@@ -14,9 +14,9 @@ export class UserComponent implements OnInit {
     { title: '일렬 번호', width: 10, field: 'idx' },
     { title: '사용자 명', width: 30, field: 'username' },
     { title: '이메일', width: 30, field: 'email' },
-    { title: '비밀 번호', width: 30, field: 'password' },
-    { title: '생성 일자', width: 15, field: 'insertDate' },
-    { title: '수정 일자', width: 15, field: 'changeDate' },
+    { title: '비밀 번호', width: 10, field: 'password' },
+    { title: '생성 일자', width: 10, field: 'insertDate' },
+    { title: '수정 일자', width: 10, field: 'changeDate' },
   ];
   public newform = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();

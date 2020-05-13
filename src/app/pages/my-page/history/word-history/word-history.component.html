@@ -1,0 +1,22 @@
+<div *ngIf="data != undefined && data.length != 0">
+    <div style="display: inline-block;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
+    <div style="display: inline-block; text-align: center;">
+        <div>
+            <div>{{number + 1}}/{{tot}}</div>
+            <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+            <div style="margin-top: 10px;">{{word.description}}</div>
+            <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+        </div>
+        <div style="margin-top: 40px;">
+            <div style="text-align: left;">
+                <div>{{word.word | slice:0:1}} : {{data[number].contentOne}}</div>
+                <div>{{word.word | slice:1:2}} : {{data[number].contentTwo}}</div>
+                <div *ngIf="type == 'three'">{{word.word | slice:2:3}} : {{data[number].contentThree}}</div>
+            </div>
+            <div>{{data[number].point}}</div>
+            <div>{{data[number].insertDate | slice:0:16}}</div>
+        </div>
+    </div>
+    <div style="display: inline-block;"><button (click)="onNext(data[number].wordIdx)" [disabled]="number + 1 == tot">다음</button></div>
+</div>
+<div *ngIf="data == undefined || data.length == 0">No Data</div>

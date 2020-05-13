@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.dialog.closeAll();
         this.router.navigateByUrl('/three');
-        // window.location.reload();
+        window.location.reload();
       }
     });
   }

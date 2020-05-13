@@ -13,7 +13,19 @@ export class CustomTreeListComponent implements OnInit {
   @Input() public data: any;
   @Input() public type: any;
 
-  public fields: any;
+  public fields: any = [
+    { title: '일렬 번호', width: 10, field: 'idx' }
+    , { title: '메뉴 명', width: 10, field: 'title ' }
+    , { title: '메뉴 그룹', width: 10, field: 'menuGroup ' }
+    , { title: 'URL', width: 10, field: 'url ' }
+    , { title: '메뉴 순서', width: 5, field: 'menuOrder ' }
+    , { title: 'Level', width: 5, field: 'level ' }
+    , { title: '하위 여부', width: 10, field: 'child ' }
+    , { title: '생성 일자', width: 10, field: 'insertDate ' }
+    , { title: '부모 일렬 번호', width: 10, field: 'parent ' }
+    , { title: '권한 일렬 번호', width: 10, field: 'roleIdx ' }
+    , { title: '권한 명', width: 10, field: 'roleTitle ' }
+  ];
   public roleData: any;
 
   public form = new FormGroup({
@@ -28,16 +40,7 @@ export class CustomTreeListComponent implements OnInit {
 
   constructor(private common: CommonHttpService, private forms: FormsService) { }
 
-  ngOnInit() {
-    if (this.data !== undefined) {
-      this.fields = Object.keys(this.data[0]);
-      this.fields.forEach((item) => {
-        if (item === 'children') {
-          this.fields.splice(this.fields.indexOf(item), 1);
-        }
-      });
-    }
-  }
+  ngOnInit() { }
 
   public onCreateModal(temp: any) {
     temp.style.display = 'block';

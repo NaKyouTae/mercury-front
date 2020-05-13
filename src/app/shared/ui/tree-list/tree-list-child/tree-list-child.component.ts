@@ -12,10 +12,10 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 export class TreeListChildComponent implements OnInit {
   @Input() public data: any;
   @Input() public type: any;
+  @Input() public fields: any;
 
   public rowData: any;
   public child: any;
-  public fieldsNum: any;
   public roleData: any;
   public form = new FormGroup({
     title: new FormControl(Validators.required),
@@ -34,20 +34,7 @@ export class TreeListChildComponent implements OnInit {
   constructor(private common: CommonHttpService, private forms: FormsService) { }
 
   ngOnInit() {
-    this.fieldsNum = Object.keys(this.data[0]).length;
     this.roleSearch();
-  }
-
-  public onFields(data: any) {
-    const fields = Object.keys(data);
-
-    fields.forEach((item) => {
-      if (item === 'children') {
-        fields.splice(fields.indexOf(item), 1);
-      }
-    });
-
-    return fields;
   }
 
   public onData(data, field) {

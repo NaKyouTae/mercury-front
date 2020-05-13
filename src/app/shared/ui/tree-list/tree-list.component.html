@@ -1,8 +1,8 @@
 <div class="content-width">
   <div class="treelist-wrapper">
     <button (click)="onCreateModal(CreModal)" class="btn" style="display: block;">add</button>
-    <div *ngFor="let field of fields; let f_idx = index" class="treelist-title" [ngStyle]="{'width' : 'calc(100% / ' + fields.length + ')'}">{{field}}</div>
-    <nkt-tree-list-child [data]="data" [type]="type"></nkt-tree-list-child>
+    <div *ngFor="let field of fields; let f_idx = index" class="treelist-title" [ngStyle]="{'width' : field.width + '%'}">{{field.title}}</div>
+    <nkt-tree-list-child [data]="data" [fields]="fields" [type]="type"></nkt-tree-list-child>
   </div>
 </div>
 

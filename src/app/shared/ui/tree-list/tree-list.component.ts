@@ -48,7 +48,7 @@ export class CustomTreeListComponent implements OnInit {
     this.form.patchValue({
       title: null,
       menuGroup: null,
-      url: '/my/',
+      url: this.type === 'menus' ? '/' : '/my/',
       menuOrder: null,
       level: 1,
       child: 0,

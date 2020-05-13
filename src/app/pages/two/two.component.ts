@@ -10,7 +10,7 @@ export class TwoComponent implements OnInit {
   public datas: Array<any> = new Array();
   public words: Array<any> = new Array();
   public description: any;
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     this.common.httpCallGet('service/words/group', { group: 'TWO' }).subscribe((res: any) => {
@@ -19,7 +19,7 @@ export class TwoComponent implements OnInit {
       this.description = res.result.description;
     });
 
-    this.common.httpCallGet('service/twice').subscribe((res: any) => {
+    this.common.httpCallGet('service/twice/words').subscribe((res: any) => {
       this.datas = res.result;
     });
   }

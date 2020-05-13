@@ -12,7 +12,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class UserContentsComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) { }
 
   // tslint:disable-next-line: no-input-rename
   @Input('contents') public contents: any = new Array<any>();
@@ -35,7 +35,7 @@ export class UserContentsComponent implements OnInit {
     userName: new FormControl(''),
     userIdx: new FormControl(''),
   });
-  ngOnInit() {}
+  ngOnInit() { }
 
   public inThree(e: any) {
     e.userName.setValue(this.userName);

@@ -13,6 +13,7 @@ export class AdminGridComponent implements OnInit {
   @Input() public upModalTemp?: any;
   @Input() public creModalTemp?: any;
   @Input() public gridWidth?: string;
+  @Input() public btnUse?: any;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
@@ -28,7 +29,7 @@ export class AdminGridComponent implements OnInit {
   public pageList: Array<any>;
   public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {

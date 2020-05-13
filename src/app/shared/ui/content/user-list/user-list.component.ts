@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
@@ -39,14 +39,14 @@ export class UserListComponent implements OnInit {
   }
 
   public getThreeList() {
-    this.common.httpCallGet('service/three').subscribe((res: any) => {
+    this.common.httpCallGet('service/three/words').subscribe((res: any) => {
       this.datas = res.result;
       this.checkLove();
     });
   }
 
   public getTwoList() {
-    this.common.httpCallGet('service/twice').subscribe((res: any) => {
+    this.common.httpCallGet('service/twice/words').subscribe((res: any) => {
       this.datas = res.result;
       this.checkLove();
     });

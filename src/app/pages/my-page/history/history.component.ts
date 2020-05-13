@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 
 @Component({
   selector: 'app-history',
@@ -9,15 +10,16 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 export class HistoryComponent implements OnInit {
   public data: any;
   public fields: any;
-
-  constructor(private common: CommonHttpService) {}
+  public jwtUser = this.jwt.getJWTAccessKey('user');
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onThree();
+    console.log(this.jwtUser.idx);
   }
 
   public onThree() {
-    this.common.httpCallGet('service/three').subscribe((res: any) => {
+    this.common.httpCallGet('service/three/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       this.data = res.result;
       this.fields = [
         { title: '1', width: 50 / 3, field: 'contentOne' },
@@ -31,7 +33,7 @@ export class HistoryComponent implements OnInit {
   }
 
   public onTwo() {
-    this.common.httpCallGet('service/twice').subscribe((res: any) => {
+    this.common.httpCallGet('service/twice/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       this.data = res.result;
       this.fields = [
         { title: '1', width: 25, field: 'contentOne' },

@@ -11,6 +11,7 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 })
 export class TreeListChildComponent implements OnInit {
   @Input() public data: any;
+  @Input() public type: any;
 
   public rowData: any;
   public child: any;
@@ -30,7 +31,7 @@ export class TreeListChildComponent implements OnInit {
     roleTitle: new FormControl(Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) {}
+  constructor(private common: CommonHttpService, private forms: FormsService) { }
 
   ngOnInit() {
     this.fieldsNum = Object.keys(this.data[0]).length;
@@ -60,7 +61,7 @@ export class TreeListChildComponent implements OnInit {
     const params = {
       pidx: e === null || e === undefined ? null : e.idx,
     };
-    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/levels', params).subscribe((res: any) => {
       children = res.result;
       data[data.indexOf(e)].children = children;
     });
@@ -80,7 +81,7 @@ export class TreeListChildComponent implements OnInit {
   public onUpdate(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
-    this.common.httpCallPut('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
+    this.common.httpCallPut('service/' + this.type + '/' + params.idx, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.resetChildLevel(params.parent);
@@ -95,7 +96,7 @@ export class TreeListChildComponent implements OnInit {
   public onCreate(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
-    this.common.httpCallPost('service/menu/menus', params).subscribe((res: any) => {
+    this.common.httpCallPost('service/' + this.type, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.resetMyLevel(params);
@@ -111,10 +112,10 @@ export class TreeListChildComponent implements OnInit {
       menuGroup: null,
       url: '/',
       menuOrder: null,
-      level: data.level + 1,
+      level: data === null ? 0 : data.level + 1,
       child: false,
       insertDate: null,
-      parent: data.idx,
+      parent: data === null ? null : data.idx,
       roleIdx: null,
       roleTitle: null,
     });
@@ -123,7 +124,7 @@ export class TreeListChildComponent implements OnInit {
   public onDelete(data: any, template: any) {
     const params: any = this.forms.formToData(data);
 
-    this.common.httpCallDelete('service/menu/menus/' + params.idx, params).subscribe((res: any) => {
+    this.common.httpCallDelete('service/' + this.type + '/' + params.idx, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.resetChildLevel(params.parent);
@@ -135,7 +136,7 @@ export class TreeListChildComponent implements OnInit {
     let children = new Array();
     const data = this.data;
 
-    this.common.httpCallGet('service/menu/levels', { pidx: e.parent }).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/levels', { pidx: e.parent }).subscribe((res: any) => {
       data.forEach((menu) => {
         if (menu.idx === e.parent) {
           children = res.result;
@@ -146,7 +147,7 @@ export class TreeListChildComponent implements OnInit {
   }
 
   public resetChildLevel(pidx: any) {
-    this.common.httpCallGet('service/menu/levels', { pidx }).subscribe((newRes: any) => {
+    this.common.httpCallGet('service/' + this.type + '/levels', { pidx }).subscribe((newRes: any) => {
       this.data = newRes.result;
     });
   }

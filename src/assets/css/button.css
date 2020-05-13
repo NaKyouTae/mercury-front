@@ -3,7 +3,7 @@
 }
 
 .btn-order {
-  float: right; 
+  float: right;
   margin-left: 10px;
 }
 
@@ -23,4 +23,9 @@
 
 .btn-love{
   height: 15px;
+}
+
+
+.btn-tap {
+  display: inline-block; padding: 10px; margin-right: 10px; border: 1px solid darkgray;
 }

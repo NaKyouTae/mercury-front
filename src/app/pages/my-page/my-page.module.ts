@@ -6,10 +6,18 @@ import { PageTitleModule } from 'src/app/shared/ui/page-title/page-title.module'
 import { HistoryModule } from './history/history.module';
 import { UserInfoModule } from './user-info/user-info.module';
 import { MyPageRoutingModule } from './my-page-routing.module';
+import { RouteChildModule } from 'src/app/shared/ui/route-child/route-child.module';
 
 @NgModule({
   declarations: [MyPageComponent],
-  imports: [CommonModule, FormsModule, PageTitleModule, ReactiveFormsModule, HistoryModule, UserInfoModule, MyPageRoutingModule],
+  imports: [CommonModule,
+    FormsModule,
+    PageTitleModule,
+    ReactiveFormsModule,
+    HistoryModule,
+    UserInfoModule,
+    MyPageRoutingModule,
+    RouteChildModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class MyPageModule {}
+export class MyPageModule { }

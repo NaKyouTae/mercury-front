@@ -12,7 +12,7 @@ export class RouteComponent implements OnInit {
   public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
   public routeLinks: any;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.search(null);
@@ -22,7 +22,7 @@ export class RouteComponent implements OnInit {
     const params = {
       pidx: e === null ? 'null' : e,
     };
-    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
+    this.common.httpCallGet('service/menus/levels', params).subscribe((res: any) => {
       this.routeLinks = res.result;
     });
   }
@@ -34,7 +34,7 @@ export class RouteComponent implements OnInit {
 
     let children = new Array();
 
-    this.common.httpCallGet('service/menu/levels', params).subscribe((res: any) => {
+    this.common.httpCallGet('service/menus/levels', params).subscribe((res: any) => {
       children = res.result;
       menu.children = children;
     });

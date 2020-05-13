@@ -1,7 +1,51 @@
 <div class="content-width">
   <div class="treelist-wrapper">
+    <button (click)="onCreateModal(CreModal)" class="btn" style="display: block;">add</button>
     <div *ngFor="let field of fields; let f_idx = index" class="treelist-title" [ngStyle]="{'width' : 'calc(100% / ' + fields.length + ')'}">{{field}}</div>
-    <nkt-tree-list-child [data]="data"></nkt-tree-list-child>
+    <nkt-tree-list-child [data]="data" [type]="type"></nkt-tree-list-child>
   </div>
 </div>
 
+<div #CreModal class="modal">
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>메뉴 생성</h2>
+      </div>
+      <div class="close" (click)="onClose(CreModal)">&times;</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>제목</label>
+          <input type="text" name="title" formControlName="title" />
+          <label *ngIf="form.get('title') == undefined"> title is required. </label>
+        </div>
+        <div class="form-input-text">
+          <label>그룹</label>
+          <input type="text" formControlName="menuGroup" />
+        </div>
+        <div class="form-input-text">
+          <label>URL</label>
+          <input type="text" formControlName="url" />
+        </div>
+        <div class="form-input-text">
+          <label>순서</label>
+          <input type="text" formControlName="menuOrder" />
+        </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(CreModal)">취소</button>
+      <button [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
+              (click)="onCreate(form.controls, CreModal)">생성</button>
+    </div>
+  </div>
+</div>

@@ -20,4 +20,4 @@ import { RouteModule } from './route/route.module';
   bootstrap: [LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class LayoutModule {}
+export class LayoutModule { }

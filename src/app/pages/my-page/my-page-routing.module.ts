@@ -5,20 +5,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { MyPageComponent } from './my-page.component';
 import { MyThreeComponent } from './history/my-three/my-three.component';
 import { MyTwoComponent } from './history/my-two/my-two.component';
+import { LoginGuard } from 'src/app/core/guard/login/login.guard';
+import { CashComponent } from './cash/cash.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MyPageComponent,
+    canActivate: [LoginGuard],
     children: [
       { path: '', redirectTo: 'userinfo', pathMatch: 'full' },
-      { path: 'userinfo', component: UserInfoComponent },
+      { path: 'userinfo', component: UserInfoComponent, canActivate: [LoginGuard] },
+      { path: 'cash', component: CashComponent, canActivate: [LoginGuard] },
       {
         path: 'history',
         children: [
-          { path: '', redirectTo: 'three', pathMatch: 'full' },
-          { path: 'three', component: MyThreeComponent },
-          { path: 'two', component: MyTwoComponent },
+          { path: 'three', component: MyThreeComponent, canActivate: [LoginGuard] },
+          { path: 'two', component: MyTwoComponent, canActivate: [LoginGuard] },
         ],
       },
     ],

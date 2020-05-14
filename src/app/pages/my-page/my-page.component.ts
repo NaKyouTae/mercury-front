@@ -14,8 +14,10 @@ export class MyPageComponent implements OnInit {
   public routeLinks: any;
   public threeTot: any = 0;
   public twoTot: any = 0;
+  public total: any = 0;
+  public mileage: any = this.jwtUser === undefined ? 0 : this.jwtUser.mileage;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.search();
@@ -28,6 +30,10 @@ export class MyPageComponent implements OnInit {
 
     this.common.httpCallGet('service/twice/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       this.twoTot = res.result.length;
+    });
+
+    this.common.httpCallGet('service/users/totals', this.jwtUser.idx).subscribe((res: any) => {
+      this.total = res.result;
     });
   }
 }

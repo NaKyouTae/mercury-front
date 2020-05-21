@@ -9,7 +9,6 @@ import { LoginInterceptorService } from './core/interceptors/login/login-interce
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './core/interceptors/jwt/jwt-interceptor.service';
 import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
-import { MyPageComponent } from './pages/my-page/my-page.component';
 
 @NgModule({
   declarations: [AppComponent],

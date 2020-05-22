@@ -28,10 +28,25 @@
         <span *ngIf="signUpForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
       </div>
       <div class="form-input-text">
-        <label>이메일</label>
+        <label>
+          <div style="display: inline-block;">이메일</div>
+          <div style="display: inline-block;">
+            <button (click)="checkEmail(signUpForm.controls.email.value)" [disabled]="signUpForm.controls.email.value == null || signUpForm.controls.email.value == '' ? true:false">인증요청</button>
+          </div>
+        </label>
         <input type="text" formControlName="email"/>
         <span *ngIf="signUpForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        <span *ngIf="authConfirm" style="color:green; display: block; font-size: 12px;">인증이 완료 되었습니다.</span>
+        <span *ngIf="auth != null && !authConfirm" style="color:green; display: block; font-size: 12px;">인증 번호가 일치하지 않습니다.</span>
       </div>
+      <div class="form-input-text" *ngIf="auth != null">
+        <label>인증 번호</label>
+        <input type="text" [(ngModel)]="number" [ngModelOptions]="{standalone: true}" />
+        <div style="display: inline-block;">
+          <button (click)="checkAuth()">인증확인</button>
+        </div>
+      </div>
+      <div class="form-input-text" *ngIf="auth != null"></div>
       <div class="form-input-text">
         <label>비밀번호</label>
         <input type="password" formControlName="password"/>
@@ -47,6 +62,6 @@
   </div>
   <div>
     <button (click)="onClose()">취소</button>
-    <button (click)="onCreate(signUpForm.controls)" [disabled]="!signUpForm.valid">회원가입</button>
+    <button (click)="onCreate(signUpForm.controls)" [disabled]="!signUpForm.valid && authConfirm">회원가입</button>
   </div>
 </ng-template>

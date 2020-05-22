@@ -1,30 +1,6 @@
 <div>
-    <div>
-        <label>빨강</label>
-        <div>0 ~ 999</div>
-    </div>
-    <div>
-        <label>주황</label>
-        <div>1000 ~ 1999</div>
-    </div>
-    <div>
-        <label>노랑</label>
-        <div>2000 ~ 2999</div>
-    </div>
-    <div>
-        <label>초록</label>
-        <div>3000 ~ 3999</div>
-    </div>
-    <div>
-        <label>파랑</label>
-        <div>4000 ~ 4999</div>
-    </div>
-    <div>
-        <label>남색</label>
-        <div>5000 ~ 5999</div>
-    </div>
-    <div>
-        <label>보라색</label>
-        <div>6000 ~ 7000</div>
+    <div *ngFor="let d of data">
+        <label>{{d.gradeName}}</label>
+        <div>{{d.startRange}} ~ {{d.endRange}}</div>
     </div>
 </div>

@@ -11,6 +11,7 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 })
 export class MyPageComponent implements OnInit {
   public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
+  public userGrade: any = this.jwt.getJWTAccessKey('grade') === null ? [] : this.jwt.getJWTAccessKey('grade');
   public user: any = this.jwt.getJWTAccessKey('user') === null ? [] : this.jwt.getJWTAccessKey('user');
 
   public routeLinks: any;

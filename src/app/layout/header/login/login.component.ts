@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line: member-ordering
   public password: string;
 
+  public auth: any;
+  public authConfirm: any;
+  public number: any;
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -88,5 +91,25 @@ export class LoginComponent implements OnInit {
         });
       }
     });
+  }
+
+  public checkEmail(email: any) {
+    if (email === null) {
+      return false;
+    } else {
+      this.common.httpCallGet('service/mails/check', { target: email }).subscribe((res: any) => {
+        console.log('auth number : ' + res.result);
+        this.auth = res.result;
+      });
+    }
+  }
+
+  public checkAuth() {
+    if (this.number !== this.auth) {
+      alert();
+    } else {
+      this.auth = null;
+      this.authConfirm = true;
+    }
   }
 }

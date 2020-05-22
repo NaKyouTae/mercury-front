@@ -1,0 +1,80 @@
+<div class="content-width">
+    <app-page-title title="등급"></app-page-title>
+    <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-admin-grid>
+</div>
+
+<div #UpModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>{{form.controls.gradeName.value}} 정보</h2>
+      </div>
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
+      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>일렬번호</label>
+          <input type="text" formControlName="idx"/>
+        </div>
+        <div class="form-input-text">
+            <label>등급 명</label>
+            <input type="text" formControlName="gradeName"/>
+            <span *ngIf="form.controls.gradeName.hasError('required')" style="color:red; display: block; font-size: 12px;">등급 명은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+            <label>시작 범위</label>
+            <input type="text" formControlName="startRange"/>
+            <span *ngIf="form.controls.startRange.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 범위는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+            <label>끝 범위</label>
+            <input type="text" formControlName="endRange"/>
+            <span *ngIf="form.controls.endRange.hasError('required')" style="color:red; display: block; font-size: 12px;">끝 범위는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+            <label>생성 일자</label>
+            <input type="text" formControlName="insertDate"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(UpModal)">취소</button>
+      <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+    </div>
+  </div>
+</div>
+<div #CreModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="newform != undefined">
+      <div>
+        <h2>등급 추가</h2>
+      </div>
+      <div class="close" (click)="onClose(CreModal)">&times;</div>
+    </div>
+    <div *ngIf="newform != undefined" >
+      <form [formGroup]="newform">
+        <div class="form-input-text">
+          <label>등급 명</label>
+          <input type="text" formControlName="gradeName"/>
+          <span *ngIf="newform.controls.gradeName.hasError('required')" style="color:red; display: block; font-size: 12px;">등급 명은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>시작 범위</label>
+          <input type="text" formControlName="startRange"/>
+          <span *ngIf="newform.controls.startRange.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 범위는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>끝 범위</label>
+          <input type="text" formControlName="endRange"/>
+          <span *ngIf="newform.controls.endRange.hasError('required')" style="color:red; display: block; font-size: 12px;">끝 범위는 필수 입니다.</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(CreModal)">취소</button>
+      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid">생성</button>
+    </div>
+  </div>
+</div>

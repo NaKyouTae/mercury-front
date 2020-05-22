@@ -10,6 +10,7 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 })
 export class UserComponent implements OnInit {
   public data: any;
+  public roleData: any;
   public fields: any = [
     { title: '일렬 번호', width: 10, field: 'idx' },
     { title: '사용자 명', width: 30, field: 'username' },
@@ -21,6 +22,8 @@ export class UserComponent implements OnInit {
   public newform = new FormGroup({
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
+    roleIdx: new FormControl(Validators.required),
+    roleTitle: new FormControl(Validators.required),
     password: new FormControl('', Validators.required),
     rep: new FormControl('', Validators.required),
   });
@@ -28,6 +31,8 @@ export class UserComponent implements OnInit {
     idx: new FormControl({ value: '', disabled: true }),
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
+    roleIdx: new FormControl(Validators.required),
+    roleTitle: new FormControl(Validators.required),
     password: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
@@ -36,6 +41,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.search();
+    this.roleSearch();
   }
 
   public search() {
@@ -74,9 +80,12 @@ export class UserComponent implements OnInit {
   }
 
   public onUpdate(e: any, template: any) {
-    const data: any = this.formservice.formToData(e);
-
-    this.common.httpCallPut('service/users/' + data.idx, data).subscribe((res: any) => {
+    const user: any = this.formservice.formToData(e);
+    const role: any = {
+      roleIdx: user.roleIdx,
+      roleName: user.roleTitle
+    }
+    this.common.httpCallPut('service/users/' + user.idx, { user, role }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.search();
@@ -93,5 +102,16 @@ export class UserComponent implements OnInit {
         this.search();
       }
     });
+  }
+
+  public roleSearch() {
+    this.common.httpCallGet('service/roles').subscribe((res: any) => {
+      this.roleData = res.result;
+    });
+  }
+
+  public roleChange(e: any) {
+    this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
+    this.newform.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
   }
 }

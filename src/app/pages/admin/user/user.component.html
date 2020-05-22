@@ -33,6 +33,12 @@
           <input type="text" formControlName="password"/>
           <span *ngIf="form.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀 번호는 필수 입니다.</span>
         </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
+          </select>
+        </div>
         <div class="form-input-text">
           <label>생성 일자</label>
           <input type="text" formControlName="insertDate"/>
@@ -68,6 +74,12 @@
           <label>이메일</label>
           <input type="text" formControlName="email"/>
           <span *ngIf="newform.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
+          </select>
         </div>
         <div class="form-input-text">
           <label>비밀번호</label>

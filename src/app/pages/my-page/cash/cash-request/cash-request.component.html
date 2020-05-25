@@ -1,1 +1,16 @@
-<p>cash-request works!</p>
+<div>
+  <div class="form-input-text">
+    <label>사용자명 : {{userName}}</label>
+  </div>
+  <div class="form-input-text">
+    <label>현재 잔액 : {{prevCash}}</label>
+  </div>
+  <div class="form-input-text">
+    <label>출금 금액</label>
+    <input type="text" formControlName="widthDrawCash"/>
+    <label *ngIf="form.controls.roleName.hasError('required')" style="color:red; display: block; font-size: 12px;">권한 명은 필수 입니다.</label>
+  </div>
+  <div>
+    <button (click)="onRequest(form.controls)"></button>
+  </div>
+</div>

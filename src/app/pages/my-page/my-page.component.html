@@ -5,7 +5,7 @@
       </div> -->
       <div style="text-align: center; margin-top: 40px;">
         <div style="font-weight: bold; font-size: 30px;">
-          <div></div>{{user.username}} 
+          <div></div>{{user.username}}
           <div>
             <button BtnModal (click)="onClick(user)" [modal]="UpModal">수정</button>
           </div>
@@ -40,7 +40,7 @@
   <div class="modal-content" style="width: 25%; text-align: left;">
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.username.value}} 정보</h2>
+        <h2>{{form.controls.username.value}}님 정보</h2>
       </div>
       <div class="close" (click)="onClose(UpModal)">&times;</div>
       <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>

@@ -3,11 +3,11 @@
   <form *ngIf="type == 'THREE'" [formGroup]="threeForm">
     <div class="form-input-text">
       <p class="in-word-title">{{contents[0]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentOne" (keyup.enter)="inThree(threeForm.controls)">
+      <input type="text" class="in-word-in" formControlName="contentOne" >
     </div>
     <div class="form-input-text">
       <p class="in-word-title">{{contents[1]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentTwo" (keyup.enter)="inThree(threeForm.controls)">
+      <input type="text" class="in-word-in" formControlName="contentTwo" >
     </div>
     <div class="form-input-text">
       <p class="in-word-title">{{contents[2]}}</p>
@@ -19,7 +19,7 @@
   <form *ngIf="type == 'TWO'" [formGroup]="twoForm">
     <div>
       <p class="in-word-title">{{contents[0]}}</p>
-      <input type="text" class="in-word-in" formControlName="contentOne" (keyup.enter)="inThree(threeForm.controls)">
+      <input type="text" class="in-word-in" formControlName="contentOne" >
     </div>
     <div>
       <p class="in-word-title">{{contents[1]}}</p>

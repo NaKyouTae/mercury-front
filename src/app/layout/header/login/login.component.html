@@ -6,7 +6,7 @@
   <div [formGroup]="logInForm" class="login-content">
     <div>
       <input type="text" formControlName="username" placeholder="Enter Your ID" (keyup.enter)="login(logInForm.controls)" />
-      <span *ngIf="logInForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">아이디는 필수 입니다.</span>
+      <span *ngIf="logInForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
     </div>
     <div>
       <input type="password" formControlName="password" placeholder="Enter Your PassWord" (keyup.enter)="login(logInForm.controls)" />
@@ -23,9 +23,15 @@
   <div *ngIf="signUpForm != undefined" class="login-content">
     <form [formGroup]="signUpForm">
       <div class="form-input-text">
-        <label>사용자</label>
+        <label>사용자 명</label>
+        <div>
+          <button (click)="onDoubleCheck(signUpForm.controls.username.value)">중복확인</button>
+        </div>
         <input type="text" formControlName="username"/>
         <span *ngIf="signUpForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+        <span *ngIf="!userDupleConfirm" style="color:red; display: block; font-size: 12px;">중복 확인이 필요합니다.</span>
+        <span *ngIf="!userDupleCheck && userDupleConfirm" style="color:red; display: block; font-size: 12px;">사용중인 이름입니다.</span>
+        <span *ngIf="userDupleCheck && userDupleConfirm" style="color:green; display: block; font-size: 12px;">사용 가능한 이름입니다.</span>
       </div>
       <div class="form-input-text">
         <label>
@@ -54,7 +60,7 @@
       </div>
       <div class="form-input-text">
         <label>비밀번호 확인</label>
-        <input type="password" formControlName="rep"/>
+        <input type="password" formControlName="rep"  (keyup.enter)="onCreate(signUpForm.controls)"/>
         <span *ngIf="signUpForm.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
         <span *ngIf="!signUpForm.controls.rep.hasError('required') && signUpForm.controls.rep.value != signUpForm.controls.password.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
       </div>
@@ -62,6 +68,6 @@
   </div>
   <div>
     <button (click)="onClose()">취소</button>
-    <button (click)="onCreate(signUpForm.controls)" [disabled]="!signUpForm.valid && authConfirm">회원가입</button>
+    <button (click)="onCreate(signUpForm.controls)" [disabled]="!signUpForm.valid && authConfirm && userDupleCheck">회원가입</button>
   </div>
 </ng-template>

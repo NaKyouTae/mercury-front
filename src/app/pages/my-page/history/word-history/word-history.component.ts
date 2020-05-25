@@ -18,7 +18,7 @@ export class WordHistoryComponent implements OnInit {
   public jwtUser = this.jwt.getJWTAccessKey('user');
   public historyForm: any = true;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();
@@ -55,6 +55,18 @@ export class WordHistoryComponent implements OnInit {
     } else {
       this.getWord(wordIdx);
       this.number -= 1;
+    }
+  }
+
+  public onDelete(data: any, type: any) {
+    const routeUrl = type === 'THREE' ? 'three' : 'twice';
+
+    if (window.confirm('삭제 하시겠습니까?')) {
+      this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          this.onSearch();
+        }
+      });
     }
   }
 }

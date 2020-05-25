@@ -7,6 +7,7 @@
         <div style="display: inline-block;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
         <div style="display: inline-block; text-align: center;">
             <div>
+                <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
                 <div>{{number + 1}}/{{tot}}</div>
                 <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
                 <div style="margin-top: 10px;">{{word.description}}</div>
@@ -38,12 +39,12 @@
                     <span>시간 : </span>
                     {{d.insertDate | slice:0:16}}
                 </div>
-                <div style="display: inline-block; margin-left: 10px;">삭제</div>
+                <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(d, type)">삭제</div>
             </div>
             <div style="text-align: left;">
                 <div>{{ d.word | slice:0:1}} : {{d.contentOne}}</div>
                 <div>{{ d.word | slice:1:2}} : {{d.contentTwo}}</div>
-                <div *ngIf="type == 'three'">{{ d.word | slice:2:3}} : {{d.contentThree}}</div>            
+                <div *ngIf="type == 'three'">{{ d.word | slice:2:3}} : {{d.contentThree}}</div>
             </div>
         </div>
     </div>

@@ -104,37 +104,37 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  public onContentUpdate(data: any, type: any) {
-    if (type === 'THREE') {
-      this.common.httpCallPut('service/three/' + data.idx, data).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.getThreeList();
-        }
-      });
-    } else if (type === 'TWO') {
-      this.common.httpCallPut('service/twice/' + data.idx, data).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.getTwoList();
-        }
-      });
-    }
-  }
+  // public onContentUpdate(data: any, type: any) {
+  //   if (type === 'THREE') {
+  //     this.common.httpCallPut('service/three/' + data.idx, data).subscribe((res: any) => {
+  //       if (res.resultCode === 'OK') {
+  //         this.getThreeList();
+  //       }
+  //     });
+  //   } else if (type === 'TWO') {
+  //     this.common.httpCallPut('service/twice/' + data.idx, data).subscribe((res: any) => {
+  //       if (res.resultCode === 'OK') {
+  //         this.getTwoList();
+  //       }
+  //     });
+  //   }
+  // }
 
-  public onContentDelete(data: any, type: any) {
-    if (window.confirm('삭제 하시겠습니까?')) {
-      if (type === 'THREE') {
-        this.common.httpCallDelete('service/three/' + data.idx, data).subscribe((res: any) => {
-          if (res.resultCode === 'OK') {
-            this.getThreeList();
-          }
-        });
-      } else if (type === 'TWO') {
-        this.common.httpCallDelete('service/twice/' + data.idx, data).subscribe((res: any) => {
-          if (res.resultCode === 'OK') {
-            this.getTwoList();
-          }
-        });
-      }
-    }
-  }
+  // public onContentDelete(data: any, type: any) {
+  //   if (window.confirm('삭제 하시겠습니까?')) {
+  //     if (type === 'THREE') {
+  //       this.common.httpCallDelete('service/three/' + data.idx, data).subscribe((res: any) => {
+  //         if (res.resultCode === 'OK') {
+  //           this.getThreeList();
+  //         }
+  //       });
+  //     } else if (type === 'TWO') {
+  //       this.common.httpCallDelete('service/twice/' + data.idx, data).subscribe((res: any) => {
+  //         if (res.resultCode === 'OK') {
+  //           this.getTwoList();
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 }

@@ -34,8 +34,8 @@
                 <div>{{item.point}}</div>
             </div>
             <div class="data-command">
-                <div class="btn btn-command" *ngIf="userName == item.userName" (click)="onContentUpdate(item, type)">수정</div>
-                <div class="btn btn-command" *ngIf="userName == item.userName || userRole.includes('ROLE_ADMIN')" (click)="onContentDelete(item, type)">삭제</div>
+                <!-- <div class="btn btn-command" *ngIf="userName == item.userName" (click)="onContentUpdate(item, type)">수정</div>
+                <div class="btn btn-command" *ngIf="userName == item.userName || userRole.includes('ROLE_ADMIN')" (click)="onContentDelete(item, type)">삭제</div> -->
                 <div>{{item.insertDate | slice:0:16}}</div>
             </div>
         </div>

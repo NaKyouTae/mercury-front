@@ -12,16 +12,17 @@ import { FormsService } from 'src/app/shared/util/forms.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
 
-  // tslint:disable-next-line: member-ordering
   public username: string;
-  // tslint:disable-next-line: member-ordering
+  public userDupleCheck: any = false;
+  public userDupleConfirm: any = false;
   public password: string;
 
   public auth: any;
-  public authConfirm: any;
+  public authConfirm: any = false;
   public number: any;
+
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     rep: new FormControl('', Validators.required),
   });
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public onClick(template: TemplateRef<any>) {
     const dialogData = {
@@ -76,7 +77,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public onClose() {}
+  public onClose() { }
 
   public onCreate(e: any) {
     const data = this.formservice.formToData(e);
@@ -111,5 +112,12 @@ export class LoginComponent implements OnInit {
       this.auth = null;
       this.authConfirm = true;
     }
+  }
+
+  public onDoubleCheck(username: string) {
+    this.userDupleConfirm = true;
+    this.common.httpCallGet('service/users/duplicate', username).subscribe((res: any) => {
+      this.userDupleCheck = res.result;
+    });
   }
 }

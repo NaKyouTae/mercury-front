@@ -1,11 +1,12 @@
+<div>
+  <button>출금</button>
+</div>
 <div *ngFor="let d of data">
   <div>요청 자 : {{d.userName}}</div>
   <div>요청 일자 : {{d.withDrawDate}}</div>
+  <div>지급 일 : {{d.paymentDate}}</div>
   <div>이전 금액 : {{d.prevCash}}</div>
   <div>요청 금액 : {{d.widthDrawCash}}</div>
   <div>잔액 : {{d.afterCash}}</div>
   <div>승인 여부 : {{d.approval}}</div>
 </div>
-
-
-

@@ -1,7 +1,13 @@
 @media (min-width: 992px) {
     .data-title {
-        width: 100%;
-        margin-bottom: 20px;
+        width: 50%;
+        display: inline-block;
+    }
+    .data-title-total {
+        font-size: 16px;
+    }
+    .data-title-command {
+        font-size: 14px;
     }
 
     .data-title > div {
@@ -34,6 +40,7 @@
         text-align: left;
         display: inline-block;
         width: 80%;
+        font-size: 16px;
     }
 
     .data-user > div {
@@ -41,18 +48,20 @@
     }
 
     .data-user > div:nth-child(3){
-        margin-left: 5px;
+        margin-left: 20px;
     }
 
     .data-user > div:nth-child(4){
         color: #e2403e;
-        margin-left: 5px;
+        margin-left: 10px;
     }
     
     .data-command {
         display: inline-block;
         text-align: right;
         width: 20%;
+        font-size: 13px;
+        color: darkgray;
     }
     
     .data-command > div{

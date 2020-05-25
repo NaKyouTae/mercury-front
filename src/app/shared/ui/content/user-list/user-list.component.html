@@ -1,8 +1,12 @@
 <div class="user-list">
-    <div class="data-title">
-        <div>TOTAL {{datas.length}}</div>
-        <div class="btn btn-order" (click)="orLatest(type)">최신 순</div>
-        <div class="btn btn-order" (click)="orPopular(type)">인기 순</div>
+    <div style="margin-bottom: 20px;">
+        <div class="data-title data-title-total">
+            <div>TOTAL <span style="color: #100efb;">{{datas.length}}</span></div>
+        </div>
+        <div class="data-title data-title-command">
+            <div class="btn btn-order" [ngStyle]="{'color': btnCheck == false ? '#100efb':'black'}" (click)="orPopular(type)">인기 순</div>
+            <div class="btn btn-order" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest(type)">최신 순</div>
+        </div>
     </div>
     <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
         <div>

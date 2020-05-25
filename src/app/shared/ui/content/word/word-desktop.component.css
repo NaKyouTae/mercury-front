@@ -9,7 +9,7 @@
 
     .word-title{
         font-size: 14px;
-        margin: 20px 0px;
+        margin: 70px 0px 50px 0px;
     }
 
     .word {
@@ -17,27 +17,27 @@
         min-width: 100%;
         max-width: 100%; 
         margin: 0px auto;
-        padding: 10px 0px;
+        padding: 0px;
         text-align: center;
     }
     .word > p {
         font-size: 80px;
-        padding: 20px;
+        padding: 50px;
         display: inline-block;
-        border: 1px solid #333333;
-        border-radius: 10px;
+        border: 1px solid #100efb;
+        border-radius: 20px;
     }
 
-    .word > p{
-        margin: 0px 25px;
+    .word > p {
+        margin: 0px 30px;
     }
 
     .word-descript{
         font-size: 15px;
-        margin: 20px 0px;
+        margin: 50px 0px 70px 0px;
     }
 
     .word-descript > p:nth-child(2){
-        padding: 5px 0px;
+        padding: 0px;
     }
 }

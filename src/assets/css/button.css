@@ -7,10 +7,10 @@
   margin-left: 10px;
 }
 
-.btn-order:hover{
+/* .btn-order:hover{
   font-weight: bold;
   font-size: 18px;
-}
+} */
 
 .btn-command {
   margin-left: 10px;
@@ -22,7 +22,7 @@
 }
 
 .btn-love{
-  height: 15px;
+  height: 13px;
 }
 
 

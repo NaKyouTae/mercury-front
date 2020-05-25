@@ -19,8 +19,8 @@ export class UserListComponent implements OnInit {
   public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
   public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '';
   public userRole: any = this.jwt.getJWTAccessKey('roles') !== null ? this.jwt.getJWTAccessKey('roles') : [];
+  public btnCheck: any = true;
 
-  // tslint:disable-next-line: max-line-length
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
       if (res === 'THREE') {
@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
@@ -94,6 +94,7 @@ export class UserListComponent implements OnInit {
         this.checkLove();
       });
     }
+    this.btnCheck = false;
   }
 
   public orLatest(type: string) {
@@ -102,6 +103,7 @@ export class UserListComponent implements OnInit {
     } else if (type === 'TWO') {
       this.getTwoList();
     }
+    this.btnCheck = true;
   }
 
   // public onContentUpdate(data: any, type: any) {

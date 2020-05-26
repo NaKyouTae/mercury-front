@@ -1,1 +1,17 @@
 <router-outlet></router-outlet>
+
+
+<div *ngFor="let d of data" style="position: absolute; top: 50px; left: 50px; border: 1px solid darkgray;">
+  <div>
+    <label>작성일</label>
+    <div>{{d.insertDate}}</div>
+  </div>
+  <div>
+    <label>제목</label>
+    <div>{{d.title}}</div>
+  </div>
+  <div>
+    <label>내용</label>
+    <div>{{d.content}}</div>
+  </div>
+</div>

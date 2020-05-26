@@ -73,6 +73,11 @@
         <div *ngIf="form != undefined" >
             <form [formGroup]="form">
                 <div class="form-input-text">
+                    <label>종류</label>
+                    <input type="radio" formControlName="type"/>
+                    <input type="radio" formControlName="type"/>
+                </div>
+                <div class="form-input-text">
                     <label>제목</label>
                     <input type="text" formControlName="title"/>
                 </div>

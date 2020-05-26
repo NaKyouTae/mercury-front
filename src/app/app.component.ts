@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { JwtService } from './shared/common/jwt/jwt.service';
+import { CommonHttpService } from './shared/common/common-http.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,18 @@ import { JwtService } from './shared/common/jwt/jwt.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'competition-angular';
+  public title: any = '천하제일 엔행시 대회';
+  public data: any;
 
-  constructor(private router: Router, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService) { }
 
-  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
-    // this.router.navigateByUrl('/three');
-    // console.log(this.jwt.getJWTRefresh());
-    // console.log(this.jwt.getJWTAccess());
+    this.search();
+  }
+
+  public search() {
+    this.common.httpCallGet('service/notices/pop', { type: 'y' }).subscribe((res: any) => {
+      this.data = res.result;
+    });
   }
 }

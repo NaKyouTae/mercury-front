@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class MailComponent implements OnInit {
   public port: any;
   public email: any;
+  public htmlContent: any;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

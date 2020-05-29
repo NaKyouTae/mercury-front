@@ -8,11 +8,10 @@
     </div>
     <div class="form-input-text">
       <label>출금 금액</label>
-      <input type="text" formControlName="widthDrawCash"/>
-      <label *ngIf="form.controls.roleName.hasError('required')" style="color:red; display: block; font-size: 12px;">권한 명은 필수 입니다.</label>
+      <input type="text" formControlName="withDrawCash"/>
     </div>
   </form>
   <div>
-    <button (click)="onRequest(form.controls)"></button>
+    <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000">출금</button>
   </div>
 </div>

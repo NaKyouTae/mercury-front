@@ -14,7 +14,7 @@ export class CashRequestComponent implements OnInit {
   public prevCash: any;
   public form = new FormGroup({
     userName: new FormControl('', Validators.required),
-    widthDrawCash: new FormControl('', Validators.required)
+    withDrawCash: new FormControl('', Validators.required)
   });
   constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
 
@@ -33,6 +33,12 @@ export class CashRequestComponent implements OnInit {
 
   public onRequest(e: any) {
     const data: any = this.formservice.formToData(e);
+
+    if (data.withDrawCash < 10000) {
+      alert('10,000만원 이상 출금이 가능합니다.');
+      return false;
+    }
+
     this.common.httpCallPost('service/cashs', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         alert(res.message);

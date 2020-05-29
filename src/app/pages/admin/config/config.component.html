@@ -1,0 +1,11 @@
+<div class="content-width">
+  <app-page-title title="설정"></app-page-title>
+  <div *ngFor="let item of data">
+    <div class="form-input-text">
+      <label>{{item.configName}}</label>
+      <input type="text" [(ngModel)]="item.configName"/>
+      <input type="text" [(ngModel)]="item.configValue"/>
+      <input type="text" [(ngModel)]="item.configType"/>
+    </div>
+  </div>
+</div>

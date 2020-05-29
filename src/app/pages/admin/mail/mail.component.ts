@@ -9,9 +9,12 @@ import { FormsService } from 'src/app/shared/util/forms.service';
   styleUrls: ['./mail.component.css'],
 })
 export class MailComponent implements OnInit {
+  // =========================================================================== [메일 설정 값]
+  public host: any;
   public port: any;
   public email: any;
-  public htmlContent: any;
+  public pw: any;
+  // =========================================================================== [메일 설정 값]
 
   public data: any;
   public fields: any = [

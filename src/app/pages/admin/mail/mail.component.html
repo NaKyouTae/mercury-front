@@ -16,6 +16,88 @@
         <div>
             <button class="btn">저장</button>
         </div>
-        <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
+        <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-admin-grid>
     </div>
+</div>
+
+<div #UpModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="form != undefined">
+      <div>
+        <h2>메일 템플릿 정보</h2>
+      </div>
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
+      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+    </div>
+    <div *ngIf="form != undefined" >
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>일렬번호</label>
+          <input type="text" formControlName="idx" />
+        </div>
+        <div class="form-input-text">
+          <label>사용 여부</label>
+          <input type="text" formControlName="used" />
+        </div>
+        <div class="form-input-text">
+          <label>생성 일자</label>
+          <input type="text" formControlName="insertDate" />
+        </div>
+        <div class="form-input-text">
+          <label>종류</label>
+          <input type="text" formControlName="type" />
+        </div>
+        <div class="form-input-text">
+          <label>배치</label>
+          <input type="text" formControlName="batchId" />
+        </div>
+        <div class="form-input-text">
+          <label>제목</label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div class="form-input-text">
+          <label>내용</label>
+          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(UpModal)">취소</button>
+      <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+    </div>
+  </div>
+</div>
+<div #CreModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+    <div class="modal-header" *ngIf="newform != undefined">
+      <div>
+        <h2>메일 템플릿 추가</h2>
+      </div>
+      <div class="close" (click)="onClose(CreModal)">&times;</div>
+    </div>
+    <div *ngIf="newform != undefined" >
+      <form [formGroup]="newform">
+        <div class="form-input-text">
+          <label>종류</label>
+          <input type="text" formControlName="type" />
+        </div>
+        <div class="form-input-text">
+          <label>배치</label>
+          <input type="text" formControlName="batchId" />
+        </div>
+        <div class="form-input-text">
+          <label>제목</label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div class="form-input-text">
+          <label>내용</label>
+          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onClose(CreModal)">취소</button>
+      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid">생성</button>
+    </div>
+  </div>
 </div>

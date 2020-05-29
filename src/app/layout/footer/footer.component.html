@@ -36,7 +36,7 @@
             <div>Copyright, 팀명칭. All rights reserved.</div>
         </div>
         <div *ngIf="!subCheck">
-            <button class="news-btn">뉴스레터 구독하기</button>
+            <button class="news-btn" (click)="onSubscription()">뉴스레터 구독하기</button>
         </div>
     </div>
 </div>

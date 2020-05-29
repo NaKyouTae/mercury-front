@@ -26,7 +26,7 @@ export class MyPageComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();
@@ -71,13 +71,29 @@ export class MyPageComponent implements OnInit {
   }
 
   public onDelete(e: any, template: any) {
-    const data: any = this.formservice.formToData(e);
+    if (window.confirm('삭제 하시겠습니까?')) {
+      const data: any = this.formservice.formToData(e);
 
-    this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
-        template.style.display = 'none';
-        this.user = this.jwt.getJWTAccessKey('user');
-      }
-    });
+      this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          template.style.display = 'none';
+          this.user = this.jwt.getJWTAccessKey('user');
+        }
+      });
+    } else {
+      return false;
+    }
+  }
+
+  public onUnSubscribe() {
+    if (window.confirm('구독을 해제하시겠습니까?')) {
+      this.common.httpCallDelete('service/newsletter/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          alert('구독 해제하였습니다.');
+        }
+      });
+    } else {
+      return false;
+    }
   }
 }

@@ -25,7 +25,13 @@ export class FooterComponent implements OnInit {
   }
 
   public onSubscription() {
-    this.common.httpCallPost('service/newsletters').subscribe((res: any) => {
+    const params = {
+      userIdx: this.user.idx,
+      userName: this.user.username,
+      userEMail: this.user.email
+    };
+
+    this.common.httpCallPost('service/newsletters', params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.subCheck = true;
       }

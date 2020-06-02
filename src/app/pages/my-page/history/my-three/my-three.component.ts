@@ -20,14 +20,18 @@ export class MyThreeComponent implements OnInit {
 
   public onSearch() {
     this.common.httpCallGet('service/three/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
-      this.data = res.result;
-      this.getWord(this.data[0].wordIdx);
+      if (res.resultCode === 'OK' && res.result.length > 0) {
+        this.data = res.result;
+        this.getWord(this.data[0].wordIdx);
+      }
     });
   }
 
   public getWord(wordIdx: any) {
     this.common.httpCallGet('service/words/' + wordIdx, { wordIdx }).subscribe((res: any) => {
-      this.word = res.result;
+      if (res.resultCode === 'OK') {
+        this.word = res.result;
+      }
     });
   }
 

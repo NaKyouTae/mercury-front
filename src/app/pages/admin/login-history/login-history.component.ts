@@ -6,16 +6,16 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 @Component({
   selector: 'app-login-history',
   templateUrl: './login-history.component.html',
-  styleUrls: ['./login-history.component.css']
+  styleUrls: ['./login-history.component.css'],
 })
 export class LoginHistoryComponent implements OnInit {
   public data: any;
   public fields: any = [
     { title: '일렬번호', width: 10, field: 'idx' },
-    { title: '접속 일자', width: 50, field: 'accessDate' },
-    { title: '브라우저', width: 20, field: 'browser' },
-    { title: '사용자 명', width: 20, field: 'userName' },
-    { title: '사용자 일렬번호', width: 20, field: 'userIdx' },
+    { title: '접속 일자', width: 20, field: 'accessDate' },
+    { title: '브라우저', width: 50, field: 'browser' },
+    { title: '사용자 명', width: 10, field: 'userName' },
+    { title: '사용자 일렬번호', width: 10, field: 'userIdx' },
   ];
 
   public form = new FormGroup({
@@ -26,7 +26,7 @@ export class LoginHistoryComponent implements OnInit {
     userIdx: new FormControl({ value: '', disabled: true }, Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.onSearch();

@@ -18,7 +18,7 @@ export class WordHistoryComponent implements OnInit {
   public jwtUser = this.jwt.getJWTAccessKey('user');
   public historyForm: any = true;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.onSearch();
@@ -28,9 +28,9 @@ export class WordHistoryComponent implements OnInit {
     this.common.httpCallGet('service/' + this.type + '/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       if (res.result.length !== 0) {
         this.data = res.result;
+        this.tot = this.data.length;
         this.getWord(res.result[0].wordIdx);
       }
-      this.tot = this.data.length;
     });
   }
 

@@ -80,7 +80,7 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>제목</label>
-          <input type="text" formControlName="title" required/>
+          <input type="text" formControlName="title" />
           <label *ngIf="form.get('title') == undefined"> title is required. </label>
         </div>
         <div class="form-input-text">

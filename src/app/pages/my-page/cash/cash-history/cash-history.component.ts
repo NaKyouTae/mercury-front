@@ -11,15 +11,17 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 export class CashHistoryComponent implements OnInit {
   public data: any;
   public user: any = this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.onSearch();
   }
 
   public onSearch() {
-    this.common.httpCallGet('service/cashs/' + this.user.username, { userName: this.user.username }).subscribe((res: any) => {
-      this.data = res.result;
+    this.common.httpCallGet('service/cashs/users', { username: this.user.username }).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        this.data = res.result;
+      }
     });
   }
 

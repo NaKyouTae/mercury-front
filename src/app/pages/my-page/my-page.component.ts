@@ -27,7 +27,7 @@ export class MyPageComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService) {}
 
   ngOnInit() {
     this.search();
@@ -51,7 +51,7 @@ export class MyPageComponent implements OnInit {
       this.mileage = res.result.mileage;
     });
 
-    this.common.httpCallGet('service/newsletters/users/idxs', this.user.idx).subscribe((res: any) => {
+    this.common.httpCallGet('service/newsletters/users/idxs', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.result !== null) {
         this.unSubscribed = true;
       }
@@ -92,6 +92,9 @@ export class MyPageComponent implements OnInit {
     }
   }
 
+  // Store 적용 후
+  // 구독 해제 시  State를 이용한 뉴스레터 구독하기 버튼 활성화 및 비활성화 기능 필요
+  // ================================================================================= [구독하기 해제 기능]
   public onUnSubscribe() {
     if (window.confirm('구독을 해제하시겠습니까?')) {
       this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {

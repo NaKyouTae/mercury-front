@@ -7,24 +7,23 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-cash-request',
   templateUrl: './cash-request.component.html',
-  styleUrls: ['./cash-request.component.css']
+  styleUrls: ['./cash-request.component.css'],
 })
 export class CashRequestComponent implements OnInit {
   public userName: any = this.jwt.getJWTAccessKey('user') === undefined ? null : this.jwt.getJWTAccessKey('user').userName;
   public prevCash: any;
   public form = new FormGroup({
     userName: new FormControl('', Validators.required),
-    withDrawCash: new FormControl('', Validators.required)
+    withDrawCash: new FormControl('', Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.onSearch();
   }
 
-  public onSearch(e?: any) {
-    const data: any = this.formservice.formToData(e);
-    this.common.httpCallGet('service/cashs/' + data.idx, { idx: data.idx }).subscribe((res: any) => {
+  public onSearch() {
+    this.common.httpCallGet('service/cashs/users', { username: this.userName }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.prevCash = res.result.prevCash;
       }

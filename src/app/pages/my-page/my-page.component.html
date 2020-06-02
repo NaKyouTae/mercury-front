@@ -44,7 +44,7 @@
       </div>
       <div class="close" (click)="onClose(UpModal)">&times;</div>
       <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
-      <div class="close" (click)="onUnSubscribe()">뉴스레터 구독해제</div>
+      <div class="close" (click)="onUnSubscribe()" *ngIf="unSubscribed">뉴스레터 구독해제</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">

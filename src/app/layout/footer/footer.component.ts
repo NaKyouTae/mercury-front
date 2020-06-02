@@ -8,7 +8,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public subCheck: any = false;
+  public subCheck: any = true;
   public user: any = this.jwt.getJWTAccessKey('user');
   constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
@@ -17,9 +17,9 @@ export class FooterComponent implements OnInit {
   }
 
   public onSearch() {
-    this.common.httpCallGet('service/newsletters' + this.user.username, this.user.username).subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
-        this.subCheck = true;
+    this.common.httpCallGet('service/newsletters/users/idxs', { userIdx: this.user.idx }).subscribe((res: any) => {
+      if (res.result !== null) {
+        this.subCheck = false;
       }
     });
   }
@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
 
     this.common.httpCallPost('service/newsletters', params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        this.subCheck = true;
+        this.subCheck = false;
       }
     });
   }

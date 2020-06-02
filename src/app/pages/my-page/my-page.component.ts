@@ -19,6 +19,7 @@ export class MyPageComponent implements OnInit {
   public twoTot: any = 0;
   public total: any = 0;
   public mileage: any = 0;
+  public unSubscribed: any = false;
 
   public form = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -48,6 +49,12 @@ export class MyPageComponent implements OnInit {
     this.common.httpCallGet('service/users/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
       this.user = res.result;
       this.mileage = res.result.mileage;
+    });
+
+    this.common.httpCallGet('service/newsletters/users/idxs', this.user.idx).subscribe((res: any) => {
+      if (res.result !== null) {
+        this.unSubscribed = true;
+      }
     });
   }
 
@@ -87,9 +94,10 @@ export class MyPageComponent implements OnInit {
 
   public onUnSubscribe() {
     if (window.confirm('구독을 해제하시겠습니까?')) {
-      this.common.httpCallDelete('service/newsletter/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
+      this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert('구독 해제하였습니다.');
+          this.unSubscribed = false;
         }
       });
     } else {

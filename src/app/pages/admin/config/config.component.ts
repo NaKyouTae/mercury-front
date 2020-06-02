@@ -16,7 +16,7 @@ export class ConfigComponent implements OnInit {
   public onSearch() {
     this.common.httpCallGet('service/config').subscribe((res: any) => {
       this.data = res.result;
-    })
+    });
   }
 
 }

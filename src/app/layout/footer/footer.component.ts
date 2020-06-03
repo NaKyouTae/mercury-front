@@ -16,14 +16,13 @@ export class FooterComponent implements OnInit {
   public subCheck: any = true;
   public user: any = this.jwt.getJWTAccessKey('user');
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService) {}
 
   ngOnInit() {
     this.onSearch();
 
     // newsletters check 여부
     this.observable.sourceObv.subscribe((res: any) => {
-      alert('구독 : ' + res);
       this.subCheck = res;
     });
   }

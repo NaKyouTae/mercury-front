@@ -12,8 +12,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 export class NoticeComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: '분류', width: 10, field: 'type' },
-    { title: '제목', width: 70, field: 'title' },
+    { title: '제목', width: 80, field: 'title' },
     { title: '작성 일', width: 20, field: 'insertDate' },
   ];
   public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
@@ -24,7 +23,7 @@ export class NoticeComponent implements OnInit {
     title: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.search();

@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducer } from './core/store/common/common.reducer';
 import { environment } from 'src/environments/environment';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +24,10 @@ import { environment } from 'src/environments/environment';
     LayoutModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    DragDropModule,
     StoreModule.forRoot({ common: reducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
   providers: [
     CookieService,
@@ -35,4 +37,4 @@ import { environment } from 'src/environments/environment';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

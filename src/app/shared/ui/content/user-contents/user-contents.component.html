@@ -17,11 +17,11 @@
   </form>
 
   <form *ngIf="type == 'TWO'" [formGroup]="twoForm">
-    <div>
+    <div class="form-input-text">
       <p class="in-word-title">{{contents[0]}}</p>
       <input type="text" class="in-word-in" formControlName="contentOne" >
     </div>
-    <div>
+    <div class="form-input-text">
       <p class="in-word-title">{{contents[1]}}</p>
       <input type="text" class="in-word-in" formControlName="contentTwo" (keyup.enter)="inThree(threeForm.controls)">
       <div *ngIf="userCheck" class="insert-btn" (click)="inTwo(twoForm.controls)">등록</div>

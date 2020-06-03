@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +13,16 @@ import { FormsService } from 'src/app/shared/util/forms.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
 
   public username: string;
   public userDupleCheck: any = false;
   public userDupleConfirm: any = false;
   public password: string;
 
-  public auth: any;
+  public auth: any = null;
   public authConfirm: any = false;
-  public number: any;
+  public number: any = null;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
     rep: new FormControl('', Validators.required),
   });
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public onClick(template: TemplateRef<any>) {
     const dialogData = {
@@ -57,8 +58,8 @@ export class LoginComponent implements OnInit {
     };
 
     this.dialog.open(template, {
-      width: '400px',
-      height: '410px',
+      width: '500px',
+      height: '500px',
       data: dialogData,
     });
   }
@@ -77,19 +78,36 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public onClose() { }
+  public onClose() {
+    this.dialog.closeAll();
+    this.signUpForm.reset({
+      username: '',
+      email: '',
+      password: '',
+      rep: '',
+    });
+    this.auth = null;
+    this.authConfirm = false;
+    this.userDupleCheck = false;
+    this.userDupleConfirm = false;
+  }
 
   public onCreate(e: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('user/signup', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.dialog.closeAll();
         this.signUpForm.reset({
           username: '',
           email: '',
           password: '',
           rep: '',
         });
+        this.auth = null;
+        this.authConfirm = false;
+        this.userDupleCheck = false;
+        this.userDupleConfirm = false;
       }
     });
   }
@@ -98,6 +116,7 @@ export class LoginComponent implements OnInit {
     if (email === null) {
       return false;
     } else {
+      this.auth = null;
       this.common.httpCallGet('service/mails/check', { target: email }).subscribe((res: any) => {
         console.log('auth number : ' + res.result);
         this.auth = res.result;
@@ -106,17 +125,17 @@ export class LoginComponent implements OnInit {
   }
 
   public checkAuth() {
-    if (this.number !== this.auth) {
-      alert();
-    } else {
+    if (this.number === this.auth) {
       this.auth = null;
       this.authConfirm = true;
+    } else {
+      this.authConfirm = false;
     }
   }
 
-  public onDoubleCheck(username: string) {
+  public onDoubleCheck(userName: string) {
     this.userDupleConfirm = true;
-    this.common.httpCallGet('service/users/duplicate', username).subscribe((res: any) => {
+    this.common.httpCallGet('service/users/duplicate', { userName: userName }).subscribe((res: any) => {
       this.userDupleCheck = res.result;
     });
   }

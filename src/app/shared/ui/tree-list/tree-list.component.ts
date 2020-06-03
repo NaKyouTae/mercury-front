@@ -88,5 +88,6 @@ export class CustomTreeListComponent implements OnInit {
 
   public roleChange(e: any) {
     this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
+    this.form.controls.roleIdx.setValue(e.options[e.options.selectedIndex].value);
   }
 }

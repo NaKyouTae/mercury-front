@@ -52,9 +52,9 @@
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+          <!-- <select (change)="roleChange($event.target)">
             <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
-          </select>
+          </select> -->
         </div>
       </form>
     </div>
@@ -117,9 +117,9 @@
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+          <!-- <select (change)="roleChange($event.target)" formControlName="roleIdx">
             <option *ngFor="let role of roleData" value="{{ role.idx }}" label="{{role.roleName}}" [selected]="role.idx == form.controls.roleIdx ? true:false">{{ role.roleName }}</option>
-          </select>
+          </select> -->
         </div>
       </form>
     </div>

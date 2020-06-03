@@ -3,6 +3,12 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { Store } from '@ngrx/store';
+import { NewsLetterState } from 'src/app/core/store/common/common.model';
+import { inCommonNewsletter } from 'src/app/core/store/common/common.actions';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 
 @Component({
   selector: 'app-my-page',
@@ -19,7 +25,7 @@ export class MyPageComponent implements OnInit {
   public twoTot: any = 0;
   public total: any = 0;
   public mileage: any = 0;
-  public unSubscribed: any = false;
+  public subCheck: any = false;
 
   public form = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -27,10 +33,18 @@ export class MyPageComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService,
+    private jwt: JwtService,
+    private formservice: FormsService,
+    private observable: ObservableService) { }
 
   ngOnInit() {
     this.search();
+
+    // newsletters check 여부
+    this.observable.sourceObv.subscribe((res: any) => {
+      this.subCheck = res;
+    });
   }
 
   public search() {
@@ -53,7 +67,7 @@ export class MyPageComponent implements OnInit {
 
     this.common.httpCallGet('service/newsletters/users/idxs', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.result !== null) {
-        this.unSubscribed = true;
+        this.subCheck = true;
       }
     });
   }
@@ -100,7 +114,8 @@ export class MyPageComponent implements OnInit {
       this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert('구독 해제하였습니다.');
-          this.unSubscribed = false;
+          this.observable.checkNewsLetter(true);
+          this.subCheck = false;
         }
       });
     } else {

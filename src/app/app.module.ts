@@ -9,10 +9,24 @@ import { LoginInterceptorService } from './core/interceptors/login/login-interce
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptorService } from './core/interceptors/jwt/jwt-interceptor.service';
 import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { reducer } from './core/store/common/common.reducer';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    StoreModule.forRoot({ common: reducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
+  ],
   providers: [
     CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
@@ -21,4 +35,4 @@ import { LogoutInterceptorService } from './core/interceptors/logout/logout-inte
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

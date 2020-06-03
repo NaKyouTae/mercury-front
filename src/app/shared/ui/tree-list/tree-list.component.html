@@ -36,7 +36,7 @@
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+          <select (change)="roleChange($event.target)">
             <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
           </select>
         </div>

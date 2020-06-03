@@ -146,6 +146,8 @@ export class TreeListChildComponent implements OnInit {
   }
 
   public roleChange(e: any) {
+    console.log('test');
     this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
+    this.form.controls.roleIdx.setValue(e.options[e.options.selectedIndex].value);
   }
 }

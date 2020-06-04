@@ -10,4 +10,4 @@ import { RowModalDirectiveModule } from 'src/app/shared/directive/modal/row/row-
   exports: [TreeListChildComponent, RowModalDirective],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RowModalDirectiveModule],
 })
-export class TreeListChildModule { }
+export class TreeListChildModule {}

@@ -28,15 +28,13 @@ export class MyPageComponent implements OnInit {
   public subCheck: any = false;
 
   public form = new FormGroup({
+    idx: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService,
-    private jwt: JwtService,
-    private formservice: FormsService,
-    private observable: ObservableService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) {}
 
   ngOnInit() {
     this.search();
@@ -83,7 +81,7 @@ export class MyPageComponent implements OnInit {
   public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
 
-    this.common.httpCallPut('service/users/' + data.idx, data).subscribe((res: any) => {
+    this.common.httpCallPut('service/users', { user: data }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.user = res.result;
@@ -95,7 +93,7 @@ export class MyPageComponent implements OnInit {
     if (window.confirm('삭제 하시겠습니까?')) {
       const data: any = this.formservice.formToData(e);
 
-      this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {
+      this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           template.style.display = 'none';
           this.user = this.jwt.getJWTAccessKey('user');

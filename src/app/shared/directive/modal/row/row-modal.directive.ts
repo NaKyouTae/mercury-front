@@ -13,15 +13,15 @@ export class RowModalDirective {
     this.modal.style.display = 'block';
   }
 
-  @HostListener('document:click') public onDocumentClick() {
-    // tslint:disable-next-line: deprecation
-    const target: any = window.event.target;
+  // @HostListener('document:click') public onDocumentClick() {
+  //   // tslint:disable-next-line: deprecation
+  //   const target: any = window.event.target;
 
-    if (target.className === 'modal') {
-      target.style.display = 'none';
-    } else {
-      // tslint:disable-next-line: deprecation
-      window.event.stopPropagation();
-    }
-  }
+  //   if (target.className === 'modal') {
+  //     target.style.display = 'none';
+  //   } else {
+  //     // tslint:disable-next-line: deprecation
+  //     window.event.stopPropagation();
+  //   }
+  // }
 }

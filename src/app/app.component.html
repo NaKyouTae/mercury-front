@@ -27,7 +27,7 @@
   </div>
   <!-- Commands -->
   <div>
-    <button (click)="noNotice(d)">다시 보지 않음</button>
+    <button (click)="noNotice(d)" *ngIf="user">다시 보지 않음</button>
     <button (click)="onClose(Modal)">닫기</button>
   </div>
 

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FormsService {
-  constructor() {}
+  constructor() { }
 
   public formToData(form: any) {
     const data = {};
@@ -18,6 +18,17 @@ export class FormsService {
         data[item] = eval('form.' + item + '.value');
       }
     });
+
+    return data;
+  }
+
+  public initialForm(form: any) {
+    const data = {};
+
+    Object.keys(form).forEach((item) => {
+      data[item] = null;
+    });
+
     return data;
   }
 }

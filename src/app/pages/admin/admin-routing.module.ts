@@ -9,6 +9,7 @@ import { MailComponent } from './mail/mail.component';
 import { GradeComponent } from './grade/grade.component';
 import { LoginHistoryComponent } from './login-history/login-history.component';
 import { ConfigComponent } from './config/config.component';
+import { NoticeComponent } from './notice/notice.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'mail', component: MailComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginHistoryComponent, canActivate: [AdminGuard] },
   { path: 'config', component: ConfigComponent, canActivate: [AdminGuard] },
+  { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

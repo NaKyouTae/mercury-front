@@ -1,17 +1,20 @@
 <router-outlet></router-outlet>
 
 
-<div #Modal *ngFor="let d of data let index = index" 
-[ngStyle]="{left: (((index + 1) * 10)+'%')}"
-style="position: absolute;
-padding: 20px;
-top: 50%;
-background-color: white;
-border: 1px solid darkgray;
-border-radius: 10px;" cdkDrag>
+<div #Modal *ngFor="let d of data let index = index"
+    [ngStyle]="{left: (((index + 1) * 10)+'%')}"
+    style="position: absolute;
+            padding: 20px;
+            top: 50%;
+            background-color: white;
+            border: 1px solid darkgray;
+            border-radius: 10px;"
+    cdkDrag>
+  <!-- Title -->
   <div style="border-bottom: 1px solid darkgray;">
     <h2>{{d.title}}</h2>
   </div>
+  <!-- Contents -->
   <div>
     <div>
       <label>작성일</label>
@@ -22,7 +25,10 @@ border-radius: 10px;" cdkDrag>
       <div>{{d.content}}</div>
     </div>
   </div>
+  <!-- Commands -->
   <div>
+    <button (click)="noNotice(d)">다시 보지 않음</button>
     <button (click)="onClose(Modal)">닫기</button>
   </div>
+
 </div>

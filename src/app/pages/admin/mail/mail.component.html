@@ -21,7 +21,7 @@
 </div>
 
 <div #UpModal class="modal">
-  <div class="modal-content" style="width: 25%; text-align: left;">
+  <div class="modal-content" style="width: 40%; text-align: left;">
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>메일 템플릿 정보</h2>
@@ -57,7 +57,7 @@
         </div>
         <div class="form-input-text">
           <label>내용</label>
-          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+          <angular-editor [placeholder]="'Enter text here...'" formControlName="content" [config]="editorConfig"></angular-editor>
         </div>
       </form>
     </div>
@@ -68,7 +68,7 @@
   </div>
 </div>
 <div #CreModal class="modal">
-  <div class="modal-content" style="width: 25%; text-align: left;">
+  <div class="modal-content" style="width: 40%; text-align: left;">
     <div class="modal-header" *ngIf="newform != undefined">
       <div>
         <h2>메일 템플릿 추가</h2>

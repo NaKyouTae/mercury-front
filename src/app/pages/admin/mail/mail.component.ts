@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-mail',
@@ -18,12 +19,12 @@ export class MailComponent implements OnInit {
 
   public data: any;
   public fields: any = [
-    { title: '일렬 번호', width: 10, field: 'idx' },
-    { title: '종류', width: 15, field: 'type' },
-    { title: '내용', width: 15, field: 'content' },
-    { title: '생성 일자', width: 15, field: 'insertDate' },
-    { title: '사용 여부', width: 15, field: 'used' },
+    { title: '내용', width: 50, field: 'content' },
+    { title: '종류', width: 5, field: 'type' },
+    { title: '사용 여부', width: 5, field: 'used' },
     { title: '배치 명', width: 15, field: 'batchId' },
+    { title: '생성 일자', width: 15, field: 'insertDate' },
+    { title: '일렬 번호', width: 10, field: 'idx' },
   ];
   public newform = new FormGroup({
     type: new FormControl('', Validators.required),
@@ -41,6 +42,11 @@ export class MailComponent implements OnInit {
     used: new FormControl({ value: '', disabled: true }),
     batchId: new FormControl({ value: '' }, Validators.required),
   });
+
+  public editorConfig: AngularEditorConfig = {
+    height: '100px',
+    minHeight: '0',
+  };
 
   constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
@@ -65,17 +71,13 @@ export class MailComponent implements OnInit {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/mails/templates', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.onSearch();
         template.style.display = 'none';
-      }
 
-      this.newform.reset({
-        word: '',
-        wordGroup: '',
-        startDate: '00:00:00',
-        endDate: '23:59:59',
-      });
+        this.newform.reset(this.formservice.initialForm(this.newform));
+
+        alert(res.message);
+      }
     });
   }
 
@@ -83,9 +85,9 @@ export class MailComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/mails/templates/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.onSearch();
         template.style.display = 'none';
+        alert(res.message);
       }
     });
   }
@@ -94,9 +96,9 @@ export class MailComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/mails/templates/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.onSearch();
         template.style.display = 'none';
+        alert(res.message);
       }
     });
   }

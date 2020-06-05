@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/htt
   providedIn: 'root',
 })
 export class CommonHttpService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public httpCallGet(service, params?) {
     const header = new HttpHeaders({
@@ -26,10 +26,11 @@ export class CommonHttpService {
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
 
-    return this.http.post('http://localhost:8090/' + service, params, {
+    const options = {
       headers: header,
-      params,
-    });
+    };
+
+    return this.http.post('http://localhost:8090/' + service, params, options);
   }
 
   public httpCallPut(service, params?) {

@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   public search() {
-    this.common.httpCallGet('service/notices/pop', { type: 'y' }).subscribe((res: any) => {
+    this.common.httpCallGet('service/notices/pop', { type: 'y', username: this.user.username }).subscribe((res: any) => {
       this.data = res.result;
     });
   }

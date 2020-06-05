@@ -19,11 +19,10 @@ export class NoticeComponent implements OnInit {
   public form = new FormGroup({
     content: new FormControl('', Validators.required),
     insertDate: new FormControl('', Validators.required),
-    idx: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.search();

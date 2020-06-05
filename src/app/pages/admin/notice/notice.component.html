@@ -23,12 +23,12 @@
                     <input type="text" formControlName="title"/>
                 </div>
                 <div class="form-input-text">
-                    <label>종류</label>
+                    <label>공지 여부</label>
                     <div>
                       <label for="Y">Y</label>
-                      <input type="radio" name="y" formControlName="type"/>
+                      <input type="radio" formControlName="type" value="y" />
                       <label for="N">N</label>
-                      <input type="radio" name="n" formControlName="type"/>
+                      <input type="radio" formControlName="type" value="n" />
                     </div>
               </div>
                 <div class="form-input-text">
@@ -47,40 +47,39 @@
         </div>
     </div>
 </div>
-<div *ngIf="userRoles.includes('ROLE_ADMIN')">
-  <div #CreModal class="modal">
-      <div class="modal-content" style="width: 25%; text-align: left;">
-          <div class="modal-header" *ngIf="form != undefined">
-              <div>
-                  <h2>공지사항 생성</h2>
-              </div>
-              <div class="close" (click)="onClose(CreModal)">&times;</div>
-          </div>
-          <div *ngIf="form != undefined" >
-              <form [formGroup]="form">
-                  <div class="form-input-text">
-                      <label>종류</label>
-                      <div>
-                        <label for="Y">Y</label>
-                        <input type="radio" name="y" formControlName="type"/>
-                        <label for="N">N</label>
-                        <input type="radio" name="n" formControlName="type"/>
-                      </div>
-                  </div>
-                  <div class="form-input-text">
-                      <label>제목</label>
-                      <input type="text" formControlName="title"/>
-                  </div>
-                  <div class="form-input-text">
-                      <label>내용</label>
-                      <input type="text" formControlName="content"/>
-                  </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-              <button (click)="onClose(CreModal)">취소</button>
-              <button (click)="onCreate(form.controls, CreModal)" [disabled]="!form.valid">생성</button>
-          </div>
-      </div>
-  </div>
+
+<div #CreModal class="modal">
+    <div class="modal-content" style="width: 25%; text-align: left;">
+        <div class="modal-header" *ngIf="form != undefined">
+            <div>
+                <h2>공지사항 생성</h2>
+            </div>
+            <div class="close" (click)="onClose(CreModal)">&times;</div>
+        </div>
+        <div *ngIf="form != undefined" >
+            <form [formGroup]="form">
+                <div class="form-input-text">
+                    <label>공지 여부</label>
+                    <div>
+                      <label for="Y">Y</label>
+                      <input type="radio" formControlName="type" value="y" />
+                      <label for="N">N</label>
+                      <input type="radio" formControlName="type" value="n" />
+                    </div>
+                </div>
+                <div class="form-input-text">
+                    <label>제목</label>
+                    <input type="text" formControlName="title"/>
+                </div>
+                <div class="form-input-text">
+                    <label>내용</label>
+                    <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button (click)="onClose(CreModal)">취소</button>
+            <button (click)="onCreate(form.controls, CreModal)" [disabled]="!form.valid">생성</button>
+        </div>
+    </div>
 </div>

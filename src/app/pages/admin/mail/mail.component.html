@@ -44,7 +44,7 @@
           <input type="text" formControlName="insertDate" />
         </div>
         <div class="form-input-text">
-          <label>종류</label>
+          <label>사용 여부</label>
           <input type="text" formControlName="type" />
         </div>
         <div class="form-input-text">
@@ -57,7 +57,7 @@
         </div>
         <div class="form-input-text">
           <label>내용</label>
-          <angular-editor [placeholder]="'Enter text here...'" formControlName="content" [config]="editorConfig"></angular-editor>
+          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
         </div>
       </form>
     </div>
@@ -78,7 +78,7 @@
     <div *ngIf="newform != undefined" >
       <form [formGroup]="newform">
         <div class="form-input-text">
-          <label>종류</label>
+          <label>사용 여부</label>
           <input type="text" formControlName="type" />
         </div>
         <div class="form-input-text">

@@ -19,7 +19,7 @@ export class MailComponent implements OnInit {
 
   public data: any;
   public fields: any = [
-    { title: '내용', width: 50, field: 'content' },
+    { title: 'title', width: 50, field: 'title' },
     { title: '종류', width: 5, field: 'type' },
     { title: '사용 여부', width: 5, field: 'used' },
     { title: '배치 명', width: 15, field: 'batchId' },

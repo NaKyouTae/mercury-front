@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Template</title>
+
+    <link href="../assets/css/button.css" rel="stylesheet">
+    <link href="../assets/css/input.css" rel="stylesheet">
+    <link href="../assets/css/select.css" rel="stylesheet">
+    <link href="../assets/css/modal.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      function onSelectTap(e){
+        const types = ["#button", "#input", "#select"];
+
+        for(let i = 0; i < types.length; i++){
+          if(e == types[i]){
+            $(types[i]).show();
+          }else{
+            if( $(types[i]).css("display") != "none"){
+              $(types[i]).hide();
+            }
+          }
+        }
+      }
+
+      function onSelectChange(e){
+        const parent = e.parentElement;
+        const selected = e.selectedOptions[0].text;
+        parent.querySelector('label').textContent = selected;
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Template</h2>
+    <div>
+      <li onclick="onSelectTap('#button');" style="padding: 10px; border: 1px solid darkgray; display: inline-block;">Button</li>
+      <li onclick="onSelectTap('#input');" style="padding: 10px; border: 1px solid darkgray; display: inline-block;">Input</li>
+      <li onclick="onSelectTap('#select');" style="padding: 10px; border: 1px solid darkgray; display: inline-block;">Select</li>
+    </div>
+    <div id="button">
+      <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
+        <h3>Default Command Button</h3>
+        <p>
+          <h4>Class Name</h4>
+          <h5>
+            <ul>
+              <li>[btn] = cursor: pointer; background-color:#ffffff; border: 1px solid darkgrey; border-radius: 5px;</li>
+              <li>[btn:hover] = background-color: #100efb; color: #ffffff; border: 1px solid white;</li>
+              <li>[command-btn] = margin-left: 10px; padding: 4px 8px;</li>
+            </ul>
+          </h5>
+        </p>
+        <h4>Results</h4>
+        <div>
+          <button class="btn command-btn">생성</button>
+          <button class="btn command-btn">수정</button>
+          <button class="btn command-btn">삭제</button>
+        </div>
+        <h4>Example</h4>
+        <pre>
+          button class="btn command-btn" 생성 /button
+          button class="btn command-btn" 수정 /button
+          button class="btn command-btn" 삭제 /button
+        </pre>
+      </div>
+      <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
+        <h3>Primary Button</h3>
+        <p>
+          <h4>Class Name</h4>
+          <h5>
+            <ul>
+              <li>[primary-btn] = cursor: pointer; background-color: #100efb; color: #ffffff; border: 1px solid white; border-radius: 5px;</li>
+              <li>[command-btn] = margin-left: 10px; padding: 4px 8px;</li>
+            </ul>
+          </h5>
+        </p>
+        <h4>Results</h4>
+        <div>
+          <button class="command-btn primary-btn">생성</button>
+          <button class="command-btn primary-btn">수정</button>
+          <button class="command-btn primary-btn">삭제</button>
+        </div>
+        <h4>Example</h4>
+        <pre>
+          button class="command-btn primary-btn" 생성 /button
+          button class="command-btn primary-btn" 수정 /button
+          button class="command-btn primary-btn" 삭제 /button
+        </pre>
+      </div>
+    </div>
+    <div id="input" style="display: none;">
+      <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
+        <h3>Default Input</h3>
+        <p>
+          <h4>Class Name</h4>
+          <h5>
+            <ul>
+              <li>[form-input-text] = width: 100%; margin-bottom: 10px; display: inline-block;</li>
+              <li>[form-input-text > label:first-child] = width: 18%; display: inline-block;</li>
+              <li>[form-input-text > input] = width: 80%; display: inline-block; border-radius: 5px; border: 1px solid darkgray; padding: 7px 5px;</li>
+            </ul>
+          </h5>
+        </p>
+        <h4>Results</h4>
+        <div class="form-input-text">
+          <label>이름</label>
+          <input type="text">
+        </div>
+        <h4>Example</h4>
+        <pre>
+          div class="form-input-text"
+            label 이름 /label
+            input type="text"
+          div
+        </pre>
+      </div>
+    </div>
+    <div id="select" style="display: none;">
+      <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
+        <h3>Default Select <span style="color: red;">[검토 필요]</span></h3>
+        <p>
+          <h4>Class Name</h4>
+          <h5>
+            <ul>
+              <li>[form-select] = width: 100%; margin-bottom: 10px;</li>
+              <li>[form-select > label:first-child] = width: 20%; display: inline-block;</li>
+              <li>[form-select > select] = width: 80%; display: inline-block; border-radius: 5px; border: 1px solid darkgray; padding: 7px 0px;</li>
+            </ul>
+          </h5>
+        </p>
+        <h4>Results</h4>
+        <div class="form-select">
+          <label for="cuselect">roleName1</label>
+          <select id="cuselect" onchange="onSelectChange(this);">
+            <option>roleName1</option>
+            <option>roleName2</option>
+            <option>roleName3</option>
+            <option>roleName4</option>
+          </select>
+        </div>
+        <h4>Example</h4>
+        <pre>
+          div class="form-select">
+            select
+              option roleName /option
+            /select
+          /div
+        </pre>
+      </div>
+    </div>
+  </body>
+</html>

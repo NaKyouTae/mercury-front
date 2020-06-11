@@ -12,7 +12,7 @@ export class AppComponent {
   public title: any = '천하제일 엔행시 대회';
   public data: any;
   public user: any = this.jwt.getJWTAccessKey('user') === null ? null : this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService) {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
@@ -20,7 +20,8 @@ export class AppComponent {
   }
 
   public search() {
-    this.common.httpCallGet('service/notices/pop', { type: 'y', username: this.user.username }).subscribe((res: any) => {
+    // tslint:disable-next-line: max-line-length
+    this.common.httpCallGet('service/notices/pop', { type: 'y', username: this.user === null ? null : this.user.username }).subscribe((res: any) => {
       this.data = res.result;
     });
   }

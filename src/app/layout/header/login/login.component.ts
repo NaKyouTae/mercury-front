@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.dialog.open(template, {
-      width: '500px',
+      width: '550px',
       height: '500px',
       data: dialogData,
     });
@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
 
   public onDoubleCheck(userName: string) {
     this.userDupleConfirm = true;
-    this.common.httpCallGet('service/users/duplicate', { userName: userName }).subscribe((res: any) => {
+    this.common.httpCallGet('service/users/duplicate', { userName }).subscribe((res: any) => {
       this.userDupleCheck = res.result;
     });
   }

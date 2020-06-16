@@ -1,8 +1,12 @@
 .btn {
-  cursor: pointer; background-color:#ffffff; border: 1px solid darkgrey; border-radius: 5px;
+  cursor: pointer;
 }
 
-.btn:hover {
+.command-btn {
+  margin-left: 10px; padding: 4px 8px; background-color:#ffffff; border: 1px solid darkgrey; border-radius: 5px;
+}
+
+.command-btn:hover {
   background-color: #100efb; color: #ffffff; border: 1px solid white;
 }
 
@@ -23,9 +27,6 @@
   font-size: 18px;
 } */
 
-.command-btn {
-  margin-left: 10px; padding: 4px 8px;
-}
 
 
 .love-btn{

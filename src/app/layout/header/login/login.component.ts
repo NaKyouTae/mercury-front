@@ -2,18 +2,38 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { Router } from '@angular/router';
-import { HttpClient, HttpResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
-import { templateJitUrl } from '@angular/compiler';
+import { trigger, style, state, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('dragToggle', [
+      state(
+        'login',
+        style({
+          transform: 'translateX(100%)',
+        })
+      ),
+      state(
+        'sign',
+        style({
+          transform: 'translateX(0%)',
+        })
+      ),
+      transition('* => *', animate('600ms ease-out')),
+    ]),
+  ],
 })
 export class LoginComponent implements OnInit {
   constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
+  public front: any = false;
+  get widthToggle() {
+    return this.front ? 'login' : 'sign';
+  }
 
   public username: string;
   public userDupleCheck: any = false;
@@ -37,7 +57,9 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {}
-
+  public dragFront() {
+    this.front = !this.front;
+  }
   public onClick(template: TemplateRef<any>) {
     const dialogData = {
       username: this.username,
@@ -45,8 +67,8 @@ export class LoginComponent implements OnInit {
     };
 
     this.dialog.open(template, {
-      width: '400px',
-      height: '260px',
+      width: '800px',
+      height: '600px',
       data: dialogData,
     });
   }
@@ -58,8 +80,8 @@ export class LoginComponent implements OnInit {
     };
 
     this.dialog.open(template, {
-      width: '550px',
-      height: '500px',
+      width: '800px',
+      height: '600px',
       data: dialogData,
     });
   }

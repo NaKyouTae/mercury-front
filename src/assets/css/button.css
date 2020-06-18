@@ -37,3 +37,14 @@
 .tap-btn {
   display: inline-block; padding: 10px; margin: 10px 10px 10px 0px; border: 1px solid darkgray;
 }
+
+.user-loin-btn{
+  width: auto;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #100efb;
+  border: 1px solid #100efb;
+  border-radius: 50px;
+}

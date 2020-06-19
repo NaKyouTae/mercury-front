@@ -13,13 +13,13 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
   animations: [
     trigger('dragToggle', [
       state(
-        'login',
+        'sign',
         style({
-          transform: 'translateX(100%)',
+          transform: 'translateX(-100%)',
         })
       ),
       state(
-        'sign',
+        'login',
         style({
           transform: 'translateX(0%)',
         })
@@ -31,9 +31,7 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
 export class LoginComponent implements OnInit {
   constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
   public front: any = false;
-  get widthToggle() {
-    return this.front ? 'login' : 'sign';
-  }
+  public widthToggle: any = this.front ? 'sign' : 'login';
 
   public username: string;
   public userDupleCheck: any = false;
@@ -57,18 +55,25 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {}
+
   public dragFront() {
     this.front = !this.front;
+    this.widthToggle = this.front ? 'sign' : 'login';
   }
+
   public onClick(template: TemplateRef<any>) {
     const dialogData = {
       username: this.username,
       pw: this.password,
     };
 
+    this.front = false;
+    this.widthToggle = 'login';
+
     this.dialog.open(template, {
       width: '800px',
-      height: '600px',
+      height: '800px',
+      panelClass: 'my-padding-dialog',
       data: dialogData,
     });
   }
@@ -79,9 +84,13 @@ export class LoginComponent implements OnInit {
       pw: this.password,
     };
 
+    this.front = false;
+    // this.widthToggle = 'sign';
+
     this.dialog.open(template, {
       width: '800px',
-      height: '600px',
+      height: '800px',
+      panelClass: 'my-padding-dialog',
       data: dialogData,
     });
   }

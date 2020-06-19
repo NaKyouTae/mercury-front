@@ -1,10 +1,31 @@
+::ng-deep mat-dialog-container{
+  padding: 0px !important;
+}
+
 .login-content {
   display: inline-block;
   width: calc(50% - 20px);
-  height: 100%;
+  height: calc(100% - 20px);
   vertical-align: top;
-  padding: 0px 10px;
+  padding: 10px;
 }
+
+.login-input-text{
+  text-align: left;
+  padding-left: 10%;
+  margin: 20px 0px;
+}
+
+.login-input-text > label{
+  display: block;
+  font-weight: bold;
+}
+.login-input-text > input{
+  margin-top: 10px;
+  padding: 14px 10px;
+  width: 80%;
+}
+
 
 /* .login-content > div:last-child > div > input {
   width: 100%;

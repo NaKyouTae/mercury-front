@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
     this.dialog.open(template, {
       width: '800px',
-      height: '800px',
+      height: '720px',
       panelClass: 'my-padding-dialog',
       data: dialogData,
     });
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
 
     this.dialog.open(template, {
       width: '800px',
-      height: '800px',
+      height: '720px',
       panelClass: 'my-padding-dialog',
       data: dialogData,
     });

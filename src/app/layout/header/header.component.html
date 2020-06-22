@@ -1,11 +1,8 @@
 <div class="page-header">
     <div class="page-header-content content-width">
         <div class="header-menu">
-            <div>
-                <div>LOGO</div>
-            </div>
-            <div>
-                <app-route></app-route>
+            <div style="color: #100efb; font-weight: bold;">
+                <div>엔.</div>
             </div>
             <div>
                 <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
@@ -13,6 +10,9 @@
                 <div *ngIf="userCheck" style="cursor: pointer;" routerLink="/my">나의 <span style="color: #100efb;">엔</span>행시</div>
                 <div *ngIf="userCheck">{{userName}} 님</div>
             </div>
+        </div>
+        <div>
+            <app-route></app-route>
         </div>
         <div class="header-content">
             <div class="header-title" (click)="onClick()">

@@ -2,7 +2,6 @@
     .page-header{
         width: 100%;
         height: auto;
-        background-color: #f8f8f8;
     }
     
     .page-header-content {
@@ -11,12 +10,13 @@
     .header-menu {
         width: 100%;
         font-size: 15px;
+        padding: 0px 0px 20px 0px;
     }
     
     .header-menu > div {
         display: inline-block;
         padding: 0px 20px;
-        width: calc((100% / 3) - 40px);
+        width: calc((100% / 2) - 40px);
     }
 
     .header-menu > div:last-child{

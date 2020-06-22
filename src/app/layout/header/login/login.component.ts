@@ -24,7 +24,19 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
           transform: 'translateX(0%)',
         })
       ),
-      transition('* => *', animate('600ms ease-out')),
+      state(
+        'upSign',
+        style({
+          transform: 'translateX(0%)',
+        })
+      ),
+      state(
+        'upLogin',
+        style({
+          transform: 'translateX(100%)',
+        })
+      ),
+      transition('* => *', animate('500ms ease-out')),
     ]),
   ],
 })
@@ -32,6 +44,7 @@ export class LoginComponent implements OnInit {
   constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
+  public upToggle: any = !this.front ? 'upSign' : 'upLogin';
 
   public username: string;
   public userDupleCheck: any = false;
@@ -59,6 +72,7 @@ export class LoginComponent implements OnInit {
   public dragFront() {
     this.front = !this.front;
     this.widthToggle = this.front ? 'sign' : 'login';
+    this.upToggle = !this.front ? 'upSign' : 'upLogin';
   }
 
   public onClick(template: TemplateRef<any>) {
@@ -126,7 +140,7 @@ export class LoginComponent implements OnInit {
   public onCreate(e: any) {
     const data = this.formservice.formToData(e);
 
-    this.common.httpCallPost('user/signup', data).subscribe((res: any) => {
+    this.common.httpCallPost('user/signup', { signup: data }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.dialog.closeAll();
         this.signUpForm.reset({

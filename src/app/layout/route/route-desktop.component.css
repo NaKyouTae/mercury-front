@@ -3,16 +3,18 @@
   .page-route {
     width: 100%;
     text-align: center;
-    background-color: black;
+    background-color: #acb0ff33;
+    padding: 20px 0px;
   }
+
   .lay-header {
     display: inline-block;
-    padding: 0px 10px;
+    padding: 0px 40px;
   }
 
   .route-link {
     text-decoration: none;
-    color: white;
+    color: black;
   }
 
   .child-pane {

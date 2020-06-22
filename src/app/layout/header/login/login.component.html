@@ -4,10 +4,17 @@
 <ng-template #LoginContent>
   <div style="height: 100%; vertical-align: top; position: relative;">
     <div [@dragToggle]="widthToggle" style="height: 100%; vertical-align: top; position: absolute; width: 50%; margin-left: 50%;">
-      <div class="login-content" style="background-color: white; text-align: center; background-color: darkgrey; width: 95%;">
-        <div style="font-size: 60px; font-weight: bold;">
+      <div class="login-content" style="background-color: white; text-align: center; background-color: #c2d0f5; width: 95%;">
+        <div style="font-size: 60px; font-weight: bold; margin-top: 50px;">
           <div>천하제일</div>
           <div><span style="color: #100efb;">엔</span>행시 대회<span style="color: #100efb;">.</span></div>
+        </div>
+        <div style="padding: 20% 0px;">
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
         </div>
         <div>
           <button *ngIf="!front" class="btn user-loin-btn" (click)="dragFront()">회원가입</button>
@@ -16,7 +23,7 @@
       </div>
     </div>
     <div class="login-content" style="text-align: center;">
-      <h1 style="margin-top: 200px;">로그인</h1>
+      <h1 style="margin-top: 180px;">로그인</h1>
       <p style="margin-top: 20px;">당신의 창의력을 보여주세요~</p>
       <div [formGroup]="logInForm">
         <div class="login-input-text">
@@ -92,11 +99,18 @@
 
 <ng-template #SignUpContent>
   <div style="height: 100%; vertical-align: top; position: relative;">
-    <div [@dragToggle]="widthToggle" style="height: 100%; vertical-align: top; position: absolute; width: 50%;">
-      <div class="login-content" style="background-color: white; text-align: center; background-color: darkgrey; width: 95%;">
-        <div style="font-size: 60px; font-weight: bold;">
+    <div [@dragToggle]="upToggle" style="height: 100%; vertical-align: top; position: absolute; width: 50%;">
+      <div class="login-content" style="background-color: white; text-align: center; background-color: #c2d0f5; width: 95%;">
+        <div style="font-size: 60px; font-weight: bold; margin-top: 50px;">
           <div>천하제일</div>
           <div><span style="color: #100efb;">엔</span>행시 대회<span style="color: #100efb;">.</span></div>
+        </div>
+        <div style="padding: 20% 0px;">
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
+          <p>당신의 창의력을 펼쳐보세요~</p>
         </div>
         <div>
           <button *ngIf="front" class="btn user-loin-btn" (click)="dragFront()">회원가입</button>
@@ -105,7 +119,7 @@
       </div>
     </div>
     <div class="login-content" style="text-align: center;">
-      <h1 style="margin-top: 170px;">로그인</h1>
+      <h1 style="margin-top: 180px;">로그인</h1>
       <p style="margin-top: 20px;">당신의 창의력을 보여주세요~</p>
       <div [formGroup]="logInForm">
         <div class="login-input-text">
@@ -128,7 +142,7 @@
       </div>
     </div>
     <div *ngIf="signUpForm != undefined" class="login-content" style="text-align: center;">
-      <h1 style="margin-top: 30px;">회원 가입</h1>
+      <h1 style="margin-top: 50px;">회원 가입</h1>
       <form [formGroup]="signUpForm">
         <div class="login-input-text">
           <label style="display: inline-block;">

@@ -13,9 +13,9 @@ export class HeaderComponent implements OnInit {
   public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
   public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '사용자';
 
-  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) {}
+  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public onClick() {
     this.router.navigateByUrl('/three');
@@ -33,4 +33,17 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
+
+  public kakaoByLogout() {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      this.common.httpCallGet('oauth/kakao/logout', { acess: this.jwt.getJWTAccess() }).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+
+        }
+      });
+    } else {
+      return false;
+    }
+  }
+
 }

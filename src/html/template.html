@@ -6,12 +6,13 @@
     <link href="../assets/css/input.css" rel="stylesheet">
     <link href="../assets/css/select.css" rel="stylesheet">
     <link href="../assets/css/modal.css" rel="stylesheet">
+    <link href="../app/shared/ui/grid/paging/paging.component.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
       function onSelectTap(e){
-        const types = ["#button", "#input", "#select"];
+        const types = ["#button", "#input", "#select", "#gridPaging"];
 
         for(let i = 0; i < types.length; i++){
           if(e == types[i]){
@@ -32,11 +33,15 @@
     </script>
   </head>
   <body>
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code">
+      <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
+    </a>
     <h2>Template</h2>
     <div>
       <li onclick="onSelectTap('#button');" style="cursor: pointer; padding: 10px; border: 1px solid darkgray; display: inline-block;">Button</li>
       <li onclick="onSelectTap('#input');"  style="cursor: pointer; padding: 10px; border: 1px solid darkgray; display: inline-block;">Input</li>
       <li onclick="onSelectTap('#select');" style="cursor: pointer; padding: 10px; border: 1px solid darkgray; display: inline-block;">Select</li>
+      <li onclick="onSelectTap('#gridPaging');" style="cursor: pointer; padding: 10px; border: 1px solid darkgray; display: inline-block;">Grid Paging</li>
     </div>
     <div id="button">
       <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
@@ -145,6 +150,90 @@
             select
               option roleName /option
             /select
+          /div
+        </pre>
+      </div>
+    </div>
+    <div id="gridPaging" style="display: none;">
+      <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">
+        <h3>Grid Paging</span></h3>
+        <p>
+          <h4>Class Name</h4>
+          <h5>
+            <ul>
+              <li>[page-info] = width: 100%; padding-top: 10px; border-top: 1px solid darkgray;</li>
+              <li>[page-info > div:first-child] = display: inline-block;</li>
+              <li>[page-info > div:last-child] = display: inline-block; margin-left: 30px;</li>
+              <li>[page-count-group > div] = display: inline-block;</li>
+              <li>[page-count] = display: inline-block; cursor: pointer; padding: 10px; border-top: 1px solid darkgray; border-bottom: 1px solid darkgray; border-left: 1px solid darkgray;</li>
+              <li>[page-count-btn-group] = display: inline-block; margin: 0px 10px;</li>
+              <li>[page-count-btn] = display: inline-block; border: 1px solid darkgray; padding: 10px; cursor: pointer;</li>
+            </ul>
+          </h5>
+        </p>
+        <h4>Results</h4>
+        <div class="page-info">
+          <div class="page-count-group">
+            <div class="page-count-btn-group">
+              <div class="page-count-btn">&#x027EA;</div>
+              <div class="page-count-btn">&#x027E8;</div>
+            </div>
+            <div>
+              <div class="page-count">1</div>
+              <div class="page-count">2</div>
+              <div class="page-count">3</div>
+              <div class="page-count">4</div>
+              <div class="page-count">5</div>
+              <div class="page-count">6</div>
+              <div class="page-count">7</div>
+              <div class="page-count">8</div>
+              <div class="page-count">9</div>
+              <div class="page-count">10</div>
+            </div>
+            <div class="page-count-btn-group">
+              <div class="page-count-btn">&#x027E9;</div>
+              <div class="page-count-btn">&#x027EB;</div>
+            </div>
+            <div>
+              <select class="page-select">
+                <option selected="true">10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div>1 - 10 of 100</div>
+          </div>
+        </div>
+        <h4>Example</h4>
+        <pre>
+          div class="page-info"
+            div class="page-count-group"
+              div class="page-count-btn-group"
+                div class="page-count-btn" &#x027EA; /div
+                div class="page-count-btn" &#x027E8; /div
+              /div>
+              div class="page-count" 1 /div
+              div class="page-count-btn-group"
+                div class="page-count-btn" &#x027E9; /div
+                div class="page-count-btn" &#x027EB; /div
+              /div
+              div
+                select
+                  option selected="true" 10 /option
+                  option 20 /option
+                  option 30 /option
+                  option 40 /option
+                  option 50 /option
+                /select
+              /div
+            /div
+            div
+              div 1 - 10 of 100 /div
+            /div
           /div
         </pre>
       </div>

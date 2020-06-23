@@ -32,7 +32,7 @@
           <div class="page-count-btn" (click)="endPage()">&#x027EB;</div>
         </div>
         <div>
-          <select (change)="reSize($event.target.value)">
+          <select (change)="reSize($event.target.value)" class="page-select">
             <option *ngFor="let s of sizeList" [selected]="s == size" [value]="s">{{ s }}</option>
           </select>
         </div>

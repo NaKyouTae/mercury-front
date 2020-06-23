@@ -41,7 +41,7 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
   public upToggle: any = !this.front ? 'upSign' : 'upLogin';
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
     rep: new FormControl('', Validators.required),
   });
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public dragFront() {
     this.front = !this.front;
@@ -183,5 +183,10 @@ export class LoginComponent implements OnInit {
     this.common.httpCallGet('service/users/duplicate', { userName }).subscribe((res: any) => {
       this.userDupleCheck = res.result;
     });
+  }
+
+  public kakaoLogin() {
+    // tslint:disable-next-line: max-line-length
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code';
   }
 }

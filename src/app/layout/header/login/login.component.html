@@ -40,6 +40,15 @@
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">계정 찾기</a>
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">비밀번호 찾기</a>
         </div>
+        <div>
+          <!-- <a href="https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code">
+            <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
+          </a> -->
+          <a (click)="kakaoLogin()">
+            <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
+          </a>
+
+        </div>
         <div style="text-align: center;">
           <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="login(logInForm.controls)" [disabled]="!logInForm.valid">로그인</button>
         </div>
@@ -54,7 +63,7 @@
           </label>
           <button class="btn command-btn" style="display: inline-block;" (click)="onDoubleCheck(signUpForm.controls.username.value)">중복확인</button>
           <input type="text" formControlName="username" />
-          
+
           <span *ngIf="signUpForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
           <span *ngIf="signUpForm.controls.username.value != '' && signUpForm.controls.username.value != null && !userDupleConfirm" style="color:red; display: block; font-size: 12px;">중복 확인이 필요합니다.</span>
           <span *ngIf="userDupleCheck && userDupleConfirm" style="color:red; display: block; font-size: 12px;">사용중인 이름입니다.</span>
@@ -150,7 +159,7 @@
           </label>
           <button class="btn command-btn" style="display: inline-block;" (click)="onDoubleCheck(signUpForm.controls.username.value)">중복확인</button>
           <input type="text" formControlName="username" />
-          
+
           <span *ngIf="signUpForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
           <span *ngIf="signUpForm.controls.username.value != '' && signUpForm.controls.username.value != null && !userDupleConfirm" style="color:red; display: block; font-size: 12px;">중복 확인이 필요합니다.</span>
           <span *ngIf="userDupleCheck && userDupleConfirm" style="color:red; display: block; font-size: 12px;">사용중인 이름입니다.</span>

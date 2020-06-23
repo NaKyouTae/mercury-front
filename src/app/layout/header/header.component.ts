@@ -38,7 +38,8 @@ export class HeaderComponent implements OnInit {
     if (window.confirm('로그아웃 하시겠습니까?')) {
       this.common.httpCallGet('oauth/kakao/logout', { acess: this.jwt.getJWTAccess() }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
-
+          this.router.navigateByUrl('/three');
+          window.location.reload();
         }
       });
     } else {

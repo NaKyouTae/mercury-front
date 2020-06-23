@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="login-content" style="text-align: center;">
-      <h1 style="margin-top: 180px;">로그인</h1>
+      <h1 style="margin-top: 150px;">로그인</h1>
       <p style="margin-top: 20px;">당신의 창의력을 보여주세요~</p>
       <div [formGroup]="logInForm">
         <div class="login-input-text">
@@ -40,11 +40,11 @@
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">계정 찾기</a>
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">비밀번호 찾기</a>
         </div>
-        <div>
+        <div style="padding:0px 0px 20px 0px;">
           <!-- <a href="https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code">
             <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
           </a> -->
-          <a (click)="kakaoLogin()">
+          <a (click)="kakaoLogin()" class="btn">
             <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
           </a>
 

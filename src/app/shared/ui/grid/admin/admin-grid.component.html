@@ -22,9 +22,7 @@
         <div
           *ngFor="let p of pageList; let pageIdx = index"
           class="pageCount_{{ pageIdx + 1 }} page-count"
-          (click)="changePage(pageIdx + 1)"
-          [ngStyle]="{ 'border-right': pageIdx + 1 == pageList.length ? '1px solid darkgray' : '', 'background-color': pageIdx == 0 ? '#e5e5e5' : '' }"
-        >
+          (click)="changePage(pageIdx + 1)">
           {{ pageIdx + 1 }}
         </div>
         <div class="page-count-btn-group">

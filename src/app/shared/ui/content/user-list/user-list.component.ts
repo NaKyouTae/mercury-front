@@ -10,7 +10,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
-  @Input('data') public datas: any = new Array(2);
+  @Input('data') public datas: any = new Array();
   // tslint:disable-next-line: no-input-rename
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
@@ -31,24 +31,34 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
-    this.checkLove();
+    if (this.datas !== null) {
+      this.checkLove();
+    }
   }
 
   public getThreeList() {
     this.common.httpCallGet('service/three/words').subscribe((res: any) => {
-      this.datas = res.result;
-      this.checkLove();
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.datas = res.result;
+        this.checkLove();
+      } else {
+        this.datas = new Array();
+      }
     });
   }
 
   public getTwoList() {
     this.common.httpCallGet('service/twice/words').subscribe((res: any) => {
-      this.datas = res.result;
-      this.checkLove();
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.datas = res.result;
+        this.checkLove();
+      } else {
+        this.datas = new Array();
+      }
     });
   }
 
@@ -85,13 +95,21 @@ export class UserListComponent implements OnInit {
   public orPopular(type: string) {
     if (type === 'THREE') {
       this.common.httpCallGet('service/three/popular').subscribe((res: any) => {
-        this.datas = res.result;
-        this.checkLove();
+        if (res.resultCode === 'OK' && res.result !== null) {
+          this.datas = res.result;
+          this.checkLove();
+        } else {
+          this.datas = new Array();
+        }
       });
     } else if (type === 'TWO') {
       this.common.httpCallGet('service/twice/popular').subscribe((res: any) => {
-        this.datas = res.result;
-        this.checkLove();
+        if (res.resultCode === 'OK' && res.result !== null) {
+          this.datas = res.result;
+          this.checkLove();
+        } else {
+          this.datas = new Array();
+        }
       });
     }
     this.btnCheck = false;

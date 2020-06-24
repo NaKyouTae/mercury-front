@@ -14,13 +14,22 @@ export class TwoComponent implements OnInit {
 
   ngOnInit() {
     this.common.httpCallGet('service/words/group', { group: 'TWO' }).subscribe((res: any) => {
-      this.words.push(res.result.word.substring(0, 1));
-      this.words.push(res.result.word.substring(1, 2));
-      this.description = res.result.description;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.words.push(res.result.word.substring(0, 1));
+        this.words.push(res.result.word.substring(1, 2));
+        this.description = res.result.description;
+      } else {
+        this.words = new Array();
+        this.description = 'Result Null';
+      }
     });
 
     this.common.httpCallGet('service/twice/words').subscribe((res: any) => {
-      this.datas = res.result;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.datas = res.result;
+      } else {
+        this.datas = new Array();
+      }
     });
   }
 }

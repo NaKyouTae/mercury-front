@@ -4,10 +4,16 @@
         <div style="border:1px solid darkgray; border-radius:50%; height: 200px; width: 200px; margin: -150px auto 0px auto; background-color: white;"></div>
       </div> -->
       <div style="text-align: center; margin-top: 40px;">
-        <div style="font-weight: bold; font-size: 30px;">
-          <div></div>{{user.username}}
-          <div>
-            <button BtnModal (click)="onClick(user)" [modal]="UpModal">수정</button>
+        <div style="font-weight: bold; font-size: 50px;">
+          <div>{{user.username}}<button BtnModal (click)="onClick(user)" [modal]="UpModal">수정</button></div>
+        </div>
+        <div style="font-size: 20px; margin: 15px 0px;">
+          <div>{{userGrade.gradeName}} {{total}} <button (mouseover)="gradeOver()" (mouseout)="gradeOver()">A</button></div>
+        </div>
+        <div *ngIf="gradeView" style="position: absolute; width: 400px; border: 1px solid darkgray;">
+          <div *ngFor="let d of grades">
+            <label>{{d.gradeName}}</label>
+            <div>{{d.startRange}} ~ {{d.endRange}}</div>
           </div>
         </div>
         <div>{{user.email}}</div>
@@ -21,10 +27,10 @@
           <div>이행시</div>
           <div>{{twoTot}}</div>
         </div>
-        <div class="btn router-btn" routerLink="/my/grade">
+        <!-- <div class="btn router-btn" routerLink="/my/grade">
           <div>총 점수</div>
           <div>{{userGrade.gradeName}} {{total}}</div>
-        </div>
+        </div> -->
         <div class="btn router-btn" routerLink="/my/cash">
           <div>포인트</div>
           <div>{{mileage}}</div>

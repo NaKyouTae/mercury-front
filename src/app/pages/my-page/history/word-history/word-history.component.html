@@ -5,25 +5,73 @@
     </div>
     <div *ngIf="historyForm">
         <div style="display: inline-block;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
-        <div style="display: inline-block; text-align: center;">
-            <div>
-                <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
-                <div>{{number + 1}}/{{tot}}</div>
-                <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
-                <div style="margin-top: 10px;">{{word.description}}</div>
-                <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
-            </div>
-            <div style="margin-top: 40px;">
-                <div style="text-align: left;">
-                    <div>{{data[number].word | slice:0:1}} : {{data[number].contentOne}}</div>
-                    <div>{{data[number].word | slice:1:2}} : {{data[number].contentTwo}}</div>
-                    <div *ngIf="type == 'three'">{{ data[number].word | slice:2:3}} : {{data[number].contentThree}}</div>
-                </div>
+        <div *ngIf="number > 0" class="card">
+            <div style="display: inline-block; text-align: center;">
                 <div>
-                    <img class="love-btn" src="../../../../assets/img/love.png">
-                    {{data[number].point}}
+                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1], type)">삭제</div>
+                    <div>{{number}}/{{tot}}</div>
+                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+                    <div style="margin-top: 10px;">{{word.description}}</div>
+                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
                 </div>
-                <div>{{data[number].insertDate | slice:0:16}}</div>
+                <div style="margin-top: 40px;">
+                    <div style="text-align: left;">
+                        <div>{{data[number-1].word | slice:0:1}} : {{data[number-1].contentOne}}</div>
+                        <div>{{data[number-1].word | slice:1:2}} : {{data[number-1].contentTwo}}</div>
+                        <div *ngIf="type == 'three'">{{ data[number-1].word | slice:2:3}} : {{data[number-1].contentThree}}</div>
+                    </div>
+                    <div>
+                        <img class="love-btn" src="../../../../assets/img/love.png">
+                        {{data[number-1].point}}
+                    </div>
+                    <div>{{data[number-1].insertDate | slice:0:16}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div style="display: inline-block; text-align: center;">
+                <div>
+                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
+                    <div>{{number + 1}}/{{tot}}</div>
+                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+                    <div style="margin-top: 10px;">{{word.description}}</div>
+                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <div style="text-align: left;">
+                        <div>{{data[number].word | slice:0:1}} : {{data[number].contentOne}}</div>
+                        <div>{{data[number].word | slice:1:2}} : {{data[number].contentTwo}}</div>
+                        <div *ngIf="type == 'three'">{{ data[number].word | slice:2:3}} : {{data[number].contentThree}}</div>
+                    </div>
+                    <div>
+                        <img class="love-btn" src="../../../../assets/img/love.png">
+                        {{data[number].point}}
+                    </div>
+                    <div>{{data[number].insertDate | slice:0:16}}</div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="number+1 != data.length" class="card">
+            <div style="display: inline-block; text-align: center;">
+                <div>
+                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number+1], type)">삭제</div>
+                    <div>{{number + 2}}/{{tot}}</div>
+                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+                    <div style="margin-top: 10px;">{{word.description}}</div>
+                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <div style="text-align: left;">
+                        <div>{{data[number+1].word | slice:0:1}} : {{data[number+1].contentOne}}</div>
+                        <div>{{data[number+1].word | slice:1:2}} : {{data[number+1].contentTwo}}</div>
+                        <div *ngIf="type == 'three'">{{ data[number+1].word | slice:2:3}} : {{data[number+1].contentThree}}</div>
+                    </div>
+                    <div>
+                        <img class="love-btn" src="../../../../assets/img/love.png">
+                        {{data[number+1].point}}
+                    </div>
+                    <div>{{data[number+1].insertDate | slice:0:16}}</div>
+                </div>
             </div>
         </div>
         <div style="display: inline-block;"><button (click)="onNext(data[number].wordIdx)" [disabled]="number + 1 == tot">다음</button></div>

@@ -27,6 +27,9 @@ export class MyPageComponent implements OnInit {
   public mileage: any = 0;
   public subCheck: any = false;
 
+  public grades: any;
+  public gradeView: any = false;
+
   public form = new FormGroup({
     idx: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
@@ -67,6 +70,10 @@ export class MyPageComponent implements OnInit {
       if (res.result !== null) {
         this.subCheck = true;
       }
+    });
+
+    this.common.httpCallGet('service/grades').subscribe((res: any) => {
+      this.grades = res.result;
     });
   }
 
@@ -119,5 +126,9 @@ export class MyPageComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  public gradeOver() {
+    this.gradeView = !this.gradeView;
   }
 }

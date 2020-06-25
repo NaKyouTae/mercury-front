@@ -16,9 +16,9 @@ import { ObservableService } from 'src/app/shared/common/observable/observable.s
   styleUrls: ['./my-page.component.css'],
 })
 export class MyPageComponent implements OnInit {
-  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
-  public userGrade: any = this.jwt.getJWTAccessKey('grade') === null ? [] : this.jwt.getJWTAccessKey('grade');
-  public user: any = this.jwt.getJWTAccessKey('user') === null ? [] : this.jwt.getJWTAccessKey('user');
+  public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
+  public userGrade: any = this.jwt.getJWTUserKey('grade') === null ? [] : this.jwt.getJWTUserKey('grade');
+  public user: any = this.jwt.getJWTUserKey('user') === null ? [] : this.jwt.getJWTUserKey('user');
 
   public routeLinks: any;
   public threeTot: any = 0;
@@ -37,7 +37,7 @@ export class MyPageComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) { }
 
   ngOnInit() {
     this.search();
@@ -103,7 +103,7 @@ export class MyPageComponent implements OnInit {
       this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           template.style.display = 'none';
-          this.user = this.jwt.getJWTAccessKey('user');
+          this.user = this.jwt.getJWTUserKey('user');
         }
       });
     } else {

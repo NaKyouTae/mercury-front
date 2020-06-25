@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginInterceptorService implements HttpInterceptor {
-  constructor(private cookie: CookieService) {}
+  constructor(private cookie: CookieService) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
@@ -15,8 +15,8 @@ export class LoginInterceptorService implements HttpInterceptor {
           // do stuff with response and headers you want
           if (event.body.resultCode === 'OK' && event.body.result !== null && event.url === 'http://localhost:8080/user/login') {
             this.cookie.set('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict');
-            this.cookie.set('Access-JWT', event.headers.get('Access-JWT'));
-            this.cookie.set('Refresh-JWT', event.headers.get('Refresh-JWT'));
+            this.cookie.set('AWT', event.headers.get('AWT'));
+            this.cookie.set('RWT', event.headers.get('RWT'));
           }
         }
         return event;

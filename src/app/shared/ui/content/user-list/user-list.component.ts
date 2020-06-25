@@ -16,9 +16,9 @@ export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
 
-  public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
-  public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '';
-  public userRole: any = this.jwt.getJWTAccessKey('roles') !== null ? this.jwt.getJWTAccessKey('roles') : [];
+  public userCheck: any = this.jwt.getJWTUserKey('sub') !== null ? true : false;
+  public userName: any = this.jwt.getJWTUserKey('sub') !== null ? this.jwt.getJWTUserKey('sub') : '';
+  public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {

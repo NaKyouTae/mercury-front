@@ -11,8 +11,8 @@ export class MyThreeComponent implements OnInit {
   public data: any;
   public word: any;
   public number: any = 0;
-  public jwtUser = this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  public jwtUser = this.jwt.getJWTUserKey('user');
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();

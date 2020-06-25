@@ -15,6 +15,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducer } from './core/store/common/common.reducer';
 import { environment } from 'src/environments/environment';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ErrorInterceptorService } from './core/interceptors/error/error-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LogoutInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

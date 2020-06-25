@@ -15,10 +15,10 @@ export class WordHistoryComponent implements OnInit {
   public word: any = '';
   public number: any = 0;
   public tot: any = this.data === undefined ? 0 : this.data.length;
-  public jwtUser = this.jwt.getJWTAccessKey('user');
+  public jwtUser = this.jwt.getJWTUserKey('user');
   public historyForm: any = true;
 
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();

@@ -9,7 +9,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./route.component.css'],
 })
 export class RouteComponent implements OnInit {
-  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
+  public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
   public routeLinks: any;
 
   constructor(private common: CommonHttpService, private jwt: JwtService) { }

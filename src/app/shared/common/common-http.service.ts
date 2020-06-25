@@ -10,6 +10,7 @@ export class CommonHttpService {
   public httpCallGet(service, params?) {
     const header = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
@@ -23,6 +24,7 @@ export class CommonHttpService {
   public httpCallPost(service, params?) {
     const header = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
 

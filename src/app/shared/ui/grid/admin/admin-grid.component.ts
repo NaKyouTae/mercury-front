@@ -27,7 +27,7 @@ export class AdminGridComponent implements OnInit {
   public dataCountStart: any = 1;
   public dataCountEnd: any = this.take;
   public pageList: Array<any>;
-  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
+  public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
 
   constructor(private jwt: JwtService) { }
 

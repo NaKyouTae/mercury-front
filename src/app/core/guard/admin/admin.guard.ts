@@ -8,9 +8,9 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class AdminGuard implements CanActivate {
   // tslint:disable-next-line: max-line-length
-  public adminCheck: any = this.jwt.getJWTAccessKey('roles') === null ? false : this.jwt.getJWTAccessKey('roles').includes('ROLE_ADMIN');
+  public adminCheck: any = this.jwt.getJWTUserKey('roles') === null ? false : this.jwt.getJWTUserKey('roles').includes('ROLE_ADMIN');
 
-  constructor(private router: Router, private jwt: JwtService) {}
+  constructor(private router: Router, private jwt: JwtService) { }
   // tslint:disable-next-line: max-line-length
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.adminCheck === true) {

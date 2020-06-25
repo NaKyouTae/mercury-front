@@ -10,8 +10,8 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class CashHistoryComponent implements OnInit {
   public data: any;
-  public user: any = this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
+  public user: any = this.jwt.getJWTUserKey('user');
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();

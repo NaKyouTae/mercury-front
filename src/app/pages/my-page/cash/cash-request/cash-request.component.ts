@@ -10,13 +10,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./cash-request.component.css'],
 })
 export class CashRequestComponent implements OnInit {
-  public userName: any = this.jwt.getJWTAccessKey('user') === undefined ? null : this.jwt.getJWTAccessKey('user').userName;
+  public userName: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user').userName;
   public prevCash: any;
   public form = new FormGroup({
     userName: new FormControl('', Validators.required),
     withDrawCash: new FormControl('', Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();

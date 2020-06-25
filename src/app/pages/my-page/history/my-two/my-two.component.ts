@@ -9,10 +9,10 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class MyTwoComponent implements OnInit {
   public data: any;
-  public jwtUser = this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  public jwtUser = this.jwt.getJWTUserKey('user');
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   public onTwo() {
     this.common.httpCallGet('service/twice/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       this.data = res.result;

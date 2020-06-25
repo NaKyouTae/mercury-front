@@ -15,7 +15,7 @@ export class NoticeComponent implements OnInit {
     { title: '제목', width: 80, field: 'title' },
     { title: '작성 일', width: 20, field: 'insertDate' },
   ];
-  public userRoles: any = this.jwt.getJWTAccessKey('roles') === null ? [] : this.jwt.getJWTAccessKey('roles');
+  public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
   public form = new FormGroup({
     content: new FormControl('', Validators.required),
     insertDate: new FormControl('', Validators.required),

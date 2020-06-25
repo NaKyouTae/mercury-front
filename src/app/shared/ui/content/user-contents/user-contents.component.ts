@@ -18,8 +18,8 @@ export class UserContentsComponent implements OnInit {
   @Input('contents') public contents: any = new Array<any>();
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: string;
-  public userName: any = this.jwt.getJWTAccessKey('sub') !== null ? this.jwt.getJWTAccessKey('sub') : '';
-  public userCheck: any = this.jwt.getJWTAccessKey('sub') !== null ? true : false;
+  public userName: any = this.jwt.getJWTUserKey('sub') !== null ? this.jwt.getJWTUserKey('sub') : '';
+  public userCheck: any = this.jwt.getJWTUserKey('sub') !== null ? true : false;
 
   public threeForm = new FormGroup({
     contentOne: new FormControl(''),

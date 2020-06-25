@@ -14,9 +14,9 @@ import { ObservableService } from 'src/app/shared/common/observable/observable.s
 })
 export class FooterComponent implements OnInit {
   public subCheck: any = true;
-  public user: any = this.jwt.getJWTAccessKey('user');
+  public user: any = this.jwt.getJWTUserKey('user');
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService) { }
 
   ngOnInit() {
     this.onSearch();

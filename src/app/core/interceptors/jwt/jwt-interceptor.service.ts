@@ -4,21 +4,24 @@ import { Observable } from 'rxjs';
 import { CookieService } from '../../../shared/common/cookie/cookies.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class JwtInterceptorService {
-  constructor(private cookie: CookieService, private jwt: JwtService, private common: CommonHttpService) {}
+  constructor(private cookie: CookieService, private jwt: JwtService) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const Access = this.cookie.getCookie('Access-JWT');
-    const Refresh = this.cookie.getCookie('Refresh-JWT');
+    const Access = this.cookie.getCookie('AWT');
+    const Refresh = this.cookie.getCookie('RWT');
+    // const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
+    // const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
     if (Access !== null && Refresh !== null) {
       req = req.clone({
         setHeaders: {
-          'Access-JWT': Access,
-          'Refresh-JWT': Refresh,
+          AWT: Access,
+          RWT: Refresh,
         },
       });
     }
@@ -28,15 +31,13 @@ export class JwtInterceptorService {
         if (event instanceof HttpResponse) {
           // do stuff with response and headers you want
           if (event.body.resultCode === 'OK' && event.body.result !== null) {
-            const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
-            const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
-            if (!accessIsExpired && event.headers.get('Access-JWT') !== null) {
-              this.cookie.setCookie('Access-JWT', event.headers.get('Access-JWT'));
+            if (event.headers.get('AWT') !== null) {
+              this.cookie.setCookie('AWT', event.headers.get('AWT'));
             }
 
-            if (!refreshIsExpired && event.headers.get('Refresh-JWT') !== null) {
-              this.cookie.setCookie('Refresh-JWT', event.headers.get('Refresh-JWT'));
+            if (event.headers.get('RWT') !== null) {
+              this.cookie.setCookie('RWT', event.headers.get('RWT'));
             }
           }
         }

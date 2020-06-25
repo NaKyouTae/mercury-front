@@ -11,8 +11,8 @@ import { CommonHttpService } from './shared/common/common-http.service';
 export class AppComponent {
   public title: any = '천하제일 엔행시 대회';
   public data: any;
-  public user: any = this.jwt.getJWTAccessKey('user') === null ? null : this.jwt.getJWTAccessKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  public user: any = this.jwt.getJWTUserKey('user') === null ? null : this.jwt.getJWTUserKey('user');
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {

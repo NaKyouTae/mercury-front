@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class JwtInterceptorService {
-  constructor(private cookie: CookieService, private jwt: JwtService) { }
+  constructor(private cookie: CookieService, private jwt: JwtService) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const Access = this.cookie.getCookie('AWT');
@@ -31,13 +31,16 @@ export class JwtInterceptorService {
         if (event instanceof HttpResponse) {
           // do stuff with response and headers you want
           if (event.body.resultCode === 'OK' && event.body.result !== null) {
-
             if (event.headers.get('AWT') !== null) {
               this.cookie.setCookie('AWT', event.headers.get('AWT'));
             }
 
             if (event.headers.get('RWT') !== null) {
               this.cookie.setCookie('RWT', event.headers.get('RWT'));
+            }
+
+            if (event.headers.get('UWT') !== null) {
+              this.cookie.setCookie('UWT', event.headers.get('UWT'));
             }
           }
         }

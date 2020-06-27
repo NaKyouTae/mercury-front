@@ -5,7 +5,7 @@
     </div>
     <div *ngIf="historyForm">
         <div style="display: inline-block;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
-        <div *ngIf="number > 0" class="card">
+        <div *ngIf="number > 0" class="card" style="transform: perspective(1500px) rotateY(-45deg);">
             <div style="display: inline-block; text-align: center;">
                 <div>
                     <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1], type)">삭제</div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="number+1 != data.length" class="card">
+        <div *ngIf="number+1 != data.length" class="card" style="transform: perspective(1500px) rotateY(45deg);">
             <div style="display: inline-block; text-align: center;">
                 <div>
                     <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number+1], type)">삭제</div>

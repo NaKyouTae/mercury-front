@@ -13,10 +13,10 @@ export class HeaderComponent implements OnInit {
   public user: any = this.jwt.getJWTUserKey('user');
   public userCheck: any = this.user !== null ? true : false;
   public userName: any = this.user !== null ? this.user.username : '사용자';
-  public loginType: any = this.jwt.getJWTUserKey('sns') !== null ? 'default' : this.jwt.getJWTUserKey('sns');
-  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) { }
+  public loginType: any = this.jwt.getJWTUserKey('user') !== null ? 'default' : this.jwt.getJWTUserKey('user').sns;
+  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public onClick() {
     this.router.navigateByUrl('/three');
@@ -47,5 +47,4 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
-
 }

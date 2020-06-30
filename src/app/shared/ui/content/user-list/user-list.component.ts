@@ -16,8 +16,8 @@ export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
 
-  public userCheck: any = this.jwt.getJWTUserKey('sub') !== null ? true : false;
-  public userName: any = this.jwt.getJWTUserKey('sub') !== null ? this.jwt.getJWTUserKey('sub') : '';
+  public userCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
+  public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
   public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
 
@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {

@@ -12,14 +12,15 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class UserContentsComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) {}
 
   // tslint:disable-next-line: no-input-rename
   @Input('contents') public contents: any = new Array<any>();
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: string;
-  public userName: any = this.jwt.getJWTUserKey('sub') !== null ? this.jwt.getJWTUserKey('sub') : '';
-  public userCheck: any = this.jwt.getJWTUserKey('sub') !== null ? true : false;
+  public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
+  public userIdx: any = this.jwt.getJWTUserKey('user') !== null ? this.jwt.getJWTUserKey('user').idx : '';
+  public userCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
 
   public threeForm = new FormGroup({
     contentOne: new FormControl(''),
@@ -35,21 +36,16 @@ export class UserContentsComponent implements OnInit {
     userName: new FormControl(''),
     userIdx: new FormControl(''),
   });
-  ngOnInit() { }
+
+  ngOnInit() {}
 
   public inThree(e: any) {
     e.userName.setValue(this.userName);
-    e.userIdx.setValue(this.userName);
+    e.userIdx.setValue(this.userIdx);
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/three', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        this.threeForm.reset({
-          contentOne: '',
-          contentTwo: '',
-          contentThree: '',
-          userName: '',
-          userIdx: '',
-        });
+        this.threeForm.reset(this.formservice.initialForm(this.threeForm));
         this.observableService.getList('THREE');
       }
     });
@@ -57,16 +53,11 @@ export class UserContentsComponent implements OnInit {
 
   public inTwo(e: any) {
     e.userName.setValue(this.userName);
-    e.userIdx.setValue(this.userName);
+    e.userIdx.setValue(this.userIdx);
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/twice', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        this.twoForm.reset({
-          contentOne: '',
-          contentTwo: '',
-          userName: '',
-          userIdx: '',
-        });
+        this.twoForm.reset(this.formservice.initialForm(this.twoForm));
         this.observableService.getList('TWO');
       }
     });

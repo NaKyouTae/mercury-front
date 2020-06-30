@@ -14,6 +14,7 @@ export class JwtInterceptorService {
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const Access = this.cookie.getCookie('AWT');
     const Refresh = this.cookie.getCookie('RWT');
+    const User = this.cookie.getCookie('UWT');
     // const accessIsExpired = this.isTokenExpired(this.jwt.getJWTAccessKey('exp'));
     // const refreshIsExpired = this.isTokenExpired(this.jwt.getJWTRefreshKey('exp'));
 
@@ -22,6 +23,7 @@ export class JwtInterceptorService {
         setHeaders: {
           AWT: Access,
           RWT: Refresh,
+          UWT: User,
         },
       });
     }

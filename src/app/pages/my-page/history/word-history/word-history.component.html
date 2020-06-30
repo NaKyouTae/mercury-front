@@ -3,82 +3,103 @@
         <div (click)="historyForm = true" class="btn" style="font-size: 40px; display: inline-block;">&#9618;</div>
         <div (click)="historyForm = false" class="btn" style="font-size: 40px; display: inline-block;">&#9645;</div>
     </div>
-    <div *ngIf="historyForm">
-        <div style="display: inline-block;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
-        <div class="card ani-card" style="transform: perspective(1500px) rotateY(-45deg);">
-            <div *ngIf="number > 0" style="display: inline-block; text-align: center;">
+    <div *ngIf="historyForm" style="margin: 50px 0px;">
+        <div style="display: inline-block; line-height: 300px;"><button (click)="onPrev(data[number].wordIdx)" [disabled]="number == 0">이전</button></div>
+        <div class="card ani-card ani-card-side ani-card-left">
+            <div *ngIf="number > 0" style="text-align: left;">
                 <div>
-                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1], type)">삭제</div>
-                    <div>{{number}}/{{tot}}</div>
-                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
-                    <div style="margin-top: 10px;">{{word.description}}</div>
-                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                    <div style="text-align: right;">
+                        <div style="display: inline-block;">
+                            <img class="love-btn" src="../../../../assets/img/love.png">
+                            {{data[number-1].point}}
+                        </div>
+                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1], type)">삭제</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+                        <div style="margin-top: 10px;">{{word.description}}</div>
+                        <div style="margin-top: 10px; font-size: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                        <div style="margin-top: 10px; font-size: 10px;">{{data[number-1].insertDate | slice:0:16}}</div>
+                    </div>
                 </div>
-                <div style="margin-top: 40px;">
-                    <div style="text-align: left;">
+                <div style="margin-top: 20px;">
+                    <div style="text-align: left; font-size: 15px; word-break: break-all;">
                         <div>{{data[number-1].word | slice:0:1}} : {{data[number-1].contentOne}}</div>
                         <div>{{data[number-1].word | slice:1:2}} : {{data[number-1].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number-1].word | slice:2:3}} : {{data[number-1].contentThree}}</div>
                     </div>
-                    <div>
-                        <img class="love-btn" src="../../../../assets/img/love.png">
-                        {{data[number-1].point}}
-                    </div>
-                    <div>{{data[number-1].insertDate | slice:0:16}}</div>
+                    
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div>{{number}}/{{tot}}</div>
                 </div>
             </div>
         </div>
         <div class="card ani-card" >
-            <div style="display: inline-block; text-align: center;">
+            <div style="text-align: left;">
                 <div>
-                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
-                    <div>{{number + 1}}/{{tot}}</div>
-                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
-                    <div style="margin-top: 10px;">{{word.description}}</div>
-                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                    <div style="text-align: right;">
+                        <div style="display: inline-block;">
+                            <img class="love-btn" src="../../../../assets/img/love.png">
+                            {{data[number].point}}
+                        </div>
+                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <div style="margin-top: 10px; font-weight: bold; font-size: 30px;">{{word.word}}</div>
+                        <div style="margin-top: 10px;">{{word.description}}</div>
+                        <div style="margin-top: 10px; font-size: 13px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                        <div style="margin-top: 10px; font-size: 13px;">{{data[number].insertDate | slice:0:16}}</div>
+                    </div>
                 </div>
-                <div style="margin-top: 40px;">
-                    <div style="text-align: left;">
+                <div style="margin-top: 20px;">
+                    <div style="text-align: left; font-size: 20px; word-break: break-all;">
                         <div>{{data[number].word | slice:0:1}} : {{data[number].contentOne}}</div>
                         <div>{{data[number].word | slice:1:2}} : {{data[number].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number].word | slice:2:3}} : {{data[number].contentThree}}</div>
                     </div>
-                    <div>
-                        <img class="love-btn" src="../../../../assets/img/love.png">
-                        {{data[number].point}}
-                    </div>
-                    <div>{{data[number].insertDate | slice:0:16}}</div>
+                    
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div>{{number + 1}}/{{tot}}</div>
                 </div>
             </div>
         </div>
-        <div class="card ani-card" style="transform: perspective(1500px) rotateY(45deg);">
-            <div *ngIf="number+1 != data.length" style="display: inline-block; text-align: center;">
+        <div class="card ani-card ani-card-side ani-card-right">            
+            <div *ngIf="number+1 != data.length" style="text-align: left;">
                 <div>
-                    <div style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number+1], type)">삭제</div>
-                    <div>{{number + 2}}/{{tot}}</div>
-                    <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
-                    <div style="margin-top: 10px;">{{word.description}}</div>
-                    <div style="margin-top: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                    <div style="text-align: right;">
+                        <div style="display: inline-block;">
+                            <img class="love-btn" src="../../../../assets/img/love.png">
+                            {{data[number+1].point}}
+                        </div>
+                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number+1], type)">삭제</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
+                        <div style="margin-top: 10px;">{{word.description}}</div>
+                        <div style="margin-top: 10px; font-size: 10px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                        <div style="margin-top: 10px; font-size: 10px;">{{data[number+1].insertDate | slice:0:16}}</div>
+                    </div>
                 </div>
-                <div style="margin-top: 40px;">
-                    <div style="text-align: left;">
+                <div style="margin-top: 20px;">
+                    <div style="text-align: left; font-size: 15px; word-break: break-all;">
                         <div>{{data[number+1].word | slice:0:1}} : {{data[number+1].contentOne}}</div>
                         <div>{{data[number+1].word | slice:1:2}} : {{data[number+1].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number+1].word | slice:2:3}} : {{data[number+1].contentThree}}</div>
                     </div>
-                    <div>
-                        <img class="love-btn" src="../../../../assets/img/love.png">
-                        {{data[number+1].point}}
-                    </div>
-                    <div>{{data[number+1].insertDate | slice:0:16}}</div>
+                    
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div>{{number + 2}}/{{tot}}</div>
                 </div>
             </div>
         </div>
-        <div style="display: inline-block;"><button (click)="onNext(data[number].wordIdx)" [disabled]="number + 1 == tot">다음</button></div>
+        <div style="display: inline-block; line-height: 300px;"><button (click)="onNext(data[number].wordIdx)" [disabled]="number + 1 == tot">다음</button></div>
     </div>
-    <div *ngIf="!historyForm">
-        <div *ngFor="let d of data" class="card list-card">
-            <div style="text-align: right;">
+    <div *ngIf="!historyForm" style="margin: 50px 0px; text-align: left;">
+        <div *ngFor="let d of data; let idx = index;" class="card list-card">
+            <!-- <div style="text-align: right;">
                 <div style="display: inline-block; margin-left: 10px;">
                     <img class="love-btn" src="../../../../assets/img/love.png">
                     {{d.point}}
@@ -93,6 +114,33 @@
                 <div>{{ d.word | slice:0:1}} : {{d.contentOne}}</div>
                 <div>{{ d.word | slice:1:2}} : {{d.contentTwo}}</div>
                 <div *ngIf="type == 'three'">{{ d.word | slice:2:3}} : {{d.contentThree}}</div>
+            </div> -->
+            <div style="text-align: left;">
+                <div>
+                    <div style="display: inline-block; width: 50%;">{{idx+1}}</div>
+                    <div style="display: inline-block; width: 50%; text-align: right;">
+                        <div style="display: inline-block;">
+                            <img class="love-btn" src="../../../../assets/img/love.png">
+                            {{d.point}}
+                        </div>
+                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(d, type)">삭제</div>
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <div style="margin-top: 10px; font-weight: bold; font-size: 25px;">{{word.word}}</div>
+                        <div style="margin-top: 10px;">{{word.description}}</div>
+                        <div style="margin-top: 10px; font-size: 13px;">{{word.startDate | slice:0:10}} ~ {{word.endDate | slice:0:10}}</div>
+                        <div style="margin-top: 10px; font-size: 13px;">{{d.insertDate | slice:0:16}}</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="text-align: left; font-size: 20px; word-break: break-all;">
+                        <div>{{d.word | slice:0:1}} : {{d.contentOne}}</div>
+                        <div>{{d.word | slice:1:2}} : {{d.contentTwo}}</div>
+                        <div *ngIf="type == 'three'">{{ d.word | slice:2:3}} : {{d.contentThree}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 .card {
-    border: 1px solid darkgray; 
-    background-color: #f1f1f1; 
+    border: 1px solid #0081fb36;
+    background-color: #0081fb36;
     box-shadow: 4px 4px 10px 0px; 
     margin: auto;
     display: inline-block;
@@ -9,13 +9,29 @@
 
 .ani-card {
     vertical-align: top;
-    width: calc((100% - 70px) / 3);
-    height: 300px;
+    width: calc((100% - 130px) / 3);
+    min-height: 280px;
+    padding: 10px;
+}
+
+.ani-card-side {
+    min-height: 240px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.ani-card-left {
+    transform: perspective(1500px) rotateY(-45deg);
+}
+
+.ani-card-right {
+    transform: perspective(1500px) rotateY(45deg);
 }
 
 .list-card {
     width: calc((100% - 200px) / 3);
     padding: 10px;
     margin: 20px;
-    height: 250px;
+    min-height: 250px;
+    vertical-align: top;
 }

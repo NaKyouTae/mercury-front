@@ -41,6 +41,9 @@ export class FooterComponent implements OnInit {
     if (this.user === null) {
       alert('로그인을 해주세요.');
       return false;
+    } else if (this.user.email === null) {
+      alert('이메일 정보를 입력해주세요.');
+      return false;
     } else {
       const params = {
         userIdx: this.user.idx,

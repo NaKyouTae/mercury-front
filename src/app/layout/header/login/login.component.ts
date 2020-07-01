@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
   public userDupleCheck: any = false;
   public userDupleConfirm: any = false;
   public password: string;
+  public loginFail: any = false;
 
   public auth: any = null;
   public authConfirm: any = false;
@@ -83,6 +84,7 @@ export class LoginComponent implements OnInit {
 
     this.front = false;
     this.widthToggle = 'login';
+    this.loginFail = false;
 
     this.dialog.open(template, {
       width: '800px',
@@ -100,6 +102,7 @@ export class LoginComponent implements OnInit {
 
     this.front = false;
     // this.widthToggle = 'sign';
+    this.loginFail = false;
 
     this.dialog.open(template, {
       width: '800px',
@@ -119,6 +122,8 @@ export class LoginComponent implements OnInit {
         this.dialog.closeAll();
         this.router.navigateByUrl('/three');
         window.location.reload();
+      } else if (res.resultCode === 'INTERNAL_SERVER_ERROR') {
+        this.loginFail = true;
       }
     });
   }

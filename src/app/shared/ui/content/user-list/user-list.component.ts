@@ -31,7 +31,15 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setInterval(() => {
+      if (this.type === 'THREE') {
+        this.getThreeList();
+      } else if (this.type === 'TWO') {
+        this.getTwoList();
+      }
+    }, 30000);
+  }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {

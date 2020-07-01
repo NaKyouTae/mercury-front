@@ -36,6 +36,7 @@
           <input type="password" formControlName="password" placeholder="Enter Your PassWord" (keyup.enter)="login(logInForm.controls)" />
           <span *ngIf="logInForm.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
         </div>
+        <div *ngIf="loginFail" style="color:red;">로그인 정보가 잘 못 되었습니다.</div>
         <div style="margin: 30px 0px;">
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">계정 찾기</a>
           <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">비밀번호 찾기</a>

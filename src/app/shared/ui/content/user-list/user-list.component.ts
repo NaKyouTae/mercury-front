@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('my') public my: any;
 
-  public userCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
+  public loginCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
   public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
   public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
@@ -69,6 +69,9 @@ export class UserListComponent implements OnInit {
     e.point = e.point - 1;
     e.love = true;
     e.loveName = this.userName;
+    // contentIdx = e.idx
+    // userIdx = this.user.idx;
+
     this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.getList();

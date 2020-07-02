@@ -18,29 +18,29 @@
                   <div>님</div>
                   <div>
                     <div *ngIf="my">
-                        <div *ngIf="!userCheck">
+                        <div *ngIf="!loginCheck">
                             <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
                             <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
                             <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                         </div>
-                        <div *ngIf="userCheck && item.me">
+                        <div *ngIf="loginCheck && item.me">
                             <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
                         </div>
-                        <div *ngIf="userCheck && !item.me">
+                        <div *ngIf="loginCheck && !item.me">
                           <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
                           <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                         </div>
                     </div>
                     <div *ngIf="!my">
-                      <div *ngIf="!userCheck">
+                      <div *ngIf="!loginCheck">
                         <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
                         <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
                         <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                       </div>
-                      <div *ngIf="userCheck && item.me">
+                      <div *ngIf="loginCheck && item.me">
                         <img *ngIf="item.love" (click)="deLove(item)" class="love-btn" src="../../../../assets/img/love.png">
                       </div>
-                      <div *ngIf="userCheck && !item.me">
+                      <div *ngIf="loginCheck && !item.me">
                           <div *ngIf="type == 'three'">
                               <img *ngIf="item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
                               <img *ngIf="!item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">

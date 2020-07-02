@@ -36,7 +36,7 @@
             <div>Copyright, 팀명칭. All rights reserved.</div>
         </div>
         <div *ngIf="subCheck">
-            <button class="btn news-btn" (click)="onSubscription(UpModal)">뉴스레터 구독하기</button>
+            <button class="btn news-btn" (click)="onSubscription(UpModal, Login)">뉴스레터 구독하기</button>
         </div>
     </div>
 </div>
@@ -63,4 +63,7 @@
       <button class="btn command-btn" style="margin: auto; width: 100%;" (click)="upUserEmail(form.controls)" [disabled]="!form.valid">구독 하기</button>
     </div>
   </div>
+</ng-template>
+<ng-template #Login>
+  <app-login style="display: inline-block;"></app-login>
 </ng-template>

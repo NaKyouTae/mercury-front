@@ -1,14 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
-import { Store } from '@ngrx/store';
-import { NewsLetterState } from 'src/app/core/store/common/common.model';
-import { Subject } from 'rxjs';
-import { inCommonNewsletter } from 'src/app/core/store/common/common.actions';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../header/login/login.component';
 
 @Component({
   selector: 'app-footer',
@@ -55,12 +52,13 @@ export class FooterComponent implements OnInit {
     });
   }
 
-  public onSubscription(template: TemplateRef<any>) {
+  public onSubscription(emailTemp: TemplateRef<any>, loinTemp: TemplateRef<any>) {
     if (this.user === null) {
       alert('로그인을 해주세요.');
+      // this.onPopOpen(loinTemp);
       return false;
     } else if (this.user.email === null || this.user.email === '') {
-      this.onPopOpen(template);
+      this.onPopOpen(emailTemp);
       return false;
     } else {
       this.upNewsletter();
@@ -71,8 +69,6 @@ export class FooterComponent implements OnInit {
     const dialogData = {
       email: ''
     };
-
-    this.form.controls.username = this.user.username;
 
     this.dialog.open(template, {
       width: '400px',

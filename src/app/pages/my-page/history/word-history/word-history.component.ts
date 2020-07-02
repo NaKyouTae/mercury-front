@@ -58,8 +58,8 @@ export class WordHistoryComponent implements OnInit {
     }
   }
 
-  public onDelete(data: any, type: any) {
-    const routeUrl = type === 'THREE' ? 'three' : 'twice';
+  public onDelete(data: any) {
+    const routeUrl = this.type;
 
     if (window.confirm('삭제 하시겠습니까?')) {
       this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {

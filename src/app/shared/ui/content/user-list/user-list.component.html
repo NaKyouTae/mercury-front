@@ -1,63 +1,82 @@
 <div class="user-list">
     <div style="margin-bottom: 20px;">
         <div class="data-title data-title-total">
-            <div>TOTAL <span style="color: #100efb;">{{datas.length}}</span></div>
+            <div>
+              TOTAL <span style="color: #100efb;">{{ datas == undefined ? 0:datas.length}}</span>
+            </div>
         </div>
         <div class="data-title data-title-command">
             <div class="btn order-btn" [ngStyle]="{'color': btnCheck == false ? '#100efb':'black'}" (click)="orPopular(type)">인기 순</div>
             <div class="btn order-btn" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest(type)">최신 순</div>
         </div>
     </div>
-    <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
-        <div>
-            <div class="data-user">
-                <div style="color: #100efb;">{{item.userName}}</div>
-                <div>님</div>
-                <div>
-                  <div *ngIf="!userCheck">
-                    <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                    <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                    <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
-                  </div>
-                  <div *ngIf="userCheck && item.me">
-                    <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
-                  </div>
-                  <div *ngIf="type == 'THREE'">
-                      <div *ngIf="userCheck && !item.me">
-                        <img *ngIf="item.love" (click)="upThreeLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.love" (click)="upThreeLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+    <div *ngIf="datas != undefined">
+      <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
+          <div>
+              <div class="data-user">
+                  <div style="color: #100efb;">{{item.userName}}</div>
+                  <div>님</div>
+                  <div>
+                    <div *ngIf="my">
+                        <div *ngIf="!userCheck">
+                            <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
+                            <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                            <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                        </div>
+                        <div *ngIf="userCheck && item.me">
+                            <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
+                        </div>
+                        <div *ngIf="userCheck && !item.me">
+                          <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                          <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                        </div>
+                    </div>
+                    <div *ngIf="!my">
+                      <div *ngIf="!userCheck">
+                        <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
+                        <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                       </div>
-                  </div>
-                  <div *ngIf="type == 'TWO'">
-                      <div *ngIf="userCheck && !item.me">
-                        <img *ngIf="item.love" (click)="upTwoLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.love" (click)="upTwoLove(item)" class="btn love-btn"src="../../../../assets/img/love-b-border.png">
+                      <div *ngIf="userCheck && item.me">
+                        <img *ngIf="item.love" (click)="deLove(item)" class="love-btn" src="../../../../assets/img/love.png">
                       </div>
+                      <div *ngIf="userCheck && !item.me">
+                          <div *ngIf="type == 'three'">
+                              <img *ngIf="item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                          </div>
+                          <div *ngIf="type == 'twice'">
+                              <img *ngIf="item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                          </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>{{item.point}}</div>
-            </div>
-            <div class="data-command">
-                <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item, type)">수정</div>
-                <div class="btn command-btn" *ngIf="userName == item.userName || userRole.includes('ROLE_ADMIN')" (click)="onContentDelete(item, type)">삭제</div> -->
-                <div>{{item.insertDate | slice:0:16}}</div>
-            </div>
-        </div>
-        <div class="data-text">
-            <div>
-                <div>{{words[0]}}</div>
-                <div>{{item.contentOne}}</div>
-            </div>
-            <div>
-                <div>{{words[1]}}</div>
-                <div>{{item.contentTwo}}</div>
-            </div>
-            <div>
-                <div>{{words[2]}}</div>
-                <div>{{item.contentThree}}</div>
-            </div>
-        </div>
+                  <div>{{item.point}}</div>
+              </div>
+              <div class="data-command">
+                  <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
+                  <div *ngIf="my" class="btn command-btn" (click)="onDelete(item)">삭제</div>
+                  <div>{{item.insertDate | slice:0:16}}</div>
+              </div>
+          </div>
+          <div class="data-text">
+              <div>
+                  <div>{{item.word[0]}}</div>
+                  <div>{{item.contentOne}}</div>
+              </div>
+              <div>
+                  <div>{{item.word[1]}}</div>
+                  <div>{{item.contentTwo}}</div>
+              </div>
+              <div>
+                  <div>{{item.word[2]}}</div>
+                  <div>{{item.contentThree}}</div>
+              </div>
+          </div>
+      </div>
     </div>
+    <div *ngIf="datas == undefined">결과가 없습니다. 도전해보세요.</div>
     <div style="text-align: center; margin: 20px auto; ">
         <img style="width: 728px; height: 90px;" src="../../../../assets/img/ad-sample.jpg">
     </div>

@@ -12,7 +12,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class UserContentsComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) { }
 
   // tslint:disable-next-line: no-input-rename
   @Input('contents') public contents: any = new Array<any>();
@@ -37,7 +37,7 @@ export class UserContentsComponent implements OnInit {
     userIdx: new FormControl(''),
   });
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public inThree(e: any) {
     e.userName.setValue(this.userName);
@@ -46,7 +46,7 @@ export class UserContentsComponent implements OnInit {
     this.common.httpCallPost('service/three', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.threeForm.reset(this.formservice.initialForm(this.threeForm));
-        this.observableService.getList('THREE');
+        this.observableService.getList('three');
       }
     });
   }
@@ -58,7 +58,7 @@ export class UserContentsComponent implements OnInit {
     this.common.httpCallPost('service/twice', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.twoForm.reset(this.formservice.initialForm(this.twoForm));
-        this.observableService.getList('TWO');
+        this.observableService.getList('twice');
       }
     });
   }

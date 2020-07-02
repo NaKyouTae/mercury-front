@@ -17,4 +17,8 @@ export class ObservableService {
   public checkNewsLetter(e: any) {
     this.source.next(e);
   }
+
+  public deleteHistory(e: any) {
+    this.source.next(e);
+  }
 }

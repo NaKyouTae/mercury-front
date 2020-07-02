@@ -13,11 +13,8 @@ export class MyTwoComponent implements OnInit {
   public jwtUser = this.jwt.getJWTUserKey('user');
   constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
-  ngOnInit() { }
-  public onTwo() {
-    this.common.httpCallGet('service/twice/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
-      this.data = res.result;
-    });
+  ngOnInit() {
+    this.onSearch();
   }
 
   public onSearch() {

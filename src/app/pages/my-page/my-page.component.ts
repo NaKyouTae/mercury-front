@@ -44,7 +44,11 @@ export class MyPageComponent implements OnInit {
 
     // newsletters check 여부
     this.observable.sourceObv.subscribe((res: any) => {
-      this.subCheck = res;
+      if (res === 'Delete') {
+        this.search();
+      } else if (res === 'Newsletter') {
+        this.subCheck = res;
+      }
     });
   }
 
@@ -87,8 +91,8 @@ export class MyPageComponent implements OnInit {
 
   public onUpdate(e: any, template: any) {
     const data: any = this.formservice.formToData(e);
-
-    this.common.httpCallPut('service/users', { user: data }).subscribe((res: any) => {
+    data.idx = this.user.idx;
+    this.common.httpCallPut('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
         this.user = res.result;
@@ -119,7 +123,7 @@ export class MyPageComponent implements OnInit {
       this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert('구독 해제하였습니다.');
-          this.observable.checkNewsLetter(true);
+          this.observable.checkNewsLetter('Newsletter');
           this.subCheck = false;
         }
       });

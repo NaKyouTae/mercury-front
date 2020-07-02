@@ -13,7 +13,7 @@
                             <img class="love-btn" src="../../../../assets/img/love.png">
                             {{data[number-1].point}}
                         </div>
-                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1], type)">삭제</div>
+                        <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1])">삭제</div>
                     </div>
                     <div style="text-align: center; margin-top: 20px;">
                         <div style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{word.word}}</div>
@@ -28,7 +28,7 @@
                         <div>{{data[number-1].word | slice:1:2}} : {{data[number-1].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number-1].word | slice:2:3}} : {{data[number-1].contentThree}}</div>
                     </div>
-                    
+
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
                     <div>{{number}}/{{tot}}</div>
@@ -58,14 +58,14 @@
                         <div>{{data[number].word | slice:1:2}} : {{data[number].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number].word | slice:2:3}} : {{data[number].contentThree}}</div>
                     </div>
-                    
+
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
                     <div>{{number + 1}}/{{tot}}</div>
                 </div>
             </div>
         </div>
-        <div class="card ani-card ani-card-side ani-card-right">            
+        <div class="card ani-card ani-card-side ani-card-right">
             <div *ngIf="number+1 != data.length" style="text-align: left;">
                 <div>
                     <div style="text-align: right;">
@@ -88,7 +88,7 @@
                         <div>{{data[number+1].word | slice:1:2}} : {{data[number+1].contentTwo}}</div>
                         <div *ngIf="type == 'three'">{{ data[number+1].word | slice:2:3}} : {{data[number+1].contentThree}}</div>
                     </div>
-                    
+
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
                     <div>{{number + 2}}/{{tot}}</div>

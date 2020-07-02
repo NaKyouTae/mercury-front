@@ -15,6 +15,8 @@ export class UserListComponent implements OnInit {
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
+  // tslint:disable-next-line: no-input-rename
+  @Input('my') public my: any;
 
   public userCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
   public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
@@ -23,33 +25,28 @@ export class UserListComponent implements OnInit {
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
-      if (res === 'THREE') {
-        this.getThreeList();
-      } else if (res === 'TWO') {
-        this.getTwoList();
-      }
+      this.type = res;
+      this.getList();
     });
   }
 
   ngOnInit() {
-    setInterval(() => {
-      if (this.type === 'THREE') {
-        this.getThreeList();
-      } else if (this.type === 'TWO') {
-        this.getTwoList();
-      }
-    }, 30000);
+    if (this.my) {
+      setInterval(() => {
+        this.getList();
+      }, 30000);
+    }
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
-    if (this.datas !== null) {
+    if (this.datas !== undefined) {
       this.checkLove();
     }
   }
 
-  public getThreeList() {
-    this.common.httpCallGet('service/three/words').subscribe((res: any) => {
+  public getList() {
+    this.common.httpCallGet('service/' + this.type + '/words').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.datas = res.result;
         this.checkLove();
@@ -59,32 +56,23 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  public getTwoList() {
-    this.common.httpCallGet('service/twice/words').subscribe((res: any) => {
+  public upLove(e: any) {
+    e.point = e.point + 1;
+    e.love = true;
+    e.loveName = this.userName;
+    this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
+      this.getList();
+    });
+  }
+
+  public deLove(e: any) {
+    e.point = e.point - 1;
+    e.love = true;
+    e.loveName = this.userName;
+    this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.datas = res.result;
-        this.checkLove();
-      } else {
-        this.datas = new Array();
+        this.getList();
       }
-    });
-  }
-
-  public upThreeLove(e: any) {
-    e.point = e.point + 1;
-    e.love = true;
-    e.loveName = this.userName;
-    this.common.httpCallPut('service/three/' + e.idx, e).subscribe((res: any) => {
-      this.getThreeList();
-    });
-  }
-
-  public upTwoLove(e: any) {
-    e.point = e.point + 1;
-    e.love = true;
-    e.loveName = this.userName;
-    this.common.httpCallPut('service/twice/' + e.idx, e).subscribe((res: any) => {
-      this.getTwoList();
     });
   }
 
@@ -101,68 +89,41 @@ export class UserListComponent implements OnInit {
   }
 
   public orPopular(type: string) {
-    if (type === 'THREE') {
-      this.common.httpCallGet('service/three/popular').subscribe((res: any) => {
-        if (res.resultCode === 'OK' && res.result !== null) {
-          this.datas = res.result;
-          this.checkLove();
-        } else {
-          this.datas = new Array();
-        }
-      });
-    } else if (type === 'TWO') {
-      this.common.httpCallGet('service/twice/popular').subscribe((res: any) => {
-        if (res.resultCode === 'OK' && res.result !== null) {
-          this.datas = res.result;
-          this.checkLove();
-        } else {
-          this.datas = new Array();
-        }
-      });
-    }
+    this.common.httpCallGet('service/' + this.type + '/popular').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.datas = res.result;
+        this.checkLove();
+      } else {
+        this.datas = new Array();
+      }
+    });
+
     this.btnCheck = false;
   }
 
   public orLatest(type: string) {
-    if (type === 'THREE') {
-      this.getThreeList();
-    } else if (type === 'TWO') {
-      this.getTwoList();
-    }
+    this.getList();
     this.btnCheck = true;
   }
 
-  // public onContentUpdate(data: any, type: any) {
-  //   if (type === 'THREE') {
-  //     this.common.httpCallPut('service/three/' + data.idx, data).subscribe((res: any) => {
-  //       if (res.resultCode === 'OK') {
-  //         this.getThreeList();
-  //       }
-  //     });
-  //   } else if (type === 'TWO') {
-  //     this.common.httpCallPut('service/twice/' + data.idx, data).subscribe((res: any) => {
-  //       if (res.resultCode === 'OK') {
-  //         this.getTwoList();
-  //       }
-  //     });
-  //   }
-  // }
+  public onContentUpdate(data: any) {
+    this.common.httpCallPut('service/' + this.type + '/' + data.idx, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        this.getList();
+      }
+    });
+  }
 
-  // public onContentDelete(data: any, type: any) {
-  //   if (window.confirm('삭제 하시겠습니까?')) {
-  //     if (type === 'THREE') {
-  //       this.common.httpCallDelete('service/three/' + data.idx, data).subscribe((res: any) => {
-  //         if (res.resultCode === 'OK') {
-  //           this.getThreeList();
-  //         }
-  //       });
-  //     } else if (type === 'TWO') {
-  //       this.common.httpCallDelete('service/twice/' + data.idx, data).subscribe((res: any) => {
-  //         if (res.resultCode === 'OK') {
-  //           this.getTwoList();
-  //         }
-  //       });
-  //     }
-  //   }
-  // }
+  public onDelete(data: any) {
+    const routeUrl = this.type;
+
+    if (window.confirm('삭제 하시겠습니까?')) {
+      this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          this.getList();
+          this.observable.deleteHistory('Delete');
+        }
+      });
+    }
+  }
 }

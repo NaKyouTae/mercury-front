@@ -36,7 +36,31 @@
             <div>Copyright, 팀명칭. All rights reserved.</div>
         </div>
         <div *ngIf="subCheck">
-            <button class="btn news-btn" (click)="onSubscription()">뉴스레터 구독하기</button>
+            <button class="btn news-btn" (click)="onSubscription(UpModal)">뉴스레터 구독하기</button>
         </div>
     </div>
 </div>
+
+<ng-template #UpModal class="modal">
+  <div>
+    <div class="modal-header" *ngIf="form != undefined">
+      <div style="width: 94%;">
+        <h2>뉴스 레터</h2>
+      </div>
+      <div class="close" (click)="onPopClose()">&times;</div>
+    </div>
+    <div *ngIf="form != undefined" style="margin-top: 20px;">
+      <form [formGroup]="form">
+        <div class="form-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email" style="margin-top:5px;" />
+          <span *ngIf="form.controls.email.hasError('required')" style="margin-top:5px; color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer" style="margin-top: 15px;">
+      <!-- <button (click)="onPopClose()">취소</button> -->
+      <button class="btn command-btn" style="margin: auto; width: 100%;" (click)="upUserEmail(form.controls)" [disabled]="!form.valid">구독 하기</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,6 +1,6 @@
 <div *ngIf="userCheck" class="insert-word">
 
-  <form *ngIf="type == 'THREE'" [formGroup]="threeForm">
+  <form *ngIf="type == 'three'" [formGroup]="threeForm">
     <div class="form-input-text">
       <p class="in-word-title">{{contents[0]}}</p>
       <input type="text" class="in-word-in" formControlName="contentOne" >
@@ -16,7 +16,7 @@
     </div>
   </form>
 
-  <form *ngIf="type == 'TWO'" [formGroup]="twoForm">
+  <form *ngIf="type == 'twice'" [formGroup]="twoForm">
     <div class="form-input-text">
       <p class="in-word-title">{{contents[0]}}</p>
       <input type="text" class="in-word-in" formControlName="contentOne" >

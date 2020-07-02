@@ -5,15 +5,28 @@
       </div> -->
       <div style="text-align: center; margin-top: 40px;">
         <div style="font-weight: bold; font-size: 50px;">
-          <div>{{user.username}}<button BtnModal (click)="onClick(user)" [modal]="UpModal">수정</button></div>
+          <div>{{user.username}}<button style="margin-left: 10px;" BtnModal (click)="onClick(user)" [modal]="UpModal">수정</button></div>
         </div>
         <div style="font-size: 20px; margin: 15px 0px;">
-          <div>{{userGrade.gradeName}} {{total}} <button (mouseover)="gradeOver()" (mouseout)="gradeOver()">A</button></div>
+          <div>
+            <div style="display: inline-block; width: 50px; height: 20px; margin-right: 10px;" [ngStyle]="{'background-color': userGrade.idx ? userGrade.gradeIdx: ''}"></div>
+            <div style="display: inline-block; vertical-align: top; margin-top: -1px;">
+              <div style="display: inline-block;">{{userGrade.gradeName}} {{total}}</div>
+              <div style="display: inline-block; vertical-align: top; margin: 1px 0px 0px 10px; font-size: 17px;" (mouseover)="gradeOver()" (mouseout)="gradeOver()">&#x0229B;</div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="gradeView" style="position: absolute; width: 400px; border: 1px solid darkgray;">
-          <div *ngFor="let d of grades">
-            <label>{{d.gradeName}}</label>
-            <div>{{d.startRange}} ~ {{d.endRange}}</div>
+        <div *ngIf="gradeView" class="grade-modal">
+          <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+            <h2>등급 표</h2>
+          </div>
+          <div *ngFor="let d of grades" class="grade-area">
+            <div [ngStyle]="{'background-color': d.idx ? d.idx: ''}"></div>
+            <div>{{d.gradeName}}</div>
+            <div>
+              <div>{{d.startRange}}점</div>
+              <div>~</div>
+              <div>{{d.endRange}}점</div></div>
           </div>
         </div>
         <div>{{user.email}}</div>

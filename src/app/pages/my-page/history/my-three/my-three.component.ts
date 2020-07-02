@@ -8,18 +8,18 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./my-three.component.css'],
 })
 export class MyThreeComponent implements OnInit {
-  public data: any;
+  public data: any = new Array();
   public word: any;
   public number: any = 0;
   public jwtUser = this.jwt.getJWTUserKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.onSearch();
   }
 
   public onSearch() {
-    this.common.httpCallGet('service/three/' + this.jwtUser.idx, { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
+    this.common.httpCallGet('service/three/user', { userIdx: this.jwtUser.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result.length > 0) {
         this.data = res.result;
         this.getWord(this.data[0].wordIdx);

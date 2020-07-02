@@ -78,4 +78,10 @@
         display: inline-block;
         margin-left: 10px;
     }
+
+    .data-none {
+        text-align: center;
+        font-size: 40px;
+        margin: 100px 0px;
+    }
 }

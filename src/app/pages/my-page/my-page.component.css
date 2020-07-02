@@ -10,3 +10,43 @@
 .router-btn:hover {
     background-color: darkgray;
 }
+
+.grade-modal {
+    position: absolute;
+    border: 1px solid darkgray;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+.grade-area > div{
+    display: inline-block;
+    margin: 5px;
+}
+
+.grade-area > div:first-child {
+    width: 50px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.grade-area > div:nth-child(2) {
+    width: 50px;
+    vertical-align: top;
+    margin-top: 6px;
+}
+
+.grade-area > div:last-child {
+    vertical-align: top;
+    margin-top: 6px;
+}
+
+.grade-area > div:last-child > div {
+    width: 60px;
+    text-align: center;
+    display: inline-block;
+}
+.grade-area > div:last-child > div:nth-child(2) {
+    width: 20px;
+}

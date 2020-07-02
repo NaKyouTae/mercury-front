@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit {
   @Input('my') public my: any;
 
   public loginCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
-  public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
+  public user: any = this.jwt.getJWTUserKey('user') !== null ? this.jwt.getJWTUserKey('user') : '';
   public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
 
@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.my) {
+    if (!this.my) {
       setInterval(() => {
         this.getList();
       }, 30000);
@@ -59,20 +59,14 @@ export class UserListComponent implements OnInit {
   public upLove(e: any) {
     e.point = e.point + 1;
     e.love = true;
-    e.loveName = this.userName;
+    e.loveName = this.user.username;
     this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
       this.getList();
     });
   }
 
   public deLove(e: any) {
-    e.point = e.point - 1;
-    e.love = true;
-    e.loveName = this.userName;
-    // contentIdx = e.idx
-    // userIdx = this.user.idx;
-
-    this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
+    this.common.httpCallDelete('service/loves', { userIdx: this.user.idx, contentIdx: e.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.getList();
       }
@@ -81,7 +75,7 @@ export class UserListComponent implements OnInit {
 
   public checkLove() {
     this.datas.forEach((item: any) => {
-      this.common.httpCallGet('service/loves', { contentIdx: item.idx, username: this.userName }).subscribe((res: any) => {
+      this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: this.user.idx }).subscribe((res: any) => {
         if (res.result === false || res.result === null) {
           item.me = false;
         } else {

@@ -21,13 +21,7 @@ export class FooterComponent implements OnInit {
     email: new FormControl('', Validators.required),
   });
 
-  constructor(
-    private common: CommonHttpService,
-    private jwt: JwtService,
-    private observable: ObservableService,
-    private formservice: FormsService,
-    private dialog: MatDialog
-  ) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService, private formservice: FormsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onSearch();
@@ -39,8 +33,6 @@ export class FooterComponent implements OnInit {
       }
     });
   }
-
-
 
   public onSearch() {
     const idx = this.user === null ? null : this.user.idx;
@@ -61,13 +53,13 @@ export class FooterComponent implements OnInit {
       this.onPopOpen(emailTemp);
       return false;
     } else {
-      this.upNewsletter();
+      this.upNewsletter(null);
     }
   }
 
   public onPopOpen(template: TemplateRef<any>) {
     const dialogData = {
-      email: ''
+      email: '',
     };
 
     this.dialog.open(template, {
@@ -89,17 +81,17 @@ export class FooterComponent implements OnInit {
     this.common.httpCallPut('service/users/' + this.user.idx, { user: data, role: null }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.onPopClose();
-        this.upNewsletter();
+        this.upNewsletter(res.result.email);
         this.user = res.result;
       }
     });
   }
 
-  public upNewsletter() {
+  public upNewsletter(email: any) {
     const params = {
       userIdx: this.user.idx,
       userName: this.user.username,
-      userEMail: this.user.email,
+      userEMail: email === null ? this.user.email : email,
     };
 
     this.common.httpCallPost('service/newsletters', params).subscribe((res: any) => {

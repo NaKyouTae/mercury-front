@@ -37,7 +37,7 @@ export class MyPageComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) {}
 
   ngOnInit() {
     this.search();
@@ -53,11 +53,11 @@ export class MyPageComponent implements OnInit {
   }
 
   public search() {
-    this.common.httpCallGet('service/three/' + this.user.idx, { userIdx: this.user.idx }).subscribe((res: any) => {
+    this.common.httpCallGet('service/three/user', { userIdx: this.user.idx }).subscribe((res: any) => {
       this.threeTot = res.result.length;
     });
 
-    this.common.httpCallGet('service/twice/' + this.user.idx, { userIdx: this.user.idx }).subscribe((res: any) => {
+    this.common.httpCallGet('service/twice/user', { userIdx: this.user.idx }).subscribe((res: any) => {
       this.twoTot = res.result.length;
     });
 

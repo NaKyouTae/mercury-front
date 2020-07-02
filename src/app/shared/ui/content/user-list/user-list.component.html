@@ -10,7 +10,7 @@
             <div class="btn order-btn" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest(type)">최신 순</div>
         </div>
     </div>
-    <div *ngIf="datas != undefined">
+    <div *ngIf="datas != undefined || datas.length != 0">
       <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
           <div>
               <div class="data-user">
@@ -38,16 +38,16 @@
                         <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
                       </div>
                       <div *ngIf="loginCheck && item.me">
-                        <img *ngIf="item.love" (click)="deLove(item)" class="love-btn" src="../../../../assets/img/love.png">
+                        <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn love-btn" src="../../../../assets/img/love.png">
                       </div>
                       <div *ngIf="loginCheck && !item.me">
                           <div *ngIf="type == 'three'">
-                              <img *ngIf="item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
                           </div>
                           <div *ngIf="type == 'twice'">
-                              <img *ngIf="item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
                           </div>
                       </div>
                     </div>
@@ -76,7 +76,7 @@
           </div>
       </div>
     </div>
-    <div *ngIf="datas == undefined">결과가 없습니다. 도전해보세요.</div>
+    <div *ngIf="datas == undefined || datas.length == 0" class="data-none" >결과가 없습니다. 도전해보세요.</div>
     <div style="text-align: center; margin: 20px auto; ">
         <img style="width: 728px; height: 90px;" src="../../../../assets/img/ad-sample.jpg">
     </div>

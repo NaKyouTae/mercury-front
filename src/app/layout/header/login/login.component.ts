@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
   public auth: any = null;
   public authConfirm: any = false;
   public number: any = null;
+  public emailConfirm: any = true;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -168,8 +169,14 @@ export class LoginComponent implements OnInit {
     } else {
       this.auth = null;
       this.common.httpCallGet('service/mails/check', { target: email }).subscribe((res: any) => {
-        console.log('auth number : ' + res.result);
-        this.auth = res.result;
+        if (res.resultCode === 'OK' && res.result !== null) {
+          if (res.result === false) {
+            this.emailConfirm = res.result;
+          } else {
+            console.log('auth number : ' + res.result);
+            this.auth = res.result;
+          }
+        }
       });
     }
   }

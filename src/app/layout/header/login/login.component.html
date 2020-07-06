@@ -175,6 +175,7 @@
           <span *ngIf="signUpForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
           <span *ngIf="authConfirm" style="color:green; display: block; font-size: 12px;">인증이 완료 되었습니다.</span>
           <span *ngIf="auth != null && !authConfirm" style="color:red; display: block; font-size: 12px;">인증 번호가 일치하지 않습니다.</span>
+          <span *ngIf="!emailConfirm" style="color:red; display: block; font-size: 12px;">존재 하는 이메일입니다.</span>
         </div>
         <div class="login-input-text" *ngIf="auth != null">
           <label style="display: inline-block;">

@@ -10,6 +10,7 @@ import { GradeComponent } from './grade/grade.component';
 import { LoginHistoryComponent } from './login-history/login-history.component';
 import { ConfigComponent } from './config/config.component';
 import { NoticeComponent } from './notice/notice.component';
+import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -21,10 +22,11 @@ const routes: Routes = [
   { path: 'login', component: LoginHistoryComponent, canActivate: [AdminGuard] },
   { path: 'config', component: ConfigComponent, canActivate: [AdminGuard] },
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
+  { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

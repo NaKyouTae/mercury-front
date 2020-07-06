@@ -41,7 +41,7 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
   public upToggle: any = !this.front ? 'upSign' : 'upLogin';
@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
   public authConfirm: any = false;
   public number: any = null;
   public emailConfirm: any = true;
+  public pwConfirm: any = true;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -69,7 +70,12 @@ export class LoginComponent implements OnInit {
     rep: new FormControl('', Validators.required),
   });
 
-  ngOnInit() { }
+  public userForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+  });
+
+  ngOnInit() {}
 
   public dragFront() {
     this.front = !this.front;
@@ -200,5 +206,40 @@ export class LoginComponent implements OnInit {
   public kakaoLogin() {
     // tslint:disable-next-line: max-line-length
     window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code';
+  }
+
+  public findUserName(e: any) {
+    const data = this.formservice.formToData(e);
+
+    this.common.httpCallGet('service/users/ids', data).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        if (res.result === false) {
+          this.emailConfirm = res.result;
+        } else {
+          this.dialog.closeAll();
+        }
+      }
+    });
+  }
+
+  public findPassWord(e: any) {
+    const data = this.formservice.formToData(e);
+
+    this.common.httpCallGet('service/users/pws', data).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        if (res.result === false) {
+          this.pwConfirm = res.result;
+        } else {
+          this.dialog.closeAll();
+        }
+      }
+    });
+  }
+
+  public openPopup(template: TemplateRef<any>, width: any, height: any) {
+    this.dialog.open(template, {
+      width: width + 'px',
+      height: height + 'px',
+    });
   }
 }

@@ -38,8 +38,8 @@
         </div>
         <div *ngIf="loginFail" style="color:red;">로그인 정보가 잘 못 되었습니다.</div>
         <div style="margin: 30px 0px;">
-          <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">계정 찾기</a>
-          <a style="border-bottom: 1px solid darkgray; margin: 0px 5px;">비밀번호 찾기</a>
+          <a class="btn" (click)="openPopup(findUserNameForm, 400, 300)" style="border-bottom: 1px solid darkgray; margin: 0px 5px;">계정 찾기</a>
+          <a class="btn" (click)="openPopup(findPassWordForm, 400, 400)" style="border-bottom: 1px solid darkgray; margin: 0px 5px;">비밀번호 찾기</a>
         </div>
         <div style="padding:0px 0px 20px 0px;">
           <a href="https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code">
@@ -79,6 +79,7 @@
           <span *ngIf="signUpForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
           <span *ngIf="authConfirm" style="color:green; display: block; font-size: 12px;">인증이 완료 되었습니다.</span>
           <span *ngIf="auth != null && !authConfirm" style="color:red; display: block; font-size: 12px;">인증 번호가 일치하지 않습니다.</span>
+          <span *ngIf="!emailConfirm" style="color:red; display: block; font-size: 12px;">존재 하는 이메일입니다.</span>
         </div>
         <div class="login-input-text" *ngIf="auth != null">
           <label style="display: inline-block;">
@@ -199,6 +200,49 @@
       </form>
       <div style="text-align: center;">
         <button class="btn primary-btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="onCreate(signUpForm.controls)" [disabled]="signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false ">회원가입</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #findUserNameForm>
+  <div>
+    <div style="text-align: center;">
+      <h1 style="margin-top: 50px;">계정 찾기</h1>
+      <div [formGroup]="userForm">
+        <div class="login-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email" placeholder="Enter Email" />
+          <span *ngIf="userForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+          <span *ngIf="!emailConfirm" style="color:red; display: block; font-size: 12px;">존재하지 않는 이메일 입니다.</span>
+        </div>
+        <div style="text-align: center;">
+          <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" 
+          (click)="findUserName(userForm.controls)" [disabled]="!userForm.controls.email.valid">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #findPassWordForm>
+  <div>
+    <div style="text-align: center;">
+      <h1 style="margin-top: 50px;">비밀 번호 찾기</h1>
+      <span *ngIf="!pwConfirm" style="color:red; display: block; font-size: 12px;">존재하지 않는 정보입니다.</span>
+      <div [formGroup]="userForm">
+        <div class="login-input-text">
+          <label>계정</label>
+          <input type="text" formControlName="username" placeholder="Enter User Name" />
+          <span *ngIf="userForm.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">계정 명은 필수 입니다.</span>
+        </div>
+        <div class="login-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email" placeholder="Enter Email" />
+          <span *ngIf="userForm.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        </div>
+        <div style="text-align: center;">
+          <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" 
+          (click)="findPassWord(userForm.controls)" [disabled]="!userForm.valid">확인</button>
+        </div>
       </div>
     </div>
   </div>

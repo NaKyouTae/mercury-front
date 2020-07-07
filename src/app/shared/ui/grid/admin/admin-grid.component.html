@@ -6,7 +6,7 @@
       </div>
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
 
-      <div RowModal (dblclick)="onDblClick(d)" [modal]="upModalTemp" *ngFor="let d of data; let d_idx = index" class="grid-row">
+      <div RowModal (dblclick)="onDblClick(d)" [modal]="upModalTemp" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%'}">
           {{ onData(d, f.field) }}
         </div>

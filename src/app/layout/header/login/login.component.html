@@ -217,7 +217,7 @@
         </div>
         <div style="text-align: center;">
           <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" 
-          (click)="findUserName(userForm.controls)" [disabled]="!userForm.controls.email.valid">확인</button>
+          (click)="findUserName(userForm.controls, Confirm)" [disabled]="!userForm.controls.email.valid">확인</button>
         </div>
       </div>
     </div>
@@ -241,9 +241,28 @@
         </div>
         <div style="text-align: center;">
           <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" 
-          (click)="findPassWord(userForm.controls)" [disabled]="!userForm.valid">확인</button>
+          (click)="findPassWord(userForm.controls, Confirm)" [disabled]="!userForm.valid">확인</button>
         </div>
       </div>
     </div>
+  </div>
+</ng-template>
+<ng-template #Confirm>
+  <div style="font-size: 30px; font-weight: bold; margin-top: 20px;">
+    <div>천하제일</div>
+    <div><span style="color: #100efb;">엔</span>행시 대회<span style="color: #100efb;">.</span></div>
+  </div>
+  <div style="text-align: center; margin: 40px 0px;">
+    <div *ngIf="ConfirmType == 'username'">
+      <h3>이메일로 아이디 정보를 발송하였습니다.</h3>
+      <h3>이메일을 확인해주세요.</h3>
+    </div>
+    <div *ngIf="ConfirmType == 'password'">
+      <h3>임시 비밀번호 정보를 발송하였습니다.</h3>
+      <h3>이메일을 확인해주세요.</h3>
+    </div>
+  </div>
+  <div style="text-align: center;">
+    <button class="btn"  style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="popupClose()">확인</button>
   </div>
 </ng-template>

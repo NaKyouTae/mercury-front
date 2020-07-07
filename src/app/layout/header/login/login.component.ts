@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
   public number: any = null;
   public emailConfirm: any = true;
   public pwConfirm: any = true;
+  public ConfirmType: any;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -208,38 +209,43 @@ export class LoginComponent implements OnInit {
     window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code';
   }
 
-  public findUserName(e: any) {
+  public findUserName(e: any, template: TemplateRef<any>) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallGet('service/users/ids', data).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        if (res.result === false) {
-          this.emailConfirm = res.result;
-        } else {
-          this.dialog.closeAll();
+        this.emailConfirm = res.result;
+        if (res.result !== false) {
+          this.ConfirmType = 'username';
+          this.openPopup(template, 400, 300);
         }
       }
     });
   }
 
-  public findPassWord(e: any) {
+  public findPassWord(e: any, template: TemplateRef<any>) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallGet('service/users/pws', data).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        if (res.result === false) {
-          this.pwConfirm = res.result;
-        } else {
-          this.dialog.closeAll();
+        this.pwConfirm = res.result;
+        if (res.result !== false) {
+          this.ConfirmType = 'password';
+          this.openPopup(template, 400, 300);
         }
       }
     });
   }
 
   public openPopup(template: TemplateRef<any>, width: any, height: any) {
+    this.dialog.closeAll();
     this.dialog.open(template, {
       width: width + 'px',
       height: height + 'px',
     });
+  }
+  public popupClose() {
+    this.ConfirmType = null;
+    this.dialog.closeAll();
   }
 }

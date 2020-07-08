@@ -2,8 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'nkt-user-grid',
+  selector: 'app-user-grid',
   templateUrl: './user-grid.component.html',
   styleUrls: ['./user-grid.component.css'],
 })

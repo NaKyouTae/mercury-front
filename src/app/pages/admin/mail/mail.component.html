@@ -16,7 +16,7 @@
         <div>
             <button class="btn">저장</button>
         </div>
-        <nkt-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></nkt-admin-grid>
+        <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModalTemp]="CreModal" [upModalTemp]="UpModal"></app-admin-grid>
     </div>
 </div>
 

@@ -2,8 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'nkt-admin-grid',
+  selector: 'app-admin-grid',
   templateUrl: './admin-grid.component.html',
   styleUrls: ['./admin-grid.component.css'],
 })
@@ -31,7 +30,7 @@ export class AdminGridComponent implements OnInit {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {

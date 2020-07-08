@@ -1,3 +1,39 @@
 <div class="content-width">
     <app-page-title title="LOGS"></app-page-title>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModalTemp]="UpModal"></app-admin-grid>
+</div>
+
+<div #UpModal class="modal">
+  <div class="modal-content" style="width: 25%; text-align: left;">
+      <div class="modal-header" *ngIf="form != undefined">
+          <div>
+              <h2>Log 내용</h2>
+          </div>
+          <div class="close" (click)="onClose(UpModal)">&times;</div>
+          <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+      </div>
+      <div *ngIf="form != undefined">
+          <form [formGroup]="form">
+              <div class="form-input-text">
+                  <label>Logger</label>
+                  <input type="text" formControlName="logger"/>
+              </div>
+              <div class="form-input-text">
+                  <label>Level</label>
+                  <input type="text" formControlName="level"/>
+              </div>
+              <div class="form-input-text">
+                  <label>Message</label>
+                  <input type="text" formControlName="message"/>
+              </div>
+              <div class="form-input-text">
+                  <label>생성 일</label>
+                  <input type="text" formControlName="insertDate"/>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button (click)="onClose(UpModal)">취소</button>
+      </div>
+  </div>
 </div>

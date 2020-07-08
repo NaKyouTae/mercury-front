@@ -75,7 +75,8 @@ export class UserListComponent implements OnInit {
 
   public checkLove() {
     this.datas.forEach((item: any) => {
-      this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: this.user.idx }).subscribe((res: any) => {
+      const idx = this.user.idx === undefined ? 'null' : this.user.idx;
+      this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: idx }).subscribe((res: any) => {
         if (res.result === false || res.result === null) {
           item.me = false;
         } else {

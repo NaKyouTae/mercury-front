@@ -36,28 +36,21 @@
           <input type="text" formControlName="idx" />
         </div>
         <div class="form-input-text">
-          <label>사용 여부</label>
-          <input type="text" formControlName="used" />
+          <label>템플릿 명</label>
+          <input type="text" formControlName="type" />
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>
           <input type="text" formControlName="insertDate" />
         </div>
         <div class="form-input-text">
-          <label>사용 여부</label>
-          <input type="text" formControlName="type" />
-        </div>
-        <div class="form-input-text">
-          <label>배치</label>
-          <input type="text" formControlName="batchId" />
-        </div>
-        <div class="form-input-text">
-          <label>제목</label>
+          <label>메일 제목</label>
           <input type="text" formControlName="title" />
         </div>
         <div class="form-input-text">
-          <label>내용</label>
-          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+          <label>템플릿 파일 명</label>
+          <input type="text" formControlName="tempName" />
+          <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
         </div>
       </form>
     </div>
@@ -78,20 +71,17 @@
     <div *ngIf="newform != undefined" >
       <form [formGroup]="newform">
         <div class="form-input-text">
-          <label>사용 여부</label>
+          <label>템플릿 명</label>
           <input type="text" formControlName="type" />
         </div>
         <div class="form-input-text">
-          <label>배치</label>
-          <input type="text" formControlName="batchId" />
-        </div>
-        <div class="form-input-text">
-          <label>제목</label>
+          <label>메일 제목</label>
           <input type="text" formControlName="title" />
         </div>
         <div class="form-input-text">
-          <label>내용</label>
-          <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+          <label>템플릿 파일 명</label>
+          <input type="text" formControlName="tempName" />
+          <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
         </div>
       </form>
     </div>

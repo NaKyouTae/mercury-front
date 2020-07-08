@@ -19,28 +19,24 @@ export class MailComponent implements OnInit {
 
   public data: any;
   public fields: any = [
-    { title: 'title', width: 50, field: 'title' },
-    { title: '종류', width: 5, field: 'type' },
-    { title: '사용 여부', width: 5, field: 'used' },
-    { title: '배치 명', width: 15, field: 'batchId' },
+    { title: '템플릿 파일 명', width: 5, field: 'tempName' },
+    { title: '템플릿 명', width: 5, field: 'type' },
+    { title: '메일 제목', width: 50, field: 'title' },
     { title: '생성 일자', width: 15, field: 'insertDate' },
     { title: '일렬 번호', width: 10, field: 'idx' },
   ];
   public newform = new FormGroup({
     type: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
-    batchId: new FormControl('', Validators.required),
+    tempName: new FormControl('', Validators.required),
   });
 
   public form = new FormGroup({
     idx: new FormControl({ value: '', disabled: true }),
     type: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
+    tempName: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
-    used: new FormControl({ value: '', disabled: true }),
-    batchId: new FormControl({ value: '' }, Validators.required),
   });
 
   public editorConfig: AngularEditorConfig = {

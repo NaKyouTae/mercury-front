@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LogsComponent implements OnInit {
 
-  public data: any = new Array();
+  public data: any;
   public fields: any = [
     { title: 'Logger', width: 10, field: 'logger' },
     { title: 'Level', width: 5, field: 'level' },
@@ -24,19 +24,20 @@ export class LogsComponent implements OnInit {
     level: new FormControl('', Validators.required),
     message: new FormControl('', Validators.required),
     insertDate: new FormControl('', Validators.required),
-  })
+  });
 
   constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
+    this.onSearch();
   }
 
 
   public onSearch() {
     this.common.httpCallGet('service/loggers').subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
-        this.data = res.result;
-      }
+
+      this.data = res.result;
+
     });
   }
 

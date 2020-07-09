@@ -28,7 +28,9 @@ export class UserGridComponent implements OnInit {
   public pageList: Array<any>;
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
 
-  constructor(private jwt: JwtService) { }
+  public sliceData: any;
+
+  constructor(private jwt: JwtService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -37,6 +39,7 @@ export class UserGridComponent implements OnInit {
       this.tot = this.data.length;
       this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
       this.take = this.data.length > this.take ? this.take : this.data.length;
+      this.onBind();
     }
   }
 
@@ -60,26 +63,14 @@ export class UserGridComponent implements OnInit {
     return eval('data.' + field);
   }
 
-  public onBind(e: any) {
-    const result = new Array();
-
-    const dataList = this.data.slice(this.skip, this.take);
-
-    // tslint:disable-next-line: prefer-const
-    for (let d of dataList) {
-      Object.keys(d).forEach((v) => {
-        if (e === v) {
-          result.push(d[v]);
-        }
-      });
-    }
-
-    return result;
+  public onBind() {
+    this.sliceData = this.data.slice(this.skip, this.take);
   }
 
   public paging(e) {
     this.skip = e === 1 ? 0 : Number(this.size) * (Number(e) - 1);
     this.take = Math.ceil(this.data.length / this.size) === e ? this.data.length : Number(this.size) * Number(e);
+    this.onBind();
   }
 
   public reSize(e) {

@@ -1,9 +1,13 @@
-<div class="content-width" style="width: 100%">
-  <div>
-    <div class="btn router-btn" style="width: 50%; display: inline-block;" routerLink="/my/cash/history">이력</div>
-    <div class="btn router-btn" style="width: 50%; display: inline-block;" routerLink="/my/cash/request">출금 요청</div>
+<div>
+  <div class="cash-request-area">
+    <form [formGroup]="form">
+      <div class="form-input-text">
+        <label>현재 잔액 : <span style="font-weight: bold;">{{prevCash}}</span> </label>
+        <label>출금 금액</label>
+        <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
+        <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000">출금</button>
+      </div>
+    </form>
   </div>
-  <div style="padding: 10px;">
-    <router-outlet></router-outlet>
-  </div>
+  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields"></app-user-grid>
 </div>

@@ -10,3 +10,8 @@
 .router-btn:hover {
     background-color: darkgray;
 }
+
+.cash-request-area {
+    display: inline-block;
+    text-align: right;
+} 

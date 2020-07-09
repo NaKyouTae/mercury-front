@@ -11,4 +11,4 @@ import { PagingModule } from '../paging/paging.module';
   imports: [CommonModule, FormsModule, RowModalDirectiveModule, BtnModalDirectiveModule, PagingModule],
   exports: [UserGridComponent],
 })
-export class AdminGridModule {}
+export class UserGridModule {}

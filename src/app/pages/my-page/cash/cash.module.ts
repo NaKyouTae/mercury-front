@@ -1,16 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CashComponent } from './cash.component';
-import { CashRequestComponent } from './cash-request/cash-request.component';
-import { CashHistoryComponent } from './cash-history/cash-history.component';
-import { CashRoutingModule } from './cash-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageTitleModule } from 'src/app/shared/ui/page-title/page-title.module';
+import { UserGridModule } from 'src/app/shared/ui/grid/user/user-grid.module';
 
 @NgModule({
-  declarations: [CashComponent, CashRequestComponent, CashHistoryComponent],
-  imports: [
-    CommonModule, CashRoutingModule, FormsModule, ReactiveFormsModule, PageTitleModule
-  ]
+  declarations: [CashComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PageTitleModule, UserGridModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CashModule { }
+export class CashModule {}

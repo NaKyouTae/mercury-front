@@ -1,11 +1,13 @@
 <div>
   <div class="cash-request-area">
     <form [formGroup]="form">
-      <div class="form-input-text">
+      <div style="margin-bottom: 10px ;">
         <label>현재 잔액 : <span style="font-weight: bold;">{{prevCash}}</span> </label>
+      </div>
+      <div class="form-input-text">
         <label>출금 금액</label>
         <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
-        <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000">출금</button>
+        <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">출금</button>
       </div>
     </form>
   </div>

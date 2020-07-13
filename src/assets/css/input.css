@@ -1,10 +1,12 @@
 /* input tag */
 .form-input-text {
-    width: 100%; margin-bottom: 10px; display: inline-block;
+    width: 100%; margin-bottom: 10px;
 }
+
 .form-input-text > label:first-child{
     width: 18%; display: inline-block;
 }
+
 .form-input-text > input{
     width: calc(100% - 10px); display: inline-block; border-radius: 5px; border: 1px solid darkgray; padding: 7px 5px;
 }

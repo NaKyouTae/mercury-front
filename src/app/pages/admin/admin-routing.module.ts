@@ -11,6 +11,7 @@ import { LoginHistoryComponent } from './login-history/login-history.component';
 import { ConfigComponent } from './config/config.component';
 import { NoticeComponent } from './notice/notice.component';
 import { LogsComponent } from './logs/logs.component';
+import { CashComponent } from './cash/cash.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'config', component: ConfigComponent, canActivate: [AdminGuard] },
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
   { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },
+  { path: 'cash', component: CashComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

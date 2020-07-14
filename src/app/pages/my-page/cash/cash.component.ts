@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cash',
@@ -30,7 +31,7 @@ export class CashComponent implements OnInit {
     { title: '승인', width: 5, field: 'approval' },
   ];
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onSearch();
@@ -67,5 +68,12 @@ export class CashComponent implements OnInit {
         }
       });
     }
+  }
+
+  public openModal(template: TemplateRef<any>) {
+    this.dialog.open(template, {
+      width: '800px',
+      height: '720px',
+    });
   }
 }

@@ -1,9 +1,14 @@
 <div>
+  <div style="margin-bottom: 10px ;">
+    <label>현재 잔액 : <span style="font-weight: bold;">{{prevCash}}</span> </label>
+    <button (click)="openModal(withDrawCashModal)">출금</button>
+  </div>
+  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields"></app-user-grid>
+</div>
+
+<ng-template #withDrawCashModal>
   <div class="cash-request-area">
     <form [formGroup]="form">
-      <div style="margin-bottom: 10px ;">
-        <label>현재 잔액 : <span style="font-weight: bold;">{{prevCash}}</span> </label>
-      </div>
       <div class="form-input-text">
         <label>출금 금액</label>
         <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
@@ -11,5 +16,4 @@
       </div>
     </form>
   </div>
-  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields"></app-user-grid>
-</div>
+</ng-template>

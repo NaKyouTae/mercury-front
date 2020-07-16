@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class MyThreeComponent implements OnInit {
   public word: any;
   public number: any = 0;
   public jwtUser = this.jwt.getJWTUserKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.onSearch();

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { JwtService } from './shared/common/jwt/jwt.service';
-import { CommonHttpService } from './shared/common/common-http.service';
+import { CommonHttpService } from './shared/common/http/common-http.service';
 
 @Component({
   selector: 'app-root',

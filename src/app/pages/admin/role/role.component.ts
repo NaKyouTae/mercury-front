@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class RoleComponent implements OnInit {
     changeDate: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();

@@ -1,0 +1,10 @@
+.required-notice-red {
+  color:red;
+  display: block;
+  font-size: 12px;
+}
+.required-notice-gre {
+  color:green;
+  display: block;
+  font-size: 12px;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 
 @Component({
   selector: 'app-three',

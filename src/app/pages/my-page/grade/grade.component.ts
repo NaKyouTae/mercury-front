@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 
 @Component({
   selector: 'app-grade',
@@ -9,7 +9,7 @@ import { CommonHttpService } from 'src/app/shared/common/common-http.service';
 export class GradeComponent implements OnInit {
   public data: any;
 
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     this.search();

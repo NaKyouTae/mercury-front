@@ -1,0 +1,9 @@
+.logo-s-area {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logo-s-area > div:last-child > span {
+  color: #100efb;
+}

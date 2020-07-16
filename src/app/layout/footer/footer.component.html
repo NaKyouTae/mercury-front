@@ -53,8 +53,13 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>이메일</label>
+          <button *ngIf="!authConfirm && auth == null" class="btn command-btn" style="display: inline-block;" (click)="checkEmail(form.controls.email.value)" [disabled]="form.controls.email.value == null || form.controls.email.value == '' ? true:false">인증요청</button>
           <input type="text" formControlName="email" style="margin-top:5px;" />
-          <span *ngIf="form.controls.email.hasError('required')" style="margin-top:5px; color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+          <span class="required-notice-red" *ngIf="form.controls.email.hasError('required')">이메일은 필수 입니다.</span>
+          <span class="required-notice-red" *ngIf="form.controls.email.errors?.email">이메일 형식에 맞지 않습니다.</span>
+          <span class="required-notice-red" *ngIf="auth != null && !authConfirm">인증 번호가 일치하지 않습니다.</span>
+          <span class="required-notice-red" *ngIf="!emailConfirm">존재하는 이메일입니다.</span>
+          <span class="required-notice-gre" *ngIf="authConfirm">인증이 완료 되었습니다.</span>
         </div>
       </form>
     </div>
@@ -65,5 +70,5 @@
   </div>
 </ng-template>
 <ng-template #Login>
-  <app-login style="display: inline-block;"></app-login>
+  <app-login-form></app-login-form>
 </ng-template>

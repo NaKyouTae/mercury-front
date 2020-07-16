@@ -1,25 +1,22 @@
 <div class="page-header">
     <div class="page-header-content content-width">
         <div class="header-menu">
-            <div style="color: #100efb; font-weight: bold;">
-                <div>엔.</div>
-            </div>
-            <div>
-                <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
-                <div *ngIf="userCheck && this.loginType == 'DEFAULT'" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
-                <div *ngIf="userCheck && this.loginType == 'KAKAO'" style="cursor: pointer;" (click)="kakaoByLogout()">K LOGOUT</div>
-                <div *ngIf="userCheck" style="cursor: pointer;" routerLink="/my">나의 <span style="color: #100efb;">엔</span>행시</div>
-                <div *ngIf="userCheck">{{userName}} 님</div>
-            </div>
+          <div>
+            <app-logo-s></app-logo-s>
+          </div>
+          <div>
+              <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
+              <div *ngIf="userCheck && this.loginType == 'DEFAULT'" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
+              <div *ngIf="userCheck && this.loginType == 'KAKAO'" style="cursor: pointer;" (click)="kakaoByLogout()">K LOGOUT</div>
+              <div *ngIf="userCheck" style="cursor: pointer;" routerLink="/my">나의 <span style="color: #100efb;">엔</span>행시</div>
+              <div *ngIf="userCheck">{{userName}} 님</div>
+          </div>
         </div>
         <div>
             <app-route></app-route>
         </div>
         <div class="header-content">
-            <div class="header-title" (click)="onClick()">
-                <div>천하제일</div>
-                <div> <span style="color: #100efb;">엔</span>행시 대회<span style="color: #100efb;">.</span></div>
-            </div>
+            <app-logo-l></app-logo-l>
             <div class="header-hashtag">
                 <div>#엔행시</div>
                 <div>#작성하고</div>

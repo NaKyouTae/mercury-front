@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 
@@ -36,7 +36,7 @@ export class WeekWordComponent implements OnInit {
     endDate: new FormControl({ value: null }, Validators.required),
     description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.search();

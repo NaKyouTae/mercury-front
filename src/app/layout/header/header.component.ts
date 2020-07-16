@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +17,6 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) { }
 
   ngOnInit() { }
-
-  public onClick() {
-    this.router.navigateByUrl('/three');
-  }
 
   public logout() {
     if (window.confirm('로그아웃 하시겠습니까?')) {

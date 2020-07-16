@@ -11,11 +11,30 @@ import { LoginComponent } from './header/login/login.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteModule } from './route/route.module';
+import { LogoModule } from '../shared/ui/logo/logo.module';
+import { LoginFormComponent } from './header/login/login-form/login-form.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, AdvertOneComponent, AdvertTwoComponent, ContentComponent, LoginComponent],
-  imports: [CommonModule, MatDialogModule, FormsModule, ReactiveFormsModule, RouteModule, AppRoutingModule],
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    AdvertOneComponent,
+    AdvertTwoComponent,
+    ContentComponent,
+    LoginComponent,
+    LoginFormComponent
+  ],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouteModule,
+    AppRoutingModule,
+    LogoModule
+  ],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

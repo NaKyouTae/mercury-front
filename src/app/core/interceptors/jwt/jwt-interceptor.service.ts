@@ -3,13 +3,13 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/comm
 import { Observable } from 'rxjs';
 import { CookieService } from '../../../shared/common/cookie/cookies.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class JwtInterceptorService {
-  constructor(private cookie: CookieService, private jwt: JwtService) {}
+  constructor(private cookie: CookieService, private jwt: JwtService) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const Access = this.cookie.getCookie('AWT');

@@ -3,7 +3,7 @@
         width: 100%;
         height: auto;
     }
-    
+
     .page-header-content {
         padding: 30px 50px 0px 50px;
     }
@@ -12,7 +12,7 @@
         font-size: 15px;
         padding: 0px 0px 20px 0px;
     }
-    
+
     .header-menu > div {
         display: inline-block;
         padding: 0px 20px;
@@ -26,23 +26,23 @@
         display: inline-block;
         margin-left: 18px;
     }
-    
+
     .header-content {
         padding-top: 155px;
         height: 375px;
     }
 
-    .header-title {
+    /* .header-title {
         font-size: 100px;
         font-weight: bold;
         cursor: pointer;
-    }
+    } */
 
     .header-hashtag {
         width: 100%;
         padding-top: 30px;
         font-size: 18px;
-        
+
     }
 
     .header-hashtag > div {

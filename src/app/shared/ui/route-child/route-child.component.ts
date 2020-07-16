@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonHttpService } from '../../common/common-http.service';
+import { CommonHttpService } from '../../common/http/common-http.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,9 +9,9 @@ import { CommonHttpService } from '../../common/common-http.service';
 })
 export class RouteChildComponent implements OnInit {
   @Input() public data: any;
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public search(e: any) {
     const params = {

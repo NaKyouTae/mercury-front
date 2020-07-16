@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from '../../util/forms.service';
-import { CommonHttpService } from '../../common/common-http.service';
+import { CommonHttpService } from '../../common/http/common-http.service';
 
 @Component({
   // tslint:disable-next-line: component-selector

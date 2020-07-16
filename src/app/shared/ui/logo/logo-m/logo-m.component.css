@@ -1,0 +1,9 @@
+.logo-m-area {
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.logo-m-area > div:last-child > span {
+  color: #100efb;
+}

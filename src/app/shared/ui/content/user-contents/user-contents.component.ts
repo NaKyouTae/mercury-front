@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';

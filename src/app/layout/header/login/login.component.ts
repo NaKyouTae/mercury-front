@@ -1,10 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { trigger, style, state, animate, transition } from '@angular/animations';
+import { CommonValidationService } from 'src/app/shared/common/validations/common-validation.service';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,9 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService,
+    private router: Router,
+    private valition: CommonValidationService) { }
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
   public upToggle: any = !this.front ? 'upSign' : 'upLogin';
@@ -66,17 +69,17 @@ export class LoginComponent implements OnInit {
 
   public signUpForm = new FormGroup({
     username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
-    rep: new FormControl('', Validators.required),
+    rep: new FormControl('', [Validators.required, Validators.email]),
   });
 
   public userForm = new FormGroup({
     username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public dragFront() {
     this.front = !this.front;
@@ -136,21 +139,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public onClose() {
-    this.dialog.closeAll();
-    this.signUpForm.reset({
-      username: '',
-      email: '',
-      password: '',
-      rep: '',
-    });
-    this.auth = null;
-    this.authConfirm = false;
-    this.userDupleCheck = false;
-    this.userDupleConfirm = false;
-  }
-
-  public onCreate(e: any) {
+  public onSignUp(e: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('user/signup', { signup: data }).subscribe((res: any) => {
@@ -244,6 +233,7 @@ export class LoginComponent implements OnInit {
       height: height + 'px',
     });
   }
+
   public popupClose() {
     this.ConfirmType = null;
     this.dialog.closeAll();

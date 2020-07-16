@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginHistoryComponent implements OnInit {
     userIdx: new FormControl({ value: '', disabled: true }, Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.onSearch();

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from 'src/app/shared/common/common-http.service';
+import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 
 @Component({
   selector: 'app-cash',
@@ -20,9 +20,9 @@ export class CashComponent implements OnInit {
     { title: '잔액', width: 10, field: 'afterCash' },
     { title: '승인', width: 5, field: 'approval' },
   ];
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public onSearch() {
     this.common.httpCallGet('service/cash/approvals', this.type).subscribe((res: any) => {

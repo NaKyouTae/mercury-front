@@ -1,15 +1,15 @@
-# CompetitionAngular
+# MercuryAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
 
-# competition
+# Mercury
 천하제일 N행시 대회 FRONT
 
 ## Angular Github Pages Distribute
 
 ### Build
 
-ng build --prod --output-path docs --base-href /competition/
+ng build --prod --output-path docs --base-href /mercury-front/
 
 ### Github Setting
 

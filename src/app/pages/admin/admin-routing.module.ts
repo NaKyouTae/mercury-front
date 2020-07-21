@@ -12,6 +12,7 @@ import { ConfigComponent } from './config/config.component';
 import { NoticeComponent } from './notice/notice.component';
 import { LogsComponent } from './logs/logs.component';
 import { CashComponent } from './cash/cash.component';
+import { BatchComponent } from './batch/batch.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -25,10 +26,11 @@ const routes: Routes = [
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
   { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },
   { path: 'cash', component: CashComponent, canActivate: [AdminGuard] },
+  { path: 'batch', component: BatchComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

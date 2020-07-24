@@ -1,5 +1,9 @@
 <div class="content-width">
   <app-page-title title="이력"></app-page-title>
+  <div>
+    <div class="btn tap-btn" (click)="onSearchLoginHistory()">Login</div>
+    <div class="btn tap-btn" (click)="onSearchSchedule()">Scheduler</div>
+  </div>
   <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModalTemp]="UpModal"></app-admin-grid>
 </div>
 

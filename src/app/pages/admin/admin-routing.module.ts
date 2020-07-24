@@ -7,12 +7,12 @@ import { RoleComponent } from './role/role.component';
 import { AdminGuard } from 'src/app/core/guard/admin/admin.guard';
 import { MailComponent } from './mail/mail.component';
 import { GradeComponent } from './grade/grade.component';
-import { LoginHistoryComponent } from './login-history/login-history.component';
 import { ConfigComponent } from './config/config.component';
 import { NoticeComponent } from './notice/notice.component';
 import { LogsComponent } from './logs/logs.component';
 import { CashComponent } from './cash/cash.component';
 import { BatchComponent } from './batch/batch.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'role', component: RoleComponent, canActivate: [AdminGuard] },
   { path: 'grade', component: GradeComponent, canActivate: [AdminGuard] },
   { path: 'mail', component: MailComponent, canActivate: [AdminGuard] },
-  { path: 'login', component: LoginHistoryComponent, canActivate: [AdminGuard] },
+  { path: 'history', component: HistoryComponent, canActivate: [AdminGuard] },
   { path: 'config', component: ConfigComponent, canActivate: [AdminGuard] },
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
   { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },

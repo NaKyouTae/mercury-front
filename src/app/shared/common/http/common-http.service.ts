@@ -15,7 +15,7 @@ export class CommonHttpService {
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
 
-    return this.http.get('http://localhost:8090/' + service, {
+    return this.http.get('/' + service, {
       headers: header,
       params,
     });
@@ -32,7 +32,7 @@ export class CommonHttpService {
       headers: header,
     };
 
-    return this.http.post('http://localhost:8090/' + service, params, options);
+    return this.http.post('/' + service, params, options);
   }
 
   public httpCallPut(service, params?) {
@@ -42,7 +42,7 @@ export class CommonHttpService {
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
 
-    return this.http.put('http://localhost:8090/' + service, JSON.stringify(params), { headers: header });
+    return this.http.put('/' + service, JSON.stringify(params), { headers: header });
   }
 
   public httpCallDelete(service: any, params?: any) {
@@ -57,7 +57,7 @@ export class CommonHttpService {
       body: params,
     };
 
-    return this.http.delete('http://localhost:8090/' + service, options);
+    return this.http.delete('/' + service, options);
   }
 }
 

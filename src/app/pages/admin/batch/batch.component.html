@@ -2,8 +2,8 @@
   <app-page-title title="배치"></app-page-title>
   <div>
     <div class="btn tap-btn" (click)="onSearchScheduler()">Scheduler</div>
-    <div class="btn tap-btn" (click)="onSearchJob('mymenus')">Job</div>
-    <div class="btn tap-btn" (click)="onSearchTrigger('mymenus')">Trigger</div>
+    <div class="btn tap-btn" (click)="onSearchJob()">Job</div>
+    <div class="btn tap-btn" (click)="onSearchTrigger()">Trigger</div>
   </div>
   <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false"></app-admin-grid>
 </div>

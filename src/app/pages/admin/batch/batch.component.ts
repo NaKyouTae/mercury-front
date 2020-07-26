@@ -10,7 +10,7 @@ export class BatchComponent implements OnInit {
   public data: any;
   public fields: any;
 
-  constructor(private common: CommonHttpService) { }
+  constructor(private common: CommonHttpService) {}
 
   ngOnInit() {
     this.onSearchScheduler();
@@ -24,7 +24,7 @@ export class BatchComponent implements OnInit {
           { title: 'Scheduler Name', width: 20, field: 'name' },
           { title: 'Trigger Index', width: 30, field: 'triggerIdx' },
           { title: 'Job Index', width: 20, field: 'jobIdx' },
-          { title: 'Ins\' Date', width: 20, field: 'insertDate' },
+          { title: "Ins' Date", width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
       }
@@ -34,6 +34,7 @@ export class BatchComponent implements OnInit {
   public onSearchTrigger() {
     this.common.httpCallGet('batch/service/trigger').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
+        this.data = res.result;
         this.fields = [
           { title: 'Index', width: 10, field: 'idx' },
           { title: 'Cron', width: 30, field: 'cron' },
@@ -41,9 +42,8 @@ export class BatchComponent implements OnInit {
           { title: 'Trigger Title', width: 20, field: 'title' },
           { title: 'Desc', width: 20, field: 'description' },
           { title: 'Job Name', width: 20, field: 'jobTitle' },
-          { title: 'Ins\' Date', width: 20, field: 'insertDate' },
+          { title: "Ins' Date", width: 20, field: 'insertDate' },
         ];
-        this.data = res.result;
       }
     });
   }
@@ -57,7 +57,7 @@ export class BatchComponent implements OnInit {
           { title: 'Job Title', width: 20, field: 'title' },
           { title: 'Class Name', width: 30, field: 'clasz' },
           { title: 'Desc', width: 20, field: 'description' },
-          { title: 'Ins\' Date', width: 20, field: 'insertDate' },
+          { title: "Ins' Date", width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
       }

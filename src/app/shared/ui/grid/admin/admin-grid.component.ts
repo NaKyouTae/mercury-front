@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { JwtService } from '../../../common/jwt/jwt.service';
   templateUrl: './admin-grid.component.html',
   styleUrls: ['./admin-grid.component.css'],
 })
-export class AdminGridComponent implements OnInit {
+export class AdminGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
   @Input() public upModalTemp?: any;
@@ -30,7 +30,7 @@ export class AdminGridComponent implements OnInit {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private jwt: JwtService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -41,6 +41,11 @@ export class AdminGridComponent implements OnInit {
       this.take = this.data.length > this.take ? this.take : this.data.length;
       this.onBind();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.fields = changes.fields.currentValue;
+    this.data = changes.data.currentValue;
   }
 
   // onFields(data: any, fields: any) {
@@ -58,9 +63,9 @@ export class AdminGridComponent implements OnInit {
   //   return result;
   // }
 
-  public onData(data, field) {
+  public onData(dIdx, field) {
     // tslint:disable-next-line: no-eval
-    return eval('data.' + field);
+    return eval('this.data[dIdx].' + field);
   }
 
   public onBind() {

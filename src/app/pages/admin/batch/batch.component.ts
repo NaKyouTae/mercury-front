@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/shared/util/forms.service';
 
 @Component({
   selector: 'app-batch',
@@ -9,8 +11,35 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 export class BatchComponent implements OnInit {
   public data: any;
   public fields: any;
+  public formCheck: any;
+  public form: any;
+  public schedulerForm = new FormGroup({
+    idx: new FormControl({ value: '', disabled: true }, Validators.required),
+    name: new FormControl({ value: '', disabled: true }, Validators.required),
+    triggerIdx: new FormControl({ value: '', disabled: true }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: true }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+  });
 
-  constructor(private common: CommonHttpService) {}
+  public triggerForm = new FormGroup({
+    idx: new FormControl({ value: '', disabled: true }, Validators.required),
+    cron: new FormControl({ value: '', disabled: true }, Validators.required),
+    name: new FormControl({ value: '', disabled: true }, Validators.required),
+    title: new FormControl({ value: '', disabled: true }, Validators.required),
+    description: new FormControl({ value: '', disabled: true }, Validators.required),
+    jobTitle: new FormControl({ value: '', disabled: true }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+  });
+
+  public jobForm = new FormGroup({
+    idx: new FormControl({ value: '', disabled: true }, Validators.required),
+    name: new FormControl({ value: '', disabled: true }, Validators.required),
+    title: new FormControl({ value: '', disabled: true }, Validators.required),
+    description: new FormControl({ value: '', disabled: true }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+  });
+
+  constructor(private common: CommonHttpService, private formservice: FormsService) { }
 
   ngOnInit() {
     this.onSearchScheduler();
@@ -27,6 +56,7 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
+        this.formCheck = 'scheduler';
       }
     });
   }
@@ -44,6 +74,7 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
+        this.formCheck = 'trigger';
       }
     });
   }
@@ -60,6 +91,46 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
+        this.formCheck = 'job';
+      }
+    });
+  }
+
+  public onDblClick(data: any) {
+    if (this.formCheck === 'scheduler') {
+      this.form = this.schedulerForm;
+    } else if (this.formCheck === 'trigger') {
+      this.form = this.triggerForm;
+    } else if (this.formCheck === 'job') {
+      this.form = this.jobForm;
+    }
+    this.form.patchValue(data);
+  }
+
+  public onClose(template: any) {
+    template.style.display = 'none';
+  }
+
+  public onDelete(e: any, template: any) {
+    template.style.display = 'none';
+
+    const data: any = this.formservice.formToData(e);
+
+    this.common.httpCallDelete('batch/service/' + this.formCheck, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+      }
+    });
+  }
+
+  public onCreate(e: any, template: any) {
+    template.style.display = 'none';
+
+    const data: any = this.formservice.formToData(e);
+
+    this.common.httpCallPost('batch/service/' + this.formCheck, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
       }
     });
   }

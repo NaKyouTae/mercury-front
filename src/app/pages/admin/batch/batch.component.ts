@@ -46,6 +46,7 @@ export class BatchComponent implements OnInit {
   }
 
   public onSearchScheduler() {
+    this.formCheck = 'scheduler';
     this.common.httpCallGet('batch/service/scheduler').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.fields = [
@@ -56,12 +57,12 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
-        this.formCheck = 'scheduler';
       }
     });
   }
 
   public onSearchTrigger() {
+    this.formCheck = 'trigger';
     this.common.httpCallGet('batch/service/trigger').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.fields = [
@@ -74,12 +75,12 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
-        this.formCheck = 'trigger';
       }
     });
   }
 
   public onSearchJob() {
+    this.formCheck = 'job';
     this.common.httpCallGet('batch/service/job').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.fields = [
@@ -91,7 +92,6 @@ export class BatchComponent implements OnInit {
           { title: 'Ins Date', width: 20, field: 'insertDate' },
         ];
         this.data = res.result;
-        this.formCheck = 'job';
       }
     });
   }

@@ -14,29 +14,29 @@ export class BatchComponent implements OnInit {
   public formCheck: any;
   public form: any;
   public schedulerForm = new FormGroup({
-    idx: new FormControl({ value: '', disabled: true }, Validators.required),
-    name: new FormControl({ value: '', disabled: true }, Validators.required),
-    triggerIdx: new FormControl({ value: '', disabled: true }, Validators.required),
-    jobIdx: new FormControl({ value: '', disabled: true }, Validators.required),
-    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+    idx: new FormControl({ value: '', disabled: true }),
+    name: new FormControl({ value: '', disabled: false }, Validators.required),
+    triggerIdx: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: false }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }),
   });
 
   public triggerForm = new FormGroup({
-    idx: new FormControl({ value: '', disabled: true }, Validators.required),
-    cron: new FormControl({ value: '', disabled: true }, Validators.required),
-    name: new FormControl({ value: '', disabled: true }, Validators.required),
-    title: new FormControl({ value: '', disabled: true }, Validators.required),
-    description: new FormControl({ value: '', disabled: true }, Validators.required),
-    jobTitle: new FormControl({ value: '', disabled: true }, Validators.required),
-    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+    idx: new FormControl({ value: '', disabled: true }),
+    cron: new FormControl({ value: '', disabled: false }, Validators.required),
+    name: new FormControl({ value: '', disabled: false }, Validators.required),
+    title: new FormControl({ value: '', disabled: false }, Validators.required),
+    description: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobTitle: new FormControl({ value: '', disabled: false }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }),
   });
 
   public jobForm = new FormGroup({
-    idx: new FormControl({ value: '', disabled: true }, Validators.required),
-    name: new FormControl({ value: '', disabled: true }, Validators.required),
-    title: new FormControl({ value: '', disabled: true }, Validators.required),
-    description: new FormControl({ value: '', disabled: true }, Validators.required),
-    insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
+    idx: new FormControl({ value: '', disabled: true }),
+    name: new FormControl({ value: '', disabled: false }, Validators.required),
+    title: new FormControl({ value: '', disabled: false }, Validators.required),
+    description: new FormControl({ value: '', disabled: false }, Validators.required),
+    insertDate: new FormControl({ value: '', disabled: true }),
   });
 
   constructor(private common: CommonHttpService, private formservice: FormsService) { }
@@ -129,6 +129,18 @@ export class BatchComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPost('batch/service/' + this.formCheck, data).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        template.style.display = 'none';
+      }
+    });
+  }
+
+  public onUpdate(e: any, template: any) {
+    template.style.display = 'none';
+
+    const data: any = this.formservice.formToData(e);
+
+    this.common.httpCallPut('batch/service/' + this.formCheck, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         template.style.display = 'none';
       }

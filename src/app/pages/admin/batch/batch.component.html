@@ -13,7 +13,6 @@
   <div class="modal-content" style="width: 25%; text-align: left;">
     <div class="modal-header">
       <div class="close" (click)="onClose(CreQuartz)">&times;</div>
-      <div class="close" (click)="onDelete(form.controls, CreQuartz)">삭제</div>
     </div>
     <div>
       <form [formGroup]="form">
@@ -69,6 +68,7 @@
       </form>
     </div>
     <div class="modal-footer">
+      <button (click)="onCreate(form.controls, CreQuartz)">생성</button>
       <button (click)="onClose(CreQuartz)">취소</button>
     </div>
   </div>
@@ -158,6 +158,7 @@
       </form>
     </div>
     <div class="modal-footer">
+      <button (click)="onUpdate(form.controls, UpQuartz)">생성</button>
       <button (click)="onClose(UpQuartz)">취소</button>
     </div>
   </div>

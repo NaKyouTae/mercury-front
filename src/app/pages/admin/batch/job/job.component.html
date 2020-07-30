@@ -1,0 +1,69 @@
+<div>
+  <app-page-title title="Job"></app-page-title>
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="{temp: CreQuartz, width: 500, height:500, data: creForm}" [upModal]="{temp: UpQuartz, width: 500, height:500, data: upForm}"></app-admin-grid>
+</div>
+
+<ng-template #CreQuartz>
+  <div>
+    <div class="modal-header">
+      <div class="close" (click)="onClose()">&times;</div>
+    </div>
+    <div>
+      <form [formGroup]="creForm">
+        <div class="form-input-text">
+          <label>Job Name</label>
+          <input type="text" formControlName="name"/>
+        </div>
+        <div class="form-input-text">
+          <label>Job Title</label>
+          <input type="text" formControlName="title"/>
+        </div>
+        <div class="form-input-text">
+          <label>Description</label>
+          <input type="text" formControlName="description"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onCreate(creForm.controls)">생성</button>
+      <button (click)="onClose(CreQuartz)">취소</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #UpQuartz>
+  <div>
+    <div class="modal-header">
+      <div class="close" (click)="onClose()">&times;</div>
+      <div class="close" (click)="onDelete(upForm.controls)">삭제</div>
+    </div>
+    <div>
+      <form [formGroup]="upForm">
+        <div class="form-input-text">
+          <label>Index</label>
+          <input type="text" formControlName="idx"/>
+        </div>
+        <div class="form-input-text">
+          <label>Job Name</label>
+          <input type="text" formControlName="name"/>
+        </div>
+        <div class="form-input-text">
+          <label>Job Title</label>
+          <input type="text" formControlName="title"/>
+        </div>
+        <div class="form-input-text">
+          <label>Description</label>
+          <input type="text" formControlName="description"/>
+        </div>
+        <div class="form-input-text">
+          <label>Insert Date</label>
+          <input type="text" formControlName="insertDate"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onUpdate(upForm.controls)">수정</button>
+      <button (click)="onClose()">취소</button>
+    </div>
+  </div>
+</ng-template>

@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
   { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },
   { path: 'cash', component: CashComponent, canActivate: [AdminGuard] },
-  { path: 'batch', component: BatchComponent, canActivate: [AdminGuard] },
+  { path: 'batch', loadChildren: () => import('./batch/batch.module').then((m) => m.BatchModule), canActivate: [AdminGuard] },
 ];
 
 @NgModule({

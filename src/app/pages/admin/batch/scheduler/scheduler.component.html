@@ -1,0 +1,75 @@
+<div>
+  <app-page-title title="Scheduler"></app-page-title>
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="{temp: CreQuartz, width: 500, height:330, data: creForm}" [upModal]="{temp: UpQuartz, width: 500, height:460, data: upForm}"></app-admin-grid>
+</div>
+
+<ng-template #CreQuartz>
+  <div>
+    <div class="modal-header">
+      <div>
+        <h2>Scheduler Create</h2>
+      </div>
+      <div class="close" (click)="onClose()">&times;</div>
+    </div>
+    <div>
+      <form [formGroup]="creForm">
+        <div class="form-input-text">
+          <label>Scheduler Name</label>
+          <input type="text" formControlName="name"/>
+        </div>
+        <div class="form-input-text">
+          <label>Job Idx</label>
+          <input type="text" formControlName="jobIdx"/>
+        </div>
+        <div class="form-input-text">
+          <label>Trigger Idx</label>
+          <input type="text" formControlName="triggerIdx"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer modal-create-footer">
+      <button (click)="onCreate(creForm.controls)">생성</button>
+      <button (click)="onClose()">취소</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #UpQuartz>
+  <div>
+    <div class="modal-header">
+      <div>
+        <h2>{{upForm.controls.name.value}} Update</h2>
+      </div>
+      <div class="close" (click)="onClose()">&times;</div>
+    </div>
+    <div>
+      <form [formGroup]="upForm">
+        <div class="form-input-text">
+          <label>Index</label>
+          <input type="text" formControlName="idx"/>
+        </div>
+        <div class="form-input-text">
+          <label>Scheduler Name</label>
+          <input type="text" formControlName="name"/>
+        </div>
+        <div class="form-input-text">
+          <label>Job Idx</label>
+          <input type="text" formControlName="jobIdx"/>
+        </div>
+        <div class="form-input-text">
+          <label>Trigger Idx</label>
+          <input type="text" formControlName="triggerIdx"/>
+        </div>
+        <div class="form-input-text">
+          <label>Insert Date</label>
+          <input type="text" formControlName="insertDate"/>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer modal-update-footer">
+      <button (click)="onDelete(upForm.controls)">삭제</button>
+      <button (click)="onUpdate(upForm.controls)">수정</button>
+      <button (click)="onClose()">취소</button>
+    </div>
+  </div>
+</ng-template>

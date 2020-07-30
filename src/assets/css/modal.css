@@ -40,8 +40,9 @@
   .modal-header > div{
     display: inline-block;
   }
+
   .modal-header > div:first-child{
-    width: 85%;
+    width: 95%;
   }
   .modal-header > div:last-child{
     width: auto;
@@ -50,7 +51,21 @@
   .modal-footer {
     width: 100%;
   }
-  .modal-footer > button {
-    width: 50%;
+
+  .modal-create-footer > button {
+    width: calc((100% / 2) - 5px);
     padding: 10px 0px;
+  }
+
+  .modal-create-footer > button:first-child {
+    margin-right: 10px;
+  }
+
+  .modal-update-footer > button {
+    width: calc((100% / 3) - 20px / 3);
+    padding: 10px 0px;
+  }
+
+  .modal-update-footer > button:nth-child(2) {
+    margin: 0px 10px;
   }

@@ -4,7 +4,7 @@
     <div class="btn tap-btn" (click)="onSearchLoginHistory()">Login</div>
     <div class="btn tap-btn" (click)="onSearchSchedule()">Scheduler</div>
   </div>
-  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModalTemp]="UpModal"></app-admin-grid>
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModal]="UpModal"></app-admin-grid>
 </div>
 
 <div #UpModal class="modal">

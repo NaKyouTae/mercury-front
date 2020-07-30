@@ -1,16 +1,21 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
   selector: '[RowModal]',
 })
 export class RowModalDirective {
-  @Input() modal: any;
+  @Input() modal: any = {};
 
-  constructor() {}
+  constructor(private dialog: MatDialog) { }
 
   @HostListener('dblclick') public onDblClick() {
-    this.modal.style.display = 'block';
+    this.dialog.open(this.modal.temp, {
+      width: this.modal.width,
+      height: this.modal.height,
+      data: this.modal.data,
+    });
   }
 
   // @HostListener('document:click') public onDocumentClick() {

@@ -9,10 +9,14 @@ import { JwtService } from '../../../common/jwt/jwt.service';
 export class AdminGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
-  @Input() public upModalTemp?: any;
-  @Input() public creModalTemp?: any;
   @Input() public gridWidth?: string;
   @Input() public btnUse?: any;
+
+  // Row Double Click - Update Modal
+  @Input() public upModal?: any = {};
+
+  // Create Button Click - Create Modal
+  @Input() public creModal?: any = {};
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
@@ -30,7 +34,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -44,8 +48,10 @@ export class AdminGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.fields = changes.fields.currentValue;
-    this.data = changes.data.currentValue;
+    if (changes.fields !== undefined || changes.data !== undefined) {
+      this.fields = changes.fields.currentValue;
+      this.data = changes.data.currentValue;
+    }
   }
 
   // onFields(data: any, fields: any) {

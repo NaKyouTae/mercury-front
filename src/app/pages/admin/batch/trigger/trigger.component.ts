@@ -11,7 +11,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TriggerComponent implements OnInit {
   public data: any;
-  public fields: any;
+  public fields: any = [
+    { title: 'Index', width: 10, field: 'idx' },
+    { title: 'Cron', width: 30, field: 'cron' },
+    { title: 'Trigger Name', width: 20, field: 'name' },
+    { title: 'Trigger Title', width: 30, field: 'title' },
+    { title: 'Desc', width: 20, field: 'description' },
+    { title: 'Job Name', width: 20, field: 'jobTitle' },
+    { title: 'Ins Date', width: 20, field: 'insertDate' },
+  ];
 
   public creForm = new FormGroup({
     cron: new FormControl({ value: '', disabled: false }, Validators.required),
@@ -40,15 +48,6 @@ export class TriggerComponent implements OnInit {
   public onSearchTrigger() {
     this.common.httpCallGet('batch/service/trigger').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.fields = [
-          { title: 'Index', width: 10, field: 'idx' },
-          { title: 'Cron', width: 30, field: 'cron' },
-          { title: 'Trigger Name', width: 20, field: 'name' },
-          { title: 'Trigger Title', width: 30, field: 'title' },
-          { title: 'Desc', width: 20, field: 'description' },
-          { title: 'Job Name', width: 20, field: 'jobTitle' },
-          { title: 'Ins Date', width: 20, field: 'insertDate' },
-        ];
         this.data = res.result;
       }
     });
@@ -82,7 +81,7 @@ export class TriggerComponent implements OnInit {
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('batch/service/trigger', data).subscribe((res: any) => {

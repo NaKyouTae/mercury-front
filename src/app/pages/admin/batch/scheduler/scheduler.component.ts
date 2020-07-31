@@ -11,7 +11,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SchedulerComponent implements OnInit {
   public data: any;
-  public fields: any;
+  public fields: any = [
+    { title: 'Index', width: 10, field: 'idx' },
+    { title: 'Scheduler Name', width: 20, field: 'name' },
+    { title: 'Trigger Index', width: 30, field: 'triggerIdx' },
+    { title: 'Job Index', width: 20, field: 'jobIdx' },
+    { title: 'Ins Date', width: 20, field: 'insertDate' },
+  ];
 
   public creForm = new FormGroup({
     name: new FormControl({ value: '', disabled: false }, Validators.required),
@@ -27,6 +33,9 @@ export class SchedulerComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
+  public jobData: any;
+  public triggerData: any;
+
   constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -36,14 +45,19 @@ export class SchedulerComponent implements OnInit {
   public onSearchScheduler() {
     this.common.httpCallGet('batch/service/scheduler').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.fields = [
-          { title: 'Index', width: 10, field: 'idx' },
-          { title: 'Scheduler Name', width: 20, field: 'name' },
-          { title: 'Trigger Index', width: 30, field: 'triggerIdx' },
-          { title: 'Job Index', width: 20, field: 'jobIdx' },
-          { title: 'Ins Date', width: 20, field: 'insertDate' },
-        ];
         this.data = res.result;
+      }
+    });
+
+    this.common.httpCallGet('batch/service/job').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.jobData = res.result;
+      }
+    });
+
+    this.common.httpCallGet('batch/service/trigger').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.triggerData = res.result;
       }
     });
   }
@@ -84,6 +98,11 @@ export class SchedulerComponent implements OnInit {
         this.onClose();
       }
     });
+  }
+
+  public selectChange(e: any) {
+    // this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
+    // this.form.controls.roleIdx.setValue(e.options[e.options.selectedIndex].value);
   }
 
 }

@@ -56,38 +56,32 @@ export class SchedulerComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  public onDelete(e: any, template: any) {
-    template.style.display = 'none';
-
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }
 
-  public onCreate(e: any, template: any) {
-    template.style.display = 'none';
-
+  public onCreate(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPost('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }
 
-  public onUpdate(e: any, template: any) {
-    template.style.display = 'none';
-
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }

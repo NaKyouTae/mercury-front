@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
@@ -8,7 +8,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: no-input-rename
   @Input('data') public datas: any = new Array();
   // tslint:disable-next-line: no-input-rename
@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
   public user: any = this.jwt.getJWTUserKey('user') !== null ? this.jwt.getJWTUserKey('user') : '';
   public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
+  public interval: any;
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
@@ -32,9 +33,15 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     if (!this.my) {
-      setInterval(() => {
+      this.interval = setInterval(() => {
         this.getList();
       }, 30000);
+    }
+  }
+
+  ngOnDestroy() {
+    if (!this.my) {
+      clearTimeout(this.interval);
     }
   }
 

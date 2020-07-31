@@ -57,34 +57,31 @@ export class JobComponent implements OnInit {
   }
 
   public onDelete(e: any) {
-    this.onClose();
-
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onClose();
       }
     });
   }
 
   public onCreate(e: any) {
-    this.onClose();
-
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPost('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onClose();
       }
     });
   }
 
   public onUpdate(e: any) {
-    this.onClose();
-
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onClose();
       }
     });
   }

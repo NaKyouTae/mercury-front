@@ -1,5 +1,5 @@
 <div id="{{d.menuGroup}}_treelist" *ngFor="let d of data; let d_idx = index;" [ngClass]="d_idx == data.length-1 ? 'tree-list-row-last':'tree-list-row'">
-  <div RowModal (dblclick)="onDblClick(d)" [modal]="UpModal" *ngFor="let field of fields; let field_idx = index"
+  <div RowModal (dblclick)="onDblClick(d)" [modal]="{temp: UpModal, width: 500, height: 700, data:form}" *ngFor="let field of fields; let field_idx = index"
   [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : '', 'width' : field.width + '%'}"
   [ngClass]="field_idx == 0 ? 'tree-list-row-field-frist':'tree-list-row-field'">
     <div *ngIf="field_idx == 0" style="display: inline-block;">
@@ -16,16 +16,14 @@
   </div>
 </div>
 
-
-
-<div #CreModal class="modal">
+<ng-template #CreModal class="modal">
   <!-- Modal content -->
-  <div class="modal-content" style="width: 25%; text-align: left;">
+  <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>메뉴 생성</h2>
       </div>
-      <div class="close" (click)="onClose(CreModal)">&times;</div>
+      <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -60,22 +58,21 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button (click)="onClose(CreModal)">취소</button>
+      <button (click)="onClose()">취소</button>
       <button [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
-              (click)="onCreate(form.controls, CreModal)">생성</button>
+              (click)="onCreate(form.controls)">생성</button>
     </div>
   </div>
-</div>
+</ng-template>
 
-<div #UpModal class="modal">
+<ng-template #UpModal>
   <!-- Modal content -->
-  <div class="modal-content" style="width: 25%; text-align: left;">
+  <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>{{form.get('title').value}} 정보</h2>
-      </div>
-      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
-      <div class="close" (click)="onClose(UpModal)">&times;</div>
+      </div>      
+      <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -124,9 +121,10 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onClose(UpModal)">취소</button>
-      <button (click)="onUpdate(form.controls, UpModal)">수정</button>
+    <div class="modal-footer modal-update-footer">
+      <button (click)="onClose()">취소</button>
+      <button (click)="onDelete(form.controls)">삭제</button>
+      <button (click)="onUpdate(form.controls)">수정</button>
     </div>
   </div>
-</div>
+</ng-template>

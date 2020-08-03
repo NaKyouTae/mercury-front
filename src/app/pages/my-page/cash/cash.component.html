@@ -7,23 +7,35 @@
 </div>
 
 <ng-template #withDrawCashModal>
+  <div class="cash-request-header">
+    <div>
+      <app-logo-sx [refresh]="false"></app-logo-sx>
+    </div>
+    <div>
+      <h2>출금 요청</h2>
+    </div>
+  </div>
   <div class="cash-request-area">
     <form [formGroup]="form">
       <div class="form-input-text">
         <label>은행 명</label>
-        <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
+        <input type="text" formControlName="withDrawCash" [max]="prevCash" />
       </div>
       <div class="form-input-text">
         <label>계좌 번호</label>
-        <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
+        <input type="text" formControlName="withDrawCash" [max]="prevCash" />
       </div>
       <div class="form-input-text">
         <label>출금 금액</label>
-        <input type="text" formControlName="withDrawCash" [max]="prevCash" style="width: 200px; margin: 0px 20px;"/>
+        <input type="text" formControlName="withDrawCash" [max]="prevCash" />
       </div>
     </form>
   </div>
-  <div>
-    <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">출금</button>
+  <div class="cash-request-fotter">
+    <div style="color: red;">* 최소 10,000 마일리지이상 출금이 가능합니다.</div>
+    <div style="color: red;">* 입력한 계좌번호는 승인 및 최소 한 달 이내에 삭제될 예정입니다.</div>
+    <div>
+      <button (click)="onRequest(form.controls)" [disabled]="form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">승인 요청</button>
+    </div>
   </div>
 </ng-template>

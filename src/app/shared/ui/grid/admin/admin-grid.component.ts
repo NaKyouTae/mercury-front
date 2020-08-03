@@ -34,7 +34,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private jwt: JwtService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -48,8 +48,10 @@ export class AdminGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.fields !== undefined || changes.data !== undefined) {
+    if (changes.fields !== undefined) {
       this.fields = changes.fields.currentValue;
+    }
+    if (changes.data !== undefined) {
       this.data = changes.data.currentValue;
     }
   }
@@ -71,6 +73,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public onData(dIdx, field) {
     // tslint:disable-next-line: no-eval
+    console.log(this.data[dIdx]);
     return eval('this.data[dIdx].' + field);
   }
 

@@ -6,14 +6,14 @@
   </div>
 </div>
 
-<div #CreModal class="modal">
+<ng-template #CreModal>
   <!-- Modal content -->
-  <div class="modal-content" style="width: 25%; text-align: left;">
+  <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>메뉴 생성</h2>
       </div>
-      <div class="close" (click)="onClose(CreModal)">&times;</div>
+      <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -42,10 +42,10 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onClose(CreModal)">취소</button>
+    <div class="modal-footer modal-create-footer">
+      <button (click)="onClose()">취소</button>
       <button [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
-              (click)="onCreate(form.controls, CreModal)">생성</button>
+              (click)="onCreate(form.controls)">생성</button>
     </div>
   </div>
-</div>
+</ng-template>

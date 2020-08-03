@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-role',
@@ -23,7 +24,7 @@ export class RoleComponent implements OnInit {
     changeDate: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.search();
@@ -39,8 +40,8 @@ export class RoleComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
 
     this.form.reset({
       idx: '',
@@ -50,38 +51,34 @@ export class RoleComponent implements OnInit {
     });
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('service/roles', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });
   }
 
-  public onUpdate(e: any, template: any) {
-    template.style.display = 'none';
-
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('service/roles/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
-    template.style.display = 'none';
-
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('service/roles/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });

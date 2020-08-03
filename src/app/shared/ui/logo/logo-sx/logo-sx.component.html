@@ -1,0 +1,17 @@
+<!-- Font Size 30px -->
+
+
+<div *ngIf="!used" class="logo-sx-area" style="cursor: default;">
+    <div>천하제일</div>
+    <div>
+        <span>엔</span>행시 대회<span>.</span>
+    </div>
+</div>
+
+<div *ngIf="used" class="logo-sx-area" (click)="onClick()">
+    <div>천하제일</div>
+    <div>
+        <span>엔</span>행시 대회<span>.</span>
+    </div>
+</div>
+  

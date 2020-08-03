@@ -8,6 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [CustomTreeListComponent],
   exports: [CustomTreeListComponent],
   imports: [CommonModule, TreeListChildModule, FormsModule, ReactiveFormsModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CustomTreeListModule { }
+export class CustomTreeListModule {}

@@ -31,7 +31,7 @@ export class CashComponent implements OnInit {
     { title: '승인', width: 5, field: 'approval' },
   ];
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onSearch();
@@ -72,8 +72,8 @@ export class CashComponent implements OnInit {
 
   public openModal(template: TemplateRef<any>) {
     this.dialog.open(template, {
-      width: '800px',
-      height: '720px',
+      width: '400px',
+      height: '600px',
     });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { ModalService } from '../../modal/modal.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -31,11 +32,9 @@ export class TreeListChildComponent implements OnInit {
     roleTitle: new FormControl(Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) { }
+  constructor(private common: CommonHttpService, private forms: FormsService, private dialog: ModalService) {}
 
-  ngOnInit() {
-    this.roleSearch();
-  }
+  ngOnInit() {}
 
   public onData(data, field) {
     // tslint:disable-next-line: no-eval
@@ -61,16 +60,16 @@ export class TreeListChildComponent implements OnInit {
     delete data.children;
   }
 
-  public onClose(e: any) {
-    e.style.display = 'none';
+  public onClose() {
+    this.dialog.onCloseAll();
   }
 
-  public onUpdate(data: any, template: any) {
+  public onUpdate(data: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallPut('service/' + this.type + '/' + params.idx, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.resetChildLevel(params.parent);
       }
     });
@@ -80,20 +79,19 @@ export class TreeListChildComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onCreate(data: any, template: any) {
+  public onCreate(data: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallPost('service/' + this.type, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.resetMyLevel(params);
       }
     });
   }
 
   public onCreateModal(data: any, temp: any) {
-    temp.style.display = 'block';
-
+    this.roleSearch();
     this.form.patchValue({
       title: null,
       menuGroup: null,
@@ -106,14 +104,16 @@ export class TreeListChildComponent implements OnInit {
       roleIdx: null,
       roleTitle: null,
     });
+
+    this.dialog.onOpen({ temp, width: 500, height: 500, data: this.form });
   }
 
-  public onDelete(data: any, template: any) {
+  public onDelete(data: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallDelete('service/' + this.type + '/' + params.idx, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.resetChildLevel(params.parent);
       }
     });

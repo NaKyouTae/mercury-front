@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-user',
@@ -37,7 +38,7 @@ export class UserComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.search();
@@ -54,51 +55,44 @@ export class UserComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
-    this.newform.reset({
-      username: '',
-      password: '',
-      rep: '',
-    });
+  public onClose() {
+    this.modal.onCloseAll();
+
+    this.form.reset(this.formservice.initialForm(this.form));
+    this.newform.reset(this.formservice.initialForm(this.newform));
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('user/signup', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
-        this.newform.reset({
-          username: '',
-          password: '',
-          rep: '',
-        });
       }
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const user: any = this.formservice.formToData(e);
     const role: any = {
       roleIdx: user.roleIdx,
-      roleName: user.roleTitle
-    }
+      roleName: user.roleTitle,
+    };
     this.common.httpCallPut('service/users/' + user.idx, { user, role }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('service/users/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });

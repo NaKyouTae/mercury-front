@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logo-s',
-  templateUrl: './logo-s.component.html',
-  styleUrls: ['./logo-s.component.css'],
+  selector: 'app-logo-sx',
+  templateUrl: './logo-sx.component.html',
+  styleUrls: ['./logo-sx.component.css'],
 })
-export class LogoSComponent implements OnInit {
+export class LogoSxComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('refresh') public used: boolean;
 

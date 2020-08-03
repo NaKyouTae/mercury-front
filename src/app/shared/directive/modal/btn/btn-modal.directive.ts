@@ -9,13 +9,15 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 export class BtnModalDirective {
   @Input() modal: any = {};
 
-  constructor(private dialog: MatDialog, private form: FormsService) { }
+  constructor(private dialog: MatDialog, private form: FormsService) {}
 
   @HostListener('click') public onClick() {
+    const data = this.modal.data.reset(this.form.initialForm(this.modal.data));
+
     this.dialog.open(this.modal.temp, {
       width: this.modal.width,
       height: this.modal.height,
-      data: this.form.initialForm(this.modal.data),
+      data,
     });
   }
 

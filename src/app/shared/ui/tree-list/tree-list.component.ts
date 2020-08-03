@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from '../../util/forms.service';
 import { CommonHttpService } from '../../common/http/common-http.service';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -14,17 +15,17 @@ export class CustomTreeListComponent implements OnInit {
   @Input() public type: any;
 
   public fields: any = [
-    { title: '일렬 번호', width: 10, field: 'idx' }
-    , { title: '메뉴 명', width: 10, field: 'title ' }
-    , { title: '메뉴 그룹', width: 10, field: 'menuGroup ' }
-    , { title: 'URL', width: 10, field: 'url ' }
-    , { title: '메뉴 순서', width: 5, field: 'menuOrder ' }
-    , { title: 'Level', width: 5, field: 'level ' }
-    , { title: '하위 여부', width: 10, field: 'child ' }
-    , { title: '생성 일자', width: 10, field: 'insertDate ' }
-    , { title: '부모 일렬 번호', width: 10, field: 'parent ' }
-    , { title: '권한 일렬 번호', width: 10, field: 'roleIdx ' }
-    , { title: '권한 명', width: 10, field: 'roleTitle ' }
+    { title: '일렬 번호', width: 10, field: 'idx' },
+    { title: '메뉴 명', width: 10, field: 'title ' },
+    { title: '메뉴 그룹', width: 10, field: 'menuGroup ' },
+    { title: 'URL', width: 10, field: 'url ' },
+    { title: '메뉴 순서', width: 5, field: 'menuOrder ' },
+    { title: 'Level', width: 5, field: 'level ' },
+    { title: '하위 여부', width: 10, field: 'child ' },
+    { title: '생성 일자', width: 10, field: 'insertDate ' },
+    { title: '부모 일렬 번호', width: 10, field: 'parent ' },
+    { title: '권한 일렬 번호', width: 10, field: 'roleIdx ' },
+    { title: '권한 명', width: 10, field: 'roleTitle ' },
   ];
   public roleData: any;
 
@@ -38,13 +39,11 @@ export class CustomTreeListComponent implements OnInit {
     roleTitle: new FormControl(Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private forms: FormsService) { }
+  constructor(private common: CommonHttpService, private forms: FormsService, private dialog: ModalService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public onCreateModal(temp: any) {
-    temp.style.display = 'block';
-
     this.form.patchValue({
       title: null,
       menuGroup: null,
@@ -57,14 +56,16 @@ export class CustomTreeListComponent implements OnInit {
       roleIdx: null,
       roleTitle: null,
     });
+    this.roleSearch();
+    this.dialog.onOpen({ temp, width: 500, height: 460, data: this.form });
   }
 
-  public onCreate(data: any, template: any) {
+  public onCreate(data: any) {
     const params: any = this.forms.formToData(data);
 
     this.common.httpCallPost('service/' + this.type, params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.onSearch(params);
       }
     });
@@ -76,8 +77,8 @@ export class CustomTreeListComponent implements OnInit {
     });
   }
 
-  public onClose(e: any) {
-    e.style.display = 'none';
+  public onClose() {
+    this.dialog.onCloseAll();
   }
 
   public roleSearch() {

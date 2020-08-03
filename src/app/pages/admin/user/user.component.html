@@ -1,16 +1,64 @@
 <div class="content-width">
     <app-page-title title="사용자"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="CreModal" [upModal]="UpModal"></app-admin-grid>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
+    [creModal]="{temp: CreModal, width: 500, height: 500, data: form}" 
+    [upModal]="{temp: UpModal, width: 500, height: 590, data: form}"></app-admin-grid>
 </div>
 
-<div #UpModal class="modal">
-  <div class="modal-content" style="width: 25%; text-align: left;">
+<ng-template #CreModal>
+  <div>
+    <div class="modal-header" *ngIf="newform != undefined">
+      <div>
+        <h2>사용자 추가</h2>
+      </div>
+      <div class="close" (click)="onClose()">&times;</div>
+    </div>
+    <div *ngIf="newform != undefined" >
+      <form [formGroup]="newform">
+        <div class="form-input-text">
+          <label>사용자</label>
+          <input type="text" formControlName="username"/>
+          <span *ngIf="newform.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>이메일</label>
+          <input type="text" formControlName="email"/>
+          <span *ngIf="newform.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+        </div>
+        <div class="form-select">
+          <label>권한</label>
+          <select (change)="roleChange($event.target)" formControlName="roleIdx">
+            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
+          </select>
+        </div>
+        <div class="form-input-text">
+          <label>비밀번호</label>
+          <input type="password" formControlName="password"/>
+          <span *ngIf="newform.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>비밀번호 확인</label>
+          <input type="password" formControlName="rep"/>
+          <span *ngIf="newform.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
+          <span *ngIf="!newform.controls.rep.hasError('required') && newform.controls.rep.value != newform.controls.pw.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer modal-create-footer">
+      <button (click)="onClose()">취소</button>
+      <button (click)="onCreate(newform.controls)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.password.value">생성</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #UpModal>
+  <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.username}} 정보</h2>
+        <h2>{{form.controls.username.value}}님 정보</h2>
       </div>
-      <div class="close" (click)="onClose(UpModal)">&times;</div>
-      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+      <div class="close" (click)="onClose()">&times;</div>
+      
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -49,54 +97,11 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onClose(UpModal)">취소</button>
-      <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+    <div class="modal-footer modal-update-footer">
+      <button (click)="onClose()">취소</button>
+      <button (click)="onDelete(form.controls)">삭제</button>
+      <button (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
-</div>
-<div #CreModal class="modal">
-  <div class="modal-content" style="width: 25%; text-align: left;">
-    <div class="modal-header" *ngIf="newform != undefined">
-      <div>
-        <h2>사용자 추가</h2>
-      </div>
-      <div class="close" (click)="onClose(CreModal)">&times;</div>
-    </div>
-    <div *ngIf="newform != undefined" >
-      <form [formGroup]="newform">
-        <div class="form-input-text">
-          <label>사용자</label>
-          <input type="text" formControlName="username"/>
-          <span *ngIf="newform.controls.username.hasError('required')" style="color:red; display: block; font-size: 12px;">사용자 명은 필수 입니다.</span>
-        </div>
-        <div class="form-input-text">
-          <label>이메일</label>
-          <input type="text" formControlName="email"/>
-          <span *ngIf="newform.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
-        </div>
-        <div class="form-select">
-          <label>권한</label>
-          <select (change)="roleChange($event.target)" formControlName="roleIdx">
-            <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
-          </select>
-        </div>
-        <div class="form-input-text">
-          <label>비밀번호</label>
-          <input type="password" formControlName="password"/>
-          <span *ngIf="newform.controls.password.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호는 필수 입니다.</span>
-        </div>
-        <div class="form-input-text">
-          <label>비밀번호 확인</label>
-          <input type="password" formControlName="rep"/>
-          <span *ngIf="newform.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
-          <span *ngIf="!newform.controls.rep.hasError('required') && newform.controls.rep.value != newform.controls.pw.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button (click)="onClose(CreModal)">취소</button>
-      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.password.value">생성</button>
-    </div>
-  </div>
-</div>
+</ng-template>
+

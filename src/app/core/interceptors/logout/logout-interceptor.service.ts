@@ -13,7 +13,7 @@ export class LogoutInterceptorService {
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           // do stuff with response and headers you want
-          if (event.body.resultCode === 'OK' && event.body.result !== null && event.url === 'http://localhost:8090/user/logout') {
+          if (event.body.resultCode === 'OK' && event.body.result !== null && event.url.includes('user/logout')) {
             this.cookie.deleteCookie('AWT');
             this.cookie.deleteCookie('RWT');
             this.cookie.deleteCookie('UWT');

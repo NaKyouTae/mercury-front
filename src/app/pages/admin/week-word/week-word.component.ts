@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-week-word',
@@ -36,7 +37,7 @@ export class WeekWordComponent implements OnInit {
     endDate: new FormControl({ value: null }, Validators.required),
     description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.search();
@@ -52,17 +53,18 @@ export class WeekWordComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
+
     this.common.httpCallPost('service/words', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         alert(res.message);
         this.search();
-        template.style.display = 'none';
+        this.onClose();
       }
 
       this.newform.reset({
@@ -74,24 +76,26 @@ export class WeekWordComponent implements OnInit {
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
+
     this.common.httpCallPut('service/words/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         alert(res.message);
         this.search();
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
+
     this.common.httpCallDelete('service/words/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         alert(res.message);
         this.search();
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }

@@ -73,7 +73,6 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public onData(dIdx, field) {
     // tslint:disable-next-line: no-eval
-    console.log(this.data[dIdx]);
     return eval('this.data[dIdx].' + field);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-grade',
@@ -30,7 +31,7 @@ export class GradeComponent implements OnInit {
     endRange: new FormControl({ value: '' }, Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.search();
@@ -46,8 +47,8 @@ export class GradeComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
     this.newform.reset({
       gradeName: '',
       startRange: '',
@@ -55,12 +56,12 @@ export class GradeComponent implements OnInit {
     });
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
 
     this.common.httpCallPost('service/grades', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
         this.newform.reset({
           gradeName: '',
@@ -71,23 +72,23 @@ export class GradeComponent implements OnInit {
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallPut('service/grades/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
 
     this.common.httpCallDelete('service/grades/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
       }
     });

@@ -3,6 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-logs',
@@ -26,7 +27,7 @@ export class LogsComponent implements OnInit {
     insertDate: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
 
   ngOnInit() {
     this.onSearch();
@@ -35,9 +36,9 @@ export class LogsComponent implements OnInit {
 
   public onSearch() {
     this.common.httpCallGet('service/loggers').subscribe((res: any) => {
-
-      this.data = res.result;
-
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.data = res.result;
+      }
     });
   }
 
@@ -45,8 +46,8 @@ export class LogsComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
     this.form.reset(this.formservice.initialForm(this.form));
   }
 
@@ -55,7 +56,7 @@ export class LogsComponent implements OnInit {
     this.common.httpCallDelete('service/loggers', data).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.onSearch();
-        template.style.display = 'none';
+        this.onClose();
       }
     });
   }

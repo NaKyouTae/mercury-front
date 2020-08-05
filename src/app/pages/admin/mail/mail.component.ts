@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-mail',
@@ -44,7 +45,7 @@ export class MailComponent implements OnInit {
     minHeight: '0',
   };
 
-  constructor(private common: CommonHttpService, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
 
   ngOnInit() {
     this.onSearch();
@@ -59,16 +60,16 @@ export class MailComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/mails/templates', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.onSearch();
-        template.style.display = 'none';
+        this.onClose();
 
         this.newform.reset(this.formservice.initialForm(this.newform));
 
@@ -77,23 +78,23 @@ export class MailComponent implements OnInit {
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/mails/templates/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.onSearch();
-        template.style.display = 'none';
+        this.onClose();
         alert(res.message);
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/mails/templates/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.onSearch();
-        template.style.display = 'none';
+        this.onClose();
         alert(res.message);
       }
     });

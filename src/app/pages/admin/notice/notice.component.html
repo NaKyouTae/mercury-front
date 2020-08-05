@@ -1,16 +1,54 @@
 <div class="content-width">
     <app-page-title title="공지사항"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="CreModal"  [upModal]="UpModal"></app-admin-grid>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+    [creModal]="{temp: CreModal, width: 500, height: 200, data: form}"
+    [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
 </div>
 
-<div #UpModal class="modal">
-    <div class="modal-content" style="width: 25%; text-align: left;" *ngIf="userRoles.includes('ROLE_ADMIN')">
+<ng-template #CreModal>
+  <div>
+      <div class="modal-header" *ngIf="form != undefined">
+          <div>
+              <h2>공지사항 생성</h2>
+          </div>
+          <div class="close" (click)="onClose()">&times;</div>
+      </div>
+      <div *ngIf="form != undefined" >
+          <form [formGroup]="form">
+              <div class="form-input-text">
+                  <label>공지 여부</label>
+                  <div>
+                    <label for="Y">Y</label>
+                    <input type="radio" formControlName="type" value="y" />
+                    <label for="N">N</label>
+                    <input type="radio" formControlName="type" value="n" />
+                  </div>
+              </div>
+              <div class="form-input-text">
+                  <label>제목</label>
+                  <input type="text" formControlName="title"/>
+              </div>
+              <div class="form-input-text">
+                  <label>내용</label>
+                  <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer modal-creModal-footer">
+          <button (click)="onClose()">취소</button>
+          <button (click)="onCreate(form.controls)" [disabled]="!form.valid">생성</button>
+      </div>
+  </div>
+</ng-template>
+
+<ng-template #UpModal>
+    <div *ngIf="userRoles.includes('ROLE_ADMIN')">
         <div class="modal-header" *ngIf="form != undefined">
             <div>
                 <h2>공지 사항</h2>
             </div>
-            <div class="close" (click)="onClose(UpModal)">&times;</div>
-            <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+            <div class="close" (click)="onClose()">&times;</div>
+
         </div>
         <div *ngIf="form != undefined">
             <form [formGroup]="form">
@@ -42,44 +80,10 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button (click)="onClose(UpModal)">취소</button>
-            <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+            <button (click)="onClose()">취소</button>
+            <button (click)="onDelete(form.controls)">삭제</button>
+            <button (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
         </div>
     </div>
-</div>
+</ng-template>
 
-<div #CreModal class="modal">
-    <div class="modal-content" style="width: 25%; text-align: left;">
-        <div class="modal-header" *ngIf="form != undefined">
-            <div>
-                <h2>공지사항 생성</h2>
-            </div>
-            <div class="close" (click)="onClose(CreModal)">&times;</div>
-        </div>
-        <div *ngIf="form != undefined" >
-            <form [formGroup]="form">
-                <div class="form-input-text">
-                    <label>공지 여부</label>
-                    <div>
-                      <label for="Y">Y</label>
-                      <input type="radio" formControlName="type" value="y" />
-                      <label for="N">N</label>
-                      <input type="radio" formControlName="type" value="n" />
-                    </div>
-                </div>
-                <div class="form-input-text">
-                    <label>제목</label>
-                    <input type="text" formControlName="title"/>
-                </div>
-                <div class="form-input-text">
-                    <label>내용</label>
-                    <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button (click)="onClose(CreModal)">취소</button>
-            <button (click)="onCreate(form.controls, CreModal)" [disabled]="!form.valid">생성</button>
-        </div>
-    </div>
-</div>

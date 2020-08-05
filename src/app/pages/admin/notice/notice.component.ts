@@ -3,6 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-notice',
@@ -24,7 +25,11 @@ export class NoticeComponent implements OnInit {
     insertDate: new FormControl(''),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private jwt: JwtService,
+    private modal: ModalService) { }
 
   ngOnInit() {
     this.search();
@@ -40,8 +45,8 @@ export class NoticeComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
     this.form.reset({
       content: '',
     });
@@ -51,7 +56,7 @@ export class NoticeComponent implements OnInit {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/notices', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.search();
         this.form.reset({
           content: '',
@@ -65,7 +70,7 @@ export class NoticeComponent implements OnInit {
     this.common.httpCallPut('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);
       this.search();
-      template.style.display = 'none';
+      this.onClose();
     });
   }
 
@@ -74,7 +79,7 @@ export class NoticeComponent implements OnInit {
     this.common.httpCallDelete('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);
       this.search();
-      template.style.display = 'none';
+      this.onClose();
     });
   }
 }

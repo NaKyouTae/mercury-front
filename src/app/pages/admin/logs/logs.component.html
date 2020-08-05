@@ -1,16 +1,16 @@
 <div class="content-width">
     <app-page-title title="LOGS"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModal]="UpModal"></app-admin-grid>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)"
+    [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
 </div>
 
-<div #UpModal class="modal">
-  <div class="modal-content" style="width: 25%; text-align: left;">
+<ng-template #UpModal>
+  <div>
       <div class="modal-header" *ngIf="form != undefined">
           <div>
               <h2>Log 내용</h2>
           </div>
-          <div class="close" (click)="onClose(UpModal)">&times;</div>
-          <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+          <div class="close" (click)="onClose()">&times;</div>
       </div>
       <div *ngIf="form != undefined">
           <form [formGroup]="form">
@@ -32,8 +32,9 @@
               </div>
           </form>
       </div>
-      <div class="modal-footer">
-          <button (click)="onClose(UpModal)">취소</button>
+      <div class="modal-footer modal-create-footer">
+          <button (click)="onClose()">취소</button>
+          <button (click)="onDelete(form.controls)">삭제</button>
       </div>
   </div>
-</div>
+</ng-template>

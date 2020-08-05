@@ -16,18 +16,51 @@
         <div>
             <button class="btn">저장</button>
         </div>
-        <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="CreModal" [upModal]="UpModal"></app-admin-grid>
+        <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+        [creModal]="{temp: CreModal, width: 500, height: 200, data: form}"
+        [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
     </div>
 </div>
 
-<div #UpModal class="modal">
-  <div class="modal-content" style="width: 40%; text-align: left;">
+<ng-template #CreModal>
+  <div>
+    <div class="modal-header" *ngIf="newform != undefined">
+      <div>
+        <h2>메일 템플릿 추가</h2>
+      </div>
+      <div class="close" (click)="onClose()">&times;</div>
+    </div>
+    <div *ngIf="newform != undefined" >
+      <form [formGroup]="newform">
+        <div class="form-input-text">
+          <label>템플릿 명</label>
+          <input type="text" formControlName="type" />
+        </div>
+        <div class="form-input-text">
+          <label>메일 제목</label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div class="form-input-text">
+          <label>템플릿 파일 명</label>
+          <input type="text" formControlName="tempName" />
+          <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer modal-creModal-footer">
+      <button (click)="onClose()">취소</button>
+      <button (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #UpModal>
+  <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>메일 템플릿 정보</h2>
       </div>
-      <div class="close" (click)="onClose(UpModal)">&times;</div>
-      <div class="close" (click)="onDelete(form.controls, UpModal)">삭제</div>
+      <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -54,40 +87,10 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onClose(UpModal)">취소</button>
-      <button (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+    <div class="modal-footer modal-update-footer">
+      <button (click)="onClose()">취소</button>
+      <button (click)="onDelete(form.controls)">삭제</button>
+      <button (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
-</div>
-<div #CreModal class="modal">
-  <div class="modal-content" style="width: 40%; text-align: left;">
-    <div class="modal-header" *ngIf="newform != undefined">
-      <div>
-        <h2>메일 템플릿 추가</h2>
-      </div>
-      <div class="close" (click)="onClose(CreModal)">&times;</div>
-    </div>
-    <div *ngIf="newform != undefined" >
-      <form [formGroup]="newform">
-        <div class="form-input-text">
-          <label>템플릿 명</label>
-          <input type="text" formControlName="type" />
-        </div>
-        <div class="form-input-text">
-          <label>메일 제목</label>
-          <input type="text" formControlName="title" />
-        </div>
-        <div class="form-input-text">
-          <label>템플릿 파일 명</label>
-          <input type="text" formControlName="tempName" />
-          <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button (click)="onClose(CreModal)">취소</button>
-      <button (click)="onCreate(newform.controls, CreModal)" [disabled]="!newform.valid">생성</button>
-    </div>
-  </div>
-</div>
+</ng-template>

@@ -34,7 +34,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -52,6 +52,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
       this.fields = changes.fields.currentValue;
     }
     if (changes.data !== undefined) {
+      changes.data.previousValue = null;
       this.data = changes.data.currentValue;
     }
   }

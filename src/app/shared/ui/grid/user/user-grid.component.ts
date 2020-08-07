@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { JwtService } from '../../../common/jwt/jwt.service';
   templateUrl: './user-grid.component.html',
   styleUrls: ['./user-grid.component.css'],
 })
-export class UserGridComponent implements OnInit {
+export class UserGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
   @Input() public upModalTemp?: any;
@@ -30,7 +30,7 @@ export class UserGridComponent implements OnInit {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -40,6 +40,16 @@ export class UserGridComponent implements OnInit {
       this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
       this.take = this.data.length > this.take ? this.take : this.data.length;
       this.onBind();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.fields !== undefined) {
+      this.fields = changes.fields.currentValue;
+    }
+    if (changes.data !== undefined) {
+      changes.data.previousValue = null;
+      this.data = changes.data.currentValue;
     }
   }
 
@@ -58,9 +68,9 @@ export class UserGridComponent implements OnInit {
   //   return result;
   // }
 
-  public onData(data, field) {
+  public onData(dIdx, field) {
     // tslint:disable-next-line: no-eval
-    return eval('data.' + field);
+    return eval('this.data[dIdx].' + field);
   }
 
   public onBind() {

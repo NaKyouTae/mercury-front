@@ -22,7 +22,7 @@ export class NoticeComponent implements OnInit {
     title: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.search();
@@ -36,43 +36,5 @@ export class NoticeComponent implements OnInit {
 
   public onDblClick(data: any) {
     this.form.patchValue(data);
-  }
-
-  public onClose(template: any) {
-    template.style.display = 'none';
-    this.form.reset({
-      content: '',
-    });
-  }
-
-  public onCreate(e: any, template: any) {
-    const data = this.formservice.formToData(e);
-    this.common.httpCallPost('service/notices', data).subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
-        template.style.display = 'none';
-        this.search();
-        this.form.reset({
-          content: '',
-        });
-      }
-    });
-  }
-
-  public onUpdate(e: any, template: any) {
-    const data: any = this.formservice.formToData(e);
-    this.common.httpCallPut('service/notices/' + data.idx, data).subscribe((res: any) => {
-      alert(res.message);
-      this.search();
-      template.style.display = 'none';
-    });
-  }
-
-  public onDelete(e: any, template: any) {
-    const data: any = this.formservice.formToData(e);
-    this.common.httpCallDelete('service/notices/' + data.idx, data).subscribe((res: any) => {
-      alert(res.message);
-      this.search();
-      template.style.display = 'none';
-    });
   }
 }

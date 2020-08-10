@@ -1,6 +1,6 @@
 <div class="content-width">
     <app-page-title title="공지사항"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)" [upModal]="UpModal"></app-admin-grid>
+    <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [upModal]="UpModal"></app-user-grid>
 </div>
 
 <div #UpModal class="modal">

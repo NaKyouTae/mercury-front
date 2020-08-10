@@ -9,10 +9,8 @@ import { JwtService } from '../../../common/jwt/jwt.service';
 export class UserGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
-  @Input() public upModalTemp?: any;
-  @Input() public creModalTemp?: any;
+  @Input() public template?: any;
   @Input() public gridWidth?: string;
-  @Input() public btnUse?: any;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
@@ -29,6 +27,7 @@ export class UserGridComponent implements OnInit, OnChanges {
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
 
   public sliceData: any;
+  public details: any = false;
 
   constructor(private jwt: JwtService) { }
 
@@ -161,6 +160,7 @@ export class UserGridComponent implements OnInit, OnChanges {
   }
 
   public onDblClick(value: any) {
+    this.details = true;
     this.dbldata.emit(value);
   }
 }

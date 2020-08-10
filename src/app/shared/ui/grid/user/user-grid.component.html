@@ -3,10 +3,12 @@
     <div class="grid-wrapper">
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
 
-      <div RowModal (dblclick)="onDblClick(d)" [modal]="upModalTemp" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
+      <div RowDbclick (dblclick)="onDblClick(d)" [template]="template" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%'}">
-          {{ onData(d_idx, f.field) }}
+          <div *ngIf="f_idx == 0" class="btn" style="margin-right: 10px; display: inline-block;">상세</div>
+          <div style="display: inline-block;">{{ onData(d_idx, f.field) }}</div>
         </div>
+        <div class="grid-details" style="display: none;">Row Details</div>
       </div>
 
     </div>

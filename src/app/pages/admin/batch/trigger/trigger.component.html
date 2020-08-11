@@ -1,11 +1,16 @@
 <div>
   <app-page-title title="Trigger"></app-page-title>
-  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" [creModal]="{temp: CreQuartz, width: 500, height:400, data: creForm}" [upModal]="{temp: UpQuartz, width: 500, height:550, data: upForm}"></app-admin-grid>
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
+  [creModal]="{temp: CreQuartz, width: 500, height:400, data: creForm}" 
+  [upModal]="{temp: UpQuartz, width: 500, height:520, data: upForm}"></app-admin-grid>
 </div>
 
 <ng-template #CreQuartz>
   <div>
     <div class="modal-header">
+      <div>
+        <h2>Trigger Create</h2>
+      </div>
       <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div>
@@ -28,9 +33,9 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onCreate(creForm.controls)">생성</button>
+    <div class="modal-footer modal-create-footer">
       <button (click)="onClose()">취소</button>
+      <button (click)="onCreate(creForm.controls)">생성</button>
     </div>
   </div>
 </ng-template>
@@ -38,8 +43,10 @@
 <ng-template #UpQuartz>
   <div>
     <div class="modal-header">
+      <div>
+        <h2>{{upForm.controls.name.value}} Update</h2>
+      </div>
       <div class="close" (click)="onClose()">&times;</div>
-      <div class="close" (click)="onDelete(upForm.controls)">삭제</div>
     </div>
     <div>
       <form [formGroup]="upForm">
@@ -69,9 +76,10 @@
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="onUpdate(upForm.controls)">수정</button>
+    <div class="modal-footer modal-update-footer">
       <button (click)="onClose()">취소</button>
+      <button (click)="onDelete(upForm.controls)">삭제</button>
+      <button (click)="onUpdate(upForm.controls)">수정</button>
     </div>
   </div>
 </ng-template>

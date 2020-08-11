@@ -5,7 +5,7 @@
     <div class="btn tap-btn" (click)="onSearchSchedule()">Scheduler</div>
   </div>
   <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false" (dbldata)="onDblClick($event)"
-  [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
+  [upModal]="{temp: UpModal, width: 500, height: 460, data: form}"></app-admin-grid>
 </div>
 
 <ng-template #UpModal>

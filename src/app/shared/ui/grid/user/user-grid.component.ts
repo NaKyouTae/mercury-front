@@ -27,18 +27,12 @@ export class UserGridComponent implements OnInit, OnChanges {
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
 
   public sliceData: any;
-  public expandDetils = false;
 
   constructor(private jwt: JwtService) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
-      // this.fields = Object.keys(this.data[0]);
-      this.fieldsNum = this.fields.length;
-      this.tot = this.data.length;
-      this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
-      this.take = this.data.length > this.take ? this.take : this.data.length;
-      this.onBind();
+      this.onInit();
     }
   }
 
@@ -50,26 +44,15 @@ export class UserGridComponent implements OnInit, OnChanges {
       changes.data.previousValue = null;
       this.data = changes.data.currentValue;
     }
+    this.onInit();
   }
 
-  // onFields(data: any, fields: any) {
-  //   const result = new Array();
-
-  //   fields.forEach((item: any) => {
-  //     if (Object.keys(data).includes(item.field)) {
-  //       result.push({
-  //         field: item.field,
-  //         width: item.width,
-  //       });
-  //     }
-  //   });
-
-  //   return result;
-  // }
-
-  public onData(dIdx, field) {
-    // tslint:disable-next-line: no-eval
-    return eval('this.data[dIdx].' + field);
+  onInit() {
+    this.fieldsNum = this.fields.length;
+    this.tot = this.data.length;
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
+    this.take = this.data.length > this.size ? this.size : this.data.length;
+    this.onBind();
   }
 
   public onBind() {
@@ -161,10 +144,5 @@ export class UserGridComponent implements OnInit, OnChanges {
 
   public onDblClick(value: any) {
     this.dbldata.emit(value);
-    if (this.expandDetils) {
-      this.expandDetils = false;
-    } else {
-      this.expandDetils = true;
-    }
   }
 }

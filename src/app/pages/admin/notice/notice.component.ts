@@ -20,7 +20,7 @@ export class NoticeComponent implements OnInit {
   public form = new FormGroup({
     idx: new FormControl(''),
     title: new FormControl('', Validators.required),
-    type: new FormControl('y', Validators.required),
+    type: new FormControl({ value: 'n' }, Validators.required),
     content: new FormControl('', Validators.required),
     insertDate: new FormControl(''),
   });
@@ -52,7 +52,7 @@ export class NoticeComponent implements OnInit {
     });
   }
 
-  public onCreate(e: any, template: any) {
+  public onCreate(e: any) {
     const data = this.formservice.formToData(e);
     this.common.httpCallPost('service/notices', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
@@ -65,7 +65,7 @@ export class NoticeComponent implements OnInit {
     });
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);
@@ -74,7 +74,7 @@ export class NoticeComponent implements OnInit {
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/notices/' + data.idx, data).subscribe((res: any) => {
       alert(res.message);

@@ -8,7 +8,8 @@
 
       <div RowModal (dblclick)="onDblClick(d)" [modal]="upModal" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%'}">
-          {{ onData(d_idx, f.field) }}
+          <!-- {{ onData(d_idx, f.field) }} -->
+          {{ d | gridData: f.field }}
         </div>
       </div>
 

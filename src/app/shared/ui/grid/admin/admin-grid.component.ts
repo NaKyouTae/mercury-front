@@ -38,12 +38,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.data !== undefined) {
-      // this.fields = Object.keys(this.data[0]);
-      this.fieldsNum = this.fields.length;
-      this.tot = this.data.length;
-      this.pageList = new Array(Math.ceil(this.data.length / this.take < 1 ? 1 : this.data.length / this.take));
-      this.take = this.data.length > this.take ? this.take : this.data.length;
-      this.onBind();
+      this.onInit();
     }
   }
 
@@ -55,26 +50,15 @@ export class AdminGridComponent implements OnInit, OnChanges {
       changes.data.previousValue = null;
       this.data = changes.data.currentValue;
     }
+    this.onInit();
   }
 
-  // onFields(data: any, fields: any) {
-  //   const result = new Array();
-
-  //   fields.forEach((item: any) => {
-  //     if (Object.keys(data).includes(item.field)) {
-  //       result.push({
-  //         field: item.field,
-  //         width: item.width,
-  //       });
-  //     }
-  //   });
-
-  //   return result;
-  // }
-
-  public onData(dIdx, field) {
-    // tslint:disable-next-line: no-eval
-    return eval('this.data[dIdx].' + field);
+  onInit() {
+    this.fieldsNum = this.fields.length;
+    this.tot = this.data.length;
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
+    this.take = this.data.length > this.size ? this.size : this.data.length;
+    this.onBind();
   }
 
   public onBind() {

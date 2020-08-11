@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cash',
@@ -20,6 +21,19 @@ export class CashComponent implements OnInit {
     { title: '잔액', width: 10, field: 'afterCash' },
     { title: '승인', width: 5, field: 'approval' },
   ];
+
+  public form = new FormGroup({
+    userName: new FormControl(''),
+    withDrawDate: new FormControl(''),
+    paymentDate: new FormControl(''),
+    content: new FormControl(''),
+    prevCash: new FormControl(''),
+    withDrawCash: new FormControl(''),
+    afterCash: new FormControl(''),
+    approval: new FormControl(''),
+  });
+
+
   constructor(private common: CommonHttpService) { }
 
   ngOnInit() { }
@@ -30,5 +44,9 @@ export class CashComponent implements OnInit {
         this.data = res.result;
       }
     });
+  }
+
+  public onDblClick(data: any) {
+    this.form.patchValue(data);
   }
 }

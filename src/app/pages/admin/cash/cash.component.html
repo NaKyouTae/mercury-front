@@ -1,5 +1,23 @@
 <div class="content-width">
     <app-page-title title="출금 신청 내역"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="false"></app-admin-grid>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [template]="template">
+      <ng-template #template>
+        <label>사용자 명</label>
+        {{form.controls.userName.value}}
+        <label>요청 일자</label>
+        {{form.controls.withDrawDate.value}}
+        <label>지급 일</label>
+        {{form.controls.paymentDate.value}}
+        <label>지급 내용</label>
+        {{form.controls.content.value}}
+        <label>이전 금액</label>
+        {{form.controls.prevCash.value}}
+        <label>요청 금액</label>
+        {{form.controls.withDrawCash.value}}
+        <label>잔액</label>
+        {{form.controls.afterCash.value}}
+        <label>승인 여부</label>
+        {{form.controls.approval.value}}
+      </ng-template>
+    </app-admin-grid>
 </div>
-  

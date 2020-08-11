@@ -27,7 +27,7 @@ export class UserGridComponent implements OnInit, OnChanges {
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
 
   public sliceData: any;
-  public details: any = false;
+  public expandDetils = false;
 
   constructor(private jwt: JwtService) { }
 
@@ -160,7 +160,11 @@ export class UserGridComponent implements OnInit, OnChanges {
   }
 
   public onDblClick(value: any) {
-    this.details = true;
     this.dbldata.emit(value);
+    if (this.expandDetils) {
+      this.expandDetils = false;
+    } else {
+      this.expandDetils = true;
+    }
   }
 }

@@ -3,12 +3,15 @@
     <div class="grid-wrapper">
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
 
-      <div RowDbclick (dblclick)="onDblClick(d)" [template]="template" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
-        <div *ngFor="let f of fields; let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%'}">
-          <div *ngIf="f_idx == 0" class="btn" style="margin-right: 10px; display: inline-block;">상세</div>
+      <div RowDbclick (dblclick)="onDblClick(d)" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
+        <div *ngFor="let f of fields; let f_idx = index" class="grid-field"
+              [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%', 'text-align' : f_idx == 0 ? 'left' : 'center'}">
+          <div BtnClick (click)="onDblClick(d)" *ngIf="f_idx == 0" class="btn" style="margin: 0px 10px; display: inline-block;">&#62;</div>
           <div style="display: inline-block;">{{ onData(d_idx, f.field) }}</div>
         </div>
-        <div class="grid-details" style="display: none; padding: 20px 0px 20px 80px;"></div>
+        <div class="grid-row-details" style="display: none;">
+          <ng-container *ngTemplateOutlet="template"></ng-container>
+        </div>
       </div>
 
     </div>

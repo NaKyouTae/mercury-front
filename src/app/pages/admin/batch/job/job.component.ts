@@ -24,6 +24,7 @@ export class JobComponent implements OnInit {
     name: new FormControl({ value: '', disabled: false }, Validators.required),
     title: new FormControl({ value: '', disabled: false }, Validators.required),
     description: new FormControl({ value: '', disabled: false }, Validators.required),
+    execute: new FormControl({ value: '', disabled: false }, Validators.required),
   });
 
   public upForm = new FormGroup({
@@ -31,6 +32,7 @@ export class JobComponent implements OnInit {
     name: new FormControl({ value: '', disabled: false }, Validators.required),
     title: new FormControl({ value: '', disabled: false }, Validators.required),
     description: new FormControl({ value: '', disabled: false }, Validators.required),
+    execute: new FormControl({ value: '', disabled: false }, Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 

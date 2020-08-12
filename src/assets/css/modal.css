@@ -1,71 +1,49 @@
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+/* The Close Button */
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-header {
+  border-bottom: 1px solid darkgray;
+  margin-bottom: 10px;
+}
+.modal-header > div{
+  display: inline-block;
+}
 
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-  }
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .modal-header {
-    border-bottom: 1px solid darkgray;
-    margin-bottom: 10px;
-  }
-  .modal-header > div{
-    display: inline-block;
-  }
+.modal-header > div:first-child{
+  width: 95%;
+}
+.modal-header > div:last-child{
+  width: auto;
+}
 
-  .modal-header > div:first-child{
-    width: 95%;
-  }
-  .modal-header > div:last-child{
-    width: auto;
-  }
+.modal-footer {
+  width: 100%;
+}
 
-  .modal-footer {
-    width: 100%;
-  }
+.modal-create-footer > button {
+  width: calc((100% / 2) - 5px);
+  padding: 10px 0px;
+}
 
-  .modal-create-footer > button {
-    width: calc((100% / 2) - 5px);
-    padding: 10px 0px;
-  }
+.modal-create-footer > button:first-child {
+  margin-right: 10px;
+}
 
-  .modal-create-footer > button:first-child {
-    margin-right: 10px;
-  }
+.modal-update-footer > button {
+  width: calc((100% / 3) - 20px / 3);
+  padding: 10px 0px;
+}
 
-  .modal-update-footer > button {
-    width: calc((100% / 3) - 20px / 3);
-    padding: 10px 0px;
-  }
-
-  .modal-update-footer > button:nth-child(2) {
-    margin: 0px 10px;
-  }
+.modal-update-footer > button:nth-child(2) {
+  margin: 0px 10px;
+}

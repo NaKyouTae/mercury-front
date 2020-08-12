@@ -1,7 +1,7 @@
 <div>
   <app-page-title title="Job"></app-page-title>
-  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
-  [creModal]="{temp: CreQuartz, width: 500, height:330, data: creForm}" 
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+  [creModal]="{temp: CreQuartz, width: 500, height:330, data: creForm}"
   [upModal]="{temp: UpQuartz, width: 500, height:460, data: upForm}"></app-admin-grid>
 </div>
 
@@ -46,6 +46,10 @@
     </div>
     <div>
       <form [formGroup]="upForm">
+        <div>
+          <label>실행 여부</label>
+          <input type="checkbox" formControlName="execute"/>
+        </div>
         <div class="form-input-text">
           <label>Index</label>
           <input type="text" formControlName="idx"/>

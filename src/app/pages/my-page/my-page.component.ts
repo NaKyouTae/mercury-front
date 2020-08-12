@@ -9,6 +9,8 @@ import { inCommonNewsletter } from 'src/app/core/store/common/common.actions';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({
   selector: 'app-my-page',
@@ -30,14 +32,24 @@ export class MyPageComponent implements OnInit {
   public grades: any;
   public gradeView: any = false;
 
+  public pwCheck: any = false;
+
   public form = new FormGroup({
     idx: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    newPassword: new FormControl('', Validators.required),
+    rep: new FormControl('', Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private formservice: FormsService, private observable: ObservableService) { }
+  constructor(
+    private common: CommonHttpService,
+    private jwt: JwtService,
+    private formservice: FormsService,
+    private observable: ObservableService,
+    private modal: ModalService) { }
 
   ngOnInit() {
     this.search();
@@ -85,28 +97,28 @@ export class MyPageComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  public onClose(template: any) {
-    template.style.display = 'none';
+  public onClose() {
+    this.modal.onCloseAll();
   }
 
-  public onUpdate(e: any, template: any) {
+  public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
     data.idx = this.user.idx;
     this.common.httpCallPut('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        template.style.display = 'none';
+        this.onClose();
         this.user = res.result;
       }
     });
   }
 
-  public onDelete(e: any, template: any) {
+  public onDelete(e: any) {
     if (window.confirm('삭제 하시겠습니까?')) {
       const data: any = this.formservice.formToData(e);
 
       this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
-          template.style.display = 'none';
+          this.onClose();
           this.user = this.jwt.getJWTUserKey('user');
         }
       });
@@ -116,7 +128,7 @@ export class MyPageComponent implements OnInit {
   }
 
   // Store 적용 후
-  // 구독 해제 시  State를 이용한 뉴스레터 구독하기 버튼 활성화 및 비활성화 기능 필요
+  // 구독 해제 시 State를 이용한 뉴스레터 구독하기 버튼 활성화 및 비활성화 기능 필요
   // ================================================================================= [구독하기 해제 기능]
   public onUnSubscribe() {
     if (window.confirm('구독을 해제하시겠습니까?')) {

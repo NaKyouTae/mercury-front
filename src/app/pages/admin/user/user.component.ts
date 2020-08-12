@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
     changeDate: new FormControl({ value: '', disabled: true }),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
 
   ngOnInit() {
     this.search();
@@ -47,7 +47,16 @@ export class UserComponent implements OnInit {
 
   public search() {
     this.common.httpCallGet('service/users').subscribe((res: any) => {
-      this.data = res.result;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.data = res.result;
+
+        this.data.forEach((user) => {
+          this.common.httpCallGet('service/users/role/' + user.username).subscribe((res: any) => {
+            user.roleIdx = res.result[0].roleIdx;
+            user.roleTitle = res.result[0].roleName;
+          });
+        });
+      }
     });
   }
 
@@ -79,6 +88,10 @@ export class UserComponent implements OnInit {
       roleIdx: user.roleIdx,
       roleName: user.roleTitle,
     };
+
+    delete user.roleIdx;
+    delete user.roleTitle;
+
     this.common.httpCallPut('service/users/' + user.idx, { user, role }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.onClose();

@@ -47,3 +47,8 @@
 .modal-update-footer > button:nth-child(2) {
   margin: 0px 10px;
 }
+
+.modal-footer-one-btn > button {
+  width: 100%;
+  padding: 10px 0px;
+}

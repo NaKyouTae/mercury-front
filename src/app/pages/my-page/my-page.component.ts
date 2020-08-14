@@ -33,6 +33,7 @@ export class MyPageComponent implements OnInit {
   public gradeView: any = false;
 
   public pwCheck: any = false;
+  public failedPW: any = false;
 
   public form = new FormGroup({
     idx: new FormControl('', Validators.required),
@@ -104,10 +105,15 @@ export class MyPageComponent implements OnInit {
   public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
     data.idx = this.user.idx;
+    // 비밀번호 확인 데이터는 화면단에서 새로운 비밀번호를 확인하기 위함
+    delete data.rep;
+
     this.common.httpCallPut('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
+      if (res.resultCode === 'OK' && res.result !== null) {
         this.onClose();
         this.user = res.result;
+      } else {
+        this.failedPW = true;
       }
     });
   }

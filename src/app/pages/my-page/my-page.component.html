@@ -103,7 +103,8 @@
     <div class="modal-footer modal-update-footer">
       <button (click)="onClose()">취소</button>
       <button (click)="onDelete(form.controls)">회원 탈퇴</button>
-      <button (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
+      <button *ngIf="pwCheck" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
+      <button *ngIf="!pwCheck" (click)="onUpdate(form.controls)" [disabled]="!form.controls.rep.hasError('required')">수정</button>
     </div>
   </div>
 </ng-template>

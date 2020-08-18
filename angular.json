@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "competition-angular": {
+    "mercury-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/competition-angular",
+            "outputPath": "dist/mercury-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,20 +64,20 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "competition-angular:build",
+            "browserTarget": "mercury-angular:build",
             "proxyConfig" : "proxy.config.json",
             "port": 4300
           },
           "configurations": {
             "production": {
-              "browserTarget": "competition-angular:build:production"
+              "browserTarget": "mercury-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "competition-angular:build"
+            "browserTarget": "mercury-angular:build"
           }
         },
         "test": {
@@ -115,16 +115,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "competition-angular:serve"
+            "devServerTarget": "mercury-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "competition-angular:serve:production"
+              "devServerTarget": "mercury-angular:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "competition-angular"
+  "defaultProject": "mercury-angular"
 }

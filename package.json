@@ -1,5 +1,5 @@
 {
-  "name": "competition",
+  "name": "mercury",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -77,12 +77,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NaKyouTae/competition.git"
+    "url": "git+https://github.com/NaKyouTae/mercury.git"
   },
   "author": "nkt",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NaKyouTae/competition/issues"
+    "url": "https://github.com/NaKyouTae/mercury/issues"
   },
-  "homepage": "https://github.com/NaKyouTae/competition#readme"
+  "homepage": "https://github.com/NaKyouTae/mercury#readme"
 }

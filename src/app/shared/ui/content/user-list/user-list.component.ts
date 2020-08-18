@@ -54,7 +54,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges() {
     if (this.datas !== undefined) {
-      this.checkLove();
+      this.checkLove(this.datas);
     }
   }
 
@@ -62,7 +62,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.common.httpCallGet('service/' + this.type + '/popular').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.topThreeData = res.result.slice(0, 3);
-        this.checkLove();
+        this.checkLove(this.topThreeData);
       } else {
         this.topThreeData = new Array();
       }
@@ -73,7 +73,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.common.httpCallGet('service/' + this.type + '/' + this.searchType).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.datas = res.result;
-        this.checkLove();
+        this.checkLove(this.datas);
       } else {
         this.datas = new Array();
       }
@@ -99,8 +99,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public checkLove() {
-    this.datas.forEach((item: any) => {
+  public checkLove(data: any) {
+    data.forEach((item: any) => {
       const idx = this.user.idx === undefined ? 'null' : this.user.idx;
       this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: idx }).subscribe((res: any) => {
         if (res.result === false || res.result === null) {

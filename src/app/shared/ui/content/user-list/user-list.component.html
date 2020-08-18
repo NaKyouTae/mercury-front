@@ -1,4 +1,70 @@
 <div class="user-list">
+    <div *ngIf="datas != undefined || datas.length != 0">
+        <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of topThreeData; let idx = index;">
+            <div>
+                <div class="data-user">
+                    <div style="color: #100efb;">{{item.userName}}</div>
+                    <div>님</div>
+                    <div>
+                      <div *ngIf="my">
+                          <div *ngIf="!loginCheck">
+                              <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
+                              <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                          </div>
+                          <div *ngIf="loginCheck && item.me">
+                              <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
+                          </div>
+                          <div *ngIf="loginCheck && !item.me">
+                            <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                            <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                          </div>
+                      </div>
+                      <div *ngIf="!my">
+                        <div *ngIf="!loginCheck">
+                          <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
+                          <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
+                          <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                        </div>
+                        <div *ngIf="loginCheck && item.me">
+                          <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn love-btn" src="../../../../assets/img/love.png">
+                        </div>
+                        <div *ngIf="loginCheck && !item.me">
+                            <div *ngIf="type == 'three'">
+                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                            </div>
+                            <div *ngIf="type == 'twice'">
+                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
+                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>{{item.point}}</div>
+                </div>
+                <div class="data-command">
+                    <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
+                    <!-- <div *ngIf="my" class="btn command-btn" (click)="onDelete(item)">삭제</div> -->
+                    <div>{{item.insertDate | slice:0:16}}</div>
+                </div>
+            </div>
+            <div class="data-text">
+                <div>
+                    <div>{{item.word[0]}}</div>
+                    <div>{{item.contentOne}}</div>
+                </div>
+                <div>
+                    <div>{{item.word[1]}}</div>
+                    <div>{{item.contentTwo}}</div>
+                </div>
+                <div>
+                    <div>{{item.word[2]}}</div>
+                    <div>{{item.contentThree}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div style="margin-bottom: 20px;">
         <div class="data-title data-title-total">
             <div>
@@ -11,70 +77,6 @@
         </div>
     </div>
     <div *ngIf="datas != undefined || datas.length != 0">
-      <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold'}" *ngFor="let item of topThreeData; let idx = index;">
-          <div>
-              <div class="data-user">
-                  <div style="color: #100efb;">{{item.userName}}</div>
-                  <div>님</div>
-                  <div>
-                    <div *ngIf="my">
-                        <div *ngIf="!loginCheck">
-                            <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                            <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                            <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
-                        </div>
-                        <div *ngIf="loginCheck && item.me">
-                            <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
-                        </div>
-                        <div *ngIf="loginCheck && !item.me">
-                          <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                          <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
-                        </div>
-                    </div>
-                    <div *ngIf="!my">
-                      <div *ngIf="!loginCheck">
-                        <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                        <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
-                      </div>
-                      <div *ngIf="loginCheck && item.me">
-                        <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn love-btn" src="../../../../assets/img/love.png">
-                      </div>
-                      <div *ngIf="loginCheck && !item.me">
-                          <div *ngIf="type == 'three'">
-                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
-                          </div>
-                          <div *ngIf="type == 'twice'">
-                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>{{item.point}}</div>
-              </div>
-              <div class="data-command">
-                  <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
-                  <!-- <div *ngIf="my" class="btn command-btn" (click)="onDelete(item)">삭제</div> -->
-                  <div>{{item.insertDate | slice:0:16}}</div>
-              </div>
-          </div>
-          <div class="data-text">
-              <div>
-                  <div>{{item.word[0]}}</div>
-                  <div>{{item.contentOne}}</div>
-              </div>
-              <div>
-                  <div>{{item.word[1]}}</div>
-                  <div>{{item.contentTwo}}</div>
-              </div>
-              <div>
-                  <div>{{item.word[2]}}</div>
-                  <div>{{item.contentThree}}</div>
-              </div>
-          </div>
-      </div>
       <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
           <div>
               <div class="data-user">

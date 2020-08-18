@@ -27,7 +27,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   public interval: any;
   public searchType = 'words';
 
-
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
       this.type = res;
@@ -55,6 +54,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnChanges() {
     if (this.datas !== undefined) {
       this.checkLove(this.datas);
+    }
+
+    if (this.topThreeData !== undefined) {
+      this.checkLove(this.topThreeData);
     }
   }
 

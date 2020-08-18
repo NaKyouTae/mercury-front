@@ -8,6 +8,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 })
 export class TwoComponent implements OnInit {
   public datas: Array<any> = new Array();
+  public top: Array<any> = new Array();
   public words: Array<any> = new Array();
   public description: any;
   constructor(private common: CommonHttpService) { }
@@ -29,6 +30,14 @@ export class TwoComponent implements OnInit {
         this.datas = res.result;
       } else {
         this.datas = new Array();
+      }
+    });
+
+    this.common.httpCallGet('service/twice/popular').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.top = res.result.slice(0, 3);
+      } else {
+        this.top = new Array();
       }
     });
   }

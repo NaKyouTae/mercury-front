@@ -12,6 +12,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: no-input-rename
   @Input('data') public datas: any = new Array();
   // tslint:disable-next-line: no-input-rename
+  @Input('top') public topThreeData: any = new Array();
+  // tslint:disable-next-line: no-input-rename
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
   @Input('type') public type: any;
@@ -23,11 +25,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   public userRole: any = this.jwt.getJWTUserKey('roles') !== null ? this.jwt.getJWTUserKey('roles') : [];
   public btnCheck: any = true;
   public interval: any;
+  public searchType = 'words';
+
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
       this.type = res;
       this.getList();
+      this.getTopThree();
     });
   }
 
@@ -35,6 +40,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     if (!this.my) {
       this.interval = setInterval(() => {
         this.getList();
+        this.getTopThree();
       }, 30000);
     }
   }
@@ -52,8 +58,19 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   }
 
+  public getTopThree() {
+    this.common.httpCallGet('service/' + this.type + '/popular').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.topThreeData = res.result.slice(0, 3);
+        this.checkLove();
+      } else {
+        this.topThreeData = new Array();
+      }
+    });
+  }
+
   public getList() {
-    this.common.httpCallGet('service/' + this.type + '/words').subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/' + this.searchType).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.datas = res.result;
         this.checkLove();
@@ -69,6 +86,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     e.loveName = this.user.username;
     this.common.httpCallPut('service/' + this.type + '/' + e.idx, e).subscribe((res: any) => {
       this.getList();
+      this.getTopThree();
     });
   }
 
@@ -76,6 +94,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.common.httpCallDelete('service/loves', { userIdx: this.user.idx, contentIdx: e.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.getList();
+        this.getTopThree();
       }
     });
   }
@@ -94,27 +113,22 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public orPopular(type: string) {
-    this.common.httpCallGet('service/' + this.type + '/popular').subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
-        this.datas = res.result;
-        this.checkLove();
-      } else {
-        this.datas = new Array();
-      }
-    });
-
+    this.searchType = 'popular';
     this.btnCheck = false;
+    this.getList();
   }
 
   public orLatest(type: string) {
-    this.getList();
+    this.searchType = 'words';
     this.btnCheck = true;
+    this.getList();
   }
 
   public onContentUpdate(data: any) {
     this.common.httpCallPut('service/' + this.type + '/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
         this.getList();
+        this.getTopThree();
       }
     });
   }
@@ -126,6 +140,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.getList();
+          this.getTopThree();
           this.observable.deleteHistory('Delete');
         }
       });

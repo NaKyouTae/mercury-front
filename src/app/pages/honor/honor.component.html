@@ -1,34 +1,37 @@
 <div class="content-width">
     <app-page-title title="명예의 전당"></app-page-title>
-    <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}"
-        style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of datas; let idx = index;">
-      <div>
-        <h3>{{item.startDate | slice:0:16}} ~ {{item.endDate | slice:0:16}}</h3>
-        <hr/>
+    <div *ngFor="let data of datas; let idx = index;">
+      <div style="border-bottom: 1px solid darkgray; margin-bottom: 15px; padding: 15px;">
+        <h2 style="display: inline-block; margin-right: 10px;">{{data.word}}</h2>
+        <h3 style="display: inline-block;">{{data.startDate | slice:0:16}} ~ {{data.endDate | slice:0:16}}</h3>
       </div>
-      <div>
-          <div class="data-user">
-              <div style="color: #100efb;">{{item.userName}}</div>
-              <div>님</div>
-              <img class="love-btn" src="../../assets/img/love.png">
-              <div>{{item.point}}</div>
-          </div>
-          <div class="data-command">
-              <div>{{item.createDate | slice:0:16}}</div>
-          </div>
-      </div>
-      <div class="data-text">
+      <div class="data-grid"  *ngFor="let item of data.datas; let i_idx = index;" 
+          [ngStyle]="{'border': (i_idx+1) == data.datas.length ? '':'1px solid gold', 'margin': i_idx == 1 ? '0px 5px': ''}" 
+          style="width:calc((100%/3) - (16px/3)); display: inline-block;">
           <div>
-              <div>{{item.word[0]}}</div>
-              <div>{{item.contentOne}}</div>
+              <div class="data-user">
+                  <div style="color: #100efb;">{{item.userName}}</div>
+                  <div>님</div>
+                  <img class="love-btn" src="../../assets/img/love.png">
+                  <div>{{item.point}}</div>
+              </div>
+              <div class="data-command">
+                  <div>{{item.createDate | slice:0:16}}</div>
+              </div>
           </div>
-          <div>
-              <div>{{item.word[1]}}</div>
-              <div>{{item.contentTwo}}</div>
-          </div>
-          <div>
-              <div>{{item.word[2]}}</div>
-              <div>{{item.contentThree}}</div>
+          <div class="data-text">
+              <div>
+                  <div>{{item.word[0]}}</div>
+                  <div>{{item.contentOne}}</div>
+              </div>
+              <div>
+                  <div>{{item.word[1]}}</div>
+                  <div>{{item.contentTwo}}</div>
+              </div>
+              <div>
+                  <div>{{item.word[2]}}</div>
+                  <div>{{item.contentThree}}</div>
+              </div>
           </div>
       </div>
   </div>

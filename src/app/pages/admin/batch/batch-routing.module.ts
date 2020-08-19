@@ -12,10 +12,10 @@ const routes: Routes = [
     component: BatchComponent,
     canActivate: [AdminGuard],
     children: [
-      { path: '', redirectTo: 'scheduler', pathMatch: 'full' },
-      { path: 'scheduler', component: SchedulerComponent, canActivate: [AdminGuard] },
-      { path: 'trigger', component: TriggerComponent, canActivate: [AdminGuard] },
+      { path: '', redirectTo: 'job', pathMatch: 'full' },
       { path: 'job', component: JobComponent, canActivate: [AdminGuard] },
+      { path: 'trigger', component: TriggerComponent, canActivate: [AdminGuard] },
+      { path: 'scheduler', component: SchedulerComponent, canActivate: [AdminGuard] },
     ],
   },
 ];
@@ -24,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BatchRoutingModule { }
+export class BatchRoutingModule {}

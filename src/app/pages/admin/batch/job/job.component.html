@@ -33,11 +33,11 @@
         <div class="form-input-text">
           <label><span style="color: red;">* </span>Job Execute</label>
           <div style="display: inline-block;">
-            <input type="radio" value="YES" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <input type="radio" value="true" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
             <span>YES</span>
           </div>
           <div style="display: inline-block; margin-left: 20px;">
-            <input type="radio" value="NO" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <input type="radio" value="false" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
             <span>NO</span>
           </div>
           <span class="required-notice-red" *ngIf="creForm.controls.execute.hasError('required')">실행 여부는 필수입니다.</span>
@@ -88,11 +88,11 @@
         <div class="form-input-text">
           <label><span style="color: red;">* </span>Job Execute</label>
           <div style="display: inline-block;">
-            <input type="radio" value="YES" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <input type="radio" value="true" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
             <span>YES</span>
           </div>
           <div style="display: inline-block; margin-left: 20px;">
-            <input type="radio" value="NO" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <input type="radio" value="false" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
             <span>NO</span>
           </div>
           <span class="required-notice-red" *ngIf="upForm.controls.execute.hasError('required')">실행 여부는 필수입니다.</span>

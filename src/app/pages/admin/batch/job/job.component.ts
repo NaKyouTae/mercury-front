@@ -7,12 +7,13 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
-  styleUrls: ['./job.component.css']
+  styleUrls: ['./job.component.css'],
 })
 export class JobComponent implements OnInit {
   public data: any;
   public fields: any = [
     { title: 'Index', width: 10, field: 'idx' },
+    { title: 'Execute', width: 20, field: 'execute' },
     { title: 'Job Name', width: 20, field: 'name' },
     { title: 'Job Title', width: 20, field: 'title' },
     { title: 'Class Name', width: 30, field: 'clasz' },
@@ -38,7 +39,7 @@ export class JobComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onInit();

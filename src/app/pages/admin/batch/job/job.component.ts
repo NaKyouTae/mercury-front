@@ -21,24 +21,30 @@ export class JobComponent implements OnInit {
   ];
 
   public creForm = new FormGroup({
-    name: new FormControl({ value: '', disabled: false }, Validators.required),
-    title: new FormControl({ value: '', disabled: false }, Validators.required),
-    description: new FormControl({ value: '', disabled: false }, Validators.required),
-    execute: new FormControl({ value: '', disabled: false }, Validators.required),
+    name: new FormControl({ value: '' }, Validators.required),
+    title: new FormControl({ value: '' }, Validators.required),
+    clasz: new FormControl({ value: '' }, Validators.required),
+    execute: new FormControl({ value: true }, Validators.required),
+    description: new FormControl({ value: '' }, Validators.required),
   });
 
   public upForm = new FormGroup({
     idx: new FormControl({ value: '', disabled: true }),
     name: new FormControl({ value: '', disabled: false }, Validators.required),
     title: new FormControl({ value: '', disabled: false }, Validators.required),
-    description: new FormControl({ value: '', disabled: false }, Validators.required),
+    clasz: new FormControl({ value: '', disabled: false }, Validators.required),
     execute: new FormControl({ value: '', disabled: false }, Validators.required),
+    description: new FormControl({ value: '', disabled: false }, Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
   constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.onInit();
+  }
+
+  public onInit() {
     this.onSearchJob();
   }
 
@@ -63,6 +69,7 @@ export class JobComponent implements OnInit {
 
     this.common.httpCallDelete('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -73,6 +80,7 @@ export class JobComponent implements OnInit {
 
     this.common.httpCallPost('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -83,6 +91,7 @@ export class JobComponent implements OnInit {
 
     this.common.httpCallPut('batch/service/job', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });

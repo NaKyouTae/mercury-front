@@ -17,7 +17,7 @@ export class TriggerComponent implements OnInit {
     { title: 'Trigger Name', width: 20, field: 'name' },
     { title: 'Trigger Title', width: 30, field: 'title' },
     { title: 'Desc', width: 20, field: 'description' },
-    { title: 'Job Name', width: 20, field: 'jobTitle' },
+    { title: 'Job Idx', width: 20, field: 'jobIdx' },
     { title: 'Ins Date', width: 20, field: 'insertDate' },
   ];
 
@@ -26,7 +26,7 @@ export class TriggerComponent implements OnInit {
     name: new FormControl({ value: '', disabled: false }, Validators.required),
     title: new FormControl({ value: '', disabled: false }, Validators.required),
     description: new FormControl({ value: '', disabled: false }, Validators.required),
-    jobTitle: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: false }, Validators.required),
   });
 
   public upForm = new FormGroup({
@@ -35,14 +35,30 @@ export class TriggerComponent implements OnInit {
     name: new FormControl({ value: '', disabled: false }, Validators.required),
     title: new FormControl({ value: '', disabled: false }, Validators.required),
     description: new FormControl({ value: '', disabled: false }, Validators.required),
-    jobTitle: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: false }, Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
+
+  public jobData: any;
 
   constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.onInit();
+  }
+
+  public onInit() {
     this.onSearchTrigger();
+    this.onSearchJob();
+  }
+
+  public onSearchJob() {
+    this.common.httpCallGet('batch/service/job').subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.jobData = res.result;
+      }
+    });
+
   }
 
   public onSearchTrigger() {
@@ -66,6 +82,7 @@ export class TriggerComponent implements OnInit {
 
     this.common.httpCallDelete('batch/service/trigger', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -76,6 +93,7 @@ export class TriggerComponent implements OnInit {
 
     this.common.httpCallPost('batch/service/trigger', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -86,8 +104,17 @@ export class TriggerComponent implements OnInit {
 
     this.common.httpCallPut('batch/service/trigger', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
+  }
+
+  public selectChange(e: any, type: string) {
+    if (type === 'create') {
+      this.creForm.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
+    } else {
+      this.upForm.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
+    }
   }
 }

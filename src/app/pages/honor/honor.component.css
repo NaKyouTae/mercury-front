@@ -1,0 +1,42 @@
+.data-grid {
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.data-user {
+  text-align: left;
+  display: inline-block;
+  width: 80%;
+  font-size: 16px;
+}
+
+.data-user > div {
+  display: inline-block;
+}
+
+.data-user > div:nth-child(3){
+  margin-left: 20px;
+}
+
+.data-user > div:nth-child(4){
+  color: #e2403e;
+  margin-left: 10px;
+}
+
+.data-text {
+  width: 100%;
+  text-align: left;
+}
+
+.data-text > div > div:first-child{
+  display: inline-block;
+  font-weight: bold;
+}
+
+.data-text > div > div:last-child{
+  display: inline-block;
+  margin-left: 10px;
+}
+

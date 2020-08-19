@@ -37,6 +37,15 @@
         text-align: left;
     }
 
+    .data-text > div > div:first-child{
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .data-text > div > div:last-child{
+        display: inline-block;
+        margin-left: 10px;
+    }
     .data-user {
         text-align: left;
         display: inline-block;
@@ -68,15 +77,6 @@
     .data-command > div{
         margin-left: 10px;
         display: inline-block;
-    }
-
-    .data-text > div > div:first-child{
-        display: inline-block;
-        font-weight: bold;
-    }
-    .data-text > div > div:last-child{
-        display: inline-block;
-        margin-left: 10px;
     }
 
     .data-none {

@@ -21,15 +21,15 @@ export class SchedulerComponent implements OnInit {
 
   public creForm = new FormGroup({
     name: new FormControl({ value: '', disabled: false }, Validators.required),
-    triggerIdx: new FormControl({ value: '', disabled: true }, Validators.required),
-    jobIdx: new FormControl({ value: '', disabled: true }, Validators.required),
+    triggerIdx: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: false }, Validators.required),
   });
 
   public upForm = new FormGroup({
     idx: new FormControl({ value: '', disabled: true }),
     name: new FormControl({ value: '', disabled: false }, Validators.required),
-    triggerIdx: new FormControl({ value: '', disabled: true }, Validators.required),
-    jobIdx: new FormControl({ value: '', disabled: true }, Validators.required),
+    triggerIdx: new FormControl({ value: '', disabled: false }, Validators.required),
+    jobIdx: new FormControl({ value: '', disabled: false }, Validators.required),
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
@@ -39,22 +39,25 @@ export class SchedulerComponent implements OnInit {
   constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.onSearchScheduler();
+    this.onInit();
   }
 
-  public onSearchScheduler() {
+  public onInit() {
+    // Schedule 목록 조회
     this.common.httpCallGet('batch/service/scheduler').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.data = res.result;
       }
     });
 
+    // Job 목록 조회
     this.common.httpCallGet('batch/service/job').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.jobData = res.result;
       }
     });
 
+    // Trigger 목록 조회
     this.common.httpCallGet('batch/service/trigger').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.triggerData = res.result;
@@ -75,6 +78,7 @@ export class SchedulerComponent implements OnInit {
 
     this.common.httpCallDelete('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -85,6 +89,7 @@ export class SchedulerComponent implements OnInit {
 
     this.common.httpCallPost('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
@@ -95,14 +100,43 @@ export class SchedulerComponent implements OnInit {
 
     this.common.httpCallPut('batch/service/scheduler', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        this.onInit();
         this.onClose();
       }
     });
   }
 
-  public selectChange(e: any) {
-    // this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
-    // this.form.controls.roleIdx.setValue(e.options[e.options.selectedIndex].value);
+  public selectJobChange(e: any, type: string) {
+    if (type === 'create') {
+      this.creForm.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
+    } else {
+      this.upForm.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
+    }
+  }
+
+  public selectTriggerChange(e: any, type: string) {
+    if (type === 'create') {
+      this.creForm.controls.triggerIdx.setValue(e.options[e.options.selectedIndex].value);
+    } else {
+      this.upForm.controls.triggerIdx.setValue(e.options[e.options.selectedIndex].value);
+    }
+  }
+
+  public onStart(e: any) {
+    const data: any = this.formservice.formToData(e);
+    this.common.httpCallGet('batch/service/scheduler/start', { idx: data.idx }).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        alert(res.message);
+      }
+    });
+  }
+  public onStop(e: any) {
+    const data: any = this.formservice.formToData(e);
+    this.common.httpCallDelete('batch/service/scheduler/stop', { jobIdx: data.jobIdx }).subscribe((res: any) => {
+      if (res.resultCode === 'OK') {
+        alert(res.message);
+      }
+    });
   }
 
 }

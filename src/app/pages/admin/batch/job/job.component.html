@@ -1,8 +1,8 @@
 <div>
   <app-page-title title="Job"></app-page-title>
   <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
-  [creModal]="{temp: CreQuartz, width: 500, height:330, data: creForm}"
-  [upModal]="{temp: UpQuartz, width: 500, height:460, data: upForm}"></app-admin-grid>
+  [creModal]="{temp: CreQuartz, width: 500, height:440, data: creForm}"
+  [upModal]="{temp: UpQuartz, width: 500, height:570, data: upForm}"></app-admin-grid>
 </div>
 
 <ng-template #CreQuartz>
@@ -16,22 +16,42 @@
     <div>
       <form [formGroup]="creForm">
         <div class="form-input-text">
-          <label>Job Name</label>
+          <label><span style="color: red;">* </span>Job Name</label>
           <input type="text" formControlName="name"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.name.hasError('required')">이름은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Job Title</label>
+          <label><span style="color: red;">* </span>Job Title</label>
           <input type="text" formControlName="title"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.title.hasError('required')">제목은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Description</label>
+          <label><span style="color: red;">* </span>Job Clasz</label>
+          <input type="text" formControlName="clasz"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.clasz.hasError('required')">클래스는 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Job Execute</label>
+          <div style="display: inline-block;">
+            <input type="radio" value="YES" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <span>YES</span>
+          </div>
+          <div style="display: inline-block; margin-left: 20px;">
+            <input type="radio" value="NO" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <span>NO</span>
+          </div>
+          <span class="required-notice-red" *ngIf="creForm.controls.execute.hasError('required')">실행 여부는 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Description</label>
           <input type="text" formControlName="description"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.description.hasError('required')">설명은 필수입니다.</span>
         </div>
       </form>
     </div>
     <div class="modal-footer modal-create-footer">
-      <button (click)="onCreate(creForm.controls)">생성</button>
       <button (click)="onClose(CreQuartz)">취소</button>
+      <button (click)="onCreate(creForm.controls)" [disabled]="!creForm.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -46,25 +66,41 @@
     </div>
     <div>
       <form [formGroup]="upForm">
-        <div>
-          <label>실행 여부</label>
-          <input type="checkbox" formControlName="execute"/>
-        </div>
         <div class="form-input-text">
           <label>Index</label>
           <input type="text" formControlName="idx"/>
         </div>
         <div class="form-input-text">
-          <label>Job Name</label>
+          <label><span style="color: red;">* </span>Job Name</label>
           <input type="text" formControlName="name"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.name.hasError('required')">이름은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Job Title</label>
+          <label><span style="color: red;">* </span>Job Title</label>
           <input type="text" formControlName="title"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.title.hasError('required')">제목은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Description</label>
+          <label><span style="color: red;">* </span>Job Clasz</label>
+          <input type="text" formControlName="clasz"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.clasz.hasError('required')">클래스는 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Job Execute</label>
+          <div style="display: inline-block;">
+            <input type="radio" value="YES" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <span>YES</span>
+          </div>
+          <div style="display: inline-block; margin-left: 20px;">
+            <input type="radio" value="NO" name="execute" style="display: inline-block; margin-right: 5px;" formControlName="execute"/>
+            <span>NO</span>
+          </div>
+          <span class="required-notice-red" *ngIf="upForm.controls.execute.hasError('required')">실행 여부는 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Description</label>
           <input type="text" formControlName="description"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.description.hasError('required')">설명은 필수입니다.</span>
         </div>
         <div class="form-input-text">
           <label>Insert Date</label>
@@ -75,7 +111,7 @@
     <div class="modal-footer modal-update-footer">
       <button (click)="onClose()">취소</button>
       <button (click)="onDelete(upForm.controls)">삭제</button>
-      <button (click)="onUpdate(upForm.controls)">수정</button>
+      <button (click)="onUpdate(upForm.controls)" [disabled]="!upForm.valid">수정</button>
     </div>
   </div>
 </ng-template>

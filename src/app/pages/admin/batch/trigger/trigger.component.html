@@ -1,8 +1,8 @@
 <div>
   <app-page-title title="Trigger"></app-page-title>
-  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
-  [creModal]="{temp: CreQuartz, width: 500, height:400, data: creForm}" 
-  [upModal]="{temp: UpQuartz, width: 500, height:520, data: upForm}"></app-admin-grid>
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+  [creModal]="{temp: CreQuartz, width: 500, height:500, data: creForm}"
+  [upModal]="{temp: UpQuartz, width: 500, height:590, data: upForm}"></app-admin-grid>
 </div>
 
 <ng-template #CreQuartz>
@@ -16,26 +16,37 @@
     <div>
       <form [formGroup]="creForm">
         <div class="form-input-text">
-          <label>Trigger Name</label>
+          <label><span style="color: red;">* </span>Trigger Name</label>
           <input type="text" formControlName="name"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.name.hasError('required')">이름은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Trigger Title</label>
+          <label><span style="color: red;">* </span>Trigger Title</label>
           <input type="text" formControlName="title"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.title.hasError('required')">제목은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Description</label>
+          <label><span style="color: red;">* </span>Cron</label>
+          <input type="text" formControlName="cron"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.cron.hasError('required')">실행 주기는 필수입니다.</span>
+        </div>
+        <div class="form-select">
+          <label><span style="color: red;">* </span>Job</label>
+          <select (change)="selectChange($event.target, 'create')" formControlName="jobIdx">
+            <option *ngFor="let job of jobData" value="{{ job.idx }}">{{ job.name }}</option>
+          </select>
+          <span class="required-notice-red" *ngIf="creForm.controls.jobIdx.hasError('required')">Job은 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Description</label>
           <input type="text" formControlName="description"/>
-        </div>
-        <div class="form-input-text">
-          <label>Job Title</label>
-          <input type="text" formControlName="jobTitle"/>
+          <span class="required-notice-red" *ngIf="creForm.controls.description.hasError('required')">설명은 필수입니다.</span>
         </div>
       </form>
     </div>
     <div class="modal-footer modal-create-footer">
       <button (click)="onClose()">취소</button>
-      <button (click)="onCreate(creForm.controls)">생성</button>
+      <button (click)="onCreate(creForm.controls)" [disabled]="!creForm.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -55,20 +66,31 @@
           <input type="text" formControlName="idx"/>
         </div>
         <div class="form-input-text">
-          <label>Trigger Name</label>
+          <label><span style="color: red;">* </span>Trigger Name</label>
           <input type="text" formControlName="name"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.name.hasError('required')">이름은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Trigger Title</label>
+          <label><span style="color: red;">* </span>Trigger Title</label>
           <input type="text" formControlName="title"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.title.hasError('required')">제목은 필수입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>Description</label>
+          <label><span style="color: red;">* </span>Cron</label>
+          <input type="text" formControlName="cron"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.cron.hasError('required')">실행 주기는 필수입니다.</span>
+        </div>
+        <div class="form-select">
+          <label><span style="color: red;">* </span>Job</label>
+          <select (change)="selectChange($event.target, 'update')" formControlName="jobIdx">
+            <option *ngFor="let job of jobData" value="{{ job.idx }}">{{ job.name }}</option>
+          </select>
+          <span class="required-notice-red" *ngIf="upForm.controls.jobIdx.hasError('required')">Job은 필수입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label><span style="color: red;">* </span>Description</label>
           <input type="text" formControlName="description"/>
-        </div>
-        <div class="form-input-text">
-          <label>Job Title</label>
-          <input type="text" formControlName="jobTitle"/>
+          <span class="required-notice-red" *ngIf="upForm.controls.description.hasError('required')">설명은 필수입니다.</span>
         </div>
         <div class="form-input-text">
           <label>Insert Date</label>
@@ -79,7 +101,7 @@
     <div class="modal-footer modal-update-footer">
       <button (click)="onClose()">취소</button>
       <button (click)="onDelete(upForm.controls)">삭제</button>
-      <button (click)="onUpdate(upForm.controls)">수정</button>
+      <button (click)="onUpdate(upForm.controls)" [disabled]="!upForm.valid">수정</button>
     </div>
   </div>
 </ng-template>

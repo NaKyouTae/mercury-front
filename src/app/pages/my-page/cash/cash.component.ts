@@ -16,6 +16,8 @@ export class CashComponent implements OnInit {
   public prevCash: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user').mileage;
   public form = new FormGroup({
     userName: new FormControl('', Validators.required),
+    bank: new FormControl('', Validators.required),
+    accountNumber: new FormControl('', Validators.required),
     withDrawCash: new FormControl('', Validators.required),
   });
 
@@ -31,7 +33,10 @@ export class CashComponent implements OnInit {
     { title: '승인', width: 5, field: 'approval' },
   ];
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) {}
+  public banks: any;
+  public withDraw: false;
+
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.onSearch();
@@ -39,8 +44,16 @@ export class CashComponent implements OnInit {
 
   public onSearch() {
     this.common.httpCallGet('service/cashs/users', { username: this.user.username }).subscribe((res: any) => {
-      if (res.resultCode === 'OK') {
+      if (res.resultCode === 'OK' && res.result !== null) {
         this.data = res.result;
+      }
+    });
+  }
+
+  public seSystemConfig() {
+    this.common.httpCallGet('service/system/config/type', { type: 'BANK' }).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.banks = res.result;
       }
     });
   }
@@ -71,9 +84,15 @@ export class CashComponent implements OnInit {
   }
 
   public openModal(template: TemplateRef<any>) {
+    // 출금 팝업 오픈시 은행 목록 조회
+    this.seSystemConfig();
+
     this.dialog.open(template, {
       width: '400px',
       height: '600px',
     });
+  }
+  public selectChange(e: any) {
+    this.form.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
   }
 }

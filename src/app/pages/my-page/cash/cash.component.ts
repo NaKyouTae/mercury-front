@@ -35,6 +35,7 @@ export class CashComponent implements OnInit {
 
   public banks: any;
   public withDraw: false;
+  public checkPrevCash: any = 0;
 
   constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }
 
@@ -86,7 +87,7 @@ export class CashComponent implements OnInit {
   public openModal(template: TemplateRef<any>) {
     // 출금 팝업 오픈시 은행 목록 조회
     this.seSystemConfig();
-
+    this.checkPrevCash = this.prevCash;
     this.dialog.open(template, {
       width: '400px',
       height: '600px',

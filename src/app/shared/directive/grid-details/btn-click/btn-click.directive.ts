@@ -14,9 +14,20 @@ export class BtnClickDirective {
     if (details.style.display === 'none') {
       btn.innerHTML = '^';
       details.style.display = 'block';
+      // details.animate([
+      //   { transform: 'translateY(*)' },
+      // ], {
+      //   duration: 3000,
+      // });
+
     } else {
       btn.innerHTML = '&#62;';
       details.style.display = 'none';
+      // details.animate([
+      //   { transform: 'translateY(0px)' },
+      // ], {
+      //   duration: 3000,
+      // });
     }
   }
 }

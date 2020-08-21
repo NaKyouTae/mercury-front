@@ -15,6 +15,9 @@
       <h2>출금 요청</h2>
     </div>
   </div>
+  <div>
+    <div>현재 잔액 {{prevCash}}</div>
+  </div>
   <div class="cash-request-area">
     <form [formGroup]="form">
       <div class="form-select">
@@ -26,12 +29,12 @@
       </div>
       <div class="form-input-text">
         <label><span style="color: red;">* </span>계좌 번호</label>
-        <input type="text" formControlName="accountNumber" [max]="prevCash" />
+        <input type="text" formControlName="accountNumber" />
         <span class="required-notice-red" *ngIf="form.controls.accountNumber.hasError('required')">계좌 번호는 필수입니다.</span>
       </div>
       <div class="form-input-text">
         <label><span style="color: red;">* </span>출금 금액</label>
-        <input type="text" formControlName="withDrawCash" [max]="prevCash" />
+        <input type="text" formControlName="withDrawCash" [max]="prevCash" (input)="checkPrevCash = prevCash - checkPrevCash" />
         <span class="required-notice-red" *ngIf="form.controls.withDrawCash.hasError('required')">출금 금액은 필수입니다.</span>
       </div>
     </form>

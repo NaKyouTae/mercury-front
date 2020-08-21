@@ -34,8 +34,10 @@
 }
 
 .grid-row-details {
-  margin: 20px 0px 20px 30px;
+  /* margin: 20px 0px 20px 30px;
   padding-left: 20px;
   text-align: left;
-  border-left: 1px solid darkgray;
+  border-left: 1px solid darkgray; */
+  overflow: hidden;
+  display: flex;
 }

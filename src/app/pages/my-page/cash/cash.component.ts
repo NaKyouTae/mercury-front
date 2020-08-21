@@ -34,7 +34,7 @@ export class CashComponent implements OnInit {
   ];
 
   public banks: any;
-  public withDraw: false;
+  public withDraw = false;
   public checkPrevCash: any = 0;
 
   constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }

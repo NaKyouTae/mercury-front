@@ -8,14 +8,19 @@ export class GridDataPipe implements PipeTransform {
 
   transform(data: any, field: any): any {
     console.log('grid onData');
+    // tslint:disable-next-line: no-eval
+    let result = eval('data.' + field);
 
     if (field.includes('Date')) {
-      // tslint:disable-next-line: no-eval
-      return eval('data.' + field).slice(0, 16);
+
+      if (result == null) {
+        result = '';
+      }
+
+      return result.slice(0, 16);
     }
 
-    // tslint:disable-next-line: no-eval
-    return eval('data.' + field);
+    return result;
   }
 
 }

@@ -14,7 +14,7 @@
           <div>
             <div style="display: inline-block; width: 50px; height: 20px; margin-right: 10px;" [ngStyle]="{'background-color': userGrade.idx ? userGrade.gradeIdx: ''}"></div>
             <div style="display: inline-block; vertical-align: top; margin-top: -1px;">
-              <div style="display: inline-block;">{{userGrade.gradeName}} {{total}}</div>
+              <div style="display: inline-block;">{{userGrade.gradeName}} {{total | number}}</div>
               <div style="display: inline-block; vertical-align: top; margin: 1px 0px 0px 10px; font-size: 17px;" (mouseover)="gradeOver()" (mouseout)="gradeOver()">&#x0229B;</div>
             </div>
           </div>

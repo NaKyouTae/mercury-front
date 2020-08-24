@@ -1,9 +1,44 @@
 <div>
-  <div style="margin-bottom: 10px ;">
-    <label>현재 잔액 : <span style="font-weight: bold;">{{prevCash}}</span> </label>
+  <div style="margin-bottom: 10px; text-align: right;">
+    <label>현재 포인트 : <span style="font-weight: bold;">{{prevCash | number}}</span> </label>
     <button (click)="openModal(withDrawCashModal)">출금</button>
   </div>
-  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields"></app-user-grid>
+  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [detailTemplate]="detailTemplate">
+    <ng-template #detailTemplate let-dataItem>
+      <div>
+        <label>요청 자</label>
+        <div>{{dataItem.userName}}</div>
+      </div>
+      <div>
+        <label>요청 일자</label>
+        <div>{{dataItem.withDrawDate}}</div>
+      </div>
+      <div>
+        <label>지급 일</label>
+        <div>{{dataItem.paymentDate}}</div>
+      </div>
+      <div>
+        <label>지급 내용</label>
+        <div>{{dataItem.content}}</div>
+      </div>
+      <div>
+        <label>이전 금액</label>
+        <div>{{dataItem.prevCash}}</div>
+      </div>
+      <div>
+        <label>요청 금액</label>
+        <div>{{dataItem.withDrawCash}}</div>
+      </div>
+      <div>
+        <label>잔액</label>
+        <div>{{dataItem.afterCash}}</div>
+      </div>
+      <div>
+        <label>승인</label>
+        <div>{{dataItem.approval}}</div>
+      </div>
+    </ng-template>
+  </app-user-grid>
 </div>
 
 <ng-template #withDrawCashModal>
@@ -16,7 +51,7 @@
     </div>
   </div>
   <div>
-    <div>현재 잔액 {{prevCash}}</div>
+    <div>현재 잔액 {{prevCash | number}}</div>
   </div>
   <div class="cash-request-area">
     <form [formGroup]="form">
@@ -49,7 +84,7 @@
       <label>해당 정책에 동의 합니다.</label>
     </div>
     <div class="modal-footer modal-footer-one-btn">
-      <button (click)="onRequest(form.controls)" [disabled]="checkWithDraw && !form.valid && form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">승인 요청</button>
+      <button (click)="onRequest(form.controls)" [disabled]="!checkWithDraw && !form.valid && form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">승인 요청</button>
     </div>
   </div>
 </ng-template>

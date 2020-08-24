@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserGridComponent } from './user-grid.component';
@@ -10,6 +10,6 @@ import { CustomPipeModule } from 'src/app/shared/pipe/custom-pipe.module';
 @NgModule({
   declarations: [UserGridComponent],
   imports: [CommonModule, FormsModule, RowDbclickModule, BtnClickModule, PagingModule, CustomPipeModule],
-  exports: [UserGridComponent],
+  exports: [UserGridComponent]
 })
 export class UserGridModule { }

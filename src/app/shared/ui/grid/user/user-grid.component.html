@@ -10,7 +10,7 @@
           <div style="display: inline-block;">{{ d | gridData: f.field }}</div>
         </div>
         <div class="grid-row-details" style="display: none;">
-          <ng-container *ngTemplateOutlet="template"></ng-container>
+          <ng-container *ngTemplateOutlet="d.template; context:{$implicit: d}"></ng-container>
         </div>
       </div>
 

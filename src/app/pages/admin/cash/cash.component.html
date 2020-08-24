@@ -1,23 +1,23 @@
 <div class="content-width">
     <app-page-title title="출금 신청 내역"></app-page-title>
     <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [template]="template">
-      <ng-template #template>
+      <ng-template #template let-dataItem="dataItem">
         <label>사용자 명</label>
-        {{form.controls.userName.value}}
+        {{dataItem.userName}}
         <label>요청 일자</label>
-        {{form.controls.withDrawDate.value}}
+        {{dataItem.withDrawDate}}
         <label>지급 일</label>
-        {{form.controls.paymentDate.value}}
+        {{dataItem.paymentDate}}
         <label>지급 내용</label>
-        {{form.controls.content.value}}
+        {{dataItem.content}}
         <label>이전 금액</label>
-        {{form.controls.prevCash.value}}
+        {{dataItem.prevCash}}
         <label>요청 금액</label>
-        {{form.controls.withDrawCash.value}}
+        {{dataItem.withDrawCash}}
         <label>잔액</label>
-        {{form.controls.afterCash.value}}
+        {{dataItem.afterCash}}
         <label>승인 여부</label>
-        {{form.controls.approval.value}}
+        {{dataItem.approval}}
       </ng-template>
     </app-admin-grid>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, EmbeddedViewRef, ViewContainerRef, TemplateRef } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -17,7 +17,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class UserGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
-  @Input() public template?: any;
+  @Input() public template?: TemplateRef<any>;
   @Input() public gridWidth?: string;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
@@ -36,7 +36,7 @@ export class UserGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private jwt: JwtService, private view: ViewContainerRef) { }
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -48,14 +48,26 @@ export class UserGridComponent implements OnInit, OnChanges {
     if (changes.fields !== undefined) {
       this.fields = changes.fields.currentValue;
     }
+
     if (changes.data !== undefined) {
       changes.data.previousValue = null;
       this.data = changes.data.currentValue;
+      this.templateIntoData(this.data);
     }
+
     this.onInit();
   }
 
-  onInit() {
+
+  public templateIntoData(data: any) {
+    const view = this.view;
+    const template = this.template;
+    data.forEach(item => {
+      item.template = template;
+    });
+  }
+
+  public onInit() {
     this.fieldsNum = this.fields.length;
     this.tot = this.data.length;
     this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));

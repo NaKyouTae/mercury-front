@@ -11,24 +11,16 @@
             border-radius: 10px;"
     cdkDrag>
   <!-- Title -->
-  <div style="border-bottom: 1px solid darkgray;">
-    <h2>{{d.title}}</h2>
+  <div style="border-bottom: 1px solid darkgray; padding-bottom: 10px;">
+    <h2 style="display: inline-block; margin-right: 10px;">{{d.title}}</h2>
+    <h4 style="display: inline-block; margin-right: 10px;">{{d.insertDate | slice:0:16}}</h4>
   </div>
   <!-- Contents -->
-  <div>
-    <div>
-      <label>작성일</label>
-      <div>{{d.insertDate}}</div>
-    </div>
-    <div>
-      <label>내용</label>
-      <div>{{d.content}}</div>
-    </div>
-  </div>
+  <div [innerHTML]="d.content" style="margin: 20px 0px;"></div>
   <!-- Commands -->
-  <div>
-    <button (click)="noNotice(d)" *ngIf="user">다시 보지 않음</button>
-    <button (click)="onClose(Modal)">닫기</button>
+  <div style="text-align: right;">
+    <button class="btn command-btn" style="margin-right: 10px;" (click)="noNotice(d)" *ngIf="user">다시 보지 않음</button>
+    <button class="btn command-btn" (click)="onClose(Modal)">닫기</button>
   </div>
 
 </div>

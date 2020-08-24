@@ -17,7 +17,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class UserGridComponent implements OnInit, OnChanges {
   @Input() public data: any;
   @Input() public fields: any;
-  @Input() public template?: TemplateRef<any>;
+  @Input() public detailTemplate?: TemplateRef<any>;
   @Input() public gridWidth?: string;
 
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
@@ -52,19 +52,9 @@ export class UserGridComponent implements OnInit, OnChanges {
     if (changes.data !== undefined) {
       changes.data.previousValue = null;
       this.data = changes.data.currentValue;
-      this.templateIntoData(this.data);
     }
 
     this.onInit();
-  }
-
-
-  public templateIntoData(data: any) {
-    const view = this.view;
-    const template = this.template;
-    data.forEach(item => {
-      item.template = template;
-    });
   }
 
   public onInit() {

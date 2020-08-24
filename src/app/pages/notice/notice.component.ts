@@ -22,7 +22,7 @@ export class NoticeComponent implements OnInit {
     title: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService) {}
+  constructor(private common: CommonHttpService, private jwt: JwtService) { }
 
   ngOnInit() {
     this.search();

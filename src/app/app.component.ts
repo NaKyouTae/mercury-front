@@ -16,12 +16,12 @@ export class AppComponent {
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
-    this.search();
+    this.popUpNotice();
   }
 
-  public search() {
+  public popUpNotice() {
     // tslint:disable-next-line: max-line-length
-    this.common.httpCallGet('service/notices/pop', { type: 'y', username: this.user === null ? null : this.user.username }).subscribe((res: any) => {
+    this.common.httpCallGet('service/notices/pop', { type: true, username: this.user === null ? null : this.user.username }).subscribe((res: any) => {
       this.data = res.result;
     });
   }

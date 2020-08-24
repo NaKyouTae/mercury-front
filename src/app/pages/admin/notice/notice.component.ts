@@ -18,11 +18,11 @@ export class NoticeComponent implements OnInit {
   ];
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
   public form = new FormGroup({
-    idx: new FormControl(''),
+    idx: new FormControl({ value: '', disabled: true }),
     title: new FormControl('', Validators.required),
-    type: new FormControl({ value: 'n' }, Validators.required),
+    type: new FormControl({ value: false }, Validators.required),
     content: new FormControl('', Validators.required),
-    insertDate: new FormControl(''),
+    insertDate: new FormControl({ value: '', disabled: true }),
   });
 
   constructor(

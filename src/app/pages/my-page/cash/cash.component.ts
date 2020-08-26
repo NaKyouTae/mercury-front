@@ -25,7 +25,7 @@ export class CashComponent implements OnInit {
   public fields: any = [
     { title: '요청 자', width: 15, field: 'userName' },
     { title: '지급 일', width: 15, field: 'paymentDate' },
-    { title: '지급 내용', width: 20, field: 'content' },
+    { title: '지급 내용', width: 60, field: 'content' },
     { title: '잔액', width: 10, field: 'afterCash' },
   ];
 

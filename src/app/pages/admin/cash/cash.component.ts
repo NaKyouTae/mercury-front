@@ -49,7 +49,7 @@ export class CashComponent implements OnInit {
   }
 
   public onSearch() {
-    this.common.httpCallGet('service/cash/approvals', this.type).subscribe((res: any) => {
+    this.common.httpCallGet('service/cashrequest').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.data = res.result;
       }

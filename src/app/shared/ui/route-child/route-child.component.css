@@ -1,30 +1,29 @@
 /* 테스크탑 (가로 해상도가 1200px 보다 작은 화면에 적용) */
 @media (min-width: 992px) {
     .lay-header {
-        display: inline-block;
-        padding: 0px 10px;
-      }
-      .lay-header > div > a {
-        text-decoration: none;
-      }
-    
-      .child-pane {
-        position: absolute;
-        border: 1px solid darkgray;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: white;
-      }
-    
-      .child-pane > a{
-        text-decoration: none;
-      }
-    
-      .child-menu{
-        width: 100%;
-        display: block;
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-      }
+      padding: 0px 10px;
+    }
+
+    .lay-header > div > a {
+      text-decoration: none;
+    }
+
+    .child-pane {
+      position: absolute;
+      border: 1px solid darkgray;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .child-pane > a{
+      text-decoration: none;
+    }
+
+    .child-menu{
+      width: 100%;
+      display: block;
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+    }
   }
-  

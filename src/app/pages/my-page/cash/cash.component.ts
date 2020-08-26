@@ -17,20 +17,16 @@ export class CashComponent implements OnInit {
   public form = new FormGroup({
     userName: new FormControl('', Validators.required),
     bank: new FormControl('', Validators.required),
-    accountNumber: new FormControl('', Validators.required),
+    account: new FormControl('', Validators.required),
     withDrawCash: new FormControl('', Validators.required),
   });
 
   public data: any;
   public fields: any = [
     { title: '요청 자', width: 15, field: 'userName' },
-    { title: '요청 일자', width: 15, field: 'withDrawDate' },
     { title: '지급 일', width: 15, field: 'paymentDate' },
     { title: '지급 내용', width: 20, field: 'content' },
-    { title: '이전 금액', width: 10, field: 'prevCash' },
-    { title: '요청 금액', width: 10, field: 'withDrawCash' },
     { title: '잔액', width: 10, field: 'afterCash' },
-    { title: '승인', width: 5, field: 'approval' },
   ];
 
   public banks: any;
@@ -59,13 +55,6 @@ export class CashComponent implements OnInit {
     });
   }
 
-  public onCancle(e: any) {
-    const data: any = this.formservice.formToData(e);
-    this.common.httpCallDelete('service/cashs/' + data.idx, data).subscribe((res: any) => {
-      this.data = res.result;
-    });
-  }
-
   public onRequest(e: any) {
     const data: any = this.formservice.formToData(e);
 
@@ -76,7 +65,7 @@ export class CashComponent implements OnInit {
       alert('10,000만원 이상 출금이 가능합니다.');
       return false;
     } else {
-      this.common.httpCallPost('service/cashs', data).subscribe((res: any) => {
+      this.common.httpCallPost('service/cashrequest', data).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert(res.message);
         }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cash',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./cash.component.css'],
 })
 export class CashComponent implements OnInit {
-  public type: any = '신청';
+  public type: any = true;
 
   public data: any;
   public fields: any = [
@@ -23,6 +24,7 @@ export class CashComponent implements OnInit {
   ];
 
   public form = new FormGroup({
+    idx: new FormControl(''),
     userName: new FormControl(''),
     withDrawDate: new FormControl(''),
     paymentDate: new FormControl(''),
@@ -34,9 +36,17 @@ export class CashComponent implements OnInit {
   });
 
 
-  constructor(private common: CommonHttpService) { }
+  constructor(private common: CommonHttpService, private dialog: MatDialog) { }
 
   ngOnInit() { }
+
+  public onClose() {
+    this.dialog.closeAll();
+  }
+
+  public onDblClick(data: any) {
+    this.form.patchValue(data);
+  }
 
   public onSearch() {
     this.common.httpCallGet('service/cash/approvals', this.type).subscribe((res: any) => {
@@ -46,7 +56,11 @@ export class CashComponent implements OnInit {
     });
   }
 
-  public onDblClick(data: any) {
-    this.form.patchValue(data);
+  public onApproval(data: any) {
+    this.common.httpCallPut('service/cash/approvals/' + data.idx).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        alert(res.message);
+      }
+    });
   }
 }

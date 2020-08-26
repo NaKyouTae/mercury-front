@@ -2,9 +2,6 @@
     <div class="page-header-content content-width">
         <div class="header-menu">
           <div>
-            <app-logo-s [refresh]="true"></app-logo-s>
-          </div>
-          <div>
               <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
               <div *ngIf="userCheck && this.loginType == 'DEFAULT'" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
               <div *ngIf="userCheck && this.loginType == 'KAKAO'" style="cursor: pointer;" (click)="kakaoByLogout()">K LOGOUT</div>

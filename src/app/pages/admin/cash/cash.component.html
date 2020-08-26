@@ -1,23 +1,50 @@
 <div class="content-width">
     <app-page-title title="출금 신청 내역"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)" [template]="template">
-      <ng-template #template let-dataItem="dataItem">
-        <label>사용자 명</label>
-        {{dataItem.userName}}
-        <label>요청 일자</label>
-        {{dataItem.withDrawDate}}
-        <label>지급 일</label>
-        {{dataItem.paymentDate}}
-        <label>지급 내용</label>
-        {{dataItem.content}}
-        <label>이전 금액</label>
-        {{dataItem.prevCash}}
-        <label>요청 금액</label>
-        {{dataItem.withDrawCash}}
-        <label>잔액</label>
-        {{dataItem.afterCash}}
-        <label>승인 여부</label>
-        {{dataItem.approval}}
-      </ng-template>
-    </app-admin-grid>
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)"
+    [upModal]="{temp: template, width: 500, height:570, data: form}"></app-admin-grid>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <div>
+      <h2 style="display: inline-block; margin-right: 10px;">{{form.controls.userName.value}}님</h2>
+      <h4 style="display: inline-block; margin-right: 10px;">{{form.controls.withDrawDate.value}}</h4>
+    </div>
+    <div class="close" (click)="onClose()">&times;</div>
+  </div>
+  <div>
+    <form [formGroup]="form">
+      <div>
+        <label>일렬 번호</label>
+        <div>{{form.controls.idx.value}}</div>
+      </div>
+      <div>
+        <label>지급 일</label>
+        <div>{{form.controls.paymentDate.value}}</div>
+      </div>
+      <div>
+        <label>지급 내용</label>
+        <div>{{form.controls.content.value}}</div>
+      </div>
+      <div>
+        <label>이전 금액</label>
+        <div>{{form.controls.prevCash.value}}</div>
+      </div>
+      <div>
+        <label>요청 금액</label>
+        <div>{{form.controls.withDrawCash.value}}</div>
+      </div>
+      <div>
+        <label>잔액</label>
+        <div>{{form.controls.afterCash.value}}</div>
+      </div>
+      <div>
+        <label>승인 여부</label>
+        <div>{{form.controls.approval.value}}</div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer modal-create-footer">
+    <button (click)="onApproval(form.controls)">승인</button>
+  </div>
+</ng-template>

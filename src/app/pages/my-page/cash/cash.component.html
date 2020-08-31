@@ -1,44 +1,17 @@
 <div>
+  <div>
+    <div class="btn router-btn" routerLink="/my/cash/history">
+      <div>마일리지 이력</div>
+    </div>
+    <div class="btn router-btn" routerLink="/my/cash/request">
+      <div>출금 이력</div>
+    </div>
+  </div>
   <div style="margin-bottom: 10px; text-align: right;">
     <label>현재 포인트 : <span style="font-weight: bold;">{{prevCash | number}}</span> </label>
     <button (click)="openModal(withDrawCashModal)">출금</button>
   </div>
-  <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [detailTemplate]="detailTemplate">
-    <ng-template #detailTemplate let-dataItem>
-      <div>
-        <label>요청 자</label>
-        <div>{{dataItem.userName}}</div>
-      </div>
-      <div>
-        <label>요청 일자</label>
-        <div>{{dataItem.withDrawDate}}</div>
-      </div>
-      <div>
-        <label>지급 일</label>
-        <div>{{dataItem.paymentDate}}</div>
-      </div>
-      <div>
-        <label>지급 내용</label>
-        <div>{{dataItem.content}}</div>
-      </div>
-      <div>
-        <label>이전 금액</label>
-        <div>{{dataItem.prevCash}}</div>
-      </div>
-      <div>
-        <label>요청 금액</label>
-        <div>{{dataItem.withDrawCash}}</div>
-      </div>
-      <div>
-        <label>잔액</label>
-        <div>{{dataItem.afterCash}}</div>
-      </div>
-      <div>
-        <label>승인 여부</label>
-        <div>{{dataItem.approval}}</div>
-      </div>
-    </ng-template>
-  </app-user-grid>
+  <router-outlet></router-outlet>
 </div>
 
 <ng-template #withDrawCashModal>
@@ -58,7 +31,7 @@
       <div class="form-select">
         <label><span style="color: red;">* </span>은행 명</label>
         <select (change)="selectChange($event.target)" formControlName="bank">
-          <option *ngFor="let bank of banks" value="{{ bank.idx }}">{{ bank.name }}</option>
+          <option *ngFor="let bank of banks" value="{{ bank.configValue }}">{{ bank.configName }}</option>
         </select>
         <span class="required-notice-red" *ngIf="form.controls.bank.hasError('required')">은행 명은 필수입니다.</span>
       </div>
@@ -84,7 +57,8 @@
       <label>해당 정책에 동의 합니다.</label>
     </div>
     <div class="modal-footer modal-footer-one-btn">
-      <button (click)="onRequest(form.controls)" [disabled]="!checkWithDraw && !form.valid && form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value < prevCash">승인 요청</button>
+      <button (click)="onRequest(form.controls)"
+              [disabled]="!checkWithDraw || !form.valid || form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value > prevCash">승인 요청</button>
     </div>
   </div>
 </ng-template>

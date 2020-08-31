@@ -8,7 +8,7 @@ import { BtnModalDirectiveModule } from 'src/app/shared/directive/modal/btn/btn-
 
 @NgModule({
   declarations: [MyPageComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MyPageRoutingModule, RouteChildModule, BtnModalDirectiveModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MyPageRoutingModule, BtnModalDirectiveModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class MyPageModule {}
+export class MyPageModule { }

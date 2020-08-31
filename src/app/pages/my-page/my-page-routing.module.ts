@@ -24,7 +24,7 @@ const routes: Routes = [
         ],
       },
       { path: 'grade', component: GradeComponent, canActivate: [LoginGuard] },
-      { path: 'cash', component: CashComponent, canActivate: [LoginGuard] },
+      { path: 'cash', loadChildren: () => import('./cash/cash.module').then((m) => m.CashModule), canActivate: [LoginGuard] },
     ],
   },
 ];

@@ -11,23 +11,14 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./cash.component.css'],
 })
 export class CashComponent implements OnInit {
-  public user: any = this.jwt.getJWTUserKey('user');
-  public userName: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user').username;
-  public prevCash: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user').mileage;
+  public user: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user');
+  public prevCash: any;
   public form = new FormGroup({
-    userName: new FormControl('', Validators.required),
+    userName: new FormControl(''),
     bank: new FormControl('', Validators.required),
     account: new FormControl('', Validators.required),
     withDrawCash: new FormControl('', Validators.required),
   });
-
-  public data: any;
-  public fields: any = [
-    { title: '요청 자', width: 15, field: 'userName' },
-    { title: '지급 일', width: 15, field: 'paymentDate' },
-    { title: '지급 내용', width: 60, field: 'content' },
-    { title: '잔액', width: 10, field: 'afterCash' },
-  ];
 
   public banks: any;
   public checkWithDraw = false;
@@ -36,13 +27,18 @@ export class CashComponent implements OnInit {
   constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.onSearch();
+    this.onInit();
   }
 
-  public onSearch() {
-    this.common.httpCallGet('service/cashs/users', { username: this.user.username }).subscribe((res: any) => {
+
+  public onInit() {
+    this.onSearchUser();
+  }
+
+  public onSearchUser() {
+    this.common.httpCallGet('service/users/idx', { idx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.data = res.result;
+        this.prevCash = res.result.mileage;
       }
     });
   }
@@ -58,7 +54,7 @@ export class CashComponent implements OnInit {
   public onRequest(e: any) {
     const data: any = this.formservice.formToData(e);
 
-    data.userName = this.userName;
+    data.userName = this.user.username;
     data.withDrawCash = this.prevCash;
 
     if (data.withDrawCash < 10000) {
@@ -68,6 +64,8 @@ export class CashComponent implements OnInit {
       this.common.httpCallPost('service/cashrequest', data).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert(res.message);
+          this.onInit();
+          this.dialog.closeAll();
         }
       });
     }
@@ -82,7 +80,8 @@ export class CashComponent implements OnInit {
       height: '600px',
     });
   }
+
   public selectChange(e: any) {
-    this.form.controls.jobIdx.setValue(e.options[e.options.selectedIndex].value);
+    this.form.controls.bank.setValue(e.options[e.options.selectedIndex].value);
   }
 }

@@ -1,0 +1,36 @@
+<app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [detailTemplate]="detailTemplate">
+  <ng-template #detailTemplate let-dataItem>
+    <div>
+      <label>요청 자</label>
+      <div>{{dataItem.userName}}</div>
+    </div>
+    <div>
+      <label>요청 일자</label>
+      <div>{{dataItem.withDrawDate}}</div>
+    </div>
+    <div>
+      <label>지급 일</label>
+      <div>{{dataItem.paymentDate}}</div>
+    </div>
+    <div>
+      <label>지급 내용</label>
+      <div>{{dataItem.content}}</div>
+    </div>
+    <div>
+      <label>이전 금액</label>
+      <div>{{dataItem.prevCash}}</div>
+    </div>
+    <div>
+      <label>요청 금액</label>
+      <div>{{dataItem.withDrawCash}}</div>
+    </div>
+    <div>
+      <label>잔액</label>
+      <div>{{dataItem.afterCash}}</div>
+    </div>
+    <div>
+      <label>승인 여부</label>
+      <div>{{dataItem.approval}}</div>
+    </div>
+  </ng-template>
+</app-user-grid>

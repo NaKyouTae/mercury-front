@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, SimpleChanges } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.onInit();
-    
+
     if (!this.my) {
       this.interval = setInterval(() => {
         this.onInit();
@@ -54,25 +54,25 @@ export class UserListComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges) {
     if (changes.datas !== undefined) {
-      if(changes.datas.previousValue !== undefined && changes.datas.previousValue.length !== 0){
+      if (changes.datas.previousValue !== undefined && changes.datas.previousValue.length !== 0) {
         console.log('changedata');
         this.getList();
       }
     }
 
     if (changes.topThreeData !== undefined) {
-      if(changes.topThreeData.previousValue !== undefined && changes.topThreeData.previousValue.length !== 0){
+      if (changes.topThreeData.previousValue !== undefined && changes.topThreeData.previousValue.length !== 0) {
         console.log('changetop');
         this.getList();
       }
     }
   }
-  public onInit(){
+  public onInit() {
     this.getList();
     this.getTopThree();
   }
   public getTopThree() {
-    this.common.httpCallGet('service/' + this.type + '/popular', {userIdx: this.user.idx}).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/popular', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.topThreeData = res.result.slice(0, 3);
         // this.checkLove(this.topThreeData);
@@ -83,7 +83,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public getList() {
-    this.common.httpCallGet('service/' + this.type + '/' + this.searchType, {userIdx: this.user.idx}).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/' + this.searchType, { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.datas = res.result;
         // this.checkLove(this.datas);

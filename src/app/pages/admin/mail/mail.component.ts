@@ -20,11 +20,11 @@ export class MailComponent implements OnInit {
 
   public data: any;
   public fields: any = [
-    { title: '템플릿 파일 명', width: 5, field: 'tempName' },
-    { title: '템플릿 명', width: 5, field: 'type' },
-    { title: '메일 제목', width: 50, field: 'title' },
-    { title: '생성 일자', width: 15, field: 'insertDate' },
-    { title: '일렬 번호', width: 10, field: 'idx' },
+    { title: '템플릿 파일 명', width: 5, field: 'tempName', type: 'string' },
+    { title: '템플릿 명', width: 5, field: 'type', type: 'string' },
+    { title: '메일 제목', width: 50, field: 'title', type: 'string' },
+    { title: '생성 일자', width: 15, field: 'insertDate', type: 'date' },
+    { title: '일렬 번호', width: 10, field: 'idx', type: 'string' },
   ];
   public newform = new FormGroup({
     type: new FormControl('', Validators.required),
@@ -45,7 +45,7 @@ export class MailComponent implements OnInit {
     minHeight: '0',
   };
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.onSearch();

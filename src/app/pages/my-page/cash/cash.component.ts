@@ -1,9 +1,10 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, HostListener } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { MatDialog } from '@angular/material/dialog';
+import { CashObservableService } from 'src/app/shared/common/observable/cash/cash-observable.service';
 
 @Component({
   selector: 'app-cash',
@@ -24,12 +25,12 @@ export class CashComponent implements OnInit {
   public checkWithDraw = false;
   public checkPrevCash: any = 0;
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog, private cashObservable: CashObservableService) {}
 
   ngOnInit() {
     this.onInit();
   }
-
 
   public onInit() {
     this.onSearchUser();
@@ -66,6 +67,7 @@ export class CashComponent implements OnInit {
           alert(res.message);
           this.onInit();
           this.dialog.closeAll();
+          this.cashObservable.successRequest();
         }
       });
     }
@@ -75,6 +77,7 @@ export class CashComponent implements OnInit {
     // 출금 팝업 오픈시 은행 목록 조회
     this.seSystemConfig();
     this.checkPrevCash = this.prevCash;
+
     this.dialog.open(template, {
       width: '400px',
       height: '600px',
@@ -83,5 +86,18 @@ export class CashComponent implements OnInit {
 
   public selectChange(e: any) {
     this.form.controls.bank.setValue(e.options[e.options.selectedIndex].value);
+  }
+
+  public withDrawCashInput(e: any) {
+    const nowCash = Number(e.target.value);
+    // 보유하고 있는 마일리지 보다 높은 금액을 입력하면
+    // 보유하고 있는 마일리지 최대치로 세팅
+    if (nowCash > this.checkPrevCash) {
+      e.target.value = this.checkPrevCash;
+    }
+  }
+
+  public withDrawCashChange(e: any) {
+    this.checkPrevCash = this.checkPrevCash - Number(e.target.value);
   }
 }

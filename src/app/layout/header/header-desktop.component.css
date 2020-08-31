@@ -16,7 +16,8 @@
     .header-menu > div {
         display: inline-block;
         padding: 0px 20px;
-        width: calc((100% / 2) - 40px);
+        /* width: calc((100% / 2) - 40px); */
+        width: calc(100% - 40px);
     }
 
     .header-menu > div:last-child{

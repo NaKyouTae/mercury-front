@@ -13,8 +13,8 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 export class NoticeComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: '제목', width: 80, field: 'title' },
-    { title: '작성 일', width: 20, field: 'insertDate' },
+    { title: '제목', width: 80, field: 'title', type: 'string' },
+    { title: '작성 일', width: 20, field: 'insertDate', type: 'date' },
   ];
   public userRoles: any = this.jwt.getJWTUserKey('roles') === null ? [] : this.jwt.getJWTUserKey('roles');
   public form = new FormGroup({
@@ -25,11 +25,7 @@ export class NoticeComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(
-    private common: CommonHttpService,
-    private formservice: FormsService,
-    private jwt: JwtService,
-    private modal: ModalService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private modal: ModalService) {}
 
   ngOnInit() {
     this.search();

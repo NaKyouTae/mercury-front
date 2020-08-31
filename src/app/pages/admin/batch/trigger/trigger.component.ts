@@ -7,18 +7,18 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-trigger',
   templateUrl: './trigger.component.html',
-  styleUrls: ['./trigger.component.css']
+  styleUrls: ['./trigger.component.css'],
 })
 export class TriggerComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: 'Index', width: 10, field: 'idx' },
-    { title: 'Cron', width: 30, field: 'cron' },
-    { title: 'Trigger Name', width: 20, field: 'name' },
-    { title: 'Trigger Title', width: 30, field: 'title' },
-    { title: 'Desc', width: 20, field: 'description' },
-    { title: 'Job Idx', width: 20, field: 'jobIdx' },
-    { title: 'Ins Date', width: 20, field: 'insertDate' },
+    { title: 'Index', width: 10, field: 'idx', type: 'string' },
+    { title: 'Cron', width: 30, field: 'cron', type: 'string' },
+    { title: 'Trigger Name', width: 20, field: 'name', type: 'string' },
+    { title: 'Trigger Title', width: 30, field: 'title', type: 'string' },
+    { title: 'Desc', width: 20, field: 'description', type: 'string' },
+    { title: 'Job Idx', width: 20, field: 'jobIdx', type: 'string' },
+    { title: 'Ins Date', width: 20, field: 'insertDate', type: 'date' },
   ];
 
   public creForm = new FormGroup({
@@ -41,7 +41,7 @@ export class TriggerComponent implements OnInit {
 
   public jobData: any;
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onInit();
@@ -58,7 +58,6 @@ export class TriggerComponent implements OnInit {
         this.jobData = res.result;
       }
     });
-
   }
 
   public onSearchTrigger() {

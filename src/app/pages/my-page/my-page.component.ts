@@ -3,14 +3,9 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
-import { Store } from '@ngrx/store';
-import { NewsLetterState } from 'src/app/core/store/common/common.model';
-import { inCommonNewsletter } from 'src/app/core/store/common/common.actions';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
+import { CashObservableService } from 'src/app/shared/common/observable/cash/cash-observable.service';
 
 @Component({
   selector: 'app-my-page',
@@ -50,22 +45,28 @@ export class MyPageComponent implements OnInit {
     private jwt: JwtService,
     private formservice: FormsService,
     private observable: ObservableService,
-    private modal: ModalService) { }
+    private cashObservable: CashObservableService,
+    private modal: ModalService
+  ) {}
 
   ngOnInit() {
-    this.search();
+    this.onInit();
 
     // newsletters check 여부
     this.observable.sourceObv.subscribe((res: any) => {
       if (res === 'Delete') {
-        this.search();
+        this.onInit();
       } else if (res === 'Newsletter') {
         this.subCheck = res;
       }
     });
+
+    this.cashObservable.sourceObv.subscribe((res: any) => {
+      this.onSearchUser();
+    });
   }
 
-  public search() {
+  public onInit() {
     this.common.httpCallGet('service/three/user', { userIdx: this.user.idx }).subscribe((res: any) => {
       this.threeTot = res.result.length;
     });
@@ -78,10 +79,7 @@ export class MyPageComponent implements OnInit {
       this.total = res.result;
     });
 
-    this.common.httpCallGet('service/users/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
-      this.user = res.result;
-      this.mileage = res.result.mileage;
-    });
+    this.onSearchUser();
 
     this.common.httpCallGet('service/newsletters/users/idxs', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.result !== null) {
@@ -91,6 +89,15 @@ export class MyPageComponent implements OnInit {
 
     this.common.httpCallGet('service/grades').subscribe((res: any) => {
       this.grades = res.result;
+    });
+  }
+
+  public onSearchUser() {
+    this.common.httpCallGet('service/users/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
+      if (res.resultCode === 'OK' || res.result !== null) {
+        this.user = res.result;
+        this.mileage = res.result.mileage;
+      }
     });
   }
 

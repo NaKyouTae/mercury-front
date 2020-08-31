@@ -13,11 +13,11 @@ export class GradeComponent implements OnInit {
   public data: any;
   public roleData: any;
   public fields: any = [
-    { title: '일렬 번호', width: 10, field: 'idx' },
-    { title: '등급 명', width: 30, field: 'gradeName' },
-    { title: '시작 범위', width: 20, field: 'startRange' },
-    { title: '끝 범위', width: 20, field: 'endRange' },
-    { title: '생성 일자', width: 20, field: 'insertDate' },
+    { title: '일렬 번호', width: 10, field: 'idx', type: 'string' },
+    { title: '등급 명', width: 30, field: 'gradeName', type: 'string' },
+    { title: '시작 범위', width: 20, field: 'startRange', type: 'string' },
+    { title: '끝 범위', width: 20, field: 'endRange', type: 'string' },
+    { title: '생성 일자', width: 20, field: 'insertDate', type: 'date' },
   ];
   public newform = new FormGroup({
     gradeName: new FormControl('', Validators.required),

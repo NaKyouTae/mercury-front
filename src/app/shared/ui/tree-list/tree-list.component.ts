@@ -15,17 +15,17 @@ export class CustomTreeListComponent implements OnInit {
   @Input() public type: any;
 
   public fields: any = [
-    { title: '일렬 번호', width: 10, field: 'idx' },
-    { title: '메뉴 명', width: 10, field: 'title ' },
-    { title: '메뉴 그룹', width: 10, field: 'menuGroup ' },
-    { title: 'URL', width: 10, field: 'url ' },
-    { title: '메뉴 순서', width: 5, field: 'menuOrder ' },
-    { title: 'Level', width: 5, field: 'level ' },
-    { title: '하위 여부', width: 10, field: 'child ' },
-    { title: '생성 일자', width: 10, field: 'insertDate ' },
-    { title: '부모 일렬 번호', width: 10, field: 'parent ' },
-    { title: '권한 일렬 번호', width: 10, field: 'roleIdx ' },
-    { title: '권한 명', width: 10, field: 'roleTitle ' },
+    { title: '일렬 번호', width: 10, field: 'idx', type: 'string' },
+    { title: '메뉴 명', width: 10, field: 'title', type: 'string' },
+    { title: '메뉴 그룹', width: 10, field: 'menuGroup', type: 'string' },
+    { title: 'URL', width: 10, field: 'url', type: 'string' },
+    { title: '메뉴 순서', width: 5, field: 'menuOrder', type: 'string' },
+    { title: 'Level', width: 5, field: 'level', type: 'string' },
+    { title: '하위 여부', width: 10, field: 'child', type: 'boolean' },
+    { title: '생성 일자', width: 10, field: 'insertDate', type: 'date' },
+    { title: '부모 일렬 번호', width: 10, field: 'parent', type: 'string' },
+    { title: '권한 일렬 번호', width: 10, field: 'roleIdx', type: 'string' },
+    { title: '권한 명', width: 10, field: 'roleTitle', type: 'string' },
   ];
   public roleData: any;
 

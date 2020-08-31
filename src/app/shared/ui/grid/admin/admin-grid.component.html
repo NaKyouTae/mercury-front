@@ -10,7 +10,7 @@
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field" [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%'}">
           <!-- {{ onData(d_idx, f.field) }} -->
           <div *ngIf="f_idx == 0 && d.type" style="margin: 0px 10px; display: inline-block; background-color: red; color: white;">공지</div>
-          <div style="display: inline-block;">{{ d | gridData: f.field }}</div>
+          <div style="display: inline-block;">{{ d | gridData: f.field : f.type }}</div>
         </div>
       </div>
 

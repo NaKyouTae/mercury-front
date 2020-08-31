@@ -2,25 +2,29 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 @Pipe({
-  name: 'gridData'
+  name: 'gridData',
 })
 export class GridDataPipe implements PipeTransform {
-
-  transform(data: any, field: any): any {
+  transform(data: any, field: any, type: string): any {
     console.log('grid onData');
     // tslint:disable-next-line: no-eval
-    let result = eval('data.' + field);
-
-    if (field.includes('Date')) {
-
-      if (result == null) {
-        result = '';
+    const result = eval('data.' + field);
+    if (result !== null) {
+      if (type === 'string') {
+        return result;
+      } else if (type === 'date') {
+        return result.slice(0, 16);
+      } else if (type === 'boolean') {
+        if (result) {
+          return '승인';
+        } else {
+          return '미승인';
+        }
+      } else if (type === 'number') {
+        return String(result).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
-
-      return result.slice(0, 16);
+    } else {
+      return '';
     }
-
-    return result;
   }
-
 }

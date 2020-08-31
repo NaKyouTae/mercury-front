@@ -7,16 +7,16 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-scheduler',
   templateUrl: './scheduler.component.html',
-  styleUrls: ['./scheduler.component.css']
+  styleUrls: ['./scheduler.component.css'],
 })
 export class SchedulerComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: 'Index', width: 10, field: 'idx' },
-    { title: 'Scheduler Name', width: 20, field: 'name' },
-    { title: 'Trigger Index', width: 30, field: 'triggerIdx' },
-    { title: 'Job Index', width: 20, field: 'jobIdx' },
-    { title: 'Ins Date', width: 20, field: 'insertDate' },
+    { title: 'Index', width: 10, field: 'idx', type: 'string' },
+    { title: 'Scheduler Name', width: 20, field: 'name', type: 'string' },
+    { title: 'Trigger Index', width: 30, field: 'triggerIdx', type: 'string' },
+    { title: 'Job Index', width: 20, field: 'jobIdx', type: 'string' },
+    { title: 'Ins Date', width: 20, field: 'insertDate', type: 'date' },
   ];
 
   public creForm = new FormGroup({
@@ -36,7 +36,7 @@ export class SchedulerComponent implements OnInit {
   public jobData: any;
   public triggerData: any;
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onInit();
@@ -138,5 +138,4 @@ export class SchedulerComponent implements OnInit {
       }
     });
   }
-
 }

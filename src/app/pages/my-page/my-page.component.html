@@ -35,11 +35,11 @@
         <div>{{user.email}}</div>
       <div>
       <div style="width: 100%; margin-top: 40px">
-        <div class="btn router-btn" routerLink="/my/history/three">
+        <div appSelectedList class="btn router-btn" routerLink="/my/history/three">
           <div>삼행시</div>
           <div>{{threeTot}}</div>
         </div>
-        <div class="btn router-btn" routerLink="/my/history/two">
+        <div appSelectedList class="btn router-btn" routerLink="/my/history/two">
           <div>이행시</div>
           <div>{{twoTot}}</div>
         </div>
@@ -47,9 +47,9 @@
           <div>총 점수</div>
           <div>{{userGrade.gradeName}} {{total}}</div>
         </div> -->
-        <div class="btn router-btn" routerLink="/my/cash">
-          <div>포인트</div>
-          <div>{{mileage}}</div>
+        <div appSelectedList class="btn router-btn" routerLink="/my/cash">
+          <div>마일리지</div>
+          <div>{{mileage | number}}</div>
         </div>
       </div>
     </div>

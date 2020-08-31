@@ -12,13 +12,13 @@ import { MatDialog } from '@angular/material/dialog';
 export class JobComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: 'Index', width: 10, field: 'idx' },
-    { title: 'Execute', width: 20, field: 'execute' },
-    { title: 'Job Name', width: 20, field: 'name' },
-    { title: 'Job Title', width: 20, field: 'title' },
-    { title: 'Class Name', width: 30, field: 'clasz' },
-    { title: 'Desc', width: 20, field: 'description' },
-    { title: 'Ins Date', width: 20, field: 'insertDate' },
+    { title: 'Index', width: 10, field: 'idx', type: 'string' },
+    { title: 'Execute', width: 20, field: 'execute', type: 'boolean' },
+    { title: 'Job Name', width: 20, field: 'name', type: 'string' },
+    { title: 'Job Title', width: 20, field: 'title', type: 'string' },
+    { title: 'Class Name', width: 30, field: 'clasz', type: 'string' },
+    { title: 'Desc', width: 20, field: 'description', type: 'string' },
+    { title: 'Ins Date', width: 20, field: 'insertDate', type: 'date' },
   ];
 
   public creForm = new FormGroup({

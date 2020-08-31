@@ -12,10 +12,10 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 export class RoleComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: '일렬번호', width: 10, field: 'idx' },
-    { title: '권한 명', width: 50, field: 'roleName' },
-    { title: '생성 일자', width: 20, field: 'insertDate' },
-    { title: '수정 일자', width: 20, field: 'changeDate' },
+    { title: '일렬번호', width: 10, field: 'idx', type: 'string' },
+    { title: '권한 명', width: 50, field: 'roleName', type: 'string' },
+    { title: '생성 일자', width: 20, field: 'insertDate', type: 'date' },
+    { title: '수정 일자', width: 20, field: 'changeDate', type: 'date' },
   ];
   public form = new FormGroup({
     idx: new FormControl(''),

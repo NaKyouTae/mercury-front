@@ -8,16 +8,15 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 @Component({
   selector: 'app-logs',
   templateUrl: './logs.component.html',
-  styleUrls: ['./logs.component.css']
+  styleUrls: ['./logs.component.css'],
 })
 export class LogsComponent implements OnInit {
-
   public data: any;
   public fields: any = [
-    { title: 'Logger', width: 10, field: 'logger' },
-    { title: 'Level', width: 5, field: 'level' },
-    { title: 'Message', width: 80, field: 'message' },
-    { title: '발생 일', width: 5, field: 'insertDate' },
+    { title: 'Logger', width: 10, field: 'logger', type: 'string' },
+    { title: 'Level', width: 5, field: 'level', type: 'string' },
+    { title: 'Message', width: 80, field: 'message', type: 'string' },
+    { title: '발생 일', width: 5, field: 'insertDate', type: 'date' },
   ];
 
   public form = new FormGroup({
@@ -27,12 +26,11 @@ export class LogsComponent implements OnInit {
     insertDate: new FormControl('', Validators.required),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
 
   ngOnInit() {
     this.onSearch();
   }
-
 
   public onSearch() {
     this.common.httpCallGet('service/loggers').subscribe((res: any) => {

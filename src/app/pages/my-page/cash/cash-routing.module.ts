@@ -10,9 +10,9 @@ const routes: Routes = [
     component: CashComponent,
     canActivate: [LoginGuard],
     children: [
-      { path: '', redirectTo: 'history', pathMatch: 'full', },
+      { path: '', redirectTo: 'history', pathMatch: 'full' },
       { path: 'history', component: CashHistoryComponent, canActivate: [LoginGuard] },
-      { path: 'reqeust', component: CashReqeustComponent, canActivate: [LoginGuard] },
+      { path: 'request', component: CashReqeustComponent, canActivate: [LoginGuard] },
     ],
   },
 ];

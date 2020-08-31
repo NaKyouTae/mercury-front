@@ -12,13 +12,13 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 export class WeekWordComponent implements OnInit {
   public data: any;
   public fields: any = [
-    { title: '일렬 번호', width: 10, field: 'idx' },
-    { title: '그룹', width: 15, field: 'wordGroup' },
-    { title: '제시어', width: 15, field: 'word' },
-    { title: '설명', width: 15, field: 'description' },
-    { title: '시작 일자', width: 15, field: 'startDate' },
-    { title: '마감 일자', width: 15, field: 'endDate' },
-    { title: '생성 일자', width: 15, field: 'insertDate' },
+    { title: '일렬 번호', width: 10, field: 'idx', type: 'string' },
+    { title: '그룹', width: 15, field: 'wordGroup', type: 'string' },
+    { title: '제시어', width: 15, field: 'word', type: 'string' },
+    { title: '설명', width: 15, field: 'description', type: 'string' },
+    { title: '시작 일자', width: 15, field: 'startDate', type: 'date' },
+    { title: '마감 일자', width: 15, field: 'endDate', type: 'date' },
+    { title: '생성 일자', width: 15, field: 'insertDate', type: 'date' },
   ];
   public newform = new FormGroup({
     word: new FormControl('', Validators.required),

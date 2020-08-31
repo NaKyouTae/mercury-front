@@ -10,9 +10,9 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 })
 export class UserListComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: no-input-rename
-  @Input('data') public datas: any = new Array();
+  @Input('data') public datas?: any = new Array();
   // tslint:disable-next-line: no-input-rename
-  @Input('top') public topThreeData: any = new Array();
+  @Input('top') public topThreeData?: any = new Array();
   // tslint:disable-next-line: no-input-rename
   @Input('word') public words: any;
   // tslint:disable-next-line: no-input-rename
@@ -36,10 +36,11 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.onInit();
+    
     if (!this.my) {
       this.interval = setInterval(() => {
-        this.getList();
-        this.getTopThree();
+        this.onInit();
       }, 30000);
     }
   }
@@ -51,21 +52,30 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
-  ngOnChanges() {
-    if (this.datas !== undefined) {
-      this.checkLove(this.datas);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.datas !== undefined) {
+      if(changes.datas.previousValue !== undefined && changes.datas.previousValue.length !== 0){
+        console.log('changedata');
+        this.getList();
+      }
     }
 
-    if (this.topThreeData !== undefined) {
-      this.checkLove(this.topThreeData);
+    if (changes.topThreeData !== undefined) {
+      if(changes.topThreeData.previousValue !== undefined && changes.topThreeData.previousValue.length !== 0){
+        console.log('changetop');
+        this.getList();
+      }
     }
   }
-
+  public onInit(){
+    this.getList();
+    this.getTopThree();
+  }
   public getTopThree() {
-    this.common.httpCallGet('service/' + this.type + '/popular').subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/popular', {userIdx: this.user.idx}).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.topThreeData = res.result.slice(0, 3);
-        this.checkLove(this.topThreeData);
+        // this.checkLove(this.topThreeData);
       } else {
         this.topThreeData = new Array();
       }
@@ -73,10 +83,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public getList() {
-    this.common.httpCallGet('service/' + this.type + '/' + this.searchType).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/' + this.searchType, {userIdx: this.user.idx}).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.datas = res.result;
-        this.checkLove(this.datas);
+        // this.checkLove(this.datas);
       } else {
         this.datas = new Array();
       }
@@ -102,18 +112,18 @@ export class UserListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public checkLove(data: any) {
-    data.forEach((item: any) => {
-      const idx = this.user.idx === undefined ? 'null' : this.user.idx;
-      this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: idx }).subscribe((res: any) => {
-        if (res.result === false || res.result === null) {
-          item.me = false;
-        } else {
-          item.me = true;
-        }
-      });
-    });
-  }
+  // public checkLove(data: any) {
+  //   data.forEach((item: any) => {
+  //     const idx = this.user.idx === undefined ? 'null' : this.user.idx;
+  //     this.common.httpCallGet('service/loves/check', { contentIdx: item.idx, userIdx: idx }).subscribe((res: any) => {
+  //       if (res.result === false || res.result === null) {
+  //         item.me = false;
+  //       } else {
+  //         item.me = true;
+  //       }
+  //     });
+  //   });
+  // }
 
   public orPopular(type: string) {
     this.searchType = 'popular';

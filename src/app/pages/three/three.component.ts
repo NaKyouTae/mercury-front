@@ -26,20 +26,20 @@ export class ThreeComponent implements OnInit {
       }
     });
 
-    this.common.httpCallGet('service/three/words').subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
-        this.datas = res.result;
-      } else {
-        this.datas = new Array();
-      }
-    });
+    // this.common.httpCallGet('service/three/words', {userIdx: this.}).subscribe((res: any) => {
+    //   if (res.resultCode === 'OK' && res.result !== null) {
+    //     this.datas = res.result;
+    //   } else {
+    //     this.datas = new Array();
+    //   }
+    // });
 
-    this.common.httpCallGet('service/three/popular').subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
-        this.top = res.result.slice(0, 3);
-      } else {
-        this.top = new Array();
-      }
-    });
+    // this.common.httpCallGet('service/three/popular').subscribe((res: any) => {
+    //   if (res.resultCode === 'OK' && res.result !== null) {
+    //     this.top = res.result.slice(0, 3);
+    //   } else {
+    //     this.top = new Array();
+    //   }
+    // });
   }
 }

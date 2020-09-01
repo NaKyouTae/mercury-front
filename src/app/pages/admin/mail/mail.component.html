@@ -17,8 +17,8 @@
             <button class="btn">저장</button>
         </div>
         <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
-        [creModal]="{temp: CreModal, width: 500, height: 200, data: form}"
-        [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
+        [creModal]="{temp: CreModal, width: 500, height: 310, data: form}"
+        [upModal]="{temp: UpModal, width: 500, height: 460, data: form}"></app-admin-grid>
     </div>
 </div>
 
@@ -33,10 +33,6 @@
     <div *ngIf="newform != undefined" >
       <form [formGroup]="newform">
         <div class="form-input-text">
-          <label>템플릿 명</label>
-          <input type="text" formControlName="type" />
-        </div>
-        <div class="form-input-text">
           <label>메일 제목</label>
           <input type="text" formControlName="title" />
         </div>
@@ -45,9 +41,13 @@
           <input type="text" formControlName="tempName" />
           <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
         </div>
+        <div class="form-input-text">
+          <label>템플릿 명</label>
+          <input type="text" formControlName="type" />
+        </div>
       </form>
     </div>
-    <div class="modal-footer modal-creModal-footer">
+    <div class="modal-footer modal-create-footer">
       <button (click)="onClose()">취소</button>
       <button (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
     </div>
@@ -69,14 +69,6 @@
           <input type="text" formControlName="idx" />
         </div>
         <div class="form-input-text">
-          <label>템플릿 명</label>
-          <input type="text" formControlName="type" />
-        </div>
-        <div class="form-input-text">
-          <label>생성 일자</label>
-          <input type="text" formControlName="insertDate" />
-        </div>
-        <div class="form-input-text">
           <label>메일 제목</label>
           <input type="text" formControlName="title" />
         </div>
@@ -84,6 +76,14 @@
           <label>템플릿 파일 명</label>
           <input type="text" formControlName="tempName" />
           <!-- <angular-editor [placeholder]="'Enter text here...'" formControlName="content"></angular-editor> -->
+        </div>
+        <div class="form-input-text">
+          <label>템플릿 명</label>
+          <input type="text" formControlName="type" />
+        </div>
+        <div class="form-input-text">
+          <label>생성 일자</label>
+          <input type="text" formControlName="insertDate" />
         </div>
       </form>
     </div>

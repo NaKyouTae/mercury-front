@@ -1,39 +1,41 @@
 <div class="content-width">
-    <div>
+    
       <!-- <div style="text-align: center;">
         <div style="border:1px solid darkgray; border-radius:50%; height: 200px; width: 200px; margin: -150px auto 0px auto; background-color: white;"></div>
       </div> -->
-      <div style="text-align: center; margin-top: 40px;">
-        <div style="font-weight: bold; font-size: 50px;">
+  <div style="margin-top: 40px;">
+    <div style="text-align: center;">
+      <div style="font-weight: bold; font-size: 50px;">
+        <div>
+          {{user.username}}
+          <button style="margin-left: 10px;" BtnModal (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 460, data: form}">수정</button>
+        </div>
+      </div>
+      <div style="font-size: 20px; margin: 15px 0px;">
+        <div>
+          <div style="display: inline-block; width: 50px; height: 20px; margin-right: 10px;" [ngStyle]="{'background-color': userGrade.idx ? userGrade.gradeIdx: ''}"></div>
+          <div style="display: inline-block; vertical-align: top; margin-top: -1px;">
+            <div style="display: inline-block;">{{userGrade.gradeName}} {{total | number}}</div>
+            <div style="display: inline-block; vertical-align: top; margin: 1px 0px 0px 10px; font-size: 17px;" (mouseover)="gradeOver()" (mouseout)="gradeOver()">&#x0229B;</div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="gradeView" class="grade-modal">
+        <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+          <h2>등급 표</h2>
+        </div>
+        <div *ngFor="let d of grades" class="grade-area">
+          <div [ngStyle]="{'background-color': d.idx ? d.idx: ''}"></div>
+          <div>{{d.gradeName}}</div>
           <div>
-            {{user.username}}
-            <button style="margin-left: 10px;" BtnModal (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 460, data: form}">수정</button>
-          </div>
+            <div>{{d.startRange}}점</div>
+            <div>~</div>
+            <div>{{d.endRange}}점</div></div>
         </div>
-        <div style="font-size: 20px; margin: 15px 0px;">
-          <div>
-            <div style="display: inline-block; width: 50px; height: 20px; margin-right: 10px;" [ngStyle]="{'background-color': userGrade.idx ? userGrade.gradeIdx: ''}"></div>
-            <div style="display: inline-block; vertical-align: top; margin-top: -1px;">
-              <div style="display: inline-block;">{{userGrade.gradeName}} {{total | number}}</div>
-              <div style="display: inline-block; vertical-align: top; margin: 1px 0px 0px 10px; font-size: 17px;" (mouseover)="gradeOver()" (mouseout)="gradeOver()">&#x0229B;</div>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="gradeView" class="grade-modal">
-          <div style="width: 100%; text-align: center; margin-bottom: 20px;">
-            <h2>등급 표</h2>
-          </div>
-          <div *ngFor="let d of grades" class="grade-area">
-            <div [ngStyle]="{'background-color': d.idx ? d.idx: ''}"></div>
-            <div>{{d.gradeName}}</div>
-            <div>
-              <div>{{d.startRange}}점</div>
-              <div>~</div>
-              <div>{{d.endRange}}점</div></div>
-          </div>
-        </div>
-        <div>{{user.email}}</div>
-      <div>
+      </div>
+      <div>{{user.email}}</div>
+    </div>
+    <div>
       <div style="width: 100%; margin-top: 40px">
         <div appSelectedList class="btn router-btn" routerLink="/my/history/three">
           <div>삼행시</div>
@@ -56,6 +58,7 @@
     <div style="padding: 20px;">
       <router-outlet></router-outlet>
     </div>
+  </div>
 </div>
 
 <ng-template #UpModal>

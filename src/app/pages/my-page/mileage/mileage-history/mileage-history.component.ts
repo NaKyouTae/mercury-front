@@ -13,7 +13,7 @@ export class MileageHistoryComponent implements OnInit {
   public fields: any = [
     { title: '지급 일', width: 20, field: 'paymentDate', type: 'date' },
     { title: '지급 내용', width: 60, field: 'content', type: 'string' },
-    { title: '잔액', width: 10, field: 'afterMileage', type: 'number' },
+    { title: '지급 금액', width: 10, field: 'paymentMileage', type: 'number' },
     { title: '사용자 명', width: 10, field: 'userName', type: 'string' },
   ];
 

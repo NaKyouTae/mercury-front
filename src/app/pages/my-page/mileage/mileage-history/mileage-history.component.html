@@ -1,20 +1,17 @@
 <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [detailTemplate]="detailTemplate">
   <ng-template #detailTemplate let-dataItem>
-    <div>
-      <label>요청 자</label>
-      <div>{{dataItem.userName}}</div>
+    <div class="mileage-detail-header">
+      <div>
+        <div>요청 자 {{dataItem.userName}}</div>
+        <div>잔액 {{dataItem.paymentMileage | number}}</div>
+      </div>
+      <div>
+        <div>{{dataItem.paymentDate | slice:0:16}}</div>
+      </div>
     </div>
     <div>
-      <label>지급 일</label>
-      <div>{{dataItem.paymentDate}}</div>
-    </div>
-    <div>
-      <label>지급 내용</label>
+      <label><h3>지급 내용</h3></label>
       <div>{{dataItem.content}}</div>
-    </div>
-    <div>
-      <label>잔액</label>
-      <div>{{dataItem.afterMileage}}</div>
     </div>
   </ng-template>
 </app-user-grid>

@@ -1,0 +1,19 @@
+.mileage-detail-header {
+  border-bottom: 1px solid darkgray;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.mileage-detail-header > div {
+  width: calc(100% / 2);
+  display: inline-block;
+}
+
+.mileage-detail-header > div:first-child > div{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.mileage-detail-header > div:last-child {
+  text-align: right;
+}

@@ -1,36 +1,41 @@
 <app-user-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [detailTemplate]="detailTemplate">
     <ng-template #detailTemplate let-dataItem>
+      <div class="mileage-detail-header">
         <div>
+          <div *ngIf="!dataItem.approval"><span style="color: red;">미승인</span></div>
+          <div *ngIf="dataItem.approval"><span style="color: bule;">승인</span></div>
+          <div>|</div>
+          <div class="inline-div-label">
             <label>요청 자</label>
             <div>{{dataItem.userName}}</div>
+          </div>
         </div>
         <div>
-            <label>요청 일자</label>
-            <div>{{dataItem.withDrawDate}}</div>
+            <!-- 요청 일자 -->
+            <div>{{dataItem.withDrawDate | slice:0:16}}</div>
         </div>
-        <div>
-            <label>지급 일</label>
-            <div>{{dataItem.paymentDate}}</div>
-        </div>
-        <div>
-            <label>이전 금액</label>
-            <div>{{dataItem.prevMileage}}</div>
-        </div>
-        <div>
+      </div>
+      <div>
+        <div class="inline-div-label">
             <label>요청 금액</label>
-            <div>{{dataItem.withDrawMileage}}</div>
+            <div>{{dataItem.withDrawMileage | number}}</div>
         </div>
-        <div>
-            <label>승인 여부</label>
-            <div>{{dataItem.approval}}</div>
+        <div class="inline-div-label">
+            <label>이전 금액</label>
+            <div>{{dataItem.prevMileage | number}}</div>
         </div>
-        <div>
+        <div class="inline-div-label">
             <label>은행 명</label>
             <div>{{dataItem.bank}}</div>
         </div>
-        <div>
+        <div class="inline-div-label">
             <label>계좌 번호</label>
             <div>{{dataItem.account}}</div>
         </div>
+        <div class="inline-div-label">
+            <label>지급 일</label>
+            <div>{{dataItem.paymentDate | slice:0:16}}</div>
+        </div>
+      </div>
     </ng-template>
 </app-user-grid>

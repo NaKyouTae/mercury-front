@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LoginGuard } from 'src/app/core/guard/login/login.guard';
-import { MileageComponent } from '../../admin/mileage/mileage.component';
+import { MileageComponent } from '../mileage/mileage.component';
 import { MileageHistoryComponent } from './mileage-history/mileage-history.component';
 import { MileageReqeustComponent } from './mileage-reqeust/mileage-reqeust.component';
 

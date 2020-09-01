@@ -11,21 +11,21 @@
     background-color: darkgray;
 }
 
-.cash-request-area {
+.mileage-request-area {
     text-align: right;
     width: 100%;
-} 
+}
 
-.cash-request-header > div{
+.mileage-request-header > div{
     width: calc(100% / 3);
     vertical-align: middle;
     display: inline-block;
 }
 
-.cash-request-header > div:first-child{
+.mileage-request-header > div:first-child{
     text-align: left;
 }
 
-.cash-request-header > div:nth-child(2){
+.mileage-request-header > div:nth-child(2){
     text-align: center;
 }

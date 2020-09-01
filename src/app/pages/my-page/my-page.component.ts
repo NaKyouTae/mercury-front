@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
-import { CashObservableService } from 'src/app/shared/common/observable/cash/cash-observable.service';
+import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
 
 @Component({
   selector: 'app-my-page',
@@ -45,9 +45,9 @@ export class MyPageComponent implements OnInit {
     private jwt: JwtService,
     private formservice: FormsService,
     private observable: ObservableService,
-    private cashObservable: CashObservableService,
+    private mileageObservable: MileageObservableService,
     private modal: ModalService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.onInit();
@@ -61,7 +61,7 @@ export class MyPageComponent implements OnInit {
       }
     });
 
-    this.cashObservable.sourceObv.subscribe((res: any) => {
+    this.mileageObservable.sourceObv.subscribe((res: any) => {
       this.onSearchUser();
     });
   }

@@ -10,9 +10,9 @@ import { GradeComponent } from './grade/grade.component';
 import { ConfigComponent } from './config/config.component';
 import { NoticeComponent } from './notice/notice.component';
 import { LogsComponent } from './logs/logs.component';
-import { CashComponent } from './cash/cash.component';
 import { BatchComponent } from './batch/batch.component';
 import { HistoryComponent } from './history/history.component';
+import { MileageComponent } from './mileage/mileage.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [AdminGuard] },
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'config', component: ConfigComponent, canActivate: [AdminGuard] },
   { path: 'notice', component: NoticeComponent, canActivate: [AdminGuard] },
   { path: 'log', component: LogsComponent, canActivate: [AdminGuard] },
-  { path: 'cash', component: CashComponent, canActivate: [AdminGuard] },
+  { path: 'mileage', component: MileageComponent, canActivate: [AdminGuard] },
   { path: 'batch', loadChildren: () => import('./batch/batch.module').then((m) => m.BatchModule), canActivate: [AdminGuard] },
 ];
 

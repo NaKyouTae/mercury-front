@@ -6,7 +6,6 @@ import { MyPageComponent } from './my-page.component';
 import { MyThreeComponent } from './history/my-three/my-three.component';
 import { MyTwoComponent } from './history/my-two/my-two.component';
 import { LoginGuard } from 'src/app/core/guard/login/login.guard';
-import { CashComponent } from './cash/cash.component';
 import { GradeComponent } from './grade/grade.component';
 
 const routes: Routes = [
@@ -24,7 +23,7 @@ const routes: Routes = [
         ],
       },
       { path: 'grade', component: GradeComponent, canActivate: [LoginGuard] },
-      { path: 'cash', loadChildren: () => import('./cash/cash.module').then((m) => m.CashModule), canActivate: [LoginGuard] },
+      { path: 'mileage', loadChildren: () => import('./mileage/mileage.module').then((m) => m.MileageModule), canActivate: [LoginGuard] },
     ],
   },
 ];

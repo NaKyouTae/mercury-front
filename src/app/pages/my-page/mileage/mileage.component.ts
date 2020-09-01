@@ -4,29 +4,29 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CashObservableService } from 'src/app/shared/common/observable/cash/cash-observable.service';
+import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
 
 @Component({
-  selector: 'app-cash',
-  templateUrl: './cash.component.html',
-  styleUrls: ['./cash.component.css'],
+  selector: 'app-mileage',
+  templateUrl: './mileage.component.html',
+  styleUrls: ['./mileage.component.css'],
 })
-export class CashComponent implements OnInit {
+export class MileageComponent implements OnInit {
   public user: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user');
-  public prevCash: any;
+  public prevMileage: any;
   public form = new FormGroup({
     userName: new FormControl(''),
     bank: new FormControl('', Validators.required),
     account: new FormControl('', Validators.required),
-    withDrawCash: new FormControl('', Validators.required),
+    withDrawMileage: new FormControl('', Validators.required),
   });
 
   public banks: any;
   public checkWithDraw = false;
-  public checkPrevCash: any = 0;
+  public checkPrevMileage: any = 0;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog, private cashObservable: CashObservableService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog, private mileageObservable: MileageObservableService) { }
 
   ngOnInit() {
     this.onInit();
@@ -39,7 +39,7 @@ export class CashComponent implements OnInit {
   public onSearchUser() {
     this.common.httpCallGet('service/users/idx', { idx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.prevCash = res.result.mileage;
+        this.prevMileage = res.result.mileage;
       }
     });
   }
@@ -56,18 +56,18 @@ export class CashComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
 
     data.userName = this.user.username;
-    data.withDrawCash = this.prevCash;
+    data.withDrawMileage = this.prevMileage;
 
-    if (data.withDrawCash < 10000) {
+    if (data.withDrawMileage < 10000) {
       alert('10,000만원 이상 출금이 가능합니다.');
       return false;
     } else {
-      this.common.httpCallPost('service/cashrequest', data).subscribe((res: any) => {
+      this.common.httpCallPost('service/mileagerequest', data).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           alert(res.message);
           this.onInit();
           this.dialog.closeAll();
-          this.cashObservable.successRequest();
+          this.mileageObservable.successRequest();
         }
       });
     }
@@ -76,7 +76,7 @@ export class CashComponent implements OnInit {
   public openModal(template: TemplateRef<any>) {
     // 출금 팝업 오픈시 은행 목록 조회
     this.seSystemConfig();
-    this.checkPrevCash = this.prevCash;
+    this.checkPrevMileage = this.prevMileage;
 
     this.dialog.open(template, {
       width: '400px',
@@ -88,16 +88,16 @@ export class CashComponent implements OnInit {
     this.form.controls.bank.setValue(e.options[e.options.selectedIndex].value);
   }
 
-  public withDrawCashInput(e: any) {
-    const nowCash = Number(e.target.value);
+  public withDrawMileageInput(e: any) {
+    const nowMileage = Number(e.target.value);
     // 보유하고 있는 마일리지 보다 높은 금액을 입력하면
     // 보유하고 있는 마일리지 최대치로 세팅
-    if (nowCash > this.checkPrevCash) {
-      e.target.value = this.checkPrevCash;
+    if (nowMileage > this.checkPrevMileage) {
+      e.target.value = this.checkPrevMileage;
     }
   }
 
-  public withDrawCashChange(e: any) {
-    this.checkPrevCash = this.checkPrevCash - Number(e.target.value);
+  public withDrawMileageChange(e: any) {
+    this.checkPrevMileage = this.checkPrevMileage - Number(e.target.value);
   }
 }

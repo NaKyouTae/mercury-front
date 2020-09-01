@@ -8,22 +8,22 @@
     </div>
   </div>
   <div style="margin-bottom: 10px; text-align: right;">
-    <label>현재 마일리지 : <span style="font-weight: bold; margin-right: 10px;">{{prevCash | number}}</span> </label>
-    <button (click)="openModal(withDrawCashModal)">출금</button>
+    <label>현재 마일리지 : <span style="font-weight: bold; margin-right: 10px;">{{prevMileage | number}}</span> </label>
+    <button (click)="openModal(withDrawMileageModal)">출금</button>
   </div>
   <router-outlet></router-outlet>
 </div>
 
-<ng-template #withDrawCashModal>
-  <div class="cash-request-header">
+<ng-template #withDrawMileageModal>
+  <div class="mileage-request-header">
     <div>
       <h2>출금 요청</h2>
     </div>
   </div>
   <div style="margin: 20px 0px; text-align: right;">
-    <div>현재 마일리지 {{checkPrevCash | number}}</div>
+    <div>현재 마일리지 {{checkPrevMileage | number}}</div>
   </div>
-  <div class="cash-request-area">
+  <div class="mileage-request-area">
     <form [formGroup]="form">
       <div class="form-select">
         <label><span style="color: red;">* </span>은행 명</label>
@@ -39,13 +39,13 @@
       </div>
       <div class="form-input-text">
         <label><span style="color: red;">* </span>출금 금액</label>
-        <input type="number" formControlName="withDrawCash" [min]="0" [max]="prevCash" (input)="withDrawCashInput($event)" />
-        <!-- <input type="number" formControlName="withDrawCash" [min]="0" [max]="prevCash" (input)="withDrawCashInput($event)" (change)="withDrawCashChange($event)" /> -->
-        <span class="required-notice-red" *ngIf="form.controls.withDrawCash.hasError('required')">출금 금액은 필수입니다.</span>
+        <input type="number" formControlName="withDrawMileage" [min]="0" [max]="prevMileage" (input)="withDrawMileageInput($event)" />
+        <!-- <input type="number" formControlName="withDrawMileage" [min]="0" [max]="prevMileage" (input)="withDrawMileageInput($event)" (change)="withDrawMileageChange($event)" /> -->
+        <span class="required-notice-red" *ngIf="form.controls.withDrawMileage.hasError('required')">출금 금액은 필수입니다.</span>
       </div>
     </form>
   </div>
-  <div class="cash-request-fotter">
+  <div class="mileage-request-fotter">
     <div>
       <div style="color: red;">* 최소 10,000 마일리지이상 출금이 가능합니다.</div>
       <div style="color: red;">* 입력한 계좌번호는 승인 및 최소 한 달 이내에 삭제될 예정입니다.</div>
@@ -56,7 +56,7 @@
     </div>
     <div class="modal-footer modal-footer-one-btn">
       <button (click)="onRequest(form.controls)"
-              [disabled]="!checkWithDraw || !form.valid || form.controls.withDrawCash.value < 10000 || form.controls.withDrawCash.value > prevCash">승인 요청</button>
+              [disabled]="!checkWithDraw || !form.valid || form.controls.withDrawMileage.value < 10000 || form.controls.withDrawMileage.value > prevMileage">승인 요청</button>
     </div>
   </div>
 </ng-template>

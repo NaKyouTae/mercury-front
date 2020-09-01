@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CashObservableService {
+export class MileageObservableService {
   private source = new Subject<any>();
   public sourceObv = this.source.asObservable();
 
-  constructor() {}
+  constructor() { }
 
   public successRequest() {
     this.source.next();

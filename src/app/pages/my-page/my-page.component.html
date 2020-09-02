@@ -1,5 +1,5 @@
 <div class="content-width">
-    
+
       <!-- <div style="text-align: center;">
         <div style="border:1px solid darkgray; border-radius:50%; height: 200px; width: 200px; margin: -150px auto 0px auto; background-color: white;"></div>
       </div> -->
@@ -33,7 +33,14 @@
             <div>{{d.endRange}}점</div></div>
         </div>
       </div>
-      <div>{{user.email}}</div>
+      <div style="margin-bottom: 20px;">{{user.email}}</div>
+      <div class="experience-area" *ngIf="gradeRange != null">
+        <div>{{gradeRange.startRange}}</div>
+        <div>
+          <div [ngStyle]="{'width': ((total/gradeRange.endRange) * 100) + '%', 'background-color': gradeRange.idx ? gradeRange.idx: ''}">{{((total/gradeRange.endRange) * 100) | number}}%</div>
+        </div>
+        <div>{{gradeRange.endRange}}</div>
+      </div>
     </div>
     <div>
       <div style="width: 100%; margin-top: 40px">

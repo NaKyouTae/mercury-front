@@ -30,6 +30,8 @@ export class MyPageComponent implements OnInit {
   public pwCheck: any = false;
   public failedPW: any = false;
 
+  public gradeRange: any;
+
   public form = new FormGroup({
     idx: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
@@ -68,33 +70,48 @@ export class MyPageComponent implements OnInit {
 
   public onInit() {
     this.common.httpCallGet('service/three/user', { userIdx: this.user.idx }).subscribe((res: any) => {
-      this.threeTot = res.result.length;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.threeTot = res.result.length;
+      }
     });
 
     this.common.httpCallGet('service/twice/user', { userIdx: this.user.idx }).subscribe((res: any) => {
-      this.twoTot = res.result.length;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.twoTot = res.result.length;
+      }
     });
 
     this.common.httpCallGet('service/loves/totals', { userIdx: this.user.idx }).subscribe((res: any) => {
-      this.total = res.result;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.total = res.result;
+      }
     });
 
     this.onSearchUser();
 
     this.common.httpCallGet('service/newsletters/users/idxs', { userIdx: this.user.idx }).subscribe((res: any) => {
-      if (res.result !== null) {
+      if (res.resultCode === 'OK' && res.result !== null) {
         this.subCheck = true;
       }
     });
 
+    this.onSearchGrade();
+  }
+
+  public onSearchGrade() {
+    const myGrade = this.userGrade;
+
     this.common.httpCallGet('service/grades').subscribe((res: any) => {
-      this.grades = res.result;
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.grades = res.result;
+        this.gradeRange = res.result.filter(grade => grade.idx === myGrade.gradeIdx)[0];
+      }
     });
   }
 
   public onSearchUser() {
     this.common.httpCallGet('service/users/' + this.user.username, { username: this.user.username }).subscribe((res: any) => {
-      if (res.resultCode === 'OK' || res.result !== null) {
+      if (res.resultCode === 'OK' && res.result !== null) {
         this.user = res.result;
         this.mileage = res.result.mileage;
       }

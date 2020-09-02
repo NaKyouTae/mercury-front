@@ -11,6 +11,7 @@ export class ConfigComponent implements OnInit {
   constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
+    this.onSearch();
   }
 
   public onSearch() {

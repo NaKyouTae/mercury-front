@@ -12,10 +12,14 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 })
 export class MailComponent implements OnInit {
   // =========================================================================== [메일 설정 값]
-  public host: any;
-  public port: any;
-  public email: any;
-  public pw: any;
+  public mailHost: any;
+  public mailPort: any;
+  public mailAddress: any;
+  public mailPassword: any;
+  public mailSmtpProtocol: any;
+  public mailSmtpAuth: any;
+  public mailSmtpStartTlsEnable: any;
+  public mailDebug: any;
   // =========================================================================== [메일 설정 값]
 
   public data: any;
@@ -40,16 +44,39 @@ export class MailComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
+  public configForm = new FormGroup({
+    configName: new FormControl('', Validators.required),
+    configType: new FormControl('', Validators.required),
+    configValue: new FormControl('', Validators.required),
+  });
+
   public editorConfig: AngularEditorConfig = {
     height: '100px',
     minHeight: '0',
   };
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
 
   ngOnInit() {
     this.onSearch();
+    this.seSystemConfig();
   }
+
+  public seSystemConfig() {
+    this.common.httpCallGet('service/system/config/type', { type: 'MAIL' }).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.mailHost = res.result.filter(config => config.configName === 'MAIL_HOST').configValue;
+        this.mailPort = res.result.filter(config => config.configName === 'MAIL_PORT').configValue;
+        this.mailAddress = res.result.filter(config => config.configName === 'MAIL_ADDRESS').configValue;
+        this.mailPassword = res.result.filter(config => config.configName === 'MAIL_PASSWORD').configValue;
+        this.mailSmtpProtocol = res.result.filter(config => config.configName === 'MAIL_SMTP_PROTOCOL').configValue;
+        this.mailSmtpAuth = res.result.filter(config => config.configName === 'MAIL_SMTP_AUTH').configValue;
+        this.mailSmtpStartTlsEnable = res.result.filter(config => config.configName === 'MAIL_SMTP_STARTTLS_ENABLE').configValue;
+        this.mailDebug = res.result.filter(config => config.configName === 'MAIL_DEBUG').configValue;
+      }
+    });
+  }
+
   public onSearch() {
     this.common.httpCallGet('service/mails/templates').subscribe((res: any) => {
       this.data = res.result;

@@ -1,11 +1,13 @@
 <div>
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
-    <div class="grid-wrapper">
-      <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
+    <div class="grid-wrapper" style="border: 1px solid darkgray">
+      <div *ngFor="let field of fields; let t_idx = index;" class="grid-title" 
+            [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
+            <!-- [ngStyle]="{'width': field.width + '%', 'border-left': t_idx == 0 ? '1px solid darkgray': '', 'border-right': (t_idx+1) == fields.length ? '1px solid darkgray': ''}">{{ field.title }}</div> -->
 
       <div RowDbclick (dblclick)="onDblClick(d)" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field"
-              [ngStyle]="{'background-color' : (f_idx % 2) == 0 ? '#e5e5e5' : '', 'width' : f.width + '%', 'text-align' : f_idx == 0 ? 'left' : 'center'}">
+              [ngStyle]="{'width' : f.width + '%'}">
           <div BtnClick (click)="onDblClick(d)" *ngIf="f_idx == 0" class="btn" style="margin: 0px 10px; display: inline-block;">&#62;</div>
           <div *ngIf="f_idx == 0 && d.type" style="margin: 0px 10px; display: inline-block; background-color: red; color: white;">공지</div>
           <div style="display: inline-block;">{{ d | gridData: f.field : f.type }}</div>

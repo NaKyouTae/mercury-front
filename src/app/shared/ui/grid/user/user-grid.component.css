@@ -9,9 +9,18 @@
 
 .grid-title {
   display: inline-block;
+  /* border-top: 1px solid darkgray; */
+  background-color: darkblue;
+  color: white;
   padding: 10px 0px;
   font-weight: bold;
 }
+
+/* .grid-row {
+  border-top: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+} */
 
 .grid-row:hover {
   background-color: #ededed;
@@ -19,7 +28,7 @@
 }
 
 .grid-field {
-  border-bottom: 1px solid darkgray;
+  /* border-bottom: 1px solid darkgray; */
   display: inline-block;
   padding: 10px 0px;
   height: 20px;
@@ -27,6 +36,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-bottom: -4px;
+  text-align: left;
 }
 
 .grid-command {
@@ -40,7 +50,7 @@
 }
 
 .grid-row-details {
-  border-left: 1px solid darkgray;
+  border-top: 1px solid darkgray;
   padding: 20px 30px;
   text-align: left;
 }

@@ -63,7 +63,7 @@ export class NoticeComponent implements OnInit {
 
   public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
-    this.common.httpCallPut('service/notices/' + data.idx, data).subscribe((res: any) => {
+    this.common.httpCallPut('service/notices', data).subscribe((res: any) => {
       alert(res.message);
       this.search();
       this.onClose();
@@ -72,7 +72,7 @@ export class NoticeComponent implements OnInit {
 
   public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
-    this.common.httpCallDelete('service/notices/' + data.idx, data).subscribe((res: any) => {
+    this.common.httpCallDelete('service/notices', data).subscribe((res: any) => {
       alert(res.message);
       this.search();
       this.onClose();

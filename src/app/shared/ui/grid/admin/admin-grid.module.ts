@@ -9,7 +9,8 @@ import { CustomPipeModule } from 'src/app/shared/pipe/custom-pipe.module';
 
 @NgModule({
   declarations: [AdminGridComponent],
+  // tslint:disable-next-line: max-line-length
   imports: [CommonModule, FormsModule, RowModalDirectiveModule, BtnModalDirectiveModule, PagingModule, CustomPipeModule],
   exports: [AdminGridComponent],
 })
-export class AdminGridModule { }
+export class AdminGridModule {}

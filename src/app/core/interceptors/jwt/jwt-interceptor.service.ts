@@ -49,11 +49,6 @@ export class JwtInterceptorService {
               console.log('UWT UPDATE');
               this.cookie.setCookie('UWT', event.headers.get('UWT'));
             }
-
-            if (event.headers.get('loginType') !== null) {
-              console.log('LoginType UPDATE');
-              this.cookie.setCookie('loginType', event.headers.get('loginType'));
-            }
           }
         }
         return event;

@@ -2,7 +2,7 @@
 <div class="page-route">
   <div *ngFor="let menu of routeLinks" class="lay-header">
     <div *ngIf="userRoles.includes(menu.roleTitle) || menu.roleTitle == null || menu.roleTitle == ''">
-      <div *ngIf="menu.parent == 'null'">
+      <div *ngIf="menu.parent == null">
         <div *ngIf="menu.child == false">
           <a class="route-link" [routerLink]="[menu.url]">{{ menu.title }}</a>
         </div>

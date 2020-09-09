@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges, HostListener } from '@angular/core';
 import { JwtService } from '../../../common/jwt/jwt.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
   public fieldsNum: any;
-  public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
+  public sizeList: any = [1, 10, 20, 30, 40, 50, 100, 200];
   public size: any = 30;
   public skip: any = 0;
   public take: any = 30;
@@ -34,7 +34,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private jwt: JwtService) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -101,8 +101,8 @@ export class AdminGridComponent implements OnInit, OnChanges {
   }
 
   public changePage(e) {
-    this.nowPage = e;
-    this.chagnePageListColor(e);
+    this.nowPage = e.value;
+    // this.chagnePageListColor(e);
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
 
@@ -117,25 +117,25 @@ export class AdminGridComponent implements OnInit, OnChanges {
   }
 
   public prevPage() {
-    const prev = this.getNowPage();
-    if (prev !== 1) {
-      this.chagnePageListColor(prev - 1);
-      this.paging(prev - 1);
-    } else {
-      // tslint:disable-next-line: deprecation
-      event.preventDefault();
-    }
+    // const prev = this.getNowPage();
+    // if (prev !== 1) {
+    // this.chagnePageListColor(prev - 1);
+    // this.paging(prev - 1);
+    // } else {
+    // tslint:disable-next-line: deprecation
+    //   event.preventDefault();
+    // }
   }
 
   public nextPage() {
-    const next = this.getNowPage();
-    if (next !== this.pageList.length) {
-      this.chagnePageListColor(next + 1);
-      this.paging(next + 1);
-    } else {
-      // tslint:disable-next-line: deprecation
-      event.preventDefault();
-    }
+    // const next = this.getNowPage();
+    // if (next !== this.pageList.length) {
+    // this.chagnePageListColor(next + 1);
+    // this.paging(next + 1);
+    // } else {
+    // tslint:disable-next-line: deprecation
+    //   event.preventDefault();
+    // }
   }
 
   public endPage() {
@@ -150,5 +150,9 @@ export class AdminGridComponent implements OnInit, OnChanges {
 
   public onDblClick(value: any) {
     this.dbldata.emit(value);
+  }
+
+  public onScroll(e: any) {
+    console.log(e);
   }
 }

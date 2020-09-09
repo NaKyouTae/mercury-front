@@ -19,16 +19,19 @@
       <div class="page-count-group">
         <div class="page-count-btn-group">
           <div class="page-count-btn" (click)="firstPage()">&#x027EA;</div>
-          <div class="page-count-btn" (click)="prevPage()">&#x027E8;</div>
+          <div class="page-count-btn" (click)="prevPage()">Prev</div>
         </div>
-        <div
+        <!-- <div
           *ngFor="let p of pageList; let pageIdx = index"
           class="pageCount_{{ pageIdx + 1 }} page-count"
           (click)="changePage(pageIdx + 1)">
           {{ pageIdx + 1 }}
-        </div>
+        </div> -->
+        <select (click)="onScroll($event)" (change)="changePage($event.target)" class="page-select">
+          <option *ngFor="let p of pageList; let pageIdx = index" [value]="pageIdx + 1">{{ pageIdx + 1 }}</option>
+        </select>
         <div class="page-count-btn-group">
-          <div class="page-count-btn" (click)="nextPage()">&#x027E9;</div>
+          <div class="page-count-btn" (click)="nextPage()">Next</div>
           <div class="page-count-btn" (click)="endPage()">&#x027EB;</div>
         </div>
         <div>

@@ -17,6 +17,7 @@ export class LogoutInterceptorService {
             this.cookie.deleteCookie('AWT');
             this.cookie.deleteCookie('RWT');
             this.cookie.deleteCookie('UWT');
+            this.cookie.deleteCookie('loginType');
           }
         }
         return event;

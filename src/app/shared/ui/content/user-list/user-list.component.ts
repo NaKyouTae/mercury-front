@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, SimpleChanges, HostListener } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
@@ -26,6 +26,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   public btnCheck: any = true;
   public interval: any;
   public searchType = 'words';
+
+  public originData: any;
+  public dataPin: any = 10;
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
     this.observable.sourceObv.subscribe((res: any) => {
@@ -85,7 +88,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   public getList() {
     this.common.httpCallGet('service/' + this.type + '/' + this.searchType, { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.datas = res.result;
+        this.originData = res.result;
+        this.datas = res.result.slice(0, this.dataPin);
         // this.checkLove(this.datas);
       } else {
         this.datas = new Array();
@@ -125,13 +129,13 @@ export class UserListComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  public orPopular(type: string) {
+  public orPopular() {
     this.searchType = 'popular';
     this.btnCheck = false;
     this.getList();
   }
 
-  public orLatest(type: string) {
+  public orLatest() {
     this.searchType = 'words';
     this.btnCheck = true;
     this.getList();
@@ -157,6 +161,21 @@ export class UserListComponent implements OnInit, OnDestroy {
           this.observable.deleteHistory('Delete');
         }
       });
+    }
+  }
+
+  @HostListener('window:scroll')
+  public onScroll(e: any) {
+    if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
+      && this.originData.length !== this.datas.length) {
+      console.log('bottom');
+      if (this.originData.length < this.dataPin + 10) {
+        this.dataPin = this.originData.length;
+        this.datas = this.originData;
+      } else {
+        this.dataPin += 10;
+        this.datas = this.originData.slice(0, this.dataPin);
+      }
     }
   }
 }

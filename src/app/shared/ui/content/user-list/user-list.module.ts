@@ -7,4 +7,4 @@ import { UserListComponent } from './user-list.component';
   exports: [UserListComponent],
   imports: [CommonModule]
 })
-export class UserListModule {}
+export class UserListModule { }

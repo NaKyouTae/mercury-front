@@ -1,4 +1,4 @@
-<div class="user-list">
+<div class="user-list" (scroll)="onScroll($event)">
     <div *ngIf="datas != undefined || datas.length != 0">
         <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of topThreeData; let idx = index;">
             <div>
@@ -76,6 +76,7 @@
             <div class="btn order-btn" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest(type)">최신 순</div>
         </div>
     </div>
+    <!-- 삼,이행시 목록 시작 -->
     <div *ngIf="datas != undefined || datas.length != 0">
       <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
           <div>
@@ -142,6 +143,7 @@
           </div>
       </div>
     </div>
+    <!-- 삼,이행시 목록 끝 -->
     <div *ngIf="datas == undefined || datas.length == 0" class="data-none" >결과가 없습니다. 도전해보세요.</div>
     <div style="text-align: center; margin: 20px auto; ">
         <img style="width: 728px; height: 90px;" src="../../../../assets/img/ad-sample.jpg">

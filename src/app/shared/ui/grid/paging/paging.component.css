@@ -1,35 +1,19 @@
-.page-info {
-  width: 100%;
-}
+.page-info {width: 100%;}
 
-.page-info > div:first-child {
-  display: inline-block;
-}
+.page-info > div {display: inline-block; vertical-align: top; width: calc(100% / 2);}
+.page-info > div:first-child {text-align: left;}
+.page-info > div:last-child {text-align: right;}
 
-.page-info > div:last-child {
-  display: inline-block; margin-left: 30px;
-}
 
-.page-count-group > div {display: inline-block; vertical-align: top}
+.page-count-group {vertical-align: top;}
+.page-count-group > div {display: inline-block; vertical-align: top;}
 
-.page-count {
-  display: inline-block; cursor: pointer; padding: 10px;
-}
+.page-count {display: inline-block; cursor: pointer; padding: 10px;}
 
-.page-count:hover {
-  background-color: blue; color: white;
-}
+.page-count:hover {background-color: blue; color: white;}
 
 .page-count-btn-group {display: inline-block; margin: 0px 10px;}
+.page-count-btn {display: inline-block; padding: 10px; cursor: pointer; font-weight: bold;}
+.page-count-btn:hover {background-color: blue; color: white;}
 
-.page-count-btn {
-  display: inline-block; padding: 10px; cursor: pointer; font-weight: bold;
-}
-
-.page-count-btn:hover {
-  background-color: blue; color: white;
-}
-
-.page-select {
-  padding: 5px;
-}
+.page-select {padding: 5px;}

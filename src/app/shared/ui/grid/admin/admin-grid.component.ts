@@ -58,7 +58,8 @@ export class AdminGridComponent implements OnInit, OnChanges {
   onInit() {
     this.fieldsNum = this.fields.length;
     this.tot = this.data.length;
-    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
+    // tslint:disable-next-line: max-line-length
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill('').map((item, idx) => idx + 1);
     this.take = this.data.length > this.size ? this.size : this.data.length;
     this.onBind();
   }
@@ -74,8 +75,9 @@ export class AdminGridComponent implements OnInit, OnChanges {
   }
 
   public reSize(e) {
-    this.size = e;
-    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size));
+    this.size = Number(e.target.innerText);
+    // tslint:disable-next-line: max-line-length
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill('').map((item, idx) => idx + 1);
     this.selectState = 1;
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
@@ -157,23 +159,7 @@ export class AdminGridComponent implements OnInit, OnChanges {
     this.dbldata.emit(value);
   }
 
-  public onScroll(e: any) {
-    console.log(e.target.nextSibling);
-    const detail = e.target.nextSibling;
-    const dis = detail.style.display;
-    if (dis === 'block') {
-      detail.classList.remove('on');
-      detail.style.display = 'none';
-    } else {
-      detail.classList.add('on');
-      detail.style.display = 'block';
-    }
-  }
-
-  public onClick(e: any) {
-    const parent = e.target.parentElement;
-    this.selectState = e.target.innerText;
-    this.paging(this.selectState);
-    parent.style.display = 'none';
+  public clickValue(e: any) {
+    this.paging(e.target.innerText);
   }
 }

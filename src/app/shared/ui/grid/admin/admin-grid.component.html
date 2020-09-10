@@ -21,32 +21,17 @@
           <!-- <div class="page-count-btn" (click)="firstPage()">&#x027EA;</div> -->
           <div class="page-count-btn" (click)="prevPage()">Prev</div>
         </div>
-        <!-- <div
-          *ngFor="let p of pageList; let pageIdx = index"
-          class="pageCount_{{ pageIdx + 1 }} page-count"
-          (click)="changePage(pageIdx + 1)">
-          {{ pageIdx + 1 }}
-        </div> -->
         <div style="display: inline-block;">
-          <div class="select-box" (click)="onScroll($event)">{{selectState}}</div>
-          <div class="option-box" id="optionOn" style="display: none;">
-            <div *ngFor="let p of pageList; let pageIdx = index" (click)="onClick($event)">{{ pageIdx + 1 }}</div>
-          </div>
+          <app-infinite-scroll-select [data]="pageList" (change)="clickValue($event)"></app-infinite-scroll-select>
         </div>
-
-
         <div class="page-count-btn-group">
           <div class="page-count-btn" (click)="nextPage()">Next</div>
           <!-- <div class="page-count-btn" (click)="endPage()">&#x027EB;</div> -->
         </div>
-        <div>
-          <select (change)="reSize($event.target.value)" class="page-select">
-            <option *ngFor="let s of sizeList" [selected]="s == size" [value]="s">{{ s }}</option>
-          </select>
-        </div>
       </div>
       <div>
-        <div>{{ skip + 1 }} - {{ take }} of {{ tot }}</div>
+        <app-infinite-scroll-select [data]="sizeList" (change)="reSize($event)" style="display: inline-block;"></app-infinite-scroll-select>
+        <div style="display: inline-block; margin-left: 20px; font-weight: bold;">{{ skip + 1 }} - {{ take }} of {{ tot }}</div>
       </div>
     </div>
   </div>

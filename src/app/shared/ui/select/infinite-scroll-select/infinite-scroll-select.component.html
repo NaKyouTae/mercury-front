@@ -1,0 +1,6 @@
+<div style="text-align: left;">
+  <div class="select-box" (click)="clickTitle($event)">{{title}}</div>
+  <div class="option-box" style="display: none;">
+    <div *ngFor="let d of data; let idx = index" (click)="clickValue($event)">{{ d }}</div>
+  </div>
+</div>

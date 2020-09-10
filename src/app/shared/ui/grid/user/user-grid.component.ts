@@ -36,6 +36,8 @@ export class UserGridComponent implements OnInit, OnChanges {
 
   public sliceData: any;
 
+  public selectState: any = 1;
+
   constructor(private jwt: JwtService, private view: ViewContainerRef) { }
 
   ngOnInit() {
@@ -81,50 +83,51 @@ export class UserGridComponent implements OnInit, OnChanges {
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
 
-  public chagnePageListColor(e) {
-    for (let i = 1; i <= this.pageList.length; i++) {
-      const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
+  // public chagnePageListColor(e) {
+  //   for (let i = 1; i <= this.pageList.length; i++) {
+  //     const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
 
-      if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
-        page.style.backgroundColor = 'white';
-      }
-    }
+  //     if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
+  //       page.style.backgroundColor = 'white';
+  //     }
+  //   }
 
-    const newPage = document.querySelector('.pageCount_' + e) as HTMLElement;
+  //   const newPage = document.querySelector('.pageCount_' + e) as HTMLElement;
 
-    newPage.style.backgroundColor = '#e5e5e5';
-  }
+  //   newPage.style.backgroundColor = '#e5e5e5';
+  // }
 
-  public getNowPage() {
-    for (let i = 1; i <= this.pageList.length; i++) {
-      const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
-      if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
-        return i;
-      }
-    }
-  }
+  // public getNowPage() {
+  //   for (let i = 1; i <= this.pageList.length; i++) {
+  //     const page = document.querySelector('.pageCount_' + i.toString()) as HTMLElement;
+  //     if (page.style.backgroundColor === 'rgb(229, 229, 229)') {
+  //       return i;
+  //     }
+  //   }
+  // }
 
-  public changePage(e) {
-    this.nowPage = e;
-    this.chagnePageListColor(e);
-    this.paging(this.nowPage === undefined ? 1 : this.nowPage);
-  }
+  // public changePage(e) {
+  //   this.nowPage = e;
+  //   this.chagnePageListColor(e);
+  //   this.paging(this.nowPage === undefined ? 1 : this.nowPage);
+  // }
 
-  public firstPage() {
-    if (this.getNowPage() !== 1) {
-      this.chagnePageListColor(1);
-      this.paging(1);
-    } else {
-      // tslint:disable-next-line: deprecation
-      event.preventDefault();
-    }
-  }
+  // public firstPage() {
+  //   if (this.getNowPage() !== 1) {
+  //     this.chagnePageListColor(1);
+  //     this.paging(1);
+  //   } else {
+  //     // tslint:disable-next-line: deprecation
+  //     event.preventDefault();
+  //   }
+  // }
 
   public prevPage() {
-    const prev = this.getNowPage();
-    if (prev !== 1) {
-      this.chagnePageListColor(prev - 1);
-      this.paging(prev - 1);
+    // const prev = this.getNowPage();
+    if (this.selectState !== 1) {
+      // this.chagnePageListColor(prev - 1);
+      this.selectState = this.selectState - 1;
+      this.paging(this.selectState);
     } else {
       // tslint:disable-next-line: deprecation
       event.preventDefault();
@@ -132,27 +135,48 @@ export class UserGridComponent implements OnInit, OnChanges {
   }
 
   public nextPage() {
-    const next = this.getNowPage();
-    if (next !== this.pageList.length) {
-      this.chagnePageListColor(next + 1);
-      this.paging(next + 1);
+    // const next = this.getNowPage();
+    if (this.selectState !== this.pageList.length) {
+      // this.chagnePageListColor(next + 1);
+      this.selectState = this.selectState + 1;
+      this.paging(this.selectState);
     } else {
       // tslint:disable-next-line: deprecation
       event.preventDefault();
     }
   }
 
-  public endPage() {
-    if (this.getNowPage() !== this.pageList.length) {
-      this.chagnePageListColor(this.pageList.length);
-      this.paging(this.pageList.length);
-    } else {
-      // tslint:disable-next-line: deprecation
-      event.preventDefault();
-    }
-  }
+  // public endPage() {
+  //   if (this.getNowPage() !== this.pageList.length) {
+  //     this.chagnePageListColor(this.pageList.length);
+  //     this.paging(this.pageList.length);
+  //   } else {
+  //     // tslint:disable-next-line: deprecation
+  //     event.preventDefault();
+  //   }
+  // }
 
   public onDblClick(value: any) {
     this.dbldata.emit(value);
+  }
+
+  public onScroll(e: any) {
+    console.log(e.target.nextSibling);
+    const detail = e.target.nextSibling;
+    const dis = detail.style.display;
+    if (dis === 'block') {
+      detail.classList.remove('on');
+      detail.style.display = 'none';
+    } else {
+      detail.classList.add('on');
+      detail.style.display = 'block';
+    }
+  }
+
+  public onClick(e: any) {
+    const parent = e.target.parentElement;
+    this.selectState = e.target.innerText;
+    this.paging(this.selectState);
+    parent.style.display = 'none';
   }
 }

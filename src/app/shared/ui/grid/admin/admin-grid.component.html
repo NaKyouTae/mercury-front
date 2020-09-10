@@ -18,7 +18,7 @@
     <div class="page-info">
       <div class="page-count-group">
         <div class="page-count-btn-group">
-          <div class="page-count-btn" (click)="firstPage()">&#x027EA;</div>
+          <!-- <div class="page-count-btn" (click)="firstPage()">&#x027EA;</div> -->
           <div class="page-count-btn" (click)="prevPage()">Prev</div>
         </div>
         <!-- <div
@@ -27,12 +27,17 @@
           (click)="changePage(pageIdx + 1)">
           {{ pageIdx + 1 }}
         </div> -->
-        <select (click)="onScroll($event)" (change)="changePage($event.target)" class="page-select">
-          <option *ngFor="let p of pageList; let pageIdx = index" [value]="pageIdx + 1">{{ pageIdx + 1 }}</option>
-        </select>
+        <div style="display: inline-block;">
+          <div class="select-box" (click)="onScroll($event)">{{selectState}}</div>
+          <div class="option-box" id="optionOn" style="display: none;">
+            <div *ngFor="let p of pageList; let pageIdx = index" (click)="onClick($event)">{{ pageIdx + 1 }}</div>
+          </div>
+        </div>
+
+
         <div class="page-count-btn-group">
           <div class="page-count-btn" (click)="nextPage()">Next</div>
-          <div class="page-count-btn" (click)="endPage()">&#x027EB;</div>
+          <!-- <div class="page-count-btn" (click)="endPage()">&#x027EB;</div> -->
         </div>
         <div>
           <select (change)="reSize($event.target.value)" class="page-select">

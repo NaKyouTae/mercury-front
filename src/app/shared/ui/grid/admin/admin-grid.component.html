@@ -22,7 +22,7 @@
           <div class="page-count-btn" (click)="prevPage()">Prev</div>
         </div>
         <div style="display: inline-block;">
-          <app-infinite-scroll-select [data]="pageList" (change)="clickValue($event)"></app-infinite-scroll-select>
+          <app-infinite-scroll-select [data]="pageList" field="field" value="value" width="100px" (change)="clickValue($event)"></app-infinite-scroll-select>
         </div>
         <div class="page-count-btn-group">
           <div class="page-count-btn" (click)="nextPage()">Next</div>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div>
-        <app-infinite-scroll-select [data]="sizeList" (change)="reSize($event)" style="display: inline-block;"></app-infinite-scroll-select>
+        <app-infinite-scroll-select [data]="sizeList" field="field" value="value" width="100px" style="display: inline-block;" (change)="reSize($event)"></app-infinite-scroll-select>
         <div style="display: inline-block; margin-left: 20px; font-weight: bold;">{{ skip + 1 }} - {{ take }} of {{ tot }}</div>
       </div>
     </div>

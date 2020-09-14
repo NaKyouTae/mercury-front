@@ -36,9 +36,10 @@
         </div>
         <div class="form-select">
           <label>권한</label>
-          <select (change)="roleChange($event.target)">
+          <!-- <select (change)="roleChange($event.target)">
             <option *ngFor="let role of roleData" value="{{ role.idx }}">{{ role.roleName }}</option>
-          </select>
+          </select> -->
+          <app-infinite-scroll-select [data]="roleData" field="roleName" value="idx" width="100%" (change)="roleChange($event)" ></app-infinite-scroll-select>
         </div>
       </form>
     </div>

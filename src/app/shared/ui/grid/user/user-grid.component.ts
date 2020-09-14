@@ -23,7 +23,15 @@ export class UserGridComponent implements OnInit, OnChanges {
   @Output() dbldata: EventEmitter<any> = new EventEmitter<any>();
 
   public fieldsNum: any;
-  public sizeList: any = [10, 20, 30, 40, 50, 100, 200];
+  public sizeList: any = [
+    { field: 10, value: 10 },
+    { field: 20, value: 20 },
+    { field: 30, value: 30 },
+    { field: 40, value: 40 },
+    { field: 50, value: 50 },
+    { field: 100, value: 100 },
+    { field: 200, value: 200 },
+  ];
   public size: any = 30;
   public skip: any = 0;
   public take: any = 30;
@@ -38,7 +46,7 @@ export class UserGridComponent implements OnInit, OnChanges {
 
   public selectState: any = 1;
 
-  constructor(private jwt: JwtService, private view: ViewContainerRef) { }
+  constructor(private jwt: JwtService, private view: ViewContainerRef) {}
 
   ngOnInit() {
     if (this.data !== undefined) {
@@ -63,7 +71,11 @@ export class UserGridComponent implements OnInit, OnChanges {
     this.fieldsNum = this.fields.length;
     this.tot = this.data.length;
     // tslint:disable-next-line: max-line-length
-    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill('').map((item, idx) => idx + 1);
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill({ field: '', value: '' }).map((item, idx) => {
+      item.value = idx + 1;
+      item.field = idx + 1;
+      return item;
+    });
     this.take = this.data.length > this.size ? this.size : this.data.length;
     this.onBind();
   }
@@ -81,7 +93,11 @@ export class UserGridComponent implements OnInit, OnChanges {
   public reSize(e) {
     this.size = Number(e.target.innerText);
     // tslint:disable-next-line: max-line-length
-    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill('').map((item, idx) => idx + 1);
+    this.pageList = new Array(Math.ceil(this.data.length / this.size < 1 ? 1 : this.data.length / this.size)).fill({ field: '', value: '' }).map((item, idx) => {
+      item.value = idx + 1;
+      item.field = idx + 1;
+      return item;
+    });
     this.paging(this.nowPage === undefined ? 1 : this.nowPage);
   }
 

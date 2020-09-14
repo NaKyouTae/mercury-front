@@ -10,7 +10,9 @@ export class GridDataPipe implements PipeTransform {
     // tslint:disable-next-line: no-eval
     const result = eval('data.' + field);
     if (result !== null) {
-      if (type === 'string') {
+      if (type == null) {
+        return result;
+      } else if (type === 'string') {
         return result;
       } else if (type === 'date') {
         return result.slice(0, 16);

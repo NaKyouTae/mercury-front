@@ -34,7 +34,9 @@ export class TreeListChildComponent implements OnInit {
 
   constructor(private common: CommonHttpService, private forms: FormsService, private dialog: ModalService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.roleSearch();
+  }
 
   public onData(data, field) {
     // tslint:disable-next-line: no-eval
@@ -146,8 +148,7 @@ export class TreeListChildComponent implements OnInit {
   }
 
   public roleChange(e: any) {
-    console.log('test');
-    this.form.controls.roleTitle.setValue(e.options[e.options.selectedIndex].label);
-    this.form.controls.roleIdx.setValue(e.options[e.options.selectedIndex].value);
+    this.form.controls.roleTitle.setValue(e.roleName);
+    this.form.controls.roleIdx.setValue(e.idx);
   }
 }

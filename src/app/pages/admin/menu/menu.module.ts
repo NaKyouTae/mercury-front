@@ -8,6 +8,6 @@ import { CustomTreeListModule } from 'src/app/shared/ui/tree-list/tree-list.modu
 @NgModule({
   declarations: [MenuComponent],
   imports: [CommonModule, CustomTreeListModule, FormsModule, PageTitleModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MenuModule {}

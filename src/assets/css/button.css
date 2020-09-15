@@ -45,7 +45,7 @@
   border-radius: 50px;
 }
 
-.btn {cursor: pointer;}
+.btn {cursor: pointer; padding: 10px 20px;}
 .btn > span {}
 
 

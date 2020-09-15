@@ -41,7 +41,6 @@
 
 .modal-update-footer > button {
   width: calc((100% / 3) - 20px / 3);
-  padding: 10px 0px;
 }
 
 .modal-update-footer > button:nth-child(2) {
@@ -50,9 +49,7 @@
 
 .modal-footer-one-btn > button {
   width: 100%;
-  padding: 10px 0px;
 }
-
 
 .modal-command > button{
   display: inline-block;

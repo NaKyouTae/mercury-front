@@ -45,8 +45,8 @@
       </form>
     </div>
     <div class="modal-footer modal-create-footer">
-      <button (click)="onClose()">취소</button>
-      <button (click)="onCreate(newform.controls)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.password.value">생성</button>
+      <button class="btn btn-sub2" (click)="onClose()">취소</button>
+      <button class="btn btn-main" (click)="onCreate(newform.controls)" [disabled]="!newform.valid && newform.controls.rep.value != newform.controls.password.value">생성</button>
     </div>
   </div>
 </ng-template>

@@ -1,6 +1,8 @@
 <div class="content-width">
   <div class="treelist-wrapper">
-    <button (click)="onCreateModal(CreModal)" class="btn btn-main" style="display: block;">add</button>
+    <div class="btn-area-command">
+      <button (click)="onCreateModal(CreModal)" class="btn btn-top-command btn-main">add</button>
+    </div>
     <div *ngFor="let field of fields; let f_idx = index" class="treelist-title" [ngStyle]="{'width' : field.width + '%'}">{{field.title}}</div>
     <nkt-tree-list-child [data]="data" [fields]="fields" [type]="type"></nkt-tree-list-child>
   </div>
@@ -20,19 +22,22 @@
         <div class="form-input-text">
           <label>제목</label>
           <input type="text" name="title" formControlName="title" />
-          <label *ngIf="form.get('title') == undefined"> title is required. </label>
+          <span *ngIf="form.controls.title.hasError('required')" style="color:red; display: block; font-size: 12px;">제목은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>그룹</label>
           <input type="text" formControlName="menuGroup" />
+          <span *ngIf="form.controls.menuGroup.hasError('required')" style="color:red; display: block; font-size: 12px;">메뉴 그룹은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>URL</label>
           <input type="text" formControlName="url" />
+          <span *ngIf="form.controls.url.hasError('required')" style="color:red; display: block; font-size: 12px;">URL은 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>순서</label>
           <input type="text" formControlName="menuOrder" />
+          <span *ngIf="form.controls.menuOrder.hasError('required')" style="color:red; display: block; font-size: 12px;">순서는 필수 입니다.</span>
         </div>
         <div class="form-select">
           <label>권한</label>
@@ -45,8 +50,8 @@
     </div>
     <div class="modal-footer modal-create-footer">
       <button class="btn btn-sub2"(click)="onClose()">취소</button>
-      <button class="btn btn-main"[disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
-              (click)="onCreate(form.controls)">생성</button>
+      <button class="btn btn-main" [disabled]="!form.valid" (click)="onCreate(form.controls)">생성</button>
+      <!-- <button class="btn btn-main" [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true" (click)="onCreate(form.controls)">생성</button> -->
     </div>
   </div>
 </ng-template>

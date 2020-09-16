@@ -1,7 +1,6 @@
-<div id="{{d.menuGroup}}_treelist" *ngFor="let d of data; let d_idx = index;" [ngClass]="d_idx == data.length-1 ? 'tree-list-row-last':'tree-list-row'">
+<div id="{{d.menuGroup}}_treelist" *ngFor="let d of data; let d_idx = index;" class="tree-list-row">
   <div RowModal (dblclick)="onDblClick(d)" [modal]="{temp: UpModal, width: 500, height: 700, data:form}" *ngFor="let field of fields; let field_idx = index"
-  [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : '', 'width' : field.width + '%'}"
-  [ngClass]="field_idx == 0 ? 'tree-list-row-field-frist':'tree-list-row-field'">
+  [ngStyle]="{'background-color' : (field_idx % 2) != 0 ? '#e5e5e5' : '', 'width' : field.width + '%'}" class="tree-list-row-field">
     <div *ngIf="field_idx == 0" style="display: inline-block;">
         <button *ngIf="d.child == true && d.children == undefined" (click)="onExpand(d)" style="display: inline-block;margin-right: 10px;">&#9662;</button>
         <button *ngIf="d.child == true && d.children != undefined" (click)="onCollapse(d)" style="display: inline-block;margin-right: 10px;">&#9652;</button>

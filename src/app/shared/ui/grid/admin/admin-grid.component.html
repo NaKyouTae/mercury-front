@@ -1,8 +1,8 @@
 <div class="content-width">
   <div [ngStyle]="{ width: gridWidth == null ? '100%':gridWidth + 'px' }" style="margin: 20px auto;">
     <div class="grid-wrapper">
-      <div class="grid-command">
-        <button BtnModal *ngIf="btnUse && userRoles.includes('ROLE_ADMIN')" class="btn btn-main" [modal]="creModal">생성</button>
+      <div class="btn-area-command">
+        <button BtnModal *ngIf="btnUse && userRoles.includes('ROLE_ADMIN')" class="btn btn-top-command btn-main" [modal]="creModal">생성</button>
       </div>
       <div *ngFor="let field of fields" class="grid-title" [ngStyle]="{'width': field.width + '%'}">{{ field.title }}</div>
 

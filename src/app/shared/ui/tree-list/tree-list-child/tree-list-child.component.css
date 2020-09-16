@@ -1,25 +1,9 @@
- .tree-list-row {
-  cursor: pointer;
-}
+ .tree-list-row {cursor: pointer;}
+ .tree-list-row:hover {background-color: #ededed;}
 
-.tree-list-row-last {
-  cursor: pointer;
-}
+/* .tree-list-row-field {display: inline-block; height: 40px; overflow: hidden;} */
+.tree-list-row-field {border-bottom: 1px solid darkgray; display: inline-block; padding: 10px 0px; height: 20px; overflow: hidden; margin-bottom: -4px;}
 
-.tree-list-row-field {
-  display: inline-block;
-  height: 40px;
-  overflow: hidden;
-}
+.tree-list-row-field-frist {text-align: left; display: inline-block; height: 40px; overflow: hidden;}
 
-.tree-list-row-field-frist {
-  text-align: left;
-  display: inline-block;
-  height: 40px;
-  overflow: hidden;
-}
-
-.tree-list-row-child {
-  padding-left: 20px; 
-  border-left: 1px solid darkgray;
-}
+.tree-list-row-child {padding-left: 20px; border-left: 1px solid darkgray;}

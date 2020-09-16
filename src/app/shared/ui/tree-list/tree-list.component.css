@@ -1,11 +1,2 @@
-.treelist-wrapper {
-    text-align: center;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-.treelist-title {
-    display: inline-block;
-    padding: 10px 0px;
-    font-weight: bold;
-}
+.treelist-wrapper {text-align: center; overflow-x: auto; white-space: nowrap;}
+.treelist-title {display: inline-block; padding: 10px 0px; font-weight: bold; background-color: darkblue; color: white;}

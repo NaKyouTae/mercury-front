@@ -62,3 +62,8 @@
 .btn-sm {min-width: 96px;}
 .btn-md {min-width: 120px;}
 .btn-lg {min-width: 169;}
+
+.btn-top-command {margin-bottom: 10px;}
+
+
+.btn-area-command {text-align: right;}

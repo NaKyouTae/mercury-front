@@ -1,17 +1,6 @@
 @import url(../paging/paging.component.css);
 
 .grid-wrapper {text-align: center; overflow-x: auto; white-space: nowrap; margin-bottom: 10px; }
-.grid-command {text-align: right; margin-right: 10px;}
 .grid-title {display: inline-block; /* border-top: 1px solid darkgray; */ background-color: darkblue; color: white; padding: 10px 0px; font-weight: bold;}
 .grid-field {border-bottom: 1px solid darkgray; display: inline-block; padding: 10px 0px; height: 20px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; margin-bottom: -4px;}
 .grid-row:hover {background-color: #ededed; cursor: pointer;}
-.grid-vertical {border-bottom: 1px solid darkgray; padding: 0px 10px;}
-
-/* .select-box {box-sizing: border-box; width: 100px; padding: 8px 0 8px 16px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-size: 14px;} */
-.select-box {box-sizing: border-box; width: 100px; padding: 8px 0 8px 16px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; background: #fff url(../../../../../assets/img/btn/selectBox.png) no-repeat 90% 50%; font-size: 14px;}
-.option-box {overflow-y: auto; width: 100px; max-height: 150px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;}
-.select-box.on {border: 1px solid #96c8da; border-bottom: 0; border-radius: 4px 4px 0 0;}
-.option-box.on {border: 1px solid #96c8da; border-top: 0; border-radius: 0 0 4px 4px; position: absolute; background-color: white;}
-.option-box > div {padding: 8px 16px; font-size: 14px; color: #999; cursor: pointer;}
-.option-box > div:hover {background: #f7f7f7; color: #3f3f3f;}
-.option-box > div.select {background: #f7f7f7; color: #3f3f3f;}

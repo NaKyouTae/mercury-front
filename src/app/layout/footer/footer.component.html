@@ -53,7 +53,7 @@
       <form [formGroup]="form">
         <div class="form-input-text">
           <label>이메일</label>
-          <button *ngIf="!authConfirm && auth == null" class="btn command-btn" style="display: inline-block;" (click)="checkEmail(form.controls.email.value)" [disabled]="form.controls.email.value == null || form.controls.email.value == '' ? true:false">인증요청</button>
+          <button *ngIf="!authConfirm && auth == null" class="btn btn-sub2" style="display: inline-block;" (click)="checkEmail(form.controls.email.value)" [disabled]="form.controls.email.value == null || form.controls.email.value == '' ? true:false">인증요청</button>
           <input type="text" formControlName="email" style="margin-top:5px;" />
           <span class="required-notice-red" *ngIf="form.controls.email.hasError('required')">이메일은 필수 입니다.</span>
           <span class="required-notice-red" *ngIf="form.controls.email.errors?.email">이메일 형식에 맞지 않습니다.</span>
@@ -65,7 +65,7 @@
     </div>
     <div class="modal-footer" style="margin-top: 15px;">
       <!-- <button (click)="onPopClose()">취소</button> -->
-      <button class="btn command-btn" style="margin: auto; width: 100%;" (click)="upUserEmail(form.controls)" [disabled]="!form.valid">구독 하기</button>
+      <button class="btn btn-sub2" style="margin: auto; width: 100%;" (click)="upUserEmail(form.controls)" [disabled]="!form.valid">구독 하기</button>
     </div>
   </div>
 </ng-template>

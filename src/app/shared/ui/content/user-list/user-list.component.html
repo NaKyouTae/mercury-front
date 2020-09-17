@@ -8,35 +8,35 @@
                     <div>
                       <div *ngIf="my">
                           <div *ngIf="!loginCheck">
-                              <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                              <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                              <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                              <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                           </div>
                           <div *ngIf="loginCheck && item.me">
-                              <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
+                              <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
                           </div>
                           <div *ngIf="loginCheck && !item.me">
-                            <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                            <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                            <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                            <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                           </div>
                       </div>
                       <div *ngIf="!my">
                         <div *ngIf="!loginCheck">
-                          <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                          <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                          <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                          <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                          <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                          <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                         <div *ngIf="loginCheck && item.me">
-                          <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn love-btn" src="../../../../assets/img/love.png">
+                          <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">
                         </div>
                         <div *ngIf="loginCheck && !item.me">
                             <div *ngIf="type == 'three'">
-                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                             </div>
                             <div *ngIf="type == 'twice'">
-                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                             </div>
                         </div>
                       </div>
@@ -44,8 +44,8 @@
                     <div>{{item.point}}</div>
                 </div>
                 <div class="data-command">
-                    <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
-                    <!-- <div *ngIf="my" class="btn command-btn" (click)="onDelete(item)">삭제</div> -->
+                    <!-- <div class="btn btn-sub2" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
+                    <!-- <div *ngIf="my" class="btn btn-sub2" (click)="onDelete(item)">삭제</div> -->
                     <div>{{item.insertDate | slice:0:16}}</div>
                 </div>
             </div>
@@ -72,8 +72,8 @@
             </div>
         </div>
         <div class="data-title data-title-command">
-            <div class="btn order-btn" [ngStyle]="{'color': btnCheck == false ? '#100efb':'black'}" (click)="orPopular()">인기 순</div>
-            <div class="btn order-btn" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest()">최신 순</div>
+            <div class="btn btn-order" [ngStyle]="{'color': btnCheck == false ? '#100efb':'black'}" (click)="orPopular()">인기 순</div>
+            <div class="btn btn-order" [ngStyle]="{'color': btnCheck == true ? '#100efb':'black'}" (click)="orLatest()">최신 순</div>
         </div>
     </div>
     <!-- 삼,이행시 목록 시작 -->
@@ -86,35 +86,35 @@
                   <div>
                     <div *ngIf="my">
                         <div *ngIf="!loginCheck">
-                            <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                            <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                            <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                            <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                            <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                            <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                         <div *ngIf="loginCheck && item.me">
-                            <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love.png">
+                            <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
                         </div>
                         <div *ngIf="loginCheck && !item.me">
-                          <img *ngIf="item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                          <img *ngIf="!item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                          <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                          <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                     </div>
                     <div *ngIf="!my">
                       <div *ngIf="!loginCheck">
-                        <img *ngIf="item.me && item.love" class="love-btn" src="../../../../assets/img/love.png">
-                        <img *ngIf="!item.me && item.love" class="love-btn" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.me && !item.love" class="love-btn" src="../../../../assets/img/love-b-border.png">
+                        <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                        <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                       </div>
                       <div *ngIf="loginCheck && item.me">
-                        <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn love-btn" src="../../../../assets/img/love.png">
+                        <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">
                       </div>
                       <div *ngIf="loginCheck && !item.me">
                           <div *ngIf="type == 'three'">
-                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                           </div>
                           <div *ngIf="type == 'twice'">
-                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-r-border.png">
-                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn love-btn" src="../../../../assets/img/love-b-border.png">
+                              <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                              <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                           </div>
                       </div>
                     </div>
@@ -122,8 +122,8 @@
                   <div>{{item.point}}</div>
               </div>
               <div class="data-command">
-                  <!-- <div class="btn command-btn" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
-                  <!-- <div *ngIf="my" class="btn command-btn" (click)="onDelete(item)">삭제</div> -->
+                  <!-- <div class="btn btn-sub2" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
+                  <!-- <div *ngIf="my" class="btn btn-sub2" (click)="onDelete(item)">삭제</div> -->
                   <div>{{item.insertDate | slice:0:16}}</div>
               </div>
           </div>

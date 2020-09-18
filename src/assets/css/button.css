@@ -15,12 +15,12 @@
 .btn-sub1 {color: white; background-color: #333; border: none;}
 .btn-sub2 {color: #333; background-color: white; border: 1px solid darkgrey;}
 
-.btn-sm {min-width: 96px;}
-.btn-md {min-width: 120px;}
-.btn-lg {min-width: 169;}
+.btn-sm {min-width: 96px; width: 96px;}
+.btn-md {min-width: 120px; width: 120px;}
+.btn-lg {min-width: 169px; width: 169px;}
 
-.btn-top-command {margin-bottom: 10px;}
 .btn-area-command {text-align: right;}
+.btn-top-command {margin-bottom: 10px;}
 
 .btn-tap {display: inline-block; padding: 10px; margin: 10px 10px 10px 0px; border: 1px solid darkgray;}
 .btn-order {float: right; margin-left: 10px;}

@@ -50,23 +50,78 @@
           <h4>Class Name</h4>
           <h5>
             <ul>
-              <li>[btn] = cursor: pointer;</li>
-              <li>[btn-sub2] = margin-left: 10px; padding: 4px 8px; background-color:#ffffff; border: 1px solid darkgrey; border-radius: 5px;</li>
-              <li>[btn-sub2:hover] = background-color: #100efb; color: #ffffff; border: 1px solid white;</li>
+              <li>[btn] = {cursor: pointer; padding: 10px 20px;}</li>
+              <li>[btn:hover] = {color: white; background-color: darkblue; border: none;}</li>
+              <li>[btn-disabled] = {color: white; background-color: #A9BCF5; border: none;}</li>
+              <li>[btn-main] = {color: white; background-color: blue; border: none;}</li>
+              <li>[btn-sub] = {color: blue; background-color: white; border: 1px solid blue;}</li>
+              <li>[btn-sub1] = {color: white; background-color: #333; border: none;}</li>
+              <li>[btn-sub2] = {color: #333; background-color: white; border: 1px solid darkgrey;}</li>
+              <li>[btn-sm] = {min-width: 96px; width: 96px;}</li>
+              <li>[btn-md] = {min-width: 120px; width: 120px;}</li>
+              <li>[btn-lg] = {min-width: 169px; width: 169px;}</li>
+              <li>[btn-area-command] = {text-align: right;}</li>
             </ul>
           </h5>
         </p>
         <h4>Results</h4>
         <div>
-          <button class="btn btn-sub2">생성</button>
-          <button class="btn btn-sub2">수정</button>
-          <button class="btn btn-sub2">삭제</button>
+          <div>
+            <h3>Button Main</h3>
+            <button class="btn btn-main btn-sm" style="margin:0px 5px;">Small</button>
+            <button class="btn btn-main btn-md" style="margin:0px 5px;">Middle</button>
+            <button class="btn btn-main btn-lg" style="margin:0px 5px;">Large</button>
+          </div>
+
+          <div>
+            <h3>Button Disabled</h3>
+            <button class="btn btn-main-disabled btn-sm" style="margin:0px 5px;">Small</button>
+            <button class="btn btn-main-disabled btn-md" style="margin:0px 5px;">Middle</button>
+            <button class="btn btn-main-disabled btn-lg" style="margin:0px 5px;">Large</button>
+          </div>
+
+          <div>
+            <h3>Button SUB</h3>
+            <button class="btn btn-sub btn-sm" style="margin:0px 5px;">Small</button>
+            <button class="btn btn-sub btn-md" style="margin:0px 5px;">Middle</button>
+            <button class="btn btn-sub btn-lg" style="margin:0px 5px;">Large</button>
+          </div>
+
+          <div>
+            <h3>Button SUB1</h3>
+            <button class="btn btn-sub1 btn-sm" style="margin:0px 5px;">Small</button>
+            <button class="btn btn-sub1 btn-md" style="margin:0px 5px;">Middle</button>
+            <button class="btn btn-sub1 btn-lg" style="margin:0px 5px;">Large</button>
+          </div>
+
+          <div>
+            <h3>Button SUB2</h3>
+            <button class="btn btn-sub2 btn-sm" style="margin:0px 5px;">Small</button>
+            <button class="btn btn-sub2 btn-md" style="margin:0px 5px;">Middle</button>
+            <button class="btn btn-sub2 btn-lg" style="margin:0px 5px;">Large</button>
+          </div>
         </div>
         <h4>Example</h4>
         <pre>
-          button class="btn btn-sub2" 생성 /button
-          button class="btn btn-sub2" 수정 /button
-          button class="btn btn-sub2" 삭제 /button
+          button class="btn btn-main btn-sm" style="margin:0px 5px;" Small /button
+          button class="btn btn-main btn-md" style="margin:0px 5px;" Middle /button
+          button class="btn btn-main btn-lg" style="margin:0px 5px;" Large /button
+
+          button class="btn btn-main-disabled btn-sm" style="margin:0px 5px;" Small /button
+          button class="btn btn-main-disabled btn-md" style="margin:0px 5px;" Middle /button
+          button class="btn btn-main-disabled btn-lg" style="margin:0px 5px;" Large /button
+
+          button class="btn btn-sub btn-sm" style="margin:0px 5px;" Small /button
+          button class="btn btn-sub btn-md" style="margin:0px 5px;" Middle /button
+          button class="btn btn-sub btn-lg" style="margin:0px 5px;" Large /button
+
+          button class="btn btn-sub1 btn-sm" style="margin:0px 5px;" Small /button
+          button class="btn btn-sub1 btn-md" style="margin:0px 5px;" Middle /button
+          button class="btn btn-sub1 btn-lg" style="margin:0px 5px;" Large /button
+
+          button class="btn btn-sub2 btn-sm" style="margin:0px 5px;" Small /button
+          button class="btn btn-sub2 btn-md" style="margin:0px 5px;" Middle /button
+          button class="btn btn-sub2 btn-lg" style="margin:0px 5px;" Large /button
         </pre>
       </div>
       <div style="border-bottom: 1px solid darkgray; padding-bottom: 20px;">

@@ -15,28 +15,31 @@
 .btn-lg {min-width: 169px; width: 169px;}
 
 /* Button Main */
-.btn-main {color: white; background-color: #100efb; border: none;}
-.btn-main:hover {color: white; background-color: #001d94; border: none;}
+.btn-main {color: white; background-color: #100efb; border: 1px solid #100efb;}
+.btn-main:hover {color: white; background-color: #001d94; border: 1px solid #100efb;}
 
 /* Button Sub */
 .btn-sub {color: #100efb; background-color: white; border: 1px solid #100efb;}
-  .btn-sub:hover {color: white; background-color: #100efb; border: none;}
+.btn-sub:hover {color: white; background-color: #100efb; border: 1px solid #100efb;}
 
 /* Button Sub 1 */
-.btn-sub1 {color: white; background-color: #333; border: none;}
-.btn-sub1:hover {color: white; background-color:#111; border: none;}
+.btn-sub1 {color: white; background-color: #333; border: 1px solid #111;}
+.btn-sub1:hover {color: white; background-color:#111; border: 1px solid #111;}
 
 /* Button Sub 2 */
 .btn-sub2 {color: #333; background-color: white; border: 1px solid darkgrey;}
-.btn-sub2:hover {color: white; background-color: #333; border: none;}
+.btn-sub2:hover {color: white; background-color: #333; border: 1px solid darkgrey;}
 
 /* Button Disabled */
-.btn-disabled {color: white; background-color: #c4cfff; border: none;}
+.btn-disabled {color: white; background-color: #c4cfff; border: 1px solid #c4cfff;}
 
 
 .btn-area-command {text-align: right;}
 .btn-top-command {margin-bottom: 10px;}
 
+/* Button Tap */
 .btn-tap {display: inline-block; padding: 10px; margin: 10px 10px 10px 0px; border: 1px solid darkgray;}
+.btn-tap:hover {color: white; background-color: #100efb; border: 1px solid #100efb;}
+
 .btn-order {float: right; margin-left: 10px;}
 .btn-love{height: 13px;}

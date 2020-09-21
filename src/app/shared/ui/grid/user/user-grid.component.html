@@ -8,7 +8,7 @@
       <div RowDbclick (dblclick)="onDblClick(d)" *ngFor="let d of sliceData; let d_idx = index" class="grid-row">
         <div *ngFor="let f of fields; let f_idx = index" class="grid-field"
               [ngStyle]="{'width' : f.width + '%'}">
-          <div BtnClick (click)="onDblClick(d)" *ngIf="f_idx == 0" class="btn" style="margin: 0px 10px; display: inline-block;">&#62;</div>
+          <div BtnClick (click)="onDblClick(d)" *ngIf="f_idx == 0" style="margin: 0px 10px; display: inline-block;">&#62;</div>
           <div *ngIf="f_idx == 0 && d.type" style="margin: 0px 10px; display: inline-block; background-color: red; color: white;">공지</div>
           <div style="display: inline-block;">{{ d | gridData: f.field : f.type }}</div>
         </div>

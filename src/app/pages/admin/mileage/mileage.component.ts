@@ -25,18 +25,18 @@ export class MileageComponent implements OnInit {
   ];
 
   public form = new FormGroup({
-    idx: new FormControl(''),
-    userName: new FormControl(''),
-    withDrawDate: new FormControl(''),
-    paymentDate: new FormControl(''),
-    content: new FormControl(''),
-    prevMileage: new FormControl(''),
-    withDrawMileage: new FormControl(''),
-    afterMileage: new FormControl(''),
-    approval: new FormControl(''),
+    idx: new FormControl({ value: '', disabled: true }),
+    userName: new FormControl({ value: '', disabled: true }),
+    withDrawDate: new FormControl({ value: '', disabled: true }),
+    paymentDate: new FormControl({ value: '', disabled: true }),
+    content: new FormControl({ value: '', disabled: true }),
+    prevMileage: new FormControl({ value: '', disabled: true }),
+    withDrawMileage: new FormControl({ value: '', disabled: true }),
+    afterMileage: new FormControl({ value: '', disabled: true }),
+    approval: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private dialog: MatDialog, private formservice: FormsService) { }
+  constructor(private common: CommonHttpService, private dialog: MatDialog, private formservice: FormsService) {}
 
   ngOnInit() {
     this.onInit();

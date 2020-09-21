@@ -45,8 +45,8 @@
       </form>
     </div>
     <div class="modal-footer modal-create-footer">
-      <button (click)="onClose()">취소</button>
-      <button (click)="onCreate(creForm.controls)" [disabled]="!creForm.valid">생성</button>
+      <button class="btn btn-sub2" (click)="onClose()">취소</button>
+      <button class="btn btn-main" (click)="onCreate(creForm.controls)" [disabled]="!creForm.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -99,9 +99,9 @@
       </form>
     </div>
     <div class="modal-footer modal-update-footer">
-      <button (click)="onClose()">취소</button>
-      <button (click)="onDelete(upForm.controls)">삭제</button>
-      <button (click)="onUpdate(upForm.controls)" [disabled]="!upForm.valid">수정</button>
+      <button class="btn btn-sub2" (click)="onClose()">취소</button>
+      <button class="btn btn-sub" (click)="onDelete(upForm.controls)">삭제</button>
+      <button class="btn btn-main" (click)="onUpdate(upForm.controls)" [disabled]="!upForm.valid">수정</button>
     </div>
   </div>
 </ng-template>

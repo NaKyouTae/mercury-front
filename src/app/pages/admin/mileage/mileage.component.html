@@ -1,7 +1,7 @@
 <div class="content-width">
     <app-page-title title="출금 신청 내역"></app-page-title>
     <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" (dbldata)="onDblClick($event)"
-    [upModal]="{temp: template, width: 500, height:570, data: form}"></app-admin-grid>
+    [upModal]="{temp: template, width: 500, height:590, data: form}"></app-admin-grid>
 </div>
 
 <ng-template #template>
@@ -14,37 +14,38 @@
   </div>
   <div>
     <form [formGroup]="form">
-      <div>
+      <div class="form-input-text">
         <label>일렬 번호</label>
-        <div>{{form.controls.idx.value}}</div>
+        <input type="text" formControlName="idx"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>지급 일</label>
-        <div>{{form.controls.paymentDate.value}}</div>
+        <input type="text" formControlName="paymentDate"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>지급 내용</label>
-        <div>{{form.controls.content.value}}</div>
+        <input type="text" formControlName="content"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>이전 금액</label>
-        <div>{{form.controls.prevMileage.value}}</div>
+        <input type="text" formControlName="prevMileage"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>요청 금액</label>
-        <div>{{form.controls.withDrawMileage.value}}</div>
+        <input type="text" formControlName="withDrawMileage"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>잔액</label>
-        <div>{{form.controls.afterMileage.value}}</div>
+        <input type="text" formControlName="afterMileage"/>
       </div>
-      <div>
+      <div class="form-input-text">
         <label>승인 여부</label>
-        <div>{{form.controls.approval.value}}</div>
+        <input type="text" formControlName="approval"/>
       </div>
     </form>
   </div>
   <div class="modal-footer modal-create-footer">
-    <button (click)="onApproval(form.controls)">승인</button>
+    <button class="btn btn-sub2" (click)="onClose()">취소</button>
+    <button class="btn btn-main" (click)="onApproval(form.controls)">승인</button>
   </div>
 </ng-template>

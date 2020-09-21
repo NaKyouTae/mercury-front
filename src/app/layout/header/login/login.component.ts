@@ -196,6 +196,11 @@ export class LoginComponent implements OnInit {
   public kakaoLogin() {
     // tslint:disable-next-line: max-line-length
     window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code';
+    // this.common.httpCallGet('oauth/kakao', { code: 'null' }).subscribe((res: any) => {
+    //   if (res.resultCode === 'OK' && res.result !== null) {
+    //     window.location.href = res;
+    //   }
+    // });
   }
 
   public findUserName(e: any, template: TemplateRef<any>) {

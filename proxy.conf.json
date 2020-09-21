@@ -11,6 +11,12 @@
     "changeOrigin": true,
     "logLevel" : "debug"
   },
+  "/oauth/*": {
+    "target" : "http://localhost:8090",
+    "secure" : false,
+    "changeOrigin": true,
+    "logLevel" : "debug"
+  },
   "/batch/service/*": {
     "target" : "http://localhost:9090",
     "secure" : false,

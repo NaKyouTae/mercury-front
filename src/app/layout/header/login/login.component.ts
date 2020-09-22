@@ -43,8 +43,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService,
-    private router: Router) { }
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -198,22 +197,7 @@ export class LoginComponent implements OnInit {
   }
 
   public kakaoLogin() {
-    // tslint:disable-next-line: max-line-length
-    // window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://http://localhost:4300/oauth/kakao?code=&response_type=code';
-    // this.common.httpCallGet('oauth/kakao', { code: 'null' }).subscribe((res: any) => {
-    //   if (res.resultCode === 'OK' && res.result !== null) {
-    //     window.location.href = res;
-    //   }
-    // });
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Access-Control-Allow-Origin': '*',
-    //   'Access-Control-Allow-Credentials': 'true',
-    //   'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-    // });
-
-    const code = Kakao.Auth.authorize({ redirectUri: 'http://localhost:8090/oauth/kakao' });
-    console.log('login code : ', code);
+    Kakao.Auth.authorize({ redirectUri: 'http://localhost:4300/oauth/kakao' });
   }
 
   public findUserName(e: any, template: TemplateRef<any>) {

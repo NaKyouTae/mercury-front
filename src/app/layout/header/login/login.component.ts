@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { trigger, style, state, animate, transition } from '@angular/animations';
-import { CommonValidationService } from 'src/app/shared/common/validations/common-validation.service';
+
+declare let Kakao: any; //
 
 @Component({
   selector: 'app-login',
@@ -43,8 +44,8 @@ import { CommonValidationService } from 'src/app/shared/common/validations/commo
 })
 export class LoginComponent implements OnInit {
   constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService,
-    private router: Router,
-    private valition: CommonValidationService) { }
+    private router: Router) { }
+
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
   public upToggle: any = !this.front ? 'upSign' : 'upLogin';
@@ -79,7 +80,10 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  ngOnInit() { }
+  ngOnInit() {
+    Kakao.init('58b766d921ddd12e614e8058e0af5e3d');
+    console.log('kakao init', Kakao.isInitialized());
+  }
 
   public dragFront() {
     this.front = !this.front;
@@ -195,12 +199,21 @@ export class LoginComponent implements OnInit {
 
   public kakaoLogin() {
     // tslint:disable-next-line: max-line-length
-    window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:8090/oauth/kakao&response_type=code';
+    // window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://http://localhost:4300/oauth/kakao?code=&response_type=code';
     // this.common.httpCallGet('oauth/kakao', { code: 'null' }).subscribe((res: any) => {
     //   if (res.resultCode === 'OK' && res.result !== null) {
     //     window.location.href = res;
     //   }
     // });
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Credentials': 'true',
+    //   'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+    // });
+
+    const code = Kakao.Auth.authorize({ redirectUri: 'http://localhost:8090/oauth/kakao' });
+    console.log('login code : ', code);
   }
 
   public findUserName(e: any, template: TemplateRef<any>) {

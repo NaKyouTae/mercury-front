@@ -50,7 +50,7 @@
     </div>
     <div class="modal-footer modal-create-footer">
       <button class="btn btn-sub2"(click)="onClose()">취소</button>
-      <button class="btn btn-main" [disabled]="!form.valid" (click)="onCreate(form.controls)">생성</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid }" [disabled]="!form.valid" (click)="onCreate(form.controls)">생성</button>
       <!-- <button class="btn btn-main" [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true" (click)="onCreate(form.controls)">생성</button> -->
     </div>
   </div>

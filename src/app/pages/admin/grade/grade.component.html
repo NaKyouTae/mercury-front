@@ -1,7 +1,7 @@
 <div class="content-width">
     <app-page-title title="등급"></app-page-title>
-    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
-    [creModal]="{temp: CreModal, width: 500, height: 370, data: form}" 
+    <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+    [creModal]="{temp: CreModal, width: 500, height: 370, data: form}"
     [upModal]="{temp: UpModal, width: 500, height: 460, data: form}"></app-admin-grid>
 </div>
 
@@ -34,7 +34,7 @@
     </div>
     <div class="modal-footer modal-create-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
-      <button class="btn btn-main" (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !newform.valid, 'btn-main' : newform.valid}" (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -45,7 +45,7 @@
       <div>
         <h2>{{form.controls.gradeName.value}} 정보</h2>
       </div>
-      <div class="close" (click)="onClose(UpModal)">&times;</div>      
+      <div class="close" (click)="onClose(UpModal)">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -77,7 +77,7 @@
     <div class="modal-footer modal-update-footer">
       <button class="btn btn-sub2" (click)="onClose(UpModal)">취소</button>
       <button class="btn btn-sub" (click)="onDelete(form.controls, UpModal)">삭제</button>
-      <button class="btn btn-main" (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid}" (click)="onUpdate(form.controls, UpModal)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
 </ng-template>

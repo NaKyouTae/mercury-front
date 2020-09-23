@@ -97,7 +97,10 @@
         </div>
       </form>
       <div style="text-align: center;">
-        <button class="btn btn-main" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="onSignUp(signUpForm.controls)" [disabled]="signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false ">회원가입</button>
+        <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="onSignUp(signUpForm.controls)"
+        [ngClass]="{'btn-disabled' : signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false,
+                    'btn-main' : signUpForm.valid != false && authConfirm != false  && userDupleConfirm != false}"
+        [disabled]="signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false">회원가입</button>
       </div>
     </div>
   </div>
@@ -192,7 +195,10 @@
         </div>
       </form>
       <div style="text-align: center;">
-        <button class="btn btn-main" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="onSignUp(signUpForm.controls)" [disabled]="signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false ">회원가입</button>
+        <button class="btn" style="padding: 15px 70px; border-radius: 20px; border: 1px solid darkgray;" (click)="onSignUp(signUpForm.controls)"
+        [ngClass]="{'btn-disabled' : signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false,
+                    'btn-main' : signUpForm.valid != false && authConfirm != false  && userDupleConfirm != false}"
+        [disabled]="signUpForm.valid == false || authConfirm == false  || userDupleConfirm == false">회원가입</button>
       </div>
     </div>
   </div>

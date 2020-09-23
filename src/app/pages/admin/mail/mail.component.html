@@ -87,7 +87,7 @@
     </div>
     <div class="modal-footer modal-create-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
-      <button class="btn btn-main" (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !newform.valid, 'btn-main' : newform.valid}" (click)="onCreate(newform.controls)" [disabled]="!newform.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -128,7 +128,7 @@
     <div class="modal-footer modal-update-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
       <button class="btn btn-sub" (click)="onDelete(form.controls)">삭제</button>
-      <button class="btn btn-main" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid}" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
 </ng-template>

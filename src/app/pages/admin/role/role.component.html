@@ -1,7 +1,7 @@
 <div class="content-width">
   <app-page-title title="권한"></app-page-title>
-  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)" 
-  [creModal]="{temp: CreModal, width: 500, height: 200, data: form}" 
+  <app-admin-grid *ngIf="data != undefined" [data]="data" [fields]="fields" [btnUse]="true" (dbldata)="onDblClick($event)"
+  [creModal]="{temp: CreModal, width: 500, height: 200, data: form}"
   [upModal]="{temp: UpModal, width: 500, height: 400, data: form}"></app-admin-grid>
 </div>
 
@@ -25,7 +25,7 @@
     </div>
     <div class="modal-footer modal-create-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
-      <button class="btn btn-main" (click)="onCreate(form.controls)" [disabled]="!form.valid">생성</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid}" (click)="onCreate(form.controls)" [disabled]="!form.valid">생성</button>
     </div>
   </div>
 </ng-template>
@@ -37,7 +37,7 @@
         <h2>{{form.controls.roleName.value}} 정보 </h2>
       </div>
       <div class="close" (click)="onClose()">&times;</div>
-      
+
     </div>
     <div *ngIf="form != undefined" >
       <form [formGroup]="form">
@@ -63,7 +63,7 @@
     <div class="modal-footer modal-update-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
       <button class="btn btn-sub" (click)="onDelete(form.controls)">삭제</button>
-      <button class="btn btn-main" (click)="onUpdate(form.controls)" [disabled]="!form.valid && form.controls.roleName.value">수정</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid && form.controls.roleName.value, 'btn-main' : form.valid && form.controls.roleName.value}" (click)="onUpdate(form.controls)" [disabled]="!form.valid && form.controls.roleName.value">수정</button>
     </div>
   </div>
 </ng-template>

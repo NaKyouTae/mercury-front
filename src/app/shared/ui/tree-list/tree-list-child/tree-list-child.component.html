@@ -59,8 +59,10 @@
     </div>
     <div class="modal-footer">
       <button calss="btn btn-sub2" (click)="onClose()">취소</button>
-      <button class="btn btn-main" [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true"
-              (click)="onCreate(form.controls)">생성</button>
+      <button class="btn" (click)="onCreate(form.controls)"
+      [ngClass]="{'btn-disabled': form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true,
+                  'btn-main' : form.get('title').invalid != true && form.get('menuGroup').invalid != true && form.get('menuOrder').invalid != true }"
+       [disabled]="form.get('title').invalid == true && form.get('menuGroup').invalid == true && form.get('menuOrder').invalid == true">생성</button>
     </div>
   </div>
 </ng-template>
@@ -71,7 +73,7 @@
     <div class="modal-header" *ngIf="form != undefined">
       <div>
         <h2>{{form.get('title').value}} 정보</h2>
-      </div>      
+      </div>
       <div class="close" (click)="onClose()">&times;</div>
     </div>
     <div *ngIf="form != undefined" >
@@ -125,7 +127,7 @@
     <div class="modal-footer modal-update-footer">
       <button class="btn btn-sub2" (click)="onClose()">취소</button>
       <button class="btn btn-sub" (click)="onDelete(form.controls)">삭제</button>
-      <button class="btn btn-main" (click)="onUpdate(form.controls)">수정</button>
+      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid}" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
     </div>
   </div>
 </ng-template>

@@ -142,11 +142,26 @@ export class MyPageComponent implements OnInit {
     });
   }
 
-  public onDelete(e: any) {
+  public onDefaultUserDelete(e: any) {
     if (window.confirm('삭제 하시겠습니까?')) {
       const data: any = this.formservice.formToData(e);
 
       this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
+        if (res.resultCode === 'OK') {
+          this.onClose();
+          this.user = this.jwt.getJWTUserKey('user');
+        }
+      });
+    } else {
+      return false;
+    }
+  }
+
+  public onKakaoUserDelete(e: any) {
+    if (window.confirm('삭제 하시겠습니까?')) {
+      const data: any = this.formservice.formToData(e);
+
+      this.common.httpCallDelete('oauth/kakao/withdrawal', { user: data, access: this.jwt.getJWTAccess() }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.onClose();
           this.user = this.jwt.getJWTUserKey('user');

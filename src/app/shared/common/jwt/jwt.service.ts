@@ -20,7 +20,7 @@ export class JwtService {
   public getJWTAccess() {
     if (this.cookie.getCookie('AWT') !== null) {
       const jwtEncode = this.cookie.getCookie('AWT');
-      return jwt_decode(jwtEncode);
+      // return jwt_decode(jwtEncode);
     } else {
       return null;
     }
@@ -29,7 +29,7 @@ export class JwtService {
   public getJWTRefresh() {
     if (this.cookie.getCookie('RWT') !== null) {
       const jwtEncode = this.cookie.getCookie('RWT');
-      return jwt_decode(jwtEncode);
+      // return jwt_decode(jwtEncode);
     } else {
       return null;
     }
@@ -48,29 +48,29 @@ export class JwtService {
     }
   }
 
-  public getJWTAccessKey(key: any) {
-    if (this.cookie.getCookie('AWT') !== null) {
-      const jwtEncode = this.cookie.getCookie('AWT');
+  // public getJWTAccessKey(key: any) {
+  //   if (this.cookie.getCookie('AWT') !== null) {
+  //     const jwtEncode = this.cookie.getCookie('AWT');
 
-      const jwt: any = jwt_decode(jwtEncode);
+  //     const jwt: any = jwt_decode(jwtEncode);
 
-      // tslint:disable-next-line: no-eval
-      return eval('jwt.' + key);
-    } else {
-      return null;
-    }
-  }
+  //     // tslint:disable-next-line: no-eval
+  //     return eval('jwt.' + key);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  public getJWTRefreshKey(key: any) {
-    if (this.cookie.getCookie('RWT') !== null) {
-      const jwtEncode = this.cookie.getCookie('RWT');
+  // public getJWTRefreshKey(key: any) {
+  //   if (this.cookie.getCookie('RWT') !== null) {
+  //     const jwtEncode = this.cookie.getCookie('RWT');
 
-      const jwt: any = jwt_decode(jwtEncode);
+  //     const jwt: any = jwt_decode(jwtEncode);
 
-      // tslint:disable-next-line: no-eval
-      return eval('jwt.' + key);
-    } else {
-      return null;
-    }
-  }
+  //     // tslint:disable-next-line: no-eval
+  //     return eval('jwt.' + key);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

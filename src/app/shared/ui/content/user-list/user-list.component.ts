@@ -163,18 +163,19 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   }
 
-  // @HostListener('window:scroll')
-  // public onScroll(e: any) {
-  //   if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
-  //     && this.originData.length !== this.datas.length) {
-  //     console.log('bottom');
-  //     if (this.originData.length < this.dataPin + 10) {
-  //       this.dataPin = this.originData.length;
-  //       this.datas = this.originData;
-  //     } else {
-  //       this.dataPin += 10;
-  //       this.datas = this.originData.slice(0, this.dataPin);
-  //     }
-  //   }
-  // }
+  @HostListener('window:scroll', ['$event'])
+  public onScroll(e: any) {
+    if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
+      && this.originData.length !== this.datas.length) {
+      console.log('scroll event start');
+
+      if (this.originData.length < this.dataPin + 10) {
+        this.dataPin = this.originData.length;
+        this.datas = this.originData;
+      } else {
+        this.dataPin += 10;
+        this.datas = this.originData.slice(0, this.dataPin);
+      }
+    }
+  }
 }

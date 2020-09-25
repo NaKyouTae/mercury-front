@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  var naver = new naver_id_login('tabnzioAUOBXW8u3FvoL', 'http://localhost:4300');
+  var state = naver.getUniqState();
+  naver.setButton('', 2, 40);
+  naver.setDomain('http://localhost:4300');
+  naver.setState(state);
+  naver.init_naver_id_login();
+</script>
+
 <div (click)="onClick(LoginContent)" class="btn" style="display: inline-block;">LOGIN</div>
 <div (click)="onSignUpClick(SignUpContent)" class="btn" style="display: inline-block; margin-left: 10px;">SIGN UP</div>
 
@@ -42,6 +51,9 @@
           <a (click)="kakaoLogin()" class="btn">
             <img src="../../../../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
           </a>
+          <div id="naver_id_login" (click)="naverLogin()" class="btn">
+            <img src="../../../../assets/img/naver/button_kr/네이버 아이디로 로그인_축약형_Green.PNG">
+          </div>
 
         </div>
         <div style="text-align: center;">

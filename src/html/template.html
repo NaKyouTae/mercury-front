@@ -10,6 +10,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- NAVER API -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+
     <script>
       function onSelectTap(e){
         const types = ["#button", "#input", "#select", "#gridPaging"];
@@ -36,6 +39,19 @@
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=c4d7328a864db7fd90be93def8e00940&redirect_uri=http://localhost:4300/oauth/kakao&response_type=code">
       <img src="../assets/img/kakao/kakao_login_simple/ko/kakao_login_small.png">
     </a>
+    <a id="naver_id_login">
+      <img src="../assets/img/naver/button_kr/네이버 아이디로 로그인_축약형_Green.PNG">
+    </a>
+
+    <script type="text/javascript">
+      var naver = new naver_id_login('tabnzioAUOBXW8u3FvoL', 'http://localhost:4300');
+      var state = naver.getUniqState();
+      naver.setButton('', 2, 40);
+      naver.setDomain('http://localhost:4300');
+      naver.setState(state);
+      naver.init_naver_id_login();
+    </script>
+
     <h2>Template</h2>
     <div>
       <li onclick="onSelectTap('#button');" style="cursor: pointer; padding: 10px; border: 1px solid darkgray; display: inline-block;">Button</li>

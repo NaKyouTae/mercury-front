@@ -1,5 +1,5 @@
 <!-- <div class="user-list" (scroll)="onScroll($event)"> -->
-<div class="user-list" (scroll)="onScroll($event)">
+<div class="user-list">
     <div *ngIf="datas != undefined || datas.length != 0">
         <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of topThreeData; let idx = index;">
             <div>

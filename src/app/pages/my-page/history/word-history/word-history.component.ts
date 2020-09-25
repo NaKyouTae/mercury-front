@@ -11,7 +11,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 export class WordHistoryComponent implements OnInit {
   @Input() public type: any;
 
-  public data: any;
+  public data: any = [];
   public word: any = '';
   public number: any = 0;
   public tot: any = this.data === undefined ? 0 : this.data.length;

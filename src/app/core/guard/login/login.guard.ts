@@ -7,7 +7,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  public loginCheck: any = this.jwt.getJWTAccess() === null ? false : true;
+  public loginCheck: any = this.jwt.getJWTUser() === null ? false : true;
 
   constructor(private router: Router, private jwt: JwtService) { }
   // tslint:disable-next-line: max-line-length

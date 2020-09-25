@@ -39,9 +39,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.onInit();
-
     if (!this.my) {
+      this.onInit();
       this.interval = setInterval(() => {
         this.onInit();
       }, 30000);
@@ -164,18 +163,18 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:scroll')
-  public onScroll(e: any) {
-    if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
-      && this.originData.length !== this.datas.length) {
-      console.log('bottom');
-      if (this.originData.length < this.dataPin + 10) {
-        this.dataPin = this.originData.length;
-        this.datas = this.originData;
-      } else {
-        this.dataPin += 10;
-        this.datas = this.originData.slice(0, this.dataPin);
-      }
-    }
-  }
+  // @HostListener('window:scroll')
+  // public onScroll(e: any) {
+  //   if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
+  //     && this.originData.length !== this.datas.length) {
+  //     console.log('bottom');
+  //     if (this.originData.length < this.dataPin + 10) {
+  //       this.dataPin = this.originData.length;
+  //       this.datas = this.originData;
+  //     } else {
+  //       this.dataPin += 10;
+  //       this.datas = this.originData.slice(0, this.dataPin);
+  //     }
+  //   }
+  // }
 }

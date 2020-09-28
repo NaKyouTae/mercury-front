@@ -211,6 +211,15 @@ export class LoginComponent implements OnInit {
     //   isPopup: true,
     //   loginButton: { type: 2, height: 40 }
     // })
+
+    // tslint:disable-next-line: no-string-literal
+    this.naver = new window['naver_id_login']('tabnzioAUOBXW8u3FvoL', 'http://localhost:4300');
+    // tslint:disable-next-line: no-shadowed-variable
+    const state = this.naver.getUniqState();
+    this.naver.setButton('', 2, 40);
+    this.naver.setDomain('http://localhost:4300');
+    this.naver.setState(state);
+    this.naver.init_naver_id_login();
   }
 
   public findUserName(e: any, template: TemplateRef<any>) {

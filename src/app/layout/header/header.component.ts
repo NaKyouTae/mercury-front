@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
+import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public userCheck: any = this.user !== null ? true : false;
   public userName: any = this.user !== null ? this.user.username : '사용자';
   public loginType: any = this.jwt.getJWTUserKey('user') === null ? null : this.jwt.getJWTUserKey('user').sns;
-  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService) { }
+  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService, private cookie: CookieService) { }
 
   ngOnInit() { }
 
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   public kakaoByLogout() {
     if (window.confirm('로그아웃 하시겠습니까?')) {
-      this.common.httpCallGet('oauth/kakao/logout', { acess: this.jwt.getJWTAccess() }).subscribe((res: any) => {
+      this.common.httpCallGet('oauth/kakao/logout', { acess: this.cookie.getCookie('AWT') }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.router.navigateByUrl('/three');
           window.location.reload();

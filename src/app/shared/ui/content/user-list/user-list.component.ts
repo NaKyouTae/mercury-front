@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   public interval: any;
   public searchType = 'words';
 
-  public originData: any;
+  public originData: any = new Array();
   public dataPin: any = 10;
 
   constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
@@ -165,8 +165,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   public onScroll(e: any) {
-    if ((e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop) <= e.target.scrollingElement.offsetHeight + 500
-      && this.originData.length !== this.datas.length) {
+    if (e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop <= e.target.scrollingElement.offsetHeight + 500 && this.originData.length !== this.datas.length) {
       console.log('scroll event start');
 
       if (this.originData.length < this.dataPin + 10) {

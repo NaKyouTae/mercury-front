@@ -43,7 +43,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -198,7 +198,7 @@ export class LoginComponent implements OnInit {
   }
 
   public kakaoLogin() {
-    Kakao.Auth.authorize({ redirectUri: 'http://localhost:4300/oauth/kakao' });
+    Kakao.Auth.authorize({ redirectUri: 'http://localhost:4300/user/kakao' });
   }
 
   public naverLogin() {

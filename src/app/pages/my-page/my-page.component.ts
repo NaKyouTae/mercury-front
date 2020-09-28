@@ -6,6 +6,8 @@ import { FormsService } from 'src/app/shared/util/forms.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
+import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-page',
@@ -48,8 +50,10 @@ export class MyPageComponent implements OnInit {
     private formservice: FormsService,
     private observable: ObservableService,
     private mileageObservable: MileageObservableService,
-    private modal: ModalService
-  ) { }
+    private modal: ModalService,
+    private cookie: CookieService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.onInit();
@@ -104,7 +108,7 @@ export class MyPageComponent implements OnInit {
     this.common.httpCallGet('service/grades').subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.grades = res.result;
-        this.gradeRange = res.result.filter(grade => grade.idx === myGrade.gradeIdx)[0];
+        this.gradeRange = res.result.filter((grade) => grade.idx === myGrade.gradeIdx)[0];
       }
     });
   }
@@ -143,13 +147,14 @@ export class MyPageComponent implements OnInit {
   }
 
   public onDefaultUserDelete(e: any) {
-    if (window.confirm('삭제 하시겠습니까?')) {
+    if (window.confirm('탈퇴 하시겠습니까?')) {
       const data: any = this.formservice.formToData(e);
-
+      delete data.rep;
       this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.onClose();
-          this.user = this.jwt.getJWTUserKey('user');
+          this.router.navigateByUrl('/three');
+          window.location.reload();
         }
       });
     } else {
@@ -158,13 +163,14 @@ export class MyPageComponent implements OnInit {
   }
 
   public onKakaoUserDelete(e: any) {
-    if (window.confirm('삭제 하시겠습니까?')) {
+    if (window.confirm('탈퇴 하시겠습니까?')) {
       const data: any = this.formservice.formToData(e);
-
-      this.common.httpCallDelete('oauth/kakao/withdrawal', { user: data, access: this.jwt.getJWTAccess() }).subscribe((res: any) => {
+      delete data.rep;
+      this.common.httpCallDelete('user/kakao/withdrawal', { user: data, access: this.cookie.getCookie('AWT') }).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
           this.onClose();
-          this.user = this.jwt.getJWTUserKey('user');
+          this.router.navigateByUrl('/three');
+          window.location.reload();
         }
       });
     } else {

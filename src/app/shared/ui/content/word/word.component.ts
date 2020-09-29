@@ -6,12 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./word.component.css'],
 })
 export class WordComponent implements OnInit {
-  // tslint:disable-next-line: no-input-rename
-  @Input('words') public words: any;
-  // tslint:disable-next-line: no-input-rename
-  @Input('description') public description: any;
+  @Input() public words: any;
+  @Input() public description: any;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

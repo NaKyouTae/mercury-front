@@ -1,13 +1,13 @@
 <!-- <div class="user-list"> -->
 <div class="user-list" (scroll)="onScroll($event)">
-    <div *ngIf="datas != undefined || datas.length != 0">
-        <div class="data-grid" [ngStyle]="{'border': (idx+1) == datas.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of topThreeData; let idx = index;">
+    <div *ngIf="data != undefined || data.length != 0">
+        <div class="data-grid" [ngStyle]="{'border': (idx+1) == data.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of top; let idx = index;">
             <div>
                 <div class="data-user">
                     <div style="color: #100efb;">{{item.userName}}</div>
                     <div>님</div>
                     <div>
-                      <div *ngIf="my">
+                      <div *ngIf="location">
                           <div *ngIf="!loginCheck">
                               <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
                               <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
@@ -21,7 +21,7 @@
                             <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                           </div>
                       </div>
-                      <div *ngIf="!my">
+                      <div *ngIf="!location">
                         <div *ngIf="!loginCheck">
                           <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
                           <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
@@ -69,7 +69,7 @@
     <div style="margin-bottom: 20px;">
         <div class="data-title data-title-total">
             <div>
-              TOTAL <span style="color: #100efb;">{{ datas == undefined ? 0:datas.length}}</span>
+              TOTAL <span style="color: #100efb;">{{ data == undefined ? 0:data.length}}</span>
             </div>
         </div>
         <div class="data-title data-title-command">
@@ -78,8 +78,8 @@
         </div>
     </div>
     <!-- 삼,이행시 목록 시작 -->
-    <div *ngIf="datas != undefined || datas.length != 0">
-      <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == datas.length ? '':'1px solid darkgray'}" *ngFor="let item of datas; let idx = index;">
+    <div *ngIf="data != undefined || data.length != 0">
+      <div class="data-grid" [ngStyle]="{'border-bottom': (idx+1) == data.length ? '':'1px solid darkgray'}" *ngFor="let item of data; let idx = index;">
           <div>
               <div class="data-user">
 
@@ -87,7 +87,7 @@
                   <div style="color: #100efb;">{{item.userName}}</div>
                   <div>님</div>
                   <div>
-                    <div *ngIf="my">
+                    <div *ngIf="location">
                         <div *ngIf="!loginCheck">
                             <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
                             <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
@@ -101,7 +101,7 @@
                           <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                     </div>
-                    <div *ngIf="!my">
+                    <div *ngIf="!location">
                       <div *ngIf="!loginCheck">
                         <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
                         <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
@@ -147,7 +147,7 @@
       </div>
     </div>
     <!-- 삼,이행시 목록 끝 -->
-    <div *ngIf="datas == undefined || datas.length == 0" class="data-none" >결과가 없습니다. 도전해보세요.</div>
+    <div *ngIf="data == undefined || data.length == 0" class="data-none" >결과가 없습니다. 도전해보세요.</div>
     <div style="text-align: center; margin: 20px auto; ">
         <img style="width: 728px; height: 90px;" src="../../../../assets/img/ad-sample.jpg">
     </div>

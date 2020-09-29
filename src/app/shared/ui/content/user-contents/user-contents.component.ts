@@ -11,13 +11,15 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./user-contents.component.css'],
 })
 export class UserContentsComponent implements OnInit {
-  // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) { }
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private observableService: ObservableService,
+    private jwt: JwtService) { }
 
-  // tslint:disable-next-line: no-input-rename
-  @Input('contents') public contents: any = new Array<any>();
-  // tslint:disable-next-line: no-input-rename
-  @Input('type') public type: string;
+  @Input() public contents: any = new Array<any>();
+  @Input() public type: string;
+
   public userName: any = this.jwt.getJWTUserKey('aud') !== null ? this.jwt.getJWTUserKey('aud') : '';
   public userIdx: any = this.jwt.getJWTUserKey('user') !== null ? this.jwt.getJWTUserKey('user').idx : '';
   public userCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;

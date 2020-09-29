@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TwoComponent } from './two.component';
 import { WordModule } from 'src/app/shared/ui/content/word/word.module';
@@ -7,6 +7,7 @@ import { UserContentsModule } from 'src/app/shared/ui/content/user-contents/user
 
 @NgModule({
   declarations: [TwoComponent],
-  imports: [CommonModule, WordModule, UserListModule, UserContentsModule]
+  imports: [CommonModule, WordModule, UserListModule, UserContentsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class TwoModule {}
+export class TwoModule { }

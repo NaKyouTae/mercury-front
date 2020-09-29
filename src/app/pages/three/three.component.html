@@ -1,9 +1,9 @@
 <main>
-    <app-word style="width: 1100px; margin: 0px auto;" [words]="words" [description]="description"></app-word>
+    <app-word style="width: 1100px; margin: 0px auto;" words="words" description="description"></app-word>
     <div style="background-color: #f8f8f8; padding: 30px 50px;">
         <div style="width: 1100px; margin: 0px auto;">
-            <app-user-contents [contents]="words" type="three"></app-user-contents>
-            <app-user-list [word]="words" [my]="false" type="three"></app-user-list>
+            <app-user-contents contents="words" type="three"></app-user-contents>
+            <app-user-list location="false" type="three"></app-user-list>
         </div>
     </div>
 </main>

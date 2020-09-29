@@ -9,16 +9,10 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  // tslint:disable-next-line: no-input-rename
-  @Input('data') public datas?: any = new Array();
-  // tslint:disable-next-line: no-input-rename
-  @Input('top') public topThreeData?: any = new Array();
-  // tslint:disable-next-line: no-input-rename
-  @Input('word') public words: any;
-  // tslint:disable-next-line: no-input-rename
-  @Input('type') public type: any;
-  // tslint:disable-next-line: no-input-rename
-  @Input('my') public my: any;
+  @Input() public data?: any = new Array();
+  @Input() public top?: any = new Array();
+  @Input() public type: any;
+  @Input() public location: any;
 
   public loginCheck: any = this.jwt.getJWTUserKey('aud') !== null ? true : false;
   public user: any = this.jwt.getJWTUserKey('user') !== null ? this.jwt.getJWTUserKey('user') : '';
@@ -39,7 +33,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (!this.my) {
+    if (!this.location) {
       this.onInit();
       this.interval = setInterval(() => {
         this.onInit();
@@ -48,7 +42,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!this.my) {
+    if (!this.location) {
       clearTimeout(this.interval);
     }
   }
@@ -76,10 +70,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   public getTopThree() {
     this.common.httpCallGet('service/' + this.type + '/popular', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.topThreeData = res.result.slice(0, 3);
+        this.top = res.result.slice(0, 3);
         // this.checkLove(this.topThreeData);
       } else {
-        this.topThreeData = new Array();
+        this.top = new Array();
       }
     });
   }
@@ -88,10 +82,10 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.common.httpCallGet('service/' + this.type + '/' + this.searchType, { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.originData = res.result;
-        this.datas = res.result.slice(0, this.dataPin);
+        this.data = res.result.slice(0, this.dataPin);
         // this.checkLove(this.datas);
       } else {
-        this.datas = new Array();
+        this.data = new Array();
       }
     });
   }
@@ -165,15 +159,16 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   public onScroll(e: any) {
-    if (e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop <= e.target.scrollingElement.offsetHeight + 500 && this.originData.length !== this.datas.length) {
+    // tslint:disable-next-line: max-line-length
+    if (e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop <= e.target.scrollingElement.offsetHeight + 500 && this.originData.length !== this.data.length) {
       console.log('scroll event start');
 
       if (this.originData.length < this.dataPin + 10) {
         this.dataPin = this.originData.length;
-        this.datas = this.originData;
+        this.data = this.originData;
       } else {
         this.dataPin += 10;
-        this.datas = this.originData.slice(0, this.dataPin);
+        this.data = this.originData.slice(0, this.dataPin);
       }
     }
   }

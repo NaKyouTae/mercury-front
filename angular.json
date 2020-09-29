@@ -42,7 +42,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -65,7 +64,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "mercury-angular:build",
-            "proxyConfig" : "proxy.config.json",
+            "proxyConfig": "proxy.config.json",
             "port": 4300
           },
           "configurations": {
@@ -126,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "mercury-angular"
+  "defaultProject": "mercury-angular",
+  "cli": {
+    "analytics": "d23252ee-e948-485e-b66f-64c59358bc5b"
+  }
 }

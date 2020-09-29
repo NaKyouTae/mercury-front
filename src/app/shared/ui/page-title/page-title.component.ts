@@ -6,10 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./page-title.component.css'],
 })
 export class PageTitleComponent implements OnInit {
-  // tslint:disable-next-line: no-input-rename
-  @Input('title') public title: any;
+  @Input() public title: any;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

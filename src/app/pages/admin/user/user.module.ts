@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +8,5 @@ import { AdminGridModule } from 'src/app/shared/ui/grid/admin/admin-grid.module'
 @NgModule({
   declarations: [UserComponent],
   imports: [CommonModule, AdminGridModule, PageTitleModule, FormsModule, ReactiveFormsModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class UserModule {}
+export class UserModule { }

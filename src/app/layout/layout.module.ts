@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,6 +37,5 @@ import { LoginFormComponent } from './header/login/login-form/login-form.compone
   ],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [LayoutComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LayoutModule { }

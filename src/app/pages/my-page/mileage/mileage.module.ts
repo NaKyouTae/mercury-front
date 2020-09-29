@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MileageComponent } from './mileage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,5 @@ import { MileageRoutingModule } from './mileage-routing.module';
   declarations: [MileageComponent],
   // tslint:disable-next-line: max-line-length
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PageTitleModule, UserGridModule, LogoModule, MileageRoutingModule, SelectedListModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MileageModule { }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
+import { UserListComponent } from 'src/app/shared/ui/content/user-list/user-list.component';
 
 @Component({
   selector: 'app-my-two',
@@ -11,7 +13,7 @@ export class MyTwoComponent implements OnInit {
   public data: any = new Array();
   public word: any;
   public jwtUser = this.jwt.getJWTUserKey('user');
-  constructor(private common: CommonHttpService, private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService) {}
 
   ngOnInit() {
     this.onSearch();

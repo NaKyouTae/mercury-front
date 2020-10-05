@@ -11,4 +11,4 @@ import { SelectedListModule } from 'src/app/shared/directive/selected-list/selec
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MyPageRoutingModule, BtnModalDirectiveModule, SelectedListModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class MyPageModule {}
+export class MyPageModule { }

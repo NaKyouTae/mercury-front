@@ -20,10 +20,10 @@ import { ErrorInterceptorService } from './core/interceptors/error/error-interce
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    // BrowserModule,
+    // BrowserAnimationsModule,
+    // AppRoutingModule,
     LayoutModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     DragDropModule,
     StoreModule.forRoot({ common: reducer }),
@@ -40,4 +40,4 @@ import { ErrorInterceptorService } from './core/interceptors/error/error-interce
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule { }

@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   exports: [UserListComponent],
   declarations: [UserListComponent],
 })
-export class UserListModule {}
+export class UserListModule { }

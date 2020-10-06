@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: [UserListComponent],
+  exports: [UserListComponent, CommonModule, FormsModule],
   declarations: [UserListComponent],
 })
 export class UserListModule { }

@@ -7,4 +7,4 @@ import { PageTitleComponent } from './page-title.component';
   exports: [PageTitleComponent],
   imports: [CommonModule]
 })
-export class PageTitleModule {}
+export class PageTitleModule { }

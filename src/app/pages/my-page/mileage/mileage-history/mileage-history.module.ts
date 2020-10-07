@@ -9,4 +9,4 @@ import { UserGridModule } from 'src/app/shared/ui/grid/user/user-grid.module';
   exports: [MileageHistoryComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, UserGridModule],
 })
-export class CashHistoryModule { }
+export class MileageHistoryModule { }

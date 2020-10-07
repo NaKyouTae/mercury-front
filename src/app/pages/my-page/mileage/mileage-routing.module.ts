@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginGuard } from 'src/app/core/guard/login/login.guard';
 import { MileageComponent } from '../mileage/mileage.component';
 import { MileageHistoryComponent } from './mileage-history/mileage-history.component';
-import { MileageReqeustComponent } from './mileage-reqeust/mileage-reqeust.component';
+import { MileageReqeustComponent } from './mileage-request/mileage-request.component';
 
 const routes: Routes = [
   {

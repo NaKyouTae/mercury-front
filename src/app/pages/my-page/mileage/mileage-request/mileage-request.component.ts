@@ -4,11 +4,11 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
 
 @Component({
-  selector: 'app-mileage-reqeust',
-  templateUrl: './mileage-reqeust.component.html',
-  styleUrls: ['./mileage-reqeust.component.css'],
+  selector: 'app-mileage-request',
+  templateUrl: './mileage-request.component.html',
+  styleUrls: ['./mileage-request.component.css'],
 })
-export class MileageReqeustComponent implements OnInit {
+export class MileageRequestComponent implements OnInit {
   public user: any = this.jwt.getJWTUserKey('user') === undefined ? null : this.jwt.getJWTUserKey('user');
   public data: any;
   public fields: any = [

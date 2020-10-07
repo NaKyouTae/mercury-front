@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MileageReqeustComponent } from './mileage-reqeust.component';
+import { MileageRequestComponent } from './mileage-request.component';
 
-describe('MileageReqeustComponent', () => {
-  let component: MileageReqeustComponent;
-  let fixture: ComponentFixture<MileageReqeustComponent>;
+describe('MileageRequestComponent', () => {
+  let component: MileageRequestComponent;
+  let fixture: ComponentFixture<MileageRequestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MileageReqeustComponent]
+      declarations: [MileageRequestComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MileageReqeustComponent);
+    fixture = TestBed.createComponent(MileageRequestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

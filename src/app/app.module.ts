@@ -24,7 +24,8 @@ import { JobModule } from './pages/admin/batch/job/job.module';
 import { TriggerModule } from './pages/admin/batch/trigger/trigger.module';
 import { SchedulerModule } from './pages/admin/batch/scheduler/scheduler.module';
 import { ConfigModule } from './pages/admin/config/config.module';
-import { GradeModule } from './pages/admin/grade/grade.module';
+import { GradeModule as AdminGradeModule } from './pages/admin/grade/grade.module';
+import { GradeModule } from './pages/my-page/grade/grade.module';
 import { HistoryModule } from './pages/admin/history/history.module';
 import { LogsModule } from './pages/admin/logs/logs.module';
 import { MailModule } from './pages/admin/mail/mail.module';
@@ -37,30 +38,36 @@ import { WeekWordModule } from './pages/admin/week-word/week-word.module';
 import { HonorModule } from './pages/honor/honor.module';
 import { MileageModule as AdminMileageModule } from './pages/admin/mileage/mileage.module';
 import { MileageModule } from './pages/my-page/mileage/mileage.module';
+import { MileageHistoryModule } from './pages/my-page/mileage/mileage-history/mileage-history.module';
+import { MileageRequestModule } from './pages/my-page/mileage/mileage-request/mileage-request.module';
 
 
 const pages = [
+  LayoutModule,
   TwoModule,
   ThreeModule,
+  NoticeModule,
+  MileageModule,
+  MileageRequestModule,
+  MileageHistoryModule,
   MyTwoModule,
   MyThreeModule,
-  JobModule,
-  TriggerModule,
-  SchedulerModule,
-  AdminMileageModule,
-  MileageModule,
-  HistoryModule,
-  LogsModule,
-  ConfigModule,
   GradeModule,
-  MailModule,
-  RoleModule,
-  MenuModule,
+  HonorModule,
   WeekWordModule,
   UserModule,
+  RoleModule,
   AdminNoticeModule,
-  NoticeModule,
-  HonorModule,
+  AdminMileageModule,
+  MenuModule,
+  MailModule,
+  LogsModule,
+  HistoryModule,
+  AdminGradeModule,
+  ConfigModule,
+  TriggerModule,
+  SchedulerModule,
+  JobModule
 ];
 
 @NgModule({
@@ -68,7 +75,6 @@ const pages = [
   imports: [
     pages,
     CommonModule,
-    LayoutModule,
     BrowserModule,
     DragDropModule,
     AppRoutingModule,

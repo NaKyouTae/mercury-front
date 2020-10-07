@@ -4,8 +4,6 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { AdvertOneComponent } from './advert-one/advert-one.component';
-import { AdvertTwoComponent } from './advert-two/advert-two.component';
 import { ContentComponent } from './content/content.component';
 import { LoginComponent } from './header/login/login.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -15,13 +13,10 @@ import { LogoModule } from '../shared/ui/logo/logo.module';
 import { LoginFormComponent } from './header/login/login-form/login-form.component';
 
 @NgModule({
-  // tslint:disable-next-line: max-line-length
   declarations: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    AdvertOneComponent,
-    AdvertTwoComponent,
     ContentComponent,
     LoginComponent,
     LoginFormComponent

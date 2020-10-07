@@ -18,11 +18,13 @@ const routes: Routes = [
       {
         path: 'history',
         children: [
-          { path: 'three', component: MyThreeComponent, canActivate: [LoginGuard] },
-          { path: 'two', component: MyTwoComponent, canActivate: [LoginGuard] },
+          // tslint:disable-next-line: max-line-length
+          { path: 'three', loadChildren: () => import('./history/my-three/my-three.module').then((m) => m.MyThreeModule), canActivate: [LoginGuard] },
+          // tslint:disable-next-line: max-line-length
+          { path: 'two', loadChildren: () => import('./history/my-two/my-two.module').then((m) => m.MyTwoModule), canActivate: [LoginGuard] },
         ],
       },
-      { path: 'grade', component: GradeComponent, canActivate: [LoginGuard] },
+      { path: 'grade', loadChildren: () => import('./grade/grade.module').then((m) => m.GradeModule), canActivate: [LoginGuard] },
       { path: 'mileage', loadChildren: () => import('./mileage/mileage.module').then((m) => m.MileageModule), canActivate: [LoginGuard] },
     ],
   },

@@ -13,9 +13,10 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       { path: '', redirectTo: 'job', pathMatch: 'full' },
-      { path: 'job', component: JobComponent, canActivate: [AdminGuard] },
-      { path: 'trigger', component: TriggerComponent, canActivate: [AdminGuard] },
-      { path: 'scheduler', component: SchedulerComponent, canActivate: [AdminGuard] },
+      { path: 'job', loadChildren: () => import('./job/job.module').then((m) => m.JobModule), canActivate: [AdminGuard] },
+      { path: 'trigger', loadChildren: () => import('./trigger/trigger.module').then((m) => m.TriggerModule), canActivate: [AdminGuard] },
+      // tslint:disable-next-line: max-line-length
+      { path: 'scheduler', loadChildren: () => import('./scheduler/scheduler.module').then((m) => m.SchedulerModule), canActivate: [AdminGuard] },
     ],
   },
 ];
@@ -24,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BatchRoutingModule {}
+export class BatchRoutingModule { }

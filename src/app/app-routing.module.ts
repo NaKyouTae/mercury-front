@@ -4,9 +4,9 @@ import { ThreeComponent } from './pages/three/three.component';
 import { TwoComponent } from './pages/two/two.component';
 import { HonorComponent } from './pages/honor/honor.component';
 import { NoticeComponent } from './pages/notice/notice.component';
-import { MyPageComponent } from './pages/my-page/my-page.component';
 import { AdminGuard } from './core/guard/admin/admin.guard';
 import { LoginGuard } from './core/guard/login/login.guard';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -24,4 +24,8 @@ const routes: Routes = [
   },
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule { }

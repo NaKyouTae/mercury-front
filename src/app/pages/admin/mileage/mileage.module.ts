@@ -9,4 +9,4 @@ import { AdminGridModule } from 'src/app/shared/ui/grid/admin/admin-grid.module'
   declarations: [MileageComponent],
   imports: [CommonModule, PageTitleModule, FormsModule, ReactiveFormsModule, AdminGridModule],
 })
-export class CashModule { }
+export class MileageModule { }

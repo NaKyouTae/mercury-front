@@ -28,4 +28,8 @@ const routes: Routes = [
   },
 ];
 
-export const MyPageRoutingModule = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class MyPageRoutingModule { }

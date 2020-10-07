@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from '../cookie/cookies.service';
-import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JwtService {
+
+  public helper = new JwtHelperService();
+
   constructor(private cookie: CookieService) { }
 
   public getJWTUser() {
     if (this.cookie.getCookie('UWT') !== null) {
       const jwtEncode = this.cookie.getCookie('UWT');
-      return jwt_decode(jwtEncode);
+      return this.helper.decodeToken(jwtEncode);
     } else {
       return null;
     }
@@ -20,7 +23,7 @@ export class JwtService {
   public getJWTAccess() {
     if (this.cookie.getCookie('AWT') !== null) {
       const jwtEncode = this.cookie.getCookie('AWT');
-      // return jwt_decode(jwtEncode);
+      // return this.helper.decodeToken(jwtEncode);
     } else {
       return null;
     }
@@ -29,7 +32,7 @@ export class JwtService {
   public getJWTRefresh() {
     if (this.cookie.getCookie('RWT') !== null) {
       const jwtEncode = this.cookie.getCookie('RWT');
-      // return jwt_decode(jwtEncode);
+      // return this.helper.decodeToken(jwtEncode);
     } else {
       return null;
     }
@@ -39,7 +42,7 @@ export class JwtService {
     if (this.cookie.getCookie('UWT') !== null) {
       const jwtEncode = this.cookie.getCookie('UWT');
 
-      const jwt: any = jwt_decode(jwtEncode);
+      const jwt: any = this.helper.decodeToken(jwtEncode);
 
       // tslint:disable-next-line: no-eval
       return eval('jwt.' + key);
@@ -52,7 +55,7 @@ export class JwtService {
   //   if (this.cookie.getCookie('AWT') !== null) {
   //     const jwtEncode = this.cookie.getCookie('AWT');
 
-  //     const jwt: any = jwt_decode(jwtEncode);
+  //     const jwt: any = this.helper.decodeToken(jwtEncode);
 
   //     // tslint:disable-next-line: no-eval
   //     return eval('jwt.' + key);
@@ -65,7 +68,7 @@ export class JwtService {
   //   if (this.cookie.getCookie('RWT') !== null) {
   //     const jwtEncode = this.cookie.getCookie('RWT');
 
-  //     const jwt: any = jwt_decode(jwtEncode);
+  //     const jwt: any = this.helper.decodeToken(jwtEncode);
 
   //     // tslint:disable-next-line: no-eval
   //     return eval('jwt.' + key);

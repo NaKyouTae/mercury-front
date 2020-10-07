@@ -6,7 +6,6 @@ import { filter } from 'rxjs/operators';
 })
 export class GridDataPipe implements PipeTransform {
   transform(data: any, field: any, type: string): any {
-    console.log('grid onData');
     // tslint:disable-next-line: no-eval
     const result = eval('data.' + field);
     if (result !== null) {

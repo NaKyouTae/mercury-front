@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteModule } from './route/route.module';
 import { LogoModule } from '../shared/ui/logo/logo.module';
 import { LoginFormComponent } from './header/login/login-form/login-form.component';
+import { RouterModule } from '@angular/router';
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import { LoginFormComponent } from './header/login/login-form/login-form.compone
     FormsModule,
     ReactiveFormsModule,
     RouteModule,
-    AppRoutingModule,
-    LogoModule
+    RouterModule,
+    LogoModule,
   ],
-  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+  ],
   bootstrap: [LayoutComponent],
 })
 export class LayoutModule { }

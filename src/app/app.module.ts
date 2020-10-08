@@ -2,6 +2,7 @@ import { reducer } from './core/store/common/common.reducer';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
@@ -17,20 +18,16 @@ import { LogoutInterceptorService } from './core/interceptors/logout/logout-inte
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
-const pages = [
-  LayoutModule
-];
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    pages,
+    LayoutModule,
     CommonModule,
     BrowserModule,
     DragDropModule,
     AppRoutingModule,
     HttpClientModule,
+    ModalModule.forRoot(),
     BrowserAnimationsModule,
     StoreModule.forRoot({ common: reducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

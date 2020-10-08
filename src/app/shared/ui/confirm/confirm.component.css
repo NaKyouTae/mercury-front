@@ -1,0 +1,39 @@
+.confirm-container {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+}
+
+.confirm-header {
+  border-bottom : 1px solid darkgray;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.confirm-body {
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.confirm-footer > button {
+  width: calc(100% / 2);
+  border-top : 1px solid darkgray;
+  padding: 5px 0px;
+}
+
+.confirm-footer > button:first-child {
+  border-right: 1px solid darkgray;
+  border-left: none;
+  border-bottom: none;
+  border-bottom-left-radius: 5px;
+}
+.confirm-footer > button:last-child {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-bottom-right-radius: 5px;
+}
+
+.confirm-footer > button:hover {
+  background-color: blue;
+  color: white;
+}

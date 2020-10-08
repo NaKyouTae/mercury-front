@@ -1,1 +1,12 @@
-<p>confirm works!</p>
+<div class="confirm-container" *ngStyle="{'width': width + 'px'}">
+  <div class="confirm-header">
+    <div>{{title}}</div>
+  </div>
+  <div class="confirm-body">
+    <div>{{content}}</div>
+  </div>
+  <div class="confirm-footer">
+    <button (click)="onClickClose()">닫기</button>
+    <button (click)="onClicRightBtn()">{{rightBtnTitle}}</button>
+  </div>
+</div>

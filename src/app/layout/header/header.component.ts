@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ConfirmComponent } from 'src/app/shared/ui/confirm/confirm.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +17,44 @@ export class HeaderComponent implements OnInit {
   public userCheck: any = this.user !== null ? true : false;
   public userName: any = this.user !== null ? this.user.username : '사용자';
   public loginType: any = this.jwt.getJWTUserKey('user') === null ? null : this.jwt.getJWTUserKey('user').sns;
-  constructor(private router: Router, private jwt: JwtService, private common: CommonHttpService, private cookie: CookieService) {}
+  constructor(
+    private router: Router,
+    private jwt: JwtService,
+    private common: CommonHttpService,
+    private cookie: CookieService,
+    private matDialog: MatDialog,
+    private bsModalService: BsModalService,
+    private bsModalRef: BsModalRef
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public logout() {
+    // const initialState = {
+    //   title: '로그 아웃',
+    //   width: 300,
+    //   content: '로그아웃 하시겠습니까?',
+    //   rightBtnTitle: '로그아웃',
+    //   eventResult: false
+    // };
+
+    // this.matDialog.open(ConfirmComponent, { data: initialState });
+
+    // this.bsModalRef = this.bsModalService.show(ConfirmComponent, { initialState });
+    // this.bsModalRef.content.eventResult.subscribe((res: any) => {
+    //   if (res) {
+    //     this.common.httpCallGet('user/logout').subscribe((res: any) => {
+    //       if (res.resultCode === 'OK') {
+    //         this.router.navigateByUrl('/three');
+    //         window.location.reload();
+    //       }
+    //     });
+    //   } else {
+    //     return false;
+    //   }
+    // });
+
+
     if (window.confirm('로그아웃 하시겠습니까?')) {
       this.common.httpCallGet('user/logout').subscribe((res: any) => {
         if (res.resultCode === 'OK') {

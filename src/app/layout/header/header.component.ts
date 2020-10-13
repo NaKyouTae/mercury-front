@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     // this.matDialog.open(ConfirmComponent, { data: initialState });
 
     // this.bsModalRef = this.bsModalService.show(ConfirmComponent, { initialState });
-    // this.bsModalRef.content.eventResult.subscribe((res: any) => {
+    // this.bsModalRef.content.eventResult().subscribe((res: any) => {
     //   if (res) {
     //     this.common.httpCallGet('user/logout').subscribe((res: any) => {
     //       if (res.resultCode === 'OK') {

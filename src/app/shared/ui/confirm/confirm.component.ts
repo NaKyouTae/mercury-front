@@ -30,6 +30,12 @@ export class ConfirmComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
+  // Modal Center
+  public onClicCenterBtn() {
+    this.eventResult.next(true);
+    this.bsModalRef.hide();
+  }
+
   // Modal Confirm
   public onClicRightBtn() {
     this.eventResult.next(true);

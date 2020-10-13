@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     // this.matDialog.open(ConfirmComponent, { data: initialState });
 
     // this.bsModalRef = this.bsModalService.show(ConfirmComponent, { initialState });
-    // this.bsModalRef.content.eventResult().subscribe((res: any) => {
+    // this.bsModalRef.onHidden.subscribe((res: any) => {
     //   if (res) {
     //     this.common.httpCallGet('user/logout').subscribe((res: any) => {
     //       if (res.resultCode === 'OK') {
@@ -53,7 +53,6 @@ export class HeaderComponent implements OnInit {
     //     return false;
     //   }
     // });
-
 
     if (window.confirm('로그아웃 하시겠습니까?')) {
       this.common.httpCallGet('user/logout').subscribe((res: any) => {

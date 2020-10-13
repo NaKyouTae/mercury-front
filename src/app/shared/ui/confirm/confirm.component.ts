@@ -1,4 +1,3 @@
-import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -13,6 +12,8 @@ export class ConfirmComponent implements OnInit {
   public title: any;
   public width: any;
   public content: any;
+  public btnCount: any;
+  public centerBtnTitle: any;
   public rightBtnTitle: any;
 
   public eventResult: Subject<boolean>;

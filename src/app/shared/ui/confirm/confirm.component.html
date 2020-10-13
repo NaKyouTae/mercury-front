@@ -5,8 +5,9 @@
   <div class="confirm-body">
     <div>{{content}}</div>
   </div>
-  <div class="confirm-footer">
-    <button (click)="onClickClose()">닫기</button>
-    <button (click)="onClicRightBtn()">{{rightBtnTitle}}</button>
+  <div [ngClass]="{'confirm-multiple-footer': btnCount < 2, 'confirm-triple-footer': btnCount > 2}">
+    <button *ngIf="btnCount > 0" (click)="onClickClose()">닫기</button>
+    <button *ngIf="btnCount > 1" (click)="onClicRightBtn()">{{centerBtnTitle}}</button>
+    <button *ngIf="btnCount > 2" (click)="onClicRightBtn()">{{rightBtnTitle}}</button>
   </div>
 </div>

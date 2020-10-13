@@ -37,3 +37,49 @@
   background-color: blue;
   color: white;
 }
+
+/* Confirm Multiple Start */
+.confirm-multiple-footer > button {
+  width: calc(100% / 2);
+  border-top : 1px solid darkgray;
+  padding: 5px 0px;
+}
+
+.confirm-multiple-footer > button:first-child {
+  border-right: 1px solid darkgray;
+  border-left: none;
+  border-bottom: none;
+  border-bottom-left-radius: 5px;
+}
+.confirm-multiple-footer > button:last-child {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-bottom-right-radius: 5px;
+}
+/* Confirm Multiple End */
+
+/* Confirm Triple Start */
+.confirm-triple-footer > button {
+  width: calc(100% / 3);
+  border-top : 1px solid darkgray;
+  padding: 5px 0px;
+}
+.confirm-triple-footer > button:first-child {
+  border-right: 1px solid darkgray;
+  border-left: none;
+  border-bottom: none;
+  border-bottom-left-radius: 5px;
+}
+.confirm-triple-footer > button:nth-child(2) {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+.confirm-triple-footer > button:last-child {
+  border-left: 1px solid darkgray;
+  border-right: none;
+  border-bottom: none;
+  border-bottom-right-radius: 5px;
+}
+/* Confirm Triple End */

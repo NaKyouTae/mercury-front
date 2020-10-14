@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { Router } from '@angular/router';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-my-page',
@@ -52,8 +53,9 @@ export class MyPageComponent implements OnInit {
     private mileageObservable: MileageObservableService,
     private modal: ModalService,
     private cookie: CookieService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private alertService: AlertComponent
+  ) { }
 
   ngOnInit() {
     this.onInit();
@@ -185,7 +187,7 @@ export class MyPageComponent implements OnInit {
     if (window.confirm('구독을 해제하시겠습니까?')) {
       this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
-          alert('구독 해제하였습니다.');
+          this.alertService.showAlert('success', res.message);
           this.observable.checkNewsLetter('Newsletter');
           this.subCheck = false;
         }

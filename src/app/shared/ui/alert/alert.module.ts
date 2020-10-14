@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from './alert.component';
-import { AlertModule as BsAlertModule } from 'ngx-bootstrap/alert';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [AlertComponent],
-  imports: [CommonModule, BsAlertModule.forRoot()],
+  imports: [CommonModule, ModalModule.forChild()],
 })
 export class AlertModule { }

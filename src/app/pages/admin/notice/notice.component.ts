@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-notice',
@@ -25,7 +26,12 @@ export class NoticeComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private modal: ModalService) {}
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private jwt: JwtService,
+    private modal: ModalService,
+    private alertService: AlertComponent) { }
 
   ngOnInit() {
     this.search();
@@ -64,18 +70,18 @@ export class NoticeComponent implements OnInit {
   public onUpdate(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallPut('service/notices', data).subscribe((res: any) => {
-      alert(res.message);
       this.search();
       this.onClose();
+      this.alertService.showAlert('success', res.message);
     });
   }
 
   public onDelete(e: any) {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('service/notices', data).subscribe((res: any) => {
-      alert(res.message);
       this.search();
       this.onClose();
+      this.alertService.showAlert('success', res.message);
     });
   }
 }

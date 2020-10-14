@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { MatDialog } from '@angular/material/dialog';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-scheduler',
@@ -36,7 +38,13 @@ export class SchedulerComponent implements OnInit {
   public jobData: any;
   public triggerData: any;
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private dialog: MatDialog) {}
+  public interval: any;
+
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private dialog: MatDialog,
+    private alertService: AlertComponent) { }
 
   ngOnInit() {
     this.onInit();
@@ -126,7 +134,7 @@ export class SchedulerComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallGet('batch/service/scheduler/start', { idx: data.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -134,8 +142,10 @@ export class SchedulerComponent implements OnInit {
     const data: any = this.formservice.formToData(e);
     this.common.httpCallDelete('batch/service/scheduler/stop', { jobIdx: data.jobIdx }).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
+
+
 }

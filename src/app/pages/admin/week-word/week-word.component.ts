@@ -3,6 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-week-word',
@@ -37,7 +38,11 @@ export class WeekWordComponent implements OnInit {
     endDate: new FormControl({ value: null }, Validators.required),
     description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private modal: ModalService,
+    private alertService: AlertComponent) { }
 
   ngOnInit() {
     this.search();
@@ -62,9 +67,9 @@ export class WeekWordComponent implements OnInit {
 
     this.common.httpCallPost('service/words', data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.search();
         this.onClose();
+        this.alertService.showAlert('success', res.message);
       }
 
       this.newform.reset({
@@ -81,9 +86,9 @@ export class WeekWordComponent implements OnInit {
 
     this.common.httpCallPut('service/words/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.search();
         this.onClose();
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -93,9 +98,9 @@ export class WeekWordComponent implements OnInit {
 
     this.common.httpCallDelete('service/words/' + data.idx, data).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
-        alert(res.message);
         this.search();
         this.onClose();
+        this.alertService.showAlert('success', res.message);
       }
     });
   }

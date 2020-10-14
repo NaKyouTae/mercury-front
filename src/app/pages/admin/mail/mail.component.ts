@@ -4,6 +4,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-mail',
@@ -55,7 +56,12 @@ export class MailComponent implements OnInit {
     minHeight: '0',
   };
 
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) { }
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private modal: ModalService,
+    private alertService: AlertComponent
+  ) { }
 
   ngOnInit() {
     this.onSearch();
@@ -100,7 +106,7 @@ export class MailComponent implements OnInit {
 
         this.newform.reset(this.formservice.initialForm(this.newform));
 
-        alert(res.message);
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -111,7 +117,7 @@ export class MailComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.onSearch();
         this.onClose();
-        alert(res.message);
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -122,7 +128,7 @@ export class MailComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.onSearch();
         this.onClose();
-        alert(res.message);
+        this.alertService.showAlert('success', res.message);
       }
     });
   }

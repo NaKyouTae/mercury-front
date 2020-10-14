@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
+import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
 
 @Component({
   selector: 'app-mileage',
@@ -26,7 +27,13 @@ export class MileageComponent implements OnInit {
   public checkPrevMileage: any = 0;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private dialog: MatDialog, private mileageObservable: MileageObservableService) { }
+  constructor(
+    private common: CommonHttpService,
+    private formservice: FormsService,
+    private jwt: JwtService,
+    private dialog: MatDialog,
+    private mileageObservable: MileageObservableService,
+    private alertService: AlertComponent) { }
 
   ngOnInit() {
     this.onInit();
@@ -59,12 +66,12 @@ export class MileageComponent implements OnInit {
     data.withDrawMileage = this.prevMileage;
 
     if (data.withDrawMileage < 10000) {
-      alert('10,000만원 이상 출금이 가능합니다.');
+      this.alertService.showAlert('warning', '10,000만원 이상 출금이 가능합니다.');
       return false;
     } else {
       this.common.httpCallPost('service/mileagerequest', data).subscribe((res: any) => {
         if (res.resultCode === 'OK') {
-          alert(res.message);
+          this.alertService.showAlert('success', res.message);
           this.onInit();
           this.dialog.closeAll();
           this.mileageObservable.successRequest();

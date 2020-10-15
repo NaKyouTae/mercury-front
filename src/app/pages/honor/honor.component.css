@@ -43,7 +43,7 @@
 
 .ranking-container {
   display: inline-block; 
-  width: calc(100% / 3);
+  width: calc((100% / 3) - 10px);
 }
 
 .ranking-card {

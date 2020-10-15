@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsService } from 'src/app/shared/util/forms.service';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-mileage',
@@ -41,7 +41,7 @@ export class MileageComponent implements OnInit {
     private common: CommonHttpService,
     private dialog: MatDialog,
     private formservice: FormsService,
-    private alertService: AlertComponent
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {

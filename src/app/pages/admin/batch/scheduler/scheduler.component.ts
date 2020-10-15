@@ -3,8 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { MatDialog } from '@angular/material/dialog';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -44,7 +43,7 @@ export class SchedulerComponent implements OnInit {
     private common: CommonHttpService,
     private formservice: FormsService,
     private dialog: MatDialog,
-    private alertService: AlertComponent) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.onInit();

@@ -8,7 +8,7 @@ import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { Router } from '@angular/router';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-my-page',
@@ -54,7 +54,7 @@ export class MyPageComponent implements OnInit {
     private modal: ModalService,
     private cookie: CookieService,
     private router: Router,
-    private alertService: AlertComponent
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {

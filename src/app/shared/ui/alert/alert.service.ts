@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertComponent } from './alert.component';
 
-@Component({
-  selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class AlertComponent implements OnInit {
-  public type: any;
-  public title: any;
-  public message: any;
+export class AlertService {
 
   public interval: any;
 
   constructor(
     private bsModalService: BsModalService,
     private bsModalRef: BsModalRef) { }
-
-  ngOnInit(): void {
-  }
 
   public showAlert(type: string, content: any) {
     let title = '';

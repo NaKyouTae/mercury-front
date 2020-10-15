@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-notice',
@@ -31,7 +31,7 @@ export class NoticeComponent implements OnInit {
     private formservice: FormsService,
     private jwt: JwtService,
     private modal: ModalService,
-    private alertService: AlertComponent) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.search();

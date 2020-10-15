@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-mileage',
@@ -33,7 +33,7 @@ export class MileageComponent implements OnInit {
     private jwt: JwtService,
     private dialog: MatDialog,
     private mileageObservable: MileageObservableService,
-    private alertService: AlertComponent) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.onInit();

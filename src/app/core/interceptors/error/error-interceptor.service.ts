@@ -4,12 +4,12 @@ import { HttpRequest, HttpHandler, HttpInterceptor } from '@angular/common/http'
 import { throwError } from 'rxjs';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { Router } from '@angular/router';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
 
-  constructor(private cookie: CookieService, private router: Router, private alertService: AlertComponent) { }
+  constructor(private cookie: CookieService, private router: Router, private alertService: AlertService) { }
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request).pipe(

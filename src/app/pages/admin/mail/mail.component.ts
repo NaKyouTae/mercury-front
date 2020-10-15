@@ -4,7 +4,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
-import { AlertComponent } from 'src/app/shared/ui/alert/alert.component';
+import { AlertService } from 'src/app/shared/ui/alert/alert.service';
 
 @Component({
   selector: 'app-mail',
@@ -60,7 +60,7 @@ export class MailComponent implements OnInit {
     private common: CommonHttpService,
     private formservice: FormsService,
     private modal: ModalService,
-    private alertService: AlertComponent
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {

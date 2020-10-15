@@ -36,7 +36,6 @@ import { AlertComponent } from './shared/ui/alert/alert.component';
   ],
   providers: [
     BsModalRef,
-    AlertComponent,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },

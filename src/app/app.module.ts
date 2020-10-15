@@ -2,7 +2,7 @@ import { reducer } from './core/store/common/common.reducer';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
@@ -17,6 +17,7 @@ import { ErrorInterceptorService } from './core/interceptors/error/error-interce
 import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlertComponent } from './shared/ui/alert/alert.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [
+    BsModalRef,
+    AlertComponent,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },

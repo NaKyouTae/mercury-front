@@ -12,6 +12,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [WeekWordComponent],
-  imports: [CommonModule, AdminGridModule, FormsModule, PageTitleModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    AdminGridModule,
+    FormsModule,
+    PageTitleModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
+  ],
 })
 export class WeekWordModule { }

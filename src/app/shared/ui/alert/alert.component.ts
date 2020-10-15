@@ -32,9 +32,9 @@ export class AlertComponent implements OnInit {
 
     this.bsModalRef = this.bsModalService.show(AlertComponent, { initialState: { type, title, content } });
 
-    this.interval = setInterval(() => {
-      this.bsModalRef.hide();
-      clearTimeout(this.interval);
-    }, 3000);
+    // this.interval = setInterval(() => {
+    //   this.bsModalRef.hide();
+    //   clearTimeout(this.interval);
+    // }, 3000);
   }
 }

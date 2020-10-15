@@ -17,11 +17,14 @@ import { ErrorInterceptorService } from './core/interceptors/error/error-interce
 import { LogoutInterceptorService } from './core/interceptors/logout/logout-interceptor.service';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AlertComponent } from './shared/ui/alert/alert.component';
+import { CustomAlertComponent } from './shared/ui/alert/custom-alert.component';
+import { CustomAlertModule } from './shared/ui/alert/custom-alert.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    CustomAlertModule,
+
     LayoutModule,
     CommonModule,
     BrowserModule,
@@ -43,4 +46,4 @@ import { AlertComponent } from './shared/ui/alert/alert.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

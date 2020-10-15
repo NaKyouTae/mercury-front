@@ -1,18 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { WeekWordComponent } from './week-word/week-word.component';
-import { MenuComponent } from './menu/menu.component';
-import { RoleComponent } from './role/role.component';
 import { AdminGuard } from 'src/app/core/guard/admin/admin.guard';
-import { MailComponent } from './mail/mail.component';
-import { GradeComponent } from './grade/grade.component';
-import { ConfigComponent } from './config/config.component';
-import { NoticeComponent } from './notice/notice.component';
-import { LogsComponent } from './logs/logs.component';
-import { BatchComponent } from './batch/batch.component';
-import { HistoryComponent } from './history/history.component';
-import { MileageComponent } from './mileage/mileage.component';
 
 const routes: Routes = [
   { path: 'menu', loadChildren: () => import('./menu/menu.module').then((m) => m.MenuModule), canActivate: [AdminGuard] },
@@ -33,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

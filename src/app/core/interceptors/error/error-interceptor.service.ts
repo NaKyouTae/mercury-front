@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { HttpRequest, HttpHandler, HttpInterceptor } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/shared/ui/alert/alert.service';
+import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
-
-  constructor(private cookie: CookieService, private router: Router, private alertService: AlertService) { }
+  constructor(private cookie: CookieService, private router: Router, private alertService: CustomAlertService) {}
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request).pipe(

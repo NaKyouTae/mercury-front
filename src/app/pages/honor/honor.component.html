@@ -1,5 +1,41 @@
 <div class="content-width">
     <app-page-title title="명예의 전당"></app-page-title>
+    <div *ngFor="let data of datas" style="margin-bottom: 20px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">{{data.word}}</h2>
+        <div *ngFor="let item of data.datas; let itemIdx = index;" class="ranking-container">
+            <h3 style="text-align: center; margin-bottom: 10px;">{{itemIdx+1}}등</h3>
+            <div class="ranking-card">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: inline-block;">
+                        <div style="display: inline-block; margin-right: 5px;"><span style="color: #100efb;">{{item.userName}}</span>님</div>
+                        <div style="display: inline-block; margin-right: 5px;"><img class="btn-love" src="../../assets/img/love.png"></div>
+                        <div style="display: inline-block;">{{item.point}}</div>
+                    </div>
+                    <div style="display: inline-block;">
+                        <div>{{item.createDate | slice:0:16}}</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div style="display: inline-block; font-weight: bold; margin-right: 10px;">{{item.word[0]}}</div>
+                        <div style="display: inline-block;">{{item.contentOne}}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; font-weight: bold; margin-right: 10px;">{{item.word[1]}}</div>
+                        <div style="display: inline-block;">{{item.contentTwo}}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; font-weight: bold; margin-right: 10px;">{{item.word[2]}}</div>
+                        <div style="display: inline-block;">{{item.contentThree}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div *ngFor="let data of datas; let idx = index;">
       <div style="border-bottom: 1px solid darkgray; margin-bottom: 15px; padding: 15px;">
         <h2 style="display: inline-block; margin-right: 10px;">{{data.word}}</h2>

@@ -40,7 +40,7 @@
           <label>비밀번호 확인</label>
           <input type="password" formControlName="rep"/>
           <span *ngIf="newform.controls.rep.hasError('required')" style="color:red; display: block; font-size: 12px;">비밀번호 확인은 필수 입니다.</span>
-          <span *ngIf="!newform.controls.rep.hasError('required') && newform.controls.rep.value != newform.controls.pw.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
+          <span *ngIf="!newform.controls.rep.hasError('required') && newform.controls.rep.value != newform.controls.password.value" style="color:red; display: block; font-size: 12px;">비밀번호가 일치하지 않습니다.</span>
         </div>
       </form>
     </div>

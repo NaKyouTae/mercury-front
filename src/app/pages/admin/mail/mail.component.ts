@@ -4,7 +4,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
-import { AlertService } from 'src/app/shared/ui/alert/alert.service';
+import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Component({
   selector: 'app-mail',
@@ -56,12 +56,7 @@ export class MailComponent implements OnInit {
     minHeight: '0',
   };
 
-  constructor(
-    private common: CommonHttpService,
-    private formservice: FormsService,
-    private modal: ModalService,
-    private alertService: AlertService
-  ) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService, private alertService: CustomAlertService) {}
 
   ngOnInit() {
     this.onSearch();
@@ -71,14 +66,14 @@ export class MailComponent implements OnInit {
   public seSystemConfig() {
     this.common.httpCallGet('service/system/config/type', { type: 'MAIL' }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.mailHost = res.result.filter(config => config.configName === 'MAIL_HOST').configValue;
-        this.mailPort = res.result.filter(config => config.configName === 'MAIL_PORT').configValue;
-        this.mailAddress = res.result.filter(config => config.configName === 'MAIL_ADDRESS').configValue;
-        this.mailPassword = res.result.filter(config => config.configName === 'MAIL_PASSWORD').configValue;
-        this.mailSmtpProtocol = res.result.filter(config => config.configName === 'MAIL_SMTP_PROTOCOL').configValue;
-        this.mailSmtpAuth = res.result.filter(config => config.configName === 'MAIL_SMTP_AUTH').configValue;
-        this.mailSmtpStartTlsEnable = res.result.filter(config => config.configName === 'MAIL_SMTP_STARTTLS_ENABLE').configValue;
-        this.mailDebug = res.result.filter(config => config.configName === 'MAIL_DEBUG').configValue;
+        this.mailHost = res.result.filter((config) => config.configName === 'MAIL_HOST').configValue;
+        this.mailPort = res.result.filter((config) => config.configName === 'MAIL_PORT').configValue;
+        this.mailAddress = res.result.filter((config) => config.configName === 'MAIL_ADDRESS').configValue;
+        this.mailPassword = res.result.filter((config) => config.configName === 'MAIL_PASSWORD').configValue;
+        this.mailSmtpProtocol = res.result.filter((config) => config.configName === 'MAIL_SMTP_PROTOCOL').configValue;
+        this.mailSmtpAuth = res.result.filter((config) => config.configName === 'MAIL_SMTP_AUTH').configValue;
+        this.mailSmtpStartTlsEnable = res.result.filter((config) => config.configName === 'MAIL_SMTP_STARTTLS_ENABLE').configValue;
+        this.mailDebug = res.result.filter((config) => config.configName === 'MAIL_DEBUG').configValue;
       }
     });
   }

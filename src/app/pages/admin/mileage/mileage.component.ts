@@ -3,7 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsService } from 'src/app/shared/util/forms.service';
-import { AlertService } from 'src/app/shared/ui/alert/alert.service';
+import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Component({
   selector: 'app-mileage',
@@ -37,12 +37,7 @@ export class MileageComponent implements OnInit {
     approval: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(
-    private common: CommonHttpService,
-    private dialog: MatDialog,
-    private formservice: FormsService,
-    private alertService: AlertService
-  ) { }
+  constructor(private common: CommonHttpService, private dialog: MatDialog, private formservice: FormsService, private alertService: CustomAlertService) {}
 
   ngOnInit() {
     this.onInit();

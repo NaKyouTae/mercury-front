@@ -6,19 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageTitleModule } from 'src/app/shared/ui/page-title/page-title.module';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  { path: '', component: WeekWordComponent }
-];
+const routes: Routes = [{ path: '', component: WeekWordComponent }];
 
 @NgModule({
   declarations: [WeekWordComponent],
-  imports: [
-    CommonModule,
-    AdminGridModule,
-    FormsModule,
-    PageTitleModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ],
+  imports: [FormsModule, CommonModule, AdminGridModule, PageTitleModule, ReactiveFormsModule, RouterModule.forChild(routes)],
 })
-export class WeekWordModule { }
+export class WeekWordModule {}

@@ -40,3 +40,16 @@
   margin-left: 10px;
 }
 
+
+.ranking-container {
+  display: inline-block; 
+  width: calc(100% / 3);
+}
+
+.ranking-card {
+  display: inline-block; 
+  border: 1px solid darkgray; 
+  border-radius: 5px; 
+  padding: 10px; 
+  width: calc(100% - 22px);
+}

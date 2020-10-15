@@ -3,6 +3,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
+import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Component({
   selector: 'app-user',
@@ -21,24 +22,24 @@ export class UserComponent implements OnInit {
     { title: '수정 일자', width: 10, field: 'changeDate', type: 'date' },
   ];
   public newform = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    username: new FormControl(Validators.required),
+    email: new FormControl(Validators.required),
     roleIdx: new FormControl(Validators.required),
     roleTitle: new FormControl(Validators.required),
-    password: new FormControl('', Validators.required),
-    rep: new FormControl('', Validators.required),
+    password: new FormControl(Validators.required),
+    rep: new FormControl(Validators.required),
   });
   public form = new FormGroup({
-    idx: new FormControl({ value: '', disabled: true }),
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    idx: new FormControl({ disabled: true }),
+    username: new FormControl(Validators.required),
+    email: new FormControl(Validators.required),
     roleIdx: new FormControl(Validators.required),
     roleTitle: new FormControl(Validators.required),
-    password: new FormControl('', Validators.required),
-    insertDate: new FormControl({ value: '', disabled: true }),
-    changeDate: new FormControl({ value: '', disabled: true }),
+    password: new FormControl(Validators.required),
+    insertDate: new FormControl({ disabled: true }),
+    changeDate: new FormControl({ disabled: true }),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService, private alertService: CustomAlertService) {}
 
   ngOnInit() {
     this.search();
@@ -78,6 +79,7 @@ export class UserComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.onClose();
         this.search();
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -96,6 +98,7 @@ export class UserComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.onClose();
         this.search();
+        this.alertService.showAlert('success', res.message);
       }
     });
   }
@@ -107,6 +110,7 @@ export class UserComponent implements OnInit {
       if (res.resultCode === 'OK') {
         this.onClose();
         this.search();
+        this.alertService.showAlert('success', res.message);
       }
     });
   }

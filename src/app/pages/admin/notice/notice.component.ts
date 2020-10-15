@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
-import { AlertService } from 'src/app/shared/ui/alert/alert.service';
+import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Component({
   selector: 'app-notice',
@@ -26,12 +26,7 @@ export class NoticeComponent implements OnInit {
     insertDate: new FormControl({ value: '', disabled: true }),
   });
 
-  constructor(
-    private common: CommonHttpService,
-    private formservice: FormsService,
-    private jwt: JwtService,
-    private modal: ModalService,
-    private alertService: AlertService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private jwt: JwtService, private modal: ModalService, private alertService: CustomAlertService) {}
 
   ngOnInit() {
     this.search();

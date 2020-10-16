@@ -5,6 +5,7 @@ import { CustomAlertComponent } from './custom-alert.component';
 
 @NgModule({
   declarations: [CustomAlertComponent],
+  exports: [CustomAlertComponent],
   imports: [CommonModule, ModalModule.forChild()],
 })
-export class CustomAlertModule {}
+export class CustomAlertModule { }

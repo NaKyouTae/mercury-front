@@ -1,7 +1,8 @@
 <div class="content-width">
     <app-page-title title="명예의 전당"></app-page-title>
     <div *ngFor="let data of datas" style="margin-bottom: 20px;">
-        <h2 style="text-align: center; margin-bottom: 20px;">{{data.word}}</h2>
+        <h2 style="text-align: center;">{{data.word}}</h2>
+        <h3 style="text-align: center; margin-bottom: 20px;">{{data.startDate | slice:0:10}} ~ {{data.endDate | slice:0:10}}</h3>
         <div *ngFor="let item of data.datas; let itemIdx = index;" class="ranking-container" [ngStyle]="{'margin': itemIdx == 1 ? '0px 15px':''}">
             <h3 style="text-align: center; margin-bottom: 10px;">{{itemIdx+1}}등</h3>
             <div class="ranking-card">
@@ -32,7 +33,7 @@
             </div>
         </div>
     </div>
-
+    <app-honor-grid></app-honor-grid>
 
 
 

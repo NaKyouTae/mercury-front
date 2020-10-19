@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-honor-grid',
@@ -7,8 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HonorGridComponent implements OnInit {
   @Input() public data: any;
+  @Input() public detailTemplate?: TemplateRef<any>;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

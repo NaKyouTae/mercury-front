@@ -3,9 +3,16 @@
       헤더
       <app-infinite-scroll-select [data]="data" field="field" value="value" width="100px" (change)="clickValue($event)"></app-infinite-scroll-select>
     </div>
-    <div RowDbclick (dblclick)="onDblClick(row)" *ngFor="let row of data; let rIdx = index;">
-      <div>
-        <div>10월</div> <div>1주차</div> <div>키워드</div> <div>버튼</div>
+    <div RowDbclick (dblclick)="onDblClick(row)" *ngFor="let row of data; let rIdx = index;"
+      style="border: 1px solid darkgray;">
+      <div style="margin: 10px;">
+        <h3 style="display: inline-block;">
+          <div style="display: inline-block; margin-right: 10px;">{{row.startDate | slice:5:7}}월</div>
+          <div style="display: inline-block; margin-right: 10px;">{{row.startDate | slice:0:10}} ~ {{row.endDate | slice:0:10}}</div>
+          <div style="display: inline-block; margin-right: 10px;">{{row.word}}</div>
+        </h3> 
+        
+        <div BtnClick (click)="onDblClick(row)" class="btn" style="display: inline-block;">&#62;</div>
       </div>
       <div class="grid-row-details" style="display: none;">
         <ng-container *ngTemplateOutlet="detailTemplate; context:{$implicit: row}"></ng-container>

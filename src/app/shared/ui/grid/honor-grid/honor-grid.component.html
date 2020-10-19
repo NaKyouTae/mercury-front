@@ -1,9 +1,12 @@
 <div>
     <div>
       헤더
+      <app-infinite-scroll-select [data]="data" field="field" value="value" width="100px" (change)="clickValue($event)"></app-infinite-scroll-select>
     </div>
-    <div *ngFor="let row of data; let rIdx = index;">
-      <div>10월</div> <div>1주차</div> <div>키워드</div> <div>버튼</div>
+    <div RowDbclick (dblclick)="onDblClick(row)" *ngFor="let row of data; let rIdx = index;">
+      <div>
+        <div>10월</div> <div>1주차</div> <div>키워드</div> <div>버튼</div>
+      </div>
       <div class="grid-row-details" style="display: none;">
         <ng-container *ngTemplateOutlet="detailTemplate; context:{$implicit: row}"></ng-container>
       </div>

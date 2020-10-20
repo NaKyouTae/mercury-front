@@ -1,17 +1,17 @@
 <div>
-    <div>
-      헤더
-      <app-infinite-scroll-select [data]="data" field="field" value="value" width="100px" (change)="clickValue($event)"></app-infinite-scroll-select>
+    <div style="text-align: right; margin-bottom: 20px;">
+      <app-infinite-scroll-select #yearSelect style="display: inline-block; margin-right: 5px;" [data]="year" field="field" value="value" width="100px" (change)="clickValue(yearSelect, monthSelect)"></app-infinite-scroll-select>
+      <app-infinite-scroll-select #monthSelect style="display: inline-block;" [data]="month" field="field" value="value" width="100px" (change)="clickValue(yearSelect, monthSelect)"></app-infinite-scroll-select>
     </div>
     <div RowDbclick (dblclick)="onDblClick(row)" *ngFor="let row of data; let rIdx = index;"
       style="border: 1px solid darkgray;">
-      <div style="margin: 10px;">
-        <h3 style="display: inline-block;">
-          <div style="display: inline-block; margin-right: 10px;">{{row.startDate | slice:5:7}}월</div>
-          <div style="display: inline-block; margin-right: 10px;">{{row.startDate | slice:0:10}} ~ {{row.endDate | slice:0:10}}</div>
-          <div style="display: inline-block; margin-right: 10px;">{{row.word}}</div>
-        </h3> 
-        
+      <div style="margin: 10px; cursor: pointer;">
+        <h3 style="display: inline-block; width: 95%;">
+          <div style="display: inline-block; margin-right: 10px;">{{row.year}}년</div>
+          <div style="display: inline-block; margin-right: 10px;">{{row.month}}월</div>
+          <div style="display: inline-block; margin-right: 10px;">{{row.weeks}}주차</div>
+          <div style="display: inline-block; margin-right: 10px;">{{row.datas[0][0].startDate | slice:0:10}} ~ {{row.datas[0][0].endDate | slice:0:10}}</div>
+        </h3>         
         <div BtnClick (click)="onDblClick(row)" class="btn" style="display: inline-block;">&#62;</div>
       </div>
       <div class="grid-row-details" style="display: none;">

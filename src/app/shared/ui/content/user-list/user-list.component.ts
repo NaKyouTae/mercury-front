@@ -35,9 +35,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (!this.location) {
       this.onInit();
-      this.interval = setInterval(() => {
-        this.onInit();
-      }, 30000);
+      // this.interval = setInterval(() => {
+      //   this.onInit();
+      // }, 30000);
     }
   }
 

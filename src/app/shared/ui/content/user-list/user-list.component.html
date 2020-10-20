@@ -1,67 +1,72 @@
 <!-- <div class="user-list"> -->
 <div class="user-list" (scroll)="onScroll($event)">
     <div *ngIf="data != undefined || data.length != 0">
-        <div class="data-grid" [ngStyle]="{'border': (idx+1) == data.length ? '':'1px solid gold', 'margin': idx == 1 ? '0px 5px': ''}" style="width:calc((100%/3) - (16px/3)); display: inline-block;" *ngFor="let item of top; let idx = index;">
-            <div>
-                <div class="data-user">
-                    <div style="color: #100efb;">{{item.userName}}</div>
-                    <div>님</div>
-                    <div>
-                      <div *ngIf="location">
-                          <div *ngIf="!loginCheck">
+        <div class="ranking-container" [ngStyle]="{'margin': idx == 1 ? '0px 15px': ''}" *ngFor="let item of top; let idx = index;">
+            <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 0"><img src="../../../assets/img/medal/gold.PNG"   width="60" height="60"></h3>
+            <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 1"><img src="../../../assets/img/medal/silver.PNG" width="60" height="60"></h3>
+            <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 2"><img src="../../../assets/img/medal/copper.PNG" width="60" height="60"></h3>
+            <div class="ranking-card">
+                <div>
+                    <div class="data-user">
+                        <div style="color: #100efb;">{{item.userName}}</div>
+                        <div>님</div>
+                        <div>
+                          <div *ngIf="location">
+                              <div *ngIf="!loginCheck">
+                                  <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
+                                  <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                                  <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                              </div>
+                              <div *ngIf="loginCheck && item.me">
+                                  <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
+                              </div>
+                              <div *ngIf="loginCheck && !item.me">
+                                <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
+                                <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                              </div>
+                          </div>
+                          <div *ngIf="!location">
+                            <div *ngIf="!loginCheck">
                               <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
                               <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
                               <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
-                          </div>
-                          <div *ngIf="loginCheck && item.me">
-                              <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
-                          </div>
-                          <div *ngIf="loginCheck && !item.me">
-                            <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                            <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
-                          </div>
-                      </div>
-                      <div *ngIf="!location">
-                        <div *ngIf="!loginCheck">
-                          <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
-                          <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                          <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
-                        </div>
-                        <div *ngIf="loginCheck && item.me">
-                          <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">
-                        </div>
-                        <div *ngIf="loginCheck && !item.me">
-                            <div *ngIf="type == 'three'">
-                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
-                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                             </div>
-                            <div *ngIf="type == 'twice'">
-                                <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
-                                <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
+                            <div *ngIf="loginCheck && item.me">
+                              <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">
                             </div>
+                            <div *ngIf="loginCheck && !item.me">
+                                <div *ngIf="type == 'three'">
+                                    <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                    <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
+                                </div>
+                                <div *ngIf="type == 'twice'">
+                                    <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                    <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
+                                </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                        <div>{{item.point}}</div>
                     </div>
-                    <div>{{item.point}}</div>
+                    <div class="data-command">
+                        <!-- <div class="btn btn-sub2" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
+                        <!-- <div *ngIf="my" class="btn btn-sub2" (click)="onDelete(item)">삭제</div> -->
+                        <div>{{item.insertDate | slice:0:16}}</div>
+                    </div>
                 </div>
-                <div class="data-command">
-                    <!-- <div class="btn btn-sub2" *ngIf="userName == item.userName" (click)="onContentUpdate(item)">수정</div> -->
-                    <!-- <div *ngIf="my" class="btn btn-sub2" (click)="onDelete(item)">삭제</div> -->
-                    <div>{{item.insertDate | slice:0:16}}</div>
-                </div>
-            </div>
-            <div class="data-text">
-                <div>
-                    <div>{{item.word[0]}}</div>
-                    <div>{{item.contentOne}}</div>
-                </div>
-                <div>
-                    <div>{{item.word[1]}}</div>
-                    <div>{{item.contentTwo}}</div>
-                </div>
-                <div>
-                    <div>{{item.word[2]}}</div>
-                    <div>{{item.contentThree}}</div>
+                <div class="data-text">
+                    <div>
+                        <div>{{item.word[0]}}</div>
+                        <div>{{item.contentOne}}</div>
+                    </div>
+                    <div>
+                        <div>{{item.word[1]}}</div>
+                        <div>{{item.contentTwo}}</div>
+                    </div>
+                    <div>
+                        <div>{{item.word[2]}}</div>
+                        <div>{{item.contentThree}}</div>
+                    </div>
                 </div>
             </div>
         </div>

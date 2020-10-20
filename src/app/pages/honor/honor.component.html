@@ -1,6 +1,6 @@
 <div class="content-width">
     <app-page-title title="명예의 전당"></app-page-title>
-    <div *ngFor="let data of datas" style="margin-bottom: 20px;">
+    <div *ngFor="let data of nowData" style="margin-bottom: 20px;">
         <h2 style="text-align: center;">{{data.word}}</h2>
         <h3 style="text-align: center; margin-bottom: 20px;">{{data.startDate | slice:0:10}} ~ {{data.endDate | slice:0:10}}</h3>
         <div *ngFor="let item of data.datas; let itemIdx = index;" class="ranking-container" [ngStyle]="{'margin': itemIdx == 1 ? '0px 15px':''}">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <app-honor-grid [data]="datas" [detailTemplate]="template">
+    <app-honor-grid [data]="boardData" [detailTemplate]="template">
         <ng-template #template let-dataItem>
             <div>
                 <h3 style="text-align: center; margin-bottom: 20px;">{{dataItem.startDate | slice:0:10}} ~ {{dataItem.endDate | slice:0:10}}</h3>

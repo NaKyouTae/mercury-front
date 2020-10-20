@@ -24,6 +24,9 @@ export class WeekWordComponent implements OnInit {
   public newform = new FormGroup({
     word: new FormControl('', Validators.required),
     wordGroup: new FormControl('', Validators.required),
+    year: new FormControl('', Validators.required),
+    month: new FormControl('', Validators.required),
+    week: new FormControl('', Validators.required),
     startDate: new FormControl('00:00:00', Validators.required),
     endDate: new FormControl('23:59:59', Validators.required),
     description: new FormControl('', Validators.required),
@@ -33,12 +36,15 @@ export class WeekWordComponent implements OnInit {
     idx: new FormControl({ value: null, disabled: true }),
     wordGroup: new FormControl({ value: null }, Validators.required),
     word: new FormControl({ value: null }, Validators.required),
+    year: new FormControl({ value: null }, Validators.required),
+    month: new FormControl({ value: null }, Validators.required),
+    week: new FormControl({ value: null }, Validators.required),
     insertDate: new FormControl({ value: null, disabled: true }),
     startDate: new FormControl({ value: null }, Validators.required),
     endDate: new FormControl({ value: null }, Validators.required),
     description: new FormControl({ value: null }, Validators.required),
   });
-  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService, private alertService: CustomAlertService) {}
+  constructor(private common: CommonHttpService, private formservice: FormsService, private modal: ModalService, private alertService: CustomAlertService) { }
 
   ngOnInit() {
     this.search();

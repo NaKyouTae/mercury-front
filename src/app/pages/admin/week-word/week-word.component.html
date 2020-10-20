@@ -26,6 +26,21 @@
           <span *ngIf="newform.controls.wordGroup.hasError('required')" style="color:red; display: block; font-size: 12px;">종류는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
+          <label>년</label>
+          <input type="text" formControlName="year"/>
+          <span *ngIf="newform.controls.year.hasError('required')" style="color:red; display: block; font-size: 12px;">년은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>월</label>
+          <input type="text" formControlName="month"/>
+          <span *ngIf="newform.controls.month.hasError('required')" style="color:red; display: block; font-size: 12px;">월은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>주</label>
+          <input type="text" formControlName="weeks"/>
+          <span *ngIf="newform.controls.weeks.hasError('required')" style="color:red; display: block; font-size: 12px;">주는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
           <label>시작 일자</label>
           <input type="text" formControlName="startDate"/>
           <span *ngIf="newform.controls.startDate.hasError('required')" style="color:red; display: block; font-size: 12px;">시작 일자는 필수 입니다.</span>
@@ -64,14 +79,29 @@
           <input type="text" formControlName="idx" />
         </div>
         <div class="form-input-text">
+          <label>제시어</label>
+          <input type="text" formControlName="word"/>
+          <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
           <label>종류</label>
           <input type="text" formControlName="wordGroup"/>
           <span *ngIf="form.controls.wordGroup.hasError('required')" style="color:red; display: block; font-size: 12px;">종류 필수 입니다.</span>
         </div>
         <div class="form-input-text">
-          <label>제시어</label>
-          <input type="text" formControlName="word"/>
-          <span *ngIf="form.controls.word.hasError('required')" style="color:red; display: block; font-size: 12px;">제시어는 필수 입니다.</span>
+          <label>년</label>
+          <input type="text" formControlName="year"/>
+          <span *ngIf="form.controls.year.hasError('required')" style="color:red; display: block; font-size: 12px;">년은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>월</label>
+          <input type="text" formControlName="month"/>
+          <span *ngIf="form.controls.month.hasError('required')" style="color:red; display: block; font-size: 12px;">월은 필수 입니다.</span>
+        </div>
+        <div class="form-input-text">
+          <label>주</label>
+          <input type="text" formControlName="weeks"/>
+          <span *ngIf="form.controls.weeks.hasError('required')" style="color:red; display: block; font-size: 12px;">주는 필수 입니다.</span>
         </div>
         <div class="form-input-text">
           <label>생성 일자</label>

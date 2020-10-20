@@ -7,18 +7,32 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
   styleUrls: ['./honor.component.css'],
 })
 export class HonorComponent implements OnInit {
-  public datas: any;
+  public nowData: any;
+  public boardData: any;
 
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     this.onInit();
   }
 
   public onInit() {
-    this.common.httpCallGet('service/honor').subscribe((res: any) => {
+    this.nowHonor(new Date().getFullYear(), new Date().getMonth());
+    this.honorBoard(new Date().getFullYear() - 1, new Date().getMonth() - 1);
+  }
+
+  public nowHonor(year: number, month: number) {
+    this.common.httpCallGet('service/honor/date', { year, month }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
-        this.datas = res.result.honors;
+        this.nowData = res.result.honors;
+      }
+    });
+  }
+
+  public honorBoard(year: number, month: number) {
+    this.common.httpCallGet('service/honor/date', { year, month }).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result !== null) {
+        this.boardData = res.result.honors;
       }
     });
   }

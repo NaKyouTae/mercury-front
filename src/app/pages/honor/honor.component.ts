@@ -12,7 +12,7 @@ export class HonorComponent implements OnInit {
   public yearData: any;
   public monthData: any;
 
-  constructor(private common: CommonHttpService) {}
+  constructor(private common: CommonHttpService) { }
 
   ngOnInit() {
     this.onInit();
@@ -29,7 +29,18 @@ export class HonorComponent implements OnInit {
         const result = res.result.root;
 
         this.latestData = result[0];
-        this.boardData = result.slice(1, result.length);
+        // 현재 명예의 전당이 1주차만 있을 경우 하위 게시판에 넣을 데이터가 없다.
+        // 현재 날짜 기준으로 전 달 데이터를 조회하여 하위 게시판에 넣는다.
+        if (result[0].week === 1) {
+          this.common.httpCallGet('service/honor/date', { year, month }).subscribe((preRes: any) => {
+            if (res.resultCode === 'OK' && res.result !== null) {
+              this.boardData = preRes.result.root;
+            }
+          });
+        } else {
+          this.boardData = result.slice(1, result.length);
+        }
+
       }
     });
   }

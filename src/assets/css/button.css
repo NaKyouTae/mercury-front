@@ -16,7 +16,7 @@
 
 /* Button Main */
 .btn-main {color: white; background-color: #100efb; border: 1px solid #100efb;}
-.btn-main:hover {color: white; background-color: #001d94; border: 1px solid #100efb;}
+.btn-main:hover {color: black; background-color: white; border: 1px solid #100efb;}
 
 /* Button Sub */
 .btn-sub {color: #100efb; background-color: white; border: 1px solid #100efb;}

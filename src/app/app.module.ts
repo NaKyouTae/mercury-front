@@ -18,8 +18,9 @@ import { LogoutInterceptorService } from './core/interceptors/logout/logout-inte
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomAlertModule } from './shared/ui/alert/custom-alert.module';
+import { ConfirmModule } from './shared/ui/confirm/confirm.module';
 
-const viewModules = [CustomAlertModule];
+const viewModules = [CustomAlertModule, ConfirmModule];
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,4 +47,4 @@ const viewModules = [CustomAlertModule];
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

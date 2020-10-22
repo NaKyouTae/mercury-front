@@ -12,7 +12,6 @@ import { RouteModule } from './route/route.module';
 import { LogoModule } from '../shared/ui/logo/logo.module';
 import { LoginFormComponent } from './header/login/login-form/login-form.component';
 import { RouterModule } from '@angular/router';
-import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -24,13 +23,13 @@ import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
     LoginFormComponent
   ],
   imports: [
-    CommonModule,
-    MatDialogModule,
+    LogoModule,
     FormsModule,
-    ReactiveFormsModule,
     RouteModule,
     RouterModule,
-    LogoModule,
+    CommonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },

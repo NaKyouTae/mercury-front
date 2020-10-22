@@ -5,6 +5,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [ConfirmComponent],
+  exports: [ConfirmComponent],
   imports: [CommonModule, ModalModule.forChild()],
 })
 export class ConfirmModule { }

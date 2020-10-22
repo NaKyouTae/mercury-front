@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnDestroy, SimpleChanges, HostListener } from
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ConfirmService } from '../../confirm/confirm.service';
 
 @Component({
   selector: 'app-user-list',
@@ -24,7 +26,12 @@ export class UserListComponent implements OnInit, OnDestroy {
   public originData: any = new Array();
   public dataPin: any = 10;
 
-  constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService) {
+  constructor(
+    private common: CommonHttpService,
+    private observable: ObservableService,
+    private jwt: JwtService,
+    private confirmService: ConfirmService,
+    private bsModalRef: BsModalRef) {
     this.observable.sourceObv.subscribe((res: any) => {
       this.type = res;
       this.getList();
@@ -146,15 +153,29 @@ export class UserListComponent implements OnInit, OnDestroy {
   public onDelete(data: any) {
     const routeUrl = this.type;
 
-    if (window.confirm('삭제 하시겠습니까?')) {
-      this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.getList();
-          this.getTopThree();
-          this.observable.deleteHistory('Delete');
-        }
-      });
-    }
+    const initialState = {
+      title: '작성 글 삭제',
+      btnCount: 2,
+      width: 300,
+      content: '삭제 하시겠습니까?',
+      rightBtnTitle: '삭제',
+      eventResult: false
+    };
+
+    this.bsModalRef = this.confirmService.showConfirm(initialState);
+    this.bsModalRef.content.eventResult.subscribe((event: any) => {
+      if (event) {
+        this.common.httpCallDelete('service/' + routeUrl + '/' + data.idx, data).subscribe((res: any) => {
+          if (res.resultCode === 'OK') {
+            this.getList();
+            this.getTopThree();
+            this.observable.deleteHistory('Delete');
+          }
+        });
+      } else {
+        return false;
+      }
+    });
   }
 
   @HostListener('window:scroll', ['$event'])

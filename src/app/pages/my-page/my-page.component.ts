@@ -9,6 +9,8 @@ import { MileageObservableService } from 'src/app/shared/common/observable/milea
 import { CookieService } from 'src/app/shared/common/cookie/cookies.service';
 import { Router } from '@angular/router';
 import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ConfirmService } from 'src/app/shared/ui/confirm/confirm.service';
 
 @Component({
   selector: 'app-my-page',
@@ -54,8 +56,10 @@ export class MyPageComponent implements OnInit {
     private modal: ModalService,
     private cookie: CookieService,
     private router: Router,
-    private alertService: CustomAlertService
-  ) {}
+    private alertService: CustomAlertService,
+    private confirmService: ConfirmService,
+    private bsModalRef: BsModalRef
+  ) { }
 
   ngOnInit() {
     this.onInit();
@@ -149,52 +153,88 @@ export class MyPageComponent implements OnInit {
   }
 
   public onDefaultUserDelete(e: any) {
-    if (window.confirm('탈퇴 하시겠습니까?')) {
-      const data: any = this.formservice.formToData(e);
-      delete data.rep;
-      this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.onClose();
-          this.router.navigateByUrl('/three');
-          window.location.reload();
-        }
-      });
-    } else {
-      return false;
-    }
+    const initialState = {
+      title: '회원 탈퇴',
+      btnCount: 2,
+      width: 300,
+      content: '탈퇴 하시겠습니까?',
+      rightBtnTitle: '탈퇴',
+      eventResult: false
+    };
+
+    this.bsModalRef = this.confirmService.showConfirm(initialState);
+    this.bsModalRef.content.eventResult.subscribe((event: any) => {
+      if (event) {
+        const data: any = this.formservice.formToData(e);
+        delete data.rep;
+        this.common.httpCallDelete('service/users/' + data.idx, { user: data }).subscribe((res: any) => {
+          if (res.resultCode === 'OK') {
+            this.onClose();
+            this.router.navigateByUrl('/three');
+            window.location.reload();
+          }
+        });
+      } else {
+        return false;
+      }
+    });
   }
 
   public onKakaoUserDelete(e: any) {
-    if (window.confirm('탈퇴 하시겠습니까?')) {
-      const data: any = this.formservice.formToData(e);
-      delete data.rep;
-      this.common.httpCallDelete('user/kakao/withdrawal', { user: data, access: this.cookie.getCookie('AWT') }).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.onClose();
-          this.router.navigateByUrl('/three');
-          window.location.reload();
-        }
-      });
-    } else {
-      return false;
-    }
+    const initialState = {
+      title: '회원 탈퇴',
+      btnCount: 2,
+      width: 300,
+      content: '탈퇴 하시겠습니까?',
+      rightBtnTitle: '탈퇴',
+      eventResult: false
+    };
+
+    this.bsModalRef = this.confirmService.showConfirm(initialState);
+    this.bsModalRef.content.eventResult.subscribe((event: any) => {
+      if (event) {
+        const data: any = this.formservice.formToData(e);
+        delete data.rep;
+        this.common.httpCallDelete('user/kakao/withdrawal', { user: data, access: this.cookie.getCookie('AWT') }).subscribe((res: any) => {
+          if (res.resultCode === 'OK') {
+            this.onClose();
+            this.router.navigateByUrl('/three');
+            window.location.reload();
+          }
+        });
+      } else {
+        return false;
+      }
+    });
   }
 
   // Store 적용 후
   // 구독 해제 시 State를 이용한 뉴스레터 구독하기 버튼 활성화 및 비활성화 기능 필요
   // ================================================================================= [구독하기 해제 기능]
   public onUnSubscribe() {
-    if (window.confirm('구독을 해제하시겠습니까?')) {
-      this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
-        if (res.resultCode === 'OK') {
-          this.alertService.showAlert('success', res.message);
-          this.observable.checkNewsLetter('Newsletter');
-          this.subCheck = false;
-        }
-      });
-    } else {
-      return false;
-    }
+    const initialState = {
+      title: '구독 해제',
+      btnCount: 2,
+      width: 300,
+      content: '구독을 해제하시겠습니까?',
+      rightBtnTitle: '해제',
+      eventResult: false
+    };
+
+    this.bsModalRef = this.confirmService.showConfirm(initialState);
+    this.bsModalRef.content.eventResult.subscribe((event: any) => {
+      if (event) {
+        this.common.httpCallDelete('service/newsletters', this.user.username).subscribe((res: any) => {
+          if (res.resultCode === 'OK') {
+            this.alertService.showAlert('success', res.message);
+            this.observable.checkNewsLetter('Newsletter');
+            this.subCheck = false;
+          }
+        });
+      } else {
+        return false;
+      }
+    });
   }
 
   public gradeOver() {

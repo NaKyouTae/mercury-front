@@ -20,25 +20,25 @@
 }
 
 .alert-success {
-  background: #eefff0 url(../../../../assets/images/notification/success.png);
+  /* background: #eefff0 url(../../../../assets/images/notification/success.png); */
   background-color: #eefff0;
   border: 1px solid #37b24d;
   color: #37b24d;
 }
 .alert-info {
-  background: #eef8ff url(../../../../assets/images/notification/info.png);
+  /* background: #eef8ff url(../../../../assets/images/notification/info.png); */
   background-color: #eef8ff;
   border: 1px solid #1c7ed6;
   color: #1c7ed6;
 }
 .alert-warning {
-  background: #fff8ee url(../../../../assets/images/notification/warning.png);
+  /* background: #fff8ee url(../../../../assets/images/notification/warning.png); */
   background-color: #fff8ee;
   border: 1px solid #f59f00;
   color: #f59f00;
 }
 .alert-danger {
-  background: #ffeeee url(../../../../assets/images/notification/danger.png);
+  /* background: #ffeeee url(../../../../assets/images/notification/danger.png); */
   background-color: #ffeeee;
   border: 1px solid #f03e3e;
   color: #f03e3e;

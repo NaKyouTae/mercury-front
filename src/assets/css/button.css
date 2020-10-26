@@ -42,4 +42,4 @@
 .btn-tap:hover {color: white; background-color: #100efb; border: 1px solid #100efb;}
 
 .btn-order {float: right; margin-left: 10px;}
-.btn-love{height: 13px;}
+.btn-love{cursor: pointer; height: 20px; margin: 5px;}

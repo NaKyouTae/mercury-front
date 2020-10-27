@@ -22,6 +22,8 @@ export class ConfirmComponent implements OnInit {
 
   ngOnInit() {
     this.eventResult = new Subject<boolean>();
+    // Bootstrap 로드 시 스크롤 하단으로 내려가는 증상 해결하기 위함;
+    window.scroll(0, 0);
   }
 
   // Modal Close

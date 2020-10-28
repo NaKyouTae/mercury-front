@@ -78,7 +78,10 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.common.httpCallGet('service/' + this.type + '/popular', { userIdx: this.user.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.top = res.result.slice(0, 3);
-        // this.checkLove(this.topThreeData);
+        // 2, 1, 3 등 순으로 데이터 순서 변경
+        const first = this.top[0];
+        this.top[0] = this.top[1];
+        this.top[1] = first;
       } else {
         this.top = new Array();
       }
@@ -90,7 +93,6 @@ export class UserListComponent implements OnInit, OnDestroy {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.originData = res.result;
         this.data = res.result.slice(0, this.dataPin);
-        // this.checkLove(this.datas);
       } else {
         this.data = new Array();
       }

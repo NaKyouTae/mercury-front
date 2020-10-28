@@ -1,10 +1,14 @@
 <!-- <div class="user-list"> -->
 <div class="user-list" (scroll)="onScroll($event)">
     <div *ngIf="data != undefined || data.length != 0">
-        <div class="ranking-container" [ngStyle]="{'margin': idx == 1 ? '0px 15px': ''}" *ngFor="let item of top; let idx = index;">
+      <div
+      class="ranking-container"
+      [ngStyle]="idx == 0 ? {'margin': '40px 0px'}: idx == 1 ? {'margin': '0px 15px'}: idx == 2 ? {'margin': '80px 0px'}:{}"
+      *ngFor="let item of top; let idx = index;"
+    >
             <div *ngIf="item.point > 0">
-              <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 0"><img src="../../../assets/img/medal/gold.PNG"   width="80" height="80"></h3>
-              <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 1"><img src="../../../assets/img/medal/silver.PNG" width="80" height="80"></h3>
+              <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 0"><img src="../../../assets/img/medal/silver.PNG" width="80" height="80"></h3>
+              <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 1"><img src="../../../assets/img/medal/gold.PNG"   width="80" height="80"></h3>
               <h3 style="text-align: center; margin-bottom: 20px;" *ngIf="idx == 2"><img src="../../../assets/img/medal/copper.PNG" width="80" height="80"></h3>
               <div class="ranking-card">
                 <div>

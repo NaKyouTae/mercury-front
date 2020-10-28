@@ -10,7 +10,7 @@
                 <div>
                     <div style="text-align: right;">
                         <div style="display: inline-block;">
-                            <img class="btn-love" src="../../../../assets/img/love.png">
+                            <img class="btn btn-love" src="../../../../assets/img/love.png">
                             {{data[number-1].point}}
                         </div>
                         <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number-1])">삭제</div>
@@ -40,7 +40,7 @@
                 <div>
                     <div style="text-align: right;">
                         <div style="display: inline-block;">
-                            <img class="btn-love" src="../../../../assets/img/love.png">
+                            <img class="btn btn-love" src="../../../../assets/img/love.png">
                             {{data[number].point}}
                         </div>
                         <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number], type)">삭제</div>
@@ -70,7 +70,7 @@
                 <div>
                     <div style="text-align: right;">
                         <div style="display: inline-block;">
-                            <img class="btn-love" src="../../../../assets/img/love.png">
+                            <img class="btn btn-love" src="../../../../assets/img/love.png">
                             {{data[number+1].point}}
                         </div>
                         <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(data[number+1], type)">삭제</div>
@@ -101,7 +101,7 @@
         <div *ngFor="let d of data; let idx = index;" class="card list-card">
             <!-- <div style="text-align: right;">
                 <div style="display: inline-block; margin-left: 10px;">
-                    <img class="btn-love" src="../../../../assets/img/love.png">
+                    <img class="btn btn-love" src="../../../../assets/img/love.png">
                     {{d.point}}
                 </div>
                 <div style="display: inline-block; margin-left: 10px;">
@@ -120,7 +120,7 @@
                     <div style="display: inline-block; width: 50%;">{{idx+1}}</div>
                     <div style="display: inline-block; width: 50%; text-align: right;">
                         <div style="display: inline-block;">
-                            <img class="btn-love" src="../../../../assets/img/love.png">
+                            <img class="btn btn-love" src="../../../../assets/img/love.png">
                             {{d.point}}
                         </div>
                         <div class="btn" style="display: inline-block; margin-left: 10px;" (click)="onDelete(d, type)">삭제</div>

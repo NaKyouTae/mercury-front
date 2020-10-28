@@ -27,36 +27,36 @@
                       <div style="display: inline-block; margin: 5px 0px;">
                           <div *ngIf="location">
                               <div *ngIf="!loginCheck" style="display: inline-block;">
-                                  <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
-                                  <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                                  <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                                  <img *ngIf="item.me && item.love" class="btn btn-love" src="../../../../assets/img/love.png">
+                                  <img *ngIf="!item.me && item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                  <img *ngIf="!item.me && !item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                               </div>
                               <div *ngIf="loginCheck && item.me" style="display: inline-block;">
-                                  <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
+                                  <img *ngIf="item.love" class="btn btn-love" src="../../../../assets/img/love.png">
                               </div>
                               <div *ngIf="loginCheck && !item.me">
-                                  <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                                  <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                                  <img *ngIf="item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                  <img *ngIf="!item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                               </div>
                               <div style="display: inline-block; font-size: 40px;">{{item.point}}</div>
                           </div>
                           <div *ngIf="!location">
                               <div *ngIf="!loginCheck" style="display: inline-block;">
-                                  <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
-                                  <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                                  <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                                  <img *ngIf="item.me && item.love" class="btn btn-love" src="../../../../assets/img/love.png">
+                                  <img *ngIf="!item.me && item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                  <img *ngIf="!item.me && !item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                               </div>
                               <div *ngIf="loginCheck && item.me" style="display: inline-block;">
-                                  <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn-love" src="../../../../assets/img/love.png">
+                                  <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">
                               </div>
                               <div *ngIf="loginCheck && !item.me" style="display: inline-block;">
                                   <div *ngIf="type == 'three'">
-                                      <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                                      <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                                      <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                      <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                                   </div>
                                   <div *ngIf="type == 'twice'">
-                                      <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                                      <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                                      <img *ngIf="item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                                      <img *ngIf="!item.love" (click)="upLove(item)" title="좋아요" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                                   </div>
                               </div>
                               <div style="display: inline-block; font-size: 40px;">{{item.point}}</div>
@@ -96,23 +96,23 @@
                   <div>
                     <div *ngIf="location">
                         <div *ngIf="!loginCheck">
-                            <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
-                            <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                            <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                            <img *ngIf="item.me && item.love" class="btn btn-love" src="../../../../assets/img/love.png">
+                            <img *ngIf="!item.me && item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                            <img *ngIf="!item.me && !item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                         <div *ngIf="loginCheck && item.me">
-                            <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love.png">
+                            <img *ngIf="item.love" class="btn btn-love" src="../../../../assets/img/love.png">
                         </div>
                         <div *ngIf="loginCheck && !item.me">
-                          <img *ngIf="item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                          <img *ngIf="!item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                          <img *ngIf="item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                          <img *ngIf="!item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                         </div>
                     </div>
                     <div *ngIf="!location">
                       <div *ngIf="!loginCheck">
-                        <img *ngIf="item.me && item.love" class="btn-love" src="../../../../assets/img/love.png">
-                        <img *ngIf="!item.me && item.love" class="btn-love" src="../../../../assets/img/love-r-border.png">
-                        <img *ngIf="!item.me && !item.love" class="btn-love" src="../../../../assets/img/love-b-border.png">
+                        <img *ngIf="item.me && item.love" class="btn btn-love" src="../../../../assets/img/love.png">
+                        <img *ngIf="!item.me && item.love" class="btn btn-love" src="../../../../assets/img/love-r-border.png">
+                        <img *ngIf="!item.me && !item.love" class="btn btn-love" src="../../../../assets/img/love-b-border.png">
                       </div>
                       <div *ngIf="loginCheck && item.me">
                         <img *ngIf="item.love" (click)="deLove(item)" title="취소" class="btn btn-love" src="../../../../assets/img/love.png">

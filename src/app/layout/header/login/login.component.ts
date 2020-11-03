@@ -43,7 +43,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -261,5 +261,9 @@ export class LoginComponent implements OnInit {
   public popupClose() {
     this.ConfirmType = null;
     this.dialog.closeAll();
+  }
+
+  public loginSave() {
+    // 사용자 아이디 로컬 스토리지에 저장
   }
 }

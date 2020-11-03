@@ -30,9 +30,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   ],
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService,
+  constructor(
+    private dialog: MatDialog,
+    private formservice: FormsService,
+    private common: CommonHttpService,
     private router: Router,
     private valition: CommonValidationService) { }
+
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
   public upToggle: any = !this.front ? 'upSign' : 'upLogin';
@@ -189,5 +193,9 @@ export class LoginFormComponent implements OnInit {
   public popupClose() {
     this.ConfirmType = null;
     this.dialog.closeAll();
+  }
+
+  public loginSave() {
+    // 사용자 아이디 로컬 스토리지에 저장
   }
 }

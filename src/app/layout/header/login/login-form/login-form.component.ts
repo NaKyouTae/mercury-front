@@ -6,6 +6,7 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { Router } from '@angular/router';
 import { CommonValidationService } from 'src/app/shared/common/validations/common-validation.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LocalStorageService } from 'src/app/shared/common/localStorage/local-storage.service';
 
 @Component({
   selector: 'app-login-form',
@@ -35,7 +36,8 @@ export class LoginFormComponent implements OnInit {
     private formservice: FormsService,
     private common: CommonHttpService,
     private router: Router,
-    private valition: CommonValidationService) { }
+    private valition: CommonValidationService,
+    private localStorageService: LocalStorageService) { }
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -53,6 +55,8 @@ export class LoginFormComponent implements OnInit {
   public emailConfirm: any = true;
   public pwConfirm: any = true;
   public ConfirmType: any;
+
+  public loginSave: any = false;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -82,10 +86,17 @@ export class LoginFormComponent implements OnInit {
   public login(data: any) {
     // const params = new HttpParams({ encoder: new CustomEncoder() }).set('username', this.username).set('password', this.password);
 
-    const params = this.formservice.formToData(data);
+    const params: any = this.formservice.formToData(data);
+    const loginSaveCheck = this.loginSave;
 
     this.common.httpCallPost('user/login', params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+
+        // 로그인 정보 기억하기 체크시 LocalStorage에 사용자 아이디 저장
+        if (loginSaveCheck) {
+          this.localStorageService.set('userId', params.username);
+        }
+
         this.dialog.closeAll();
         this.router.navigateByUrl('/three');
         window.location.reload();
@@ -193,9 +204,5 @@ export class LoginFormComponent implements OnInit {
   public popupClose() {
     this.ConfirmType = null;
     this.dialog.closeAll();
-  }
-
-  public loginSave() {
-    // 사용자 아이디 로컬 스토리지에 저장
   }
 }

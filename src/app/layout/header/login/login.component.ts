@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/shared/util/forms.service';
 import { trigger, style, state, animate, transition } from '@angular/animations';
+import { LocalStorageService } from 'src/app/shared/common/localStorage/local-storage.service';
 
 declare let Kakao: any; //
 
@@ -43,7 +44,12 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router) { }
+  constructor(
+    private dialog: MatDialog,
+    private formservice: FormsService,
+    private common: CommonHttpService,
+    private router: Router,
+    private localStorageService: LocalStorageService) { }
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -61,6 +67,8 @@ export class LoginComponent implements OnInit {
   public emailConfirm: any = true;
   public pwConfirm: any = true;
   public ConfirmType: any;
+
+  public loginSave: any = false;
 
   public logInForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -130,10 +138,16 @@ export class LoginComponent implements OnInit {
   public login(data: any) {
     // const params = new HttpParams({ encoder: new CustomEncoder() }).set('username', this.username).set('password', this.password);
 
-    const params = this.formservice.formToData(data);
+    const params: any = this.formservice.formToData(data);
+    const loginSaveCheck = this.loginSave;
 
     this.common.httpCallPost('user/login', params).subscribe((res: any) => {
       if (res.resultCode === 'OK') {
+        // 로그인 정보 기억하기 체크시 LocalStorage에 사용자 아이디 저장
+        if (loginSaveCheck) {
+          this.localStorageService.set('userId', params.username);
+        }
+
         this.dialog.closeAll();
         this.router.navigateByUrl('/three');
         window.location.reload();
@@ -261,9 +275,5 @@ export class LoginComponent implements OnInit {
   public popupClose() {
     this.ConfirmType = null;
     this.dialog.closeAll();
-  }
-
-  public loginSave() {
-    // 사용자 아이디 로컬 스토리지에 저장
   }
 }

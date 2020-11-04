@@ -8,22 +8,24 @@ export class EnDecodingService {
   constructor() { }
 
   public enCoding(data: any) {
+    const result: any = {};
 
-    Object.keys(data).forEach((item) => {
+    Object.keys(data).forEach(item => {
       // tslint:disable-next-line: no-eval
-      item = encodeURIComponent(eval('data.' + item));
+      result[item] = encodeURIComponent(eval('data.' + item));
     });
 
-    return data;
+    return result;
   }
 
   public deCoding(data: any) {
+    const result: any = {};
 
-    Object.keys(data).forEach((item) => {
+    Object.keys(data).forEach(item => {
       // tslint:disable-next-line: no-eval
-      item = decodeURIComponent(eval('data.' + item));
+      result[item] = decodeURIComponent(eval('data.' + item));
     });
 
-    return data;
+    return result;
   }
 }

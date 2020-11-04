@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
+import { EnDecodingService } from '../en-deconding/en-decoding.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonHttpService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private enDecodingService: EnDecodingService) { }
 
-  public httpCallGet(service, params?) {
+  public httpCallGet(service, queryString?: any) {
     const header = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
+
+    const params: any = this.enDecodingService.enCoding(queryString);
 
     return this.http.get('/' + service, {
       headers: header,

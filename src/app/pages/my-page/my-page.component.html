@@ -8,7 +8,7 @@
       <div style="font-weight: bold; font-size: 50px;">
         <div>
           {{user.username}}
-          <button class="btn btn-main" style="margin-left: 10px;" BtnModal (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 460, data: form}">수정</button>
+          <button BtnModal class="btn btn-main" style="margin-left: 10px;"  (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 460, data: form}">수정</button>
         </div>
       </div>
       <div style="font-size: 20px; margin: 15px 0px;">
@@ -72,24 +72,35 @@
   <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.username.value}}님 정보</h2>
+        <h2>{{form.controls.username.value}}님 <div style="color: darkgray; font-size: 13px">{{form.controls.insertDate.value | slice:0:16 }} 가입</div></h2>
       </div>
       <div class="close" (click)="onClose()">&times;</div>
     </div>
-    <div *ngIf="form != undefined" >
-      <div style="color: darkgray;">{{form.controls.insertDate.value | slice:0:16 }} 가입</div>
-      <div>
-        <div class="btn" (click)="onUnSubscribe()" *ngIf="subCheck">뉴스레터 구독해제</div>
-        <div class="btn" (click)="pwCheck = true" *ngIf="!pwCheck">비밀번호 변경</div>
-        <div class="btn" (click)="pwCheck = false" *ngIf="pwCheck">비밀번호 변경 취소</div>
-      </div>
-      <form [formGroup]="form">
-        <div class="form-input-text">
-          <label>이메일</label>
-          <input type="text" formControlName="email"/>
-          <span *ngIf="form.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+    <div class="user-info-category">
+      <div class="btn" (click)="userInfoType = 'email'">이메일 변경</div>
+      <div class="btn" (click)="userInfoType = 'password'">비밀번호 변경</div>
+      <div class="btn" (click)="onDefaultUserDelete(form.controls)" *ngIf="user.sns == 'DEFAULT'">회원 탈퇴</div>
+      <div class="btn" (click)="onKakaoUserDelete(form.controls)" *ngIf="user.sns == 'KAKAO'">회원 탈퇴</div>
+      <div class="btn" (click)="onUnSubscribe()" *ngIf="subCheck">뉴스레터 구독해제</div>
+    </div>
+    <div *ngIf="userInfoType == 'email'" class="user-email">
+      <div *ngIf="form != undefined" >
+        <form [formGroup]="form">
+          <div class="form-input-text">
+            <label>이메일</label>
+            <input type="text" formControlName="email"/>
+            <span *ngIf="form.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
+          </div>
+        </form>
+        <div class="modal-footer modal-update-footer">
+          <button class="btn btn-sub2" (click)="onClose()">취소</button>
+          <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid }" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
         </div>
-        <div *ngIf="pwCheck">
+      </div>
+    </div>
+    <div *ngIf="userInfoType == 'password'" class="user-password">
+      <div *ngIf="form != undefined" >
+        <form [formGroup]="form">
           <div class="form-input-text">
             <label><span style="color: red;">* </span>현재 비밀번호</label>
             <input type="password" formControlName="password"/>
@@ -107,15 +118,12 @@
             <span class="required-notice-red" *ngIf="form.controls.rep.hasError('required')">변경 비밀번호 확인은 필수 입니다.</span>
             <span class="required-notice-red" *ngIf="!form.controls.rep.hasError('required') && form.controls.rep.value != form.controls.newPassword.value">변경 비밀번호가 일치하지 않습니다.</span>
           </div>
+        </form>
+        <div class="modal-footer modal-update-footer">
+          <button class="btn btn-sub2" (click)="onClose()">취소</button>
+          <button class="btn" [ngClass]="{'btn-disabled': !form.controls.rep.hasError('required'), 'btn-main' : form.controls.rep.hasError('required') }" (click)="onUpdate(form.controls)" [disabled]="!form.controls.rep.hasError('required')">수정</button>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer modal-update-footer">
-      <button class="btn btn-sub2" (click)="onClose()">취소</button>
-      <button class="btn btn-sub" *ngIf="user.sns == 'DEFAULT'" (click)="onDefaultUserDelete(form.controls)">회원 탈퇴</button>
-      <button class="btn btn-sub" *ngIf="user.sns == 'KAKAO'" (click)="onKakaoUserDelete(form.controls)">회원 탈퇴</button>
-      <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid }" *ngIf="pwCheck" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
-      <button class="btn" [ngClass]="{'btn-disabled': !form.controls.rep.hasError('required'), 'btn-main' : form.controls.rep.hasError('required') }" *ngIf="!pwCheck" (click)="onUpdate(form.controls)" [disabled]="!form.controls.rep.hasError('required')">수정</button>
+      </div>
     </div>
   </div>
 </ng-template>

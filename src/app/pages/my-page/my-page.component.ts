@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 import { MileageObservableService } from 'src/app/shared/common/observable/mileage/mileage-observable.service';
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfirmService } from 'src/app/shared/ui/confirm/confirm.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 @Component({
   selector: 'app-my-page',
@@ -32,10 +32,10 @@ export class MyPageComponent implements OnInit {
   public grades: any;
   public gradeView: any = false;
 
-  public pwCheck: any = false;
   public failedPW: any = false;
 
   public gradeRange: any;
+  public userInfoType: any;
 
   public form = new FormGroup({
     idx: new FormControl('', Validators.required),

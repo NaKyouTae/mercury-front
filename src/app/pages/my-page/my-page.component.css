@@ -71,3 +71,16 @@
   font-size: 11px;
   border-radius: 5px;
 }
+
+.user-info-category div {
+  display: inline-block;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0px 10px;
+}
+
+.user-info-category div:hover {
+  background-color: blue;
+  color: white;
+}

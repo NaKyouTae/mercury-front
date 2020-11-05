@@ -86,8 +86,9 @@
     <div *ngIf="userInfoType == 'email'" class="user-email">
       <div *ngIf="form != undefined" >
         <form [formGroup]="form">
+          <p>이메일이 존재 하지 않으면 금주 제시어 현황, 구독 서비스등을 이용할 수 없습니다.</p>
           <div class="form-input-text">
-            <label>이메일</label>
+            <label><span style="color: red;">* </span>이메일</label>
             <input type="text" formControlName="email"/>
             <span *ngIf="form.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
           </div>

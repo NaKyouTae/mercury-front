@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
-import { FormsService } from 'src/app/shared/util/forms.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
@@ -11,11 +11,7 @@ import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
   styleUrls: ['./user-contents.component.css'],
 })
 export class UserContentsComponent implements OnInit {
-  constructor(
-    private common: CommonHttpService,
-    private formservice: FormsService,
-    private observableService: ObservableService,
-    private jwt: JwtService) { }
+  constructor(private common: CommonHttpService, private formservice: FormsService, private observableService: ObservableService, private jwt: JwtService) {}
 
   @Input() public contents: any = new Array<any>();
   @Input() public type: string;
@@ -39,7 +35,7 @@ export class UserContentsComponent implements OnInit {
     userIdx: new FormControl(''),
   });
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public inThree(e: any) {
     e.userName.setValue(this.userName);

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { MatDialog } from '@angular/material/dialog';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 @Component({
   selector: 'app-trigger',

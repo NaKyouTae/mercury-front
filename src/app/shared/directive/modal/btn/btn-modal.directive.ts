@@ -1,6 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormsService } from 'src/app/shared/util/forms.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -12,7 +12,8 @@ export class BtnModalDirective {
   constructor(private dialog: MatDialog, private form: FormsService) {}
 
   @HostListener('click') public onClick() {
-    const data = this.modal.data.reset(this.form.initialForm(this.modal.data));
+    const init = this.form.initialForm(this.modal.data.controls);
+    const data = this.modal.data.reset({ test: '' });
 
     this.dialog.open(this.modal.temp, {
       width: this.modal.width,

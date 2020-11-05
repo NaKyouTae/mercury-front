@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { trigger, style, state, animate, transition } from '@angular/animations';
 import { LocalStorageService } from 'src/app/shared/common/localStorage/local-storage.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 declare let Kakao: any; //
 
@@ -44,12 +44,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private dialog: MatDialog,
-    private formservice: FormsService,
-    private common: CommonHttpService,
-    private router: Router,
-    private localStorageService: LocalStorageService) { }
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router, private localStorageService: LocalStorageService) {}
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';

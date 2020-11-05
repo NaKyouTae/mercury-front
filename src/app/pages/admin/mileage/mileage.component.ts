@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { FormsService } from 'src/app/shared/util/forms.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service';
 
 @Component({

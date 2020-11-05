@@ -54,6 +54,7 @@
 
 .experience-area > div {
   display: inline-block;
+  font-size: 20px;
 }
 
 .experience-area > div:nth-child(2) {
@@ -61,15 +62,19 @@
   border: 1px solid #e6e4e4;
   border-radius: 5px;
   margin: 0px 10px;
-  height: 15px;
+  height: 30px;
   width: 300px;
   text-align: left;
 }
 
 .experience-area > div:nth-child(2) > div {
-  height: 15px;
+  height: 30px;
   font-size: 11px;
   border-radius: 5px;
+}
+
+.user-info-category {
+  margin-top: 20px;
 }
 
 .user-info-category > div {
@@ -83,4 +88,8 @@
 .user-info-category > div:hover {
   background-color: blue;
   color: white;
+}
+
+.user-info {
+  margin-top: 30px;
 }

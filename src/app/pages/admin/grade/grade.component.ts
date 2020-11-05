@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { ModalService } from 'src/app/shared/ui/modal/modal.service';
 
 @Component({

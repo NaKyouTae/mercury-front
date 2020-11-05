@@ -1,12 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { CommonHttpService } from 'src/app/shared/common/http/common-http.service';
 import { Router } from '@angular/router';
 import { CommonValidationService } from 'src/app/shared/common/validations/common-validation.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/shared/common/localStorage/local-storage.service';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 @Component({
   selector: 'app-login-form',

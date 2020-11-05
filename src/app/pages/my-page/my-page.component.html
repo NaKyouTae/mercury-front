@@ -8,7 +8,7 @@
       <div style="font-weight: bold; font-size: 50px;">
         <div>
           {{user.username}}
-          <button BtnModal class="btn btn-main" style="margin-left: 10px;"  (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 460, data: form}">수정</button>
+          <button BtnModal class="btn btn-main" style="margin-left: 10px;"  (click)="onClick(user)" [modal]="{temp: UpModal, width: 500, height: 'auto', data: form}">수정</button>
         </div>
       </div>
       <div style="font-size: 20px; margin: 15px 0px;">
@@ -37,7 +37,7 @@
       <div class="experience-area" *ngIf="gradeRange != null">
         <div>{{gradeRange.startRange}}</div>
         <div>
-          <div [ngStyle]="{'width': ((total/gradeRange.endRange) * 100) + '%', 'background-color': gradeRange.idx ? gradeRange.idx: ''}">{{((total/gradeRange.endRange) * 100) | number}}%</div>
+          <div style="font-size: 15px;" [ngStyle]="{'width': ((total/gradeRange.endRange) * 100) + '%', 'background-color': gradeRange.idx ? gradeRange.idx: ''}">{{((total/gradeRange.endRange) * 100) | number}}%</div>
         </div>
         <div>{{gradeRange.endRange}}</div>
       </div>
@@ -72,7 +72,10 @@
   <div>
     <div class="modal-header" *ngIf="form != undefined">
       <div>
-        <h2>{{form.controls.username.value}}님 <div style="color: darkgray; font-size: 13px">{{form.controls.insertDate.value | slice:0:16 }} 가입</div></h2>
+        <h2>
+          <div style="display: inline-block;">{{form.controls.username.value}}님</div> 
+          <div style="display: inline-block; color: darkgray; font-size: 13px">{{form.controls.insertDate.value | slice:0:16 }} 가입</div>
+        </h2>
       </div>
       <div class="close" (click)="onClose()">&times;</div>
     </div>
@@ -83,7 +86,7 @@
       <div class="btn" (click)="onKakaoUserDelete(form.controls)" *ngIf="user.sns == 'KAKAO'">회원 탈퇴</div>
       <div class="btn" (click)="onUnSubscribe()" *ngIf="subCheck">뉴스레터 구독해제</div>
     </div>
-    <div *ngIf="userInfoType == 'email'" class="user-email">
+    <div *ngIf="userInfoType == 'email'" class="user-info">
       <div *ngIf="form != undefined" >
         <form [formGroup]="form">
           <p>이메일이 존재 하지 않으면 금주 제시어 현황, 구독 서비스등을 이용할 수 없습니다.</p>
@@ -93,13 +96,13 @@
             <span *ngIf="form.controls.email.hasError('required')" style="color:red; display: block; font-size: 12px;">이메일은 필수 입니다.</span>
           </div>
         </form>
-        <div class="modal-footer modal-update-footer">
+        <div class="modal-footer modal-create-footer">
           <button class="btn btn-sub2" (click)="onClose()">취소</button>
           <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid }" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
         </div>
       </div>
     </div>
-    <div *ngIf="userInfoType == 'password'" class="user-password">
+    <div *ngIf="userInfoType == 'password'" class="user-info">
       <div *ngIf="form != undefined" >
         <form [formGroup]="form">
           <div class="form-input-text">
@@ -120,7 +123,7 @@
             <span class="required-notice-red" *ngIf="!form.controls.rep.hasError('required') && form.controls.rep.value != form.controls.newPassword.value">변경 비밀번호가 일치하지 않습니다.</span>
           </div>
         </form>
-        <div class="modal-footer modal-update-footer">
+        <div class="modal-footer modal-create-footer">
           <button class="btn btn-sub2" (click)="onClose()">취소</button>
           <button class="btn" [ngClass]="{'btn-disabled': !form.controls.rep.hasError('required'), 'btn-main' : form.controls.rep.hasError('required') }" (click)="onUpdate(form.controls)" [disabled]="!form.controls.rep.hasError('required')">수정</button>
         </div>

@@ -59,7 +59,7 @@ export class MyPageComponent implements OnInit {
     private alertService: CustomAlertService,
     private confirmService: ConfirmService,
     private bsModalRef: BsModalRef
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.onInit();
@@ -134,6 +134,7 @@ export class MyPageComponent implements OnInit {
 
   public onClose() {
     this.modal.onCloseAll();
+    this.userInfoType = '';
   }
 
   public onUpdate(e: any) {
@@ -159,7 +160,7 @@ export class MyPageComponent implements OnInit {
       width: 300,
       content: '탈퇴 하시겠습니까?',
       rightBtnTitle: '탈퇴',
-      eventResult: false
+      eventResult: false,
     };
 
     this.bsModalRef = this.confirmService.showConfirm(initialState);
@@ -187,7 +188,7 @@ export class MyPageComponent implements OnInit {
       width: 300,
       content: '탈퇴 하시겠습니까?',
       rightBtnTitle: '탈퇴',
-      eventResult: false
+      eventResult: false,
     };
 
     this.bsModalRef = this.confirmService.showConfirm(initialState);
@@ -218,7 +219,7 @@ export class MyPageComponent implements OnInit {
       width: 300,
       content: '구독을 해제하시겠습니까?',
       rightBtnTitle: '해제',
-      eventResult: false
+      eventResult: false,
     };
 
     this.bsModalRef = this.confirmService.showConfirm(initialState);

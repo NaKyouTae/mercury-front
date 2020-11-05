@@ -6,7 +6,7 @@ import { EnDecodingService } from '../en-deconding/en-decoding.service';
   providedIn: 'root',
 })
 export class CommonHttpService {
-  constructor(private http: HttpClient, private enDecodingService: EnDecodingService) { }
+  constructor(private http: HttpClient, private enDecodingService: EnDecodingService) {}
 
   public httpCallGet(service, queryString?: any) {
     const header = new HttpHeaders({
@@ -15,9 +15,11 @@ export class CommonHttpService {
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
     });
+    let params: any;
 
-    const params: any = this.enDecodingService.enCoding(queryString);
-
+    if (queryString !== undefined) {
+      params = this.enDecodingService.enCoding(queryString);
+    }
     return this.http.get('/' + service, {
       headers: header,
       params,

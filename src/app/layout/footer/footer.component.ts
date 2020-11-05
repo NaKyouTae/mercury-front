@@ -3,9 +3,8 @@ import { CommonHttpService } from 'src/app/shared/common/http/common-http.servic
 import { JwtService } from 'src/app/shared/common/jwt/jwt.service';
 import { ObservableService } from 'src/app/shared/common/observable/observable.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { FormsService } from 'src/app/shared/util/forms.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../header/login/login.component';
+import { FormsService } from 'src/app/shared/common/forms/forms.service';
 
 @Component({
   selector: 'app-footer',
@@ -25,7 +24,7 @@ export class FooterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService, private formservice: FormsService, private dialog: MatDialog) { }
+  constructor(private common: CommonHttpService, private jwt: JwtService, private observable: ObservableService, private formservice: FormsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.onSearch();
@@ -67,7 +66,9 @@ export class FooterComponent implements OnInit {
     };
 
     this.dialog.open(template, {
-      width, height, data: dialogData,
+      width,
+      height,
+      data: dialogData,
     });
   }
 

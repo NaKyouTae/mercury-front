@@ -91,3 +91,8 @@
 .confirm-footer > button:first-child {
   background-color: #ddd;
 }
+
+/* 버튼 선택시 border 없음 */
+.confirm-footer-btn:focus {
+  outline: none;
+}

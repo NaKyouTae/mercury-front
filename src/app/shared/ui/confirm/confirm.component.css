@@ -86,10 +86,8 @@
 
 .confirm-footer > button:hover {
   cursor: pointer;
-}
-
-.confirm-footer > button:first-child {
-  background-color: #ddd;
+  color: black;
+  background-color: skyblue;
 }
 
 /* 버튼 선택시 border 없음 */

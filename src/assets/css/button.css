@@ -35,7 +35,7 @@
 
 
 .btn-area-command {text-align: right;}
-.btn-top-command {margin-bottom: 10px;}
+.btn-top-command {margin-bottom: 10px; padding: 10px;}
 
 /* Button Tap */
 .btn-tap {display: inline-block; padding: 10px; margin: 10px 10px 10px 0px; border: 1px solid darkgray;}

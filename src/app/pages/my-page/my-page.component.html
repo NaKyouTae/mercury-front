@@ -98,7 +98,7 @@
         </form>
         <div class="modal-footer modal-create-footer">
           <button class="btn btn-sub2" (click)="onClose()">취소</button>
-          <button class="btn" [ngClass]="{'btn-disabled': !form.valid, 'btn-main' : form.valid }" (click)="onUpdate(form.controls)" [disabled]="!form.valid">수정</button>
+          <button class="btn" [ngClass]="{'btn-disabled': form.controls.email.invalid, 'btn-main' : !form.controls.email.invalid }" (click)="onUpdate(form.controls)" [disabled]="form.controls.email.invalid">수정</button>
         </div>
       </div>
     </div>
@@ -125,7 +125,10 @@
         </form>
         <div class="modal-footer modal-create-footer">
           <button class="btn btn-sub2" (click)="onClose()">취소</button>
-          <button class="btn" [ngClass]="{'btn-disabled': !form.controls.rep.hasError('required'), 'btn-main' : form.controls.rep.hasError('required') }" (click)="onUpdate(form.controls)" [disabled]="!form.controls.rep.hasError('required')">수정</button>
+          <button class="btn" 
+          (click)="onUpdate(form.controls)" 
+          [ngClass]="{'btn-disabled': form.controls.rep.invalid && form.controls.rep.value != form.controls.newPassword.value, 'btn-main' : !form.controls.rep.invalid && form.controls.rep.value == form.controls.newPassword.value}" 
+          [disabled]="form.controls.rep.invalid && form.controls.rep.value != form.controls.newPassword.value">수정</button>
         </div>
       </div>
     </div>

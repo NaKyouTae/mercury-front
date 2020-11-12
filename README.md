@@ -5,6 +5,16 @@
 - Angular CLI 10.1.4
 - Node 12.18.4
 
+## Angular Github Pages Distribute
+
+### Build
+
+ng build --prod --output-path docs --base-href /mercury-front/
+
+### Github Setting
+
+Setting > GitHub Pages > Source > master branch/docs folder setting
+
 ## 메뉴
 - 삼행시
 - 이행시

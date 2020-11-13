@@ -6,7 +6,7 @@ import { EnDecodingService } from '../en-deconding/en-decoding.service';
   providedIn: 'root',
 })
 export class CommonHttpService {
-  constructor(private http: HttpClient, private enDecodingService: EnDecodingService) { }
+  constructor(private http: HttpClient, private enDecodingService: EnDecodingService) {}
 
   public httpCallGet(service, queryString?: any) {
     const header = new HttpHeaders({
@@ -19,7 +19,8 @@ export class CommonHttpService {
 
     if (queryString !== undefined) {
       // params = this.enDecodingService.enCoding(queryString);
-      params = encodeURIComponent(queryString);
+      // params = encodeURIComponent(queryString);
+      params = queryString;
     }
 
     return this.http.get('/' + service, {

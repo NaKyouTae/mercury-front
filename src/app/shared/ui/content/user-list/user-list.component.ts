@@ -26,12 +26,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   public originData: any = new Array();
   public dataPin: any = 10;
 
-  constructor(
-    private common: CommonHttpService,
-    private observable: ObservableService,
-    private jwt: JwtService,
-    private confirmService: ConfirmService,
-    private bsModalRef: BsModalRef) {
+  constructor(private common: CommonHttpService, private observable: ObservableService, private jwt: JwtService, private confirmService: ConfirmService, private bsModalRef: BsModalRef) {
     this.observable.sourceObv.subscribe((res: any) => {
       this.type = res;
       this.getList();
@@ -42,9 +37,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (!this.location) {
       this.onInit();
-      // this.interval = setInterval(() => {
-      //   this.onInit();
-      // }, 30000);
+      this.interval = setInterval(() => {
+        this.onInit();
+      }, 30000);
     }
   }
 
@@ -161,7 +156,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       width: 300,
       content: '삭제 하시겠습니까?',
       rightBtnTitle: '삭제',
-      eventResult: false
+      eventResult: false,
     };
 
     this.bsModalRef = this.confirmService.showConfirm(initialState);

@@ -25,7 +25,7 @@ export class JwtInterceptorService {
           AWT: Access,
           RWT: Refresh,
           UWT: User,
-          loginType,
+          loginType: loginType ? loginType : '',
         },
       });
     }

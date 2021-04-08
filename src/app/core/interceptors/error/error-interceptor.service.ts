@@ -8,7 +8,7 @@ import { CustomAlertService } from 'src/app/shared/ui/alert/custom-alert.service
 
 @Injectable()
 export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(private cookie: CookieService, private router: Router, private alertService: CustomAlertService) {}
+  constructor(private cookie: CookieService, private router: Router, private alertService: CustomAlertService) { }
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request).pipe(
@@ -24,6 +24,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
           this.router.navigateByUrl('/three');
         }
+        console.log(error);
         return throwError(errorMsg);
       })
     );

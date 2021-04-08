@@ -70,8 +70,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.getTopThree();
   }
   public getTopThree() {
-    this.common.httpCallGet('service/' + this.type + '/popular', { userIdx: this.user.idx }).subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
+    this.common.httpCallGet('service/' + this.type + '/popular', { userIdx: this.user !== '' ? this.user.idx : '' }).subscribe((res: any) => {
+      if (res.resultCode === 'OK' && res.result.length > 0) {
         this.top = res.result.slice(0, 3);
         // 2, 1, 3 등 순으로 데이터 순서 변경
         const first = this.top[0];
@@ -84,7 +84,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public getList() {
-    this.common.httpCallGet('service/' + this.type + '/' + this.searchType, { userIdx: this.user.idx }).subscribe((res: any) => {
+    this.common.httpCallGet('service/' + this.type + '/' + this.searchType, { userIdx: this.user !== '' ? this.user.idx : '' }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.originData = res.result;
         this.data = res.result.slice(0, this.dataPin);
@@ -105,7 +105,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public deLove(e: any) {
-    this.common.httpCallDelete('service/loves', { userIdx: this.user.idx, contentIdx: e.idx }).subscribe((res: any) => {
+    this.common.httpCallDelete('service/loves', { userIdx: this.user !== '' ? this.user.idx : '', contentIdx: e.idx }).subscribe((res: any) => {
       if (res.resultCode === 'OK' && res.result !== null) {
         this.getList();
         this.getTopThree();

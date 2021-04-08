@@ -25,7 +25,7 @@ export class HonorComponent implements OnInit {
 
   public nowHonor(year: number, month: number) {
     this.common.httpCallGet('service/honor/date', { year, month }).subscribe((res: any) => {
-      if (res.resultCode === 'OK' && res.result !== null) {
+      if (res.resultCode === 'OK' && res.result.root.length > 0) {
         const result = res.result.root;
 
         this.latestData = result[0];
@@ -33,7 +33,7 @@ export class HonorComponent implements OnInit {
         // 현재 날짜 기준으로 전 달 데이터를 조회하여 하위 게시판에 넣는다.
         if (result[0].week === 1) {
           this.common.httpCallGet('service/honor/date', { year, month }).subscribe((preRes: any) => {
-            if (res.resultCode === 'OK' && res.result !== null) {
+            if (res.resultCode === 'OK' && res.result.length > 0) {
               this.boardData = preRes.result.root;
             }
           });

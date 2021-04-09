@@ -154,6 +154,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   public onDoubleCheck(userName: string) {
+    if (userName === '') return;
+
     this.userDupleConfirm = true;
     this.common.httpCallGet('service/users/duplicate', { userName }).subscribe((res: any) => {
       this.userDupleCheck = res.result;

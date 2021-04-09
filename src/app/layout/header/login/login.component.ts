@@ -44,7 +44,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router, private localStorageService: LocalStorageService) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router, private localStorageService: LocalStorageService) { }
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -200,6 +200,8 @@ export class LoginComponent implements OnInit {
   }
 
   public onDoubleCheck(userName: string) {
+    if (userName === '') return;
+
     this.userDupleConfirm = true;
     this.common.httpCallGet('service/users/duplicate', { userName }).subscribe((res: any) => {
       this.userDupleCheck = res.result;

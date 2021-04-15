@@ -10,8 +10,8 @@
         <p>당신의 창의력을 펼쳐보세요~</p>
       </div>
       <div>
-        <button *ngIf="!front" class="btn user-loin-btn" (click)="dragFront()">회원가입</button>
-        <button *ngIf="front" class="btn user-loin-btn" (click)="dragFront()">로그인</button>
+        <button *ngIf="!front" class="btn user-loin-btn" (click)="dragFront()">회원가입 하기</button>
+        <button *ngIf="front" class="btn user-loin-btn" (click)="dragFront()">로그인 하기</button>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
         <span class="required-notice-red" *ngIf="logInForm.controls.password.hasError('required')">비밀번호는 필수 입니다.</span>
       </div>
       <div *ngIf="loginFail" style="color:red;">로그인 정보가 잘 못 되었습니다.</div>
-      <div class="form-input-checkbox">
+      <div *ngIf="front" class="form-input-checkbox">
         <input type="checkbox" id="loginSave" (change)="loginSave = !loginSave">
         <label for="loginSave">계정 정보 기억하기</label>
       </div>

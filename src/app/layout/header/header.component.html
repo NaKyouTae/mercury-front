@@ -3,8 +3,8 @@
         <div class="header-menu">
           <div>
               <app-login *ngIf="!userCheck" style="display: inline-block;"></app-login>
-              <div *ngIf="userCheck && this.loginType == 'DEFAULT'" style="cursor: pointer;" (click)="logout()">LOGOUT</div>
-              <div *ngIf="userCheck && this.loginType == 'KAKAO'" style="cursor: pointer;" (click)="kakaoByLogout()">K LOGOUT</div>
+              <div *ngIf="userCheck && this.loginType == 'DEFAULT'" style="cursor: pointer;" (click)="logout()">로그아웃</div>
+              <div *ngIf="userCheck && this.loginType == 'KAKAO'" style="cursor: pointer;" (click)="kakaoByLogout()">로그아웃</div>
               <div *ngIf="userCheck" style="cursor: pointer;" routerLink="/my">나의 <span style="color: #100efb;">엔</span>행시</div>
               <div *ngIf="userCheck">{{userName}} 님</div>
           </div>

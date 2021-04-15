@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { trigger, style, state, animate, transition } from '@angular/animations';
 import { LocalStorageService } from 'src/app/shared/common/localStorage/local-storage.service';
 import { FormsService } from 'src/app/shared/common/forms/forms.service';
+import { environment } from 'src/environments/environment';
 
 declare let Kakao: any; //
 
@@ -44,7 +45,7 @@ declare let Kakao: any; //
   ],
 })
 export class LoginComponent implements OnInit {
-  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router, private localStorageService: LocalStorageService) {}
+  constructor(private dialog: MatDialog, private formservice: FormsService, private common: CommonHttpService, private router: Router, private localStorageService: LocalStorageService) { }
 
   public front: any = false;
   public widthToggle: any = this.front ? 'sign' : 'login';
@@ -84,7 +85,7 @@ export class LoginComponent implements OnInit {
 
   public naver: any;
   ngOnInit() {
-    Kakao.init('58b766d921ddd12e614e8058e0af5e3d');
+    Kakao.init(environment.KAKAO_KEY);
     console.log('kakao init', Kakao.isInitialized());
   }
 
@@ -207,7 +208,7 @@ export class LoginComponent implements OnInit {
   }
 
   public kakaoLogin() {
-    Kakao.Auth.authorize({ redirectUri: 'http://localhost:4300/user/kakao' });
+    Kakao.Auth.authorize({ redirectUri: environment.DOMAIN + '/user/kakao' });
   }
 
   public naverLogin() {
@@ -216,17 +217,17 @@ export class LoginComponent implements OnInit {
 
     // this.naver = new naver.LoginWithNaverId({
     //   clientId: 'tabnzioAUOBXW8u3FvoL',
-    //   callbackUrl: 'http://localhost:4300',
+    //   callbackUrl: environment.DOMAIN,
     //   isPopup: true,
     //   loginButton: { type: 2, height: 40 }
     // })
 
     // tslint:disable-next-line: no-string-literal
-    this.naver = new window['naver_id_login']('tabnzioAUOBXW8u3FvoL', 'http://localhost:4300');
+    this.naver = new window['naver_id_login']('tabnzioAUOBXW8u3FvoL', environment.DOMAIN);
     // tslint:disable-next-line: no-shadowed-variable
     const state = this.naver.getUniqState();
     this.naver.setButton('', 2, 40);
-    this.naver.setDomain('http://localhost:4300');
+    this.naver.setDomain(environment.DOMAIN);
     this.naver.setState(state);
     this.naver.init_naver_id_login();
   }

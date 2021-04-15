@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfirmComponent } from 'src/app/shared/ui/confirm/confirm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmService } from 'src/app/shared/ui/confirm/confirm.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -69,7 +70,7 @@ export class HeaderComponent implements OnInit {
       if (event) {
         // 세션 만료 후 로그아웃 재 로그인시 카카오톡 계정 입력창 노출
         // tslint:disable-next-line: max-line-length
-        // window.location.href = 'https://kauth.kakao.com/oauth/logout?client_id=c4d7328a864db7fd90be93def8e00940&logout_redirect_uri=http://localhost:4300/user/kakao/logout&state=access_token';
+        // window.location.href = 'https://kauth.kakao.com/oauth/logout?client_id=c4d7328a864db7fd90be93def8e00940&logout_redirect_uri=' + environment.DOMAIN + '/user/kakao/logout&state=access_token';
 
         // 사이트 자체 로그 아웃 카카오톡 세션은 유지 시킨다.
         this.common.httpCallGet('user/kakao/logout', { access: this.cookie.getCookie('AWT') }).subscribe((res: any) => {
